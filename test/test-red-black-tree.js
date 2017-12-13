@@ -3,10 +3,10 @@
 // Enables you to require modules using relative paths
 const amp = require('app-module-path');
 const path = require('path');
-const srcPath = path.resolve(__dirname, '../../../src');
+const srcPath = path.resolve(__dirname, '../src');
 amp.addPath(srcPath);
 const should = require('should');
-const {Node} = require('services/office-hours/red-black-tree');
+const {Node} = require('red-black-tree');
 
 function createNode(id) {
     let n = new Node();

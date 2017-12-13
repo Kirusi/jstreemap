@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "eslint": "eslint --config=./build/.eslintrc.json **/*.js",
-    "eslint-watch": "cross-env node_modules/eslint-watch/bin/esw --config=./build/.eslintrc.json -w --fix **/*.js",
+    "eslint": "eslint --config=./build/lintrc.json **/*.js",
+    "eslint-watch": "cross-env node_modules/eslint-watch/bin/esw --config=./build/lintrc.json -w --fix **/*.js",
     "test-watch": "cross-env node_modules/.bin/mocha --reporter spec -w test/**/*.js",
     "test": "cross-env SETTINGS_FILE=settings.yml nyc --reporter=lcov --reporter=html --reporter=json --reporter=text --report-dir=.coverage node_modules/.bin/mocha --reporter spec --recursive test/**/*.js"
   },
@@ -31,7 +31,10 @@
   },
   "homepage": "https://github.com/kirusi/setmap#readme",
   "dependencies": {
-    "eslint-watch": "^3.1.3"
+    "app-module-path": "^2.2.0",
+    "eslint-watch": "^3.1.3",
+    "nyc": "^11.3.0",
+    "should": "^13.1.3"
   },
   "devDependencies": {
     "cross-env": "^5.1.1",
