@@ -1,0 +1,29 @@
+{
+  "name": "setmap",
+  "version": "1.7.1",
+  "description": "Library of associative containers.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirusi/setmap.git"
+  },
+  "keywords": [
+    "set",
+    "map",
+    "red",
+    "black",
+    "tree"
+  ],
+  "author": "Kirusi Msafiri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kirusi/setmap/issues"
+  },
+  "homepage": "https://github.com/kirusi/setmap#readme"
+}
