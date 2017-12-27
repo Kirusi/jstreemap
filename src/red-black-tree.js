@@ -3,7 +3,6 @@
 const RED = 1;
 const BLACK = 2;
 
-const LEAF = {color: BLACK}; //FIXME VK: figure out what leaf is?
 class Node {
 
     constructor() {
@@ -11,7 +10,7 @@ class Node {
         this.right = null;
         this.parent = null;
         this.key = null;
-        this.color = BLACK;
+        this.color = RED;
     }
 
     grandparent() {
@@ -46,19 +45,66 @@ class Node {
         } // No grandparent means no uncle
         return p.sibling();
     }
+}
 
-    replaceChild(oldC, newC) {
-        if (oldC === null) {
-            throw new Error('Can\'t replace a null pointer');
+class Head {
+    constructor() {
+        this.leftmost = this;
+        this.rightmost = this;
+        this.root = this;
+        this.size = 0;
+        this.id = 'HEAD';
+    }
+}
+
+function compare(lhs, rhs) {
+    if (lhs < rhs) {
+        return -1;
+    }
+    else if (lhs === rhs) {
+        return 0;
+    }
+    else {
+        return 1;
+    }
+}
+
+class Tree {
+    constructor() {
+        this.head = new Head();
+        this.compare = compare;
+    }
+
+    clear() {
+        this.head = new Head();
+    }
+
+    get size() {
+        return this.head.size;
+    }
+
+    compareNodes(lhs, rhs) {
+        return this.compare(lhs.key, rhs.key);
+    }
+
+    replaceNode(oldNode, newNode) {
+        if (oldNode === newNode) {
+            return;
         }
-        if (this.left === oldC) {
-            this.left = newC;
-        }
-        else if (this.right === oldC) {
-            this.right = newC;
+        if (oldNode.parent === null) {
+            this.head.root = newNode;
         }
         else {
-            throw new Error('specified node is not a child node');
+            if (oldNode === oldNode.parent.left) {
+                oldNode.parent.left = newNode;
+            }
+            else {
+                oldNode.parent.right = newNode;
+            }
+        }
+
+        if (newNode !== null) {
+            newNode.parent = oldNode.parent;
         }
     }
 
@@ -70,251 +116,377 @@ class Node {
           a   b                                           b   c
 
     */
-    rotateLeft() {
-        let Y = this;
-        let X = Y.right;
-        let b = X.left;
-        let p = Y.parent;
-        // FIXME VK: remove next if
-        if (X === LEAF) {
-            throw new Error('failed assertion');
+
+    rotateLeft(node) {
+        let right = node.right;
+        if (this.isLeaf(right)) {
+            throw new Error('should not rotate');
         }
-        Y.right = b;
-        X.left = Y;
-        X.parent = Y.parent;
-        Y.parent = X;
-        b.parent = Y;
-        if (p !== null) {
-            p.replaceChild(Y, X);
+        this.replaceNode(node, right);
+
+        node.right = right.left;
+        if (right.left !== null) {
+            right.left.parent = node;
         }
-        // (the other related parent and child links would also have to be updated)
+
+        right.left = node;
+        node.parent = right;
     }
 
-    rotateRight() {
-        let X = this;
-        let Y = X.left;
-        let b = Y.right;
-        let p = Y.parent;
-        // FIXME VK: remove next if
-        if (Y === LEAF) {
-            // since the leaves of a red-black tree are empty, they cannot become internal nodes
-            throw new Error('failed assertion');
+    rotateRight(node) {
+        let left = node.left;
+        if (this.isLeaf(left)) {
+            throw new Error('should not rotate');
         }
-        X.left = b;
-        Y.right = X;
-        Y.parent = X.parent;
-        X.parent = Y;
-        b.parent = X;
-        if (p !== null) {
-            p.replaceChild(X, Y);
+        this.replaceNode(node, left);
+
+        node.left = left.right;
+        if (left.right !== null) {
+            left.right.parent = node;
         }
-        // (the other related parent and child links would also have to be updated)
+
+        left.right = node;
+        node.parent = left;
     }
-}
-/*
-function insert_recurse(root, n) {
-    // recursively descend the tree until a leaf is found
-    if (root !== null && n.key < root.key) {
-        if (root.left != LEAF) {
-            insert_recurse(root.left, n);
+
+    isLeaf(node) {
+        if (node === null || node === this.head) {
+            return true;
+        }
+        return false;
+    }
+
+    fetchColor(node) {
+        if (this.isLeaf(node)) {
+            return BLACK;
+        }
+        else {
+            return node.color;
+        }
+    }
+
+    isBlack(node) {
+        return (this.fetchColor(node) === BLACK);
+    }
+
+    isRed(node) {
+        return (this.fetchColor(node) === RED);
+    }
+
+    /* ===========================
+       INSERT
+       =========================== */
+    insertNode(n) {
+        this.insertNodeInternal(this.head.root, n);
+        if (this.head.size === 0) {
+            this.head.root = n;
+            this.head.leftmost = n;
+            this.head.rightmost = n;
+
+            n.left = this.head;
+            n.right = this.head;
+        }
+        else if (this.head.leftmost.left === n) {
+            this.head.leftmost = n;
+            n.left = this.head;
+        }
+        else if (this.head.rightmost.right === n) {
+            this.head.rightmost = n;
+            n.right = this.head;
+        }
+        this.insertRepairTree(n);
+        this.head.size = this.head.size + 1;
+    }
+
+    insertNodeInternal(root, n) {
+        // recursively descend the tree until a leaf is found
+        let x = root;
+        let y = null;
+        let rc = -1;
+        while (!this.isLeaf(x)) {
+            y = x;
+            rc = this.compareNodes(n, y);
+            if (rc < 0) {
+                x = y.left;
+            }
+            else {
+                x = y.right;
+            }
+        }
+        if (this.isLeaf(y)) {
+            n.parent = null;
+            n.left = this.head;
+            n.right = this.head;
+        }
+        else {
+            n.parent = y;
+            if (rc < 0) {
+                y.left = n;
+            }
+            else {
+                y.right = n;
+            }
+        }
+    }
+
+    insertRepairTree(n) {
+        if (n.parent === null) {
+            this.repairCase1(n);
+        }
+        else if (this.isBlack(n.parent)) {
+        /* insert_case2(n);
+           // do nothing */
+        }
+        else if (this.isRed(n.uncle())) {
+            this.repairCase3(n);
+        }
+        else {
+            this.repairCase4(n);
+        }
+    }
+
+    repairCase1(n) {
+        n.color = BLACK;
+    }
+
+    repairCase3(n) {
+        n.parent.color = BLACK;
+        n.uncle().color = BLACK;
+        n.grandparent().color = RED;
+        this.insertRepairTree(n.grandparent());
+    }
+
+    repairCase4(n) {
+        let p = n.parent;
+        let g = n.grandparent();
+
+        let nr = null;
+        if ((g.left !== null) && (n === g.left.right)) {
+            this.rotateLeft(p);
+            n = n.left;
+        }
+        else if ((g.right !== null) && (n === g.right.left)) {
+            this.rotateRight(p);
+            n = n.right;
+        }
+
+        p = n.parent;
+        g = n.grandparent();
+        if (n === p.left) {
+            this.rotateRight(g);
+        }
+        else {
+            this.rotateLeft(g);
+        }
+
+        p.color = BLACK;
+        g.color = RED;
+    }
+
+    fetchMaximum(node) {
+        while (!this.isLeaf(node.right)) {
+            node = node.right;
+        }
+
+        return node;
+    }
+
+    /* ===========================
+       ERASE
+       =========================== */
+    erase(node) {
+        if (this.isLeaf(node)) {
+            return;
+        }
+
+        this.eraseInternal(node);
+        let h = this.head;
+        h.size = h.size - 1;
+    }
+
+    eraseInternal(node) {
+        if (!this.isLeaf(node.left) && !this.isLeaf(node.right)) {
+            let pred = this.fetchMaximum(node.left);
+
+            // FIXME VK: fix for maps which have values
+            node.key = pred.key;
+            node = pred;
+        }
+
+        let child = (this.isLeaf(node.right)) ? node.left : node.right;
+
+        if (this.isBlack(node)) {
+            node.color = this.fetchColor(child);
+            this.eraseCase1(node);
+        }
+        this.replaceNode(node, child);
+
+        let h = this.head;
+        if ((this.isLeaf(child)) && (h.leftmost === node)) {
+            let p = node.parent;
+            if (p !== null) {
+                h.leftmost = p;
+                p.left = h;
+            }
+            else {
+                h.leftmost = h;
+            }
+        }
+        if ((this.isLeaf(child)) && (h.rightmost === node)) {
+            let p = node.parent;
+            if (p !== null) {
+                h.rightmost = p;
+                p.right = h;
+            }
+            else {
+                h.rightmost = h;
+            }
+        }
+    }
+
+    eraseCase1(node) {
+        if (node.parent === null) {
             return;
         }
         else {
-            root.left = n;
+            this.eraseCase2(node);
         }
     }
-    else if (root !== null) {
-        if (root.right !== LEAF) {
-            insert_recurse(root.right, n);
-            return;
+
+    eraseCase2(node) {
+        let s = node.sibling();
+
+        if (this.isRed(s)) {
+            node.parent.color = RED;
+            s.color = BLACK;
+
+            if (node === node.parent.left) {
+                this.rotateLeft(node.parent);
+            }
+            else {
+                this.rotateRight(node.parent);
+            }
+        }
+        this.eraseCase3(node);
+    }
+
+    eraseCase3(node) {
+        let s = node.sibling();
+        let p = node.parent;
+        if (this.isBlack(p) &&
+			this.isBlack(s) &&
+			this.isBlack(s.left) &&
+			this.isBlack(s.right)) {
+
+            s.color = RED;
+            this.eraseCase1(p);
         }
         else {
-            root.right = n;
+            this.eraseCase4(node);
         }
     }
 
-    // insert new node n
-    n.parent = root;
-    n.left = LEAF;
-    n.right = LEAF;
-    n.color = RED;
-}
+    eraseCase4(node) {
+        let s = node.sibling();
+        let p = node.parent;
+        if (this.isRed(p) &&
+			this.isBlack(s) &&
+			this.isBlack(s.left) &&
+			this.isBlack(s.right)) {
 
-function insert_repair_tree(n) {
-    if (n.parent === null) {
-        insert_case1(n);
+            s.color = RED;
+            p.color = BLACK;
+        }
+        else {
+            this.eraseCase5(node);
+        }
     }
-    else if (n.parent.color === BLACK) {
-        insert_case2(n);
+
+    eraseCase5(node) {
+        let s = node.sibling();
+        let p = node.parent;
+        /* The check below is unnecessary
+           due to case 2 (even though case 2 changed the sibling to a sibling's child,
+           the sibling's child can't be red, since no red parent can have a red child).*/
+        /* if ((!this.isLeaf(s)) &&
+           this.isBlack(s)) { */
+
+        /* the following statements just force the red to be on the left of the left of the parent,
+           or right of the right, so case six will rotate correctly. */
+        if (node === p.left &&
+				this.isRed(s.left) &&
+				this.isBlack(s.right)) {
+
+            s.color = RED;
+            s.left.color = BLACK;
+            this.rotateRight(s);
+        }
+        else if (node === p.right &&
+				this.isBlack(s.left) &&
+				this.isRed(s.right)) {
+
+            s.color = RED;
+            s.right.color = BLACK;
+            this.rotateLeft(s);
+        }
+        //}
+        this.eraseCase6(node);
     }
-    else if (n.uncle().color === RED) {
-        insert_case3(n);
+
+    eraseCase6(node) {
+        let s = node.sibling();
+        let p = node.parent;
+        s.color = this.fetchColor(p);
+        p.color = BLACK;
+
+        if (node === p.left) {
+            s.right.color = BLACK;
+            this.rotateLeft(p);
+        }
+        else {
+            s.left.color = BLACK;
+            this.rotateRight(p);
+        }
     }
-    else {
-        insert_case4(n);
+
+    lowerBound(k) {
+        let y = this.head;
+        let x = y.root;
+        while (!this.isLeaf(x)) {
+            let rc = this.compare(x.key, k);
+            if (rc >= 0) {
+                y = x;
+                x = x.left;
+            }
+            else {
+                x = x.right;
+            }
+        }
+        return y;
     }
-}
 
-void insert_case1(struct node *n)
-{
- if (parent(n) == NULL)
-  n->color = BLACK;
-}
-
-void insert_case3(struct node *n)
-{
- parent(n)->color = BLACK;
- uncle(n)->color = BLACK;
- grandparent(n)->color = RED;
- insert_repair_tree(grandparent(n));
-}
-
-void insert_case4(struct node *n)
-{
- struct node *p = parent(n);
- struct node *g = grandparent(n);
-
- if (n == g->left->right) {
-  rotate_left(p);
-  n = n->left;
- } else if (n == g->right->left) {
-  rotate_right(p);
-  n = n->right; 
- }
-
- insert_case4step2(n);
-}
-
-void insert_case4step2(struct node *n)
-{
- struct node *p = parent(n);
- struct node *g = grandparent(n);
-
- if (n == p->left)
-  rotate_right(g);
- else
-  rotate_left(g);
- p->color = BLACK;
- g->color = RED;
-}
-
-class RedBlackTree {
-
-    constructor() {
-        this.anchor = new SetNode();
-        this.anchor.size = 0;
+    upperBound(k) {
+        let y = this.head;
+        let x = y.root;
+        while (!this.isLeaf(x)) {
+            let rc = this.compare(x.key, k);
+            if (rc < 0) {
+                y = x;
+                x = x.left;
+            }
+            else {
+                x = x.right;
+            }
+        }
+        return y;
     }
+
 }
-
-void delete_one_child(struct node *n)
-{
- 
-  // Precondition: n has at most one non-leaf child.
-  
- struct node *child = is_leaf(n->right) ? n->left : n->right;
-
- replace_node(n, child);
- if (n->color == BLACK) {
-  if (child->color == RED)
-   child->color = BLACK;
-  else
-   delete_case1(child);
- }
- free(n);
-}
-
-void delete_case1(struct node *n)
-{
- if (n->parent != NULL)
-  delete_case2(n);
-}
-
-void delete_case2(struct node *n)
-{
- struct node *s = sibling(n);
-
- if (s->color == RED) {
-  n->parent->color = RED;
-  s->color = BLACK;
-  if (n == n->parent->left)
-   rotate_left(n->parent);
-  else
-   rotate_right(n->parent);
- }
- delete_case3(n);
-}
-
-void delete_case3(struct node *n)
-{
- struct node *s = sibling(n);
-
- if ((n->parent->color == BLACK) &&
-     (s->color == BLACK) &&
-     (s->left->color == BLACK) &&
-     (s->right->color == BLACK)) {
-  s->color = RED;
-  delete_case1(n->parent);
- } else
-  delete_case4(n);
-}
-
-void delete_case4(struct node *n)
-{
- struct node *s = sibling(n);
-
- if ((n->parent->color == RED) &&
-     (s->color == BLACK) &&
-     (s->left->color == BLACK) &&
-     (s->right->color == BLACK)) {
-  s->color = RED;
-  n->parent->color = BLACK;
- } else
-  delete_case5(n);
-}
-
-void delete_case5(struct node *n)
-{
- struct node *s = sibling(n);
-
- if  (s->color == BLACK) { 
-// this if statement is trivial,
-//due to case 2 (even though case 2 changed the sibling to a sibling's child,
-//the sibling's child can't be red, since no red parent can have a red child). 
-// the following statements just force the red to be on the left of the left of the parent,
-//   or right of the right, so case six will rotate correctly. 
-  if ((n == n->parent->left) &&
-      (s->right->color == BLACK) &&
-      (s->left->color == RED)) { // this last test is trivial too due to cases 2-4.
-   s->color = RED;
-   s->left->color = BLACK;
-   rotate_right(s);
-  } else if ((n == n->parent->right) &&
-             (s->left->color == BLACK) &&
-             (s->right->color == RED)) {// this last test is trivial too due to cases 2-4.
-   s->color = RED;
-   s->right->color = BLACK;
-   rotate_left(s);
-  }
- }
- delete_case6(n);
-}
-
-void delete_case6(struct node *n)
-{
- struct node *s = sibling(n);
-
- s->color = n->parent->color;
- n->parent->color = BLACK;
-
- if (n == n->parent->left) {
-  s->right->color = BLACK;
-  rotate_left(n->parent);
- } else {
-  s->left->color = BLACK;
-  rotate_right(n->parent);
- }
-}
-*/
 
 module.exports = {
-    Node: Node};
+    Node: Node,
+    Tree: Tree,
+    compare: compare,
+    BLACK: BLACK,
+    RED: RED
+};

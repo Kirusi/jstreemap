@@ -9,7 +9,7 @@
     "eslint-fix": "eslint --config=./build/lintrc.json --fix **/*.js",
     "eslint-watch": "cross-env node_modules/eslint-watch/bin/esw --config=./build/lintrc.json -w --fix **/*.js",
     "test-watch": "mocha --reporter spec -w test/**/*.js",
-    "test": "mocha --reporter=lcov --reporter=html --reporter=json --reporter=text --report-dir=.coverage node_modules/.bin/mocha --reporter spec --recursive test/**/*.js"
+    "test": "nyc --reporter=lcov --reporter=html --report-dir=.coverage mocha --reporter spec test/**/*.js"
   },
   "directories": {
     "test": "test"
@@ -33,13 +33,12 @@
   "homepage": "https://github.com/kirusi/setmap#readme",
   "dependencies": {
     "app-module-path": "^2.2.0",
-    "eslint-watch": "^3.1.3",
-    "nyc": "^11.3.0",
     "should": "^13.1.3"
   },
   "devDependencies": {
     "cross-env": "^5.1.1",
     "eslint": "^4.13.1",
+    "eslint-watch": "^3.1.3",
     "mocha": "^4.0.1"
   }
 }

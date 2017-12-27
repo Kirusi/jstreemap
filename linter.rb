@@ -22,5 +22,5 @@ while TRUE
         pp "#{dt.inspect()}: Clean"
     end
   end
-  sleep(0.5)
+  sleep(2)
 end
