@@ -57,6 +57,113 @@ class Head {
     }
 }
 
+class JsIterator {
+    constructor(node, container, proc) {
+        this.node = node;
+        this.container = container;
+        this.proc = proc;
+    }
+
+    next() {
+        let res = {};
+        res.done = (this.node === this.container.jsEnd());
+        if (!res.done) {
+            // FIXME VK: fix for maps
+            let v = this.node.key;
+            if (this.proc !== undefined) {
+                v = this.proc(this.node);
+            }
+            res.value = v;
+
+            this.node = this.container.next(this.node);
+        }
+        return res;
+    }
+}
+
+class JsReverseIterator {
+    constructor(node, container, proc) {
+        this.node = node;
+        this.container = container;
+        this.proc = proc;
+    }
+
+    next() {
+        let res = {};
+        res.done = (this.node === this.container.jsRend());
+        if (!res.done) {
+            // FIXME VK: fix for maps
+            let v = this.node.key;
+            if (this.proc !== undefined) {
+                v = this.proc(this.node);
+            }
+            res.value = v;
+
+            this.node = this.container.prev(this.node);
+        }
+        return res;
+    }
+}
+
+class StlBaseIterator {
+    constructor(node, container) {
+        this.n = node;
+        this.container = container;
+    }
+
+    equals(rhs) {
+        let lhsClass = this.constructor.name;
+        let rhsClass = rhs.constructor.name;
+        if (lhsClass !== rhsClass) {
+            throw new Error(`Can't compare with an instance of ${rhsClass}`);
+        }
+        if (this.container !== rhs.container) {
+            throw new Error('Iterators belong to different containers');
+        }
+        return this.n === rhs.node;
+    }
+
+    get node() {
+        return this.n;
+    }
+}
+
+class StlIterator extends StlBaseIterator {
+    constructor(node, container) {
+        super(node, container);
+    }
+
+    next() {
+        this.n = this.container.next(this.n);
+    }
+
+    prev() {
+        this.n = this.container.prev(this.n);
+    }
+
+    clone() {
+        return new StlIterator(this.n, this.container);
+    }
+}
+
+class StlReverseIterator extends StlBaseIterator {
+    constructor(node, container) {
+        super(node, container);
+    }
+
+    next() {
+        this.n = this.container.prev(this.n);
+    }
+
+    prev() {
+        this.n = this.container.next(this.n);
+    }
+
+    clone() {
+        return new StlReverseIterator(this.n, this.container);
+    }
+}
+
 function compare(lhs, rhs) {
     if (lhs < rhs) {
         return -1;
@@ -120,7 +227,7 @@ class Tree {
     rotateLeft(node) {
         let right = node.right;
         if (this.isLeaf(right)) {
-            throw new Error('should not rotate');
+            throw new Error('rotateLeft can\'t be performed. The tree is corrupted');
         }
         this.replaceNode(node, right);
 
@@ -136,7 +243,7 @@ class Tree {
     rotateRight(node) {
         let left = node.left;
         if (this.isLeaf(left)) {
-            throw new Error('should not rotate');
+            throw new Error('rotateRight can\'t be performed. The tree is corrupted');
         }
         this.replaceNode(node, left);
 
@@ -261,11 +368,13 @@ class Tree {
         let g = n.grandparent();
 
         let nr = null;
-        if ((g.left !== null) && (n === g.left.right)) {
+        if ((g.left !== null)
+            && (n === g.left.right)) {
             this.rotateLeft(p);
             n = n.left;
         }
-        else if ((g.right !== null) && (n === g.right.left)) {
+        else if ((g.right !== null)
+            && (n === g.right.left)) {
             this.rotateRight(p);
             n = n.right;
         }
@@ -291,6 +400,14 @@ class Tree {
         return node;
     }
 
+    fetchMinimum(node) {
+        while (!this.isLeaf(node.left)) {
+            node = node.left;
+        }
+
+        return node;
+    }
+
     /* ===========================
        ERASE
        =========================== */
@@ -305,7 +422,8 @@ class Tree {
     }
 
     eraseInternal(node) {
-        if (!this.isLeaf(node.left) && !this.isLeaf(node.right)) {
+        if (!this.isLeaf(node.left)
+            && !this.isLeaf(node.right)) {
             let pred = this.fetchMaximum(node.left);
 
             // FIXME VK: fix for maps which have values
@@ -322,7 +440,8 @@ class Tree {
         this.replaceNode(node, child);
 
         let h = this.head;
-        if ((this.isLeaf(child)) && (h.leftmost === node)) {
+        if ((this.isLeaf(child))
+            && (h.leftmost === node)) {
             let p = node.parent;
             if (p !== null) {
                 h.leftmost = p;
@@ -332,7 +451,8 @@ class Tree {
                 h.leftmost = h;
             }
         }
-        if ((this.isLeaf(child)) && (h.rightmost === node)) {
+        if ((this.isLeaf(child))
+            && (h.rightmost === node)) {
             let p = node.parent;
             if (p !== null) {
                 h.rightmost = p;
@@ -373,10 +493,10 @@ class Tree {
     eraseCase3(node) {
         let s = node.sibling();
         let p = node.parent;
-        if (this.isBlack(p) &&
-			this.isBlack(s) &&
-			this.isBlack(s.left) &&
-			this.isBlack(s.right)) {
+        if (this.isBlack(p)
+            && this.isBlack(s)
+            && this.isBlack(s.left)
+            && this.isBlack(s.right)) {
 
             s.color = RED;
             this.eraseCase1(p);
@@ -389,10 +509,10 @@ class Tree {
     eraseCase4(node) {
         let s = node.sibling();
         let p = node.parent;
-        if (this.isRed(p) &&
-			this.isBlack(s) &&
-			this.isBlack(s.left) &&
-			this.isBlack(s.right)) {
+        if (this.isRed(p)
+            && this.isBlack(s)
+            && this.isBlack(s.left)
+            && this.isBlack(s.right)) {
 
             s.color = RED;
             p.color = BLACK;
@@ -407,23 +527,23 @@ class Tree {
         let p = node.parent;
         /* The check below is unnecessary
            due to case 2 (even though case 2 changed the sibling to a sibling's child,
-           the sibling's child can't be red, since no red parent can have a red child).*/
-        /* if ((!this.isLeaf(s)) &&
-           this.isBlack(s)) { */
+           the sibling's child can't be red, since no red parent can have a red child). */
+        /* if ((!this.isLeaf(s))
+               && this.isBlack(s)) { */
 
         /* the following statements just force the red to be on the left of the left of the parent,
            or right of the right, so case six will rotate correctly. */
-        if (node === p.left &&
-				this.isRed(s.left) &&
-				this.isBlack(s.right)) {
+        if (node === p.left
+            && this.isRed(s.left)
+			&& this.isBlack(s.right)) {
 
             s.color = RED;
             s.left.color = BLACK;
             this.rotateRight(s);
         }
-        else if (node === p.right &&
-				this.isBlack(s.left) &&
-				this.isRed(s.right)) {
+        else if (node === p.right
+            && this.isBlack(s.left)
+            && this.isRed(s.right)) {
 
             s.color = RED;
             s.right.color = BLACK;
@@ -449,6 +569,29 @@ class Tree {
         }
     }
 
+    /* ===========================
+       SEARCH BY KEY
+       =========================== */
+    find(k) {
+        let y = this.head;
+        let x = y.root;
+        while (!this.isLeaf(x)) {
+            let rc = this.compare(x.key, k);
+            if (rc > 0) {
+                y = x;
+                x = x.left;
+            }
+            else if (rc < 0) {
+                y = x;
+                x = x.right;
+            }
+            else {
+                return x;
+            }
+        }
+        return this.head;
+    }
+
     lowerBound(k) {
         let y = this.head;
         let x = y.root;
@@ -462,30 +605,134 @@ class Tree {
                 x = x.right;
             }
         }
-        return y;
+        return new StlIterator(y, this);
     }
 
     upperBound(k) {
         let y = this.head;
         let x = y.root;
         while (!this.isLeaf(x)) {
-            let rc = this.compare(x.key, k);
-            if (rc < 0) {
+            let rc = this.compare(k, x.key);
+            if (rc > 0) {
                 y = x;
-                x = x.left;
-            }
-            else {
                 x = x.right;
             }
+            else {
+                x = x.left;
+            }
         }
-        return y;
+        return new StlIterator(y, this);
     }
 
+    /* ===========================
+       ITERATORS
+       =========================== */
+
+    begin() {
+        return new StlIterator(this.head.leftmost, this);
+    }
+
+    end() {
+        return new StlIterator(this.head, this);
+    }
+
+    rbegin() {
+        return new StlReverseIterator(this.head.rightmost, this);
+    }
+
+    rend() {
+        return new StlReverseIterator(this.head, this);
+    }
+
+    jsBegin() {
+        return this.head.leftmost;
+    }
+
+    jsEnd() {
+        return this.head;
+    }
+
+    jsRbegin() {
+        return this.head.rightmost;
+    }
+
+    jsRend() {
+        return this.head;
+    }
+
+    next(n) {
+        if (n === this.head) {
+            return this.head.leftmost;
+        }
+        if (n.right === this.head) {
+            return this.head;
+        }
+        if (n.right !== null) {
+            let res = this.fetchMinimum(n.right);
+            return res;
+        }
+        else {
+            while (n.parent.left !== n) {
+                n = n.parent;
+            }
+            return n.parent;
+        }
+    }
+
+    prev(n) {
+        if (n === this.head) {
+            return this.head.rightmost;
+        }
+        if (n.left === this.head) {
+            return this.head;
+        }
+        if (n.left !== null) {
+            let res = this.fetchMaximum(n.left);
+            return res;
+        }
+        else {
+            while (n.parent.right !== n) {
+                n = n.parent;
+            }
+            return n.parent;
+        }
+    }
+
+    [Symbol.iterator]() {
+        let t = this;
+        return new JsIterator(t.jsBegin(), t);
+    }
+
+    backward(proc) {
+        let t = this;
+        return {
+            [Symbol.iterator]() {
+                return new JsReverseIterator(t.jsRbegin(), t, proc);
+            }
+        };
+    }
+
+}
+
+class Stl {
+    static reverse(it) {
+        let itClass = it.constructor.name;
+        if (itClass === 'StlIterator') {
+            let c = it.container;
+            return new StlReverseIterator(c.prev(it.node), c);
+        }
+        else if (itClass === 'StlReverseIterator') {
+            let c = it.container;
+            return new StlIterator(c.next(it.node), c);
+        }
+        throw new Error(`Can't reverse an instance of type ${itClass}`);
+    }
 }
 
 module.exports = {
     Node: Node,
     Tree: Tree,
+    Stl: Stl,
     compare: compare,
     BLACK: BLACK,
     RED: RED
