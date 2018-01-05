@@ -8,10 +8,12 @@ amp.addPath(srcPath);
 const should = require('should');
 const assert = require('assert');
 
-const {RED, BLACK, Node, Tree, compare, Stl} = require('red-black-tree');
+const {TreeNode, RED, BLACK} = require('tree-node');
+const {Tree, compare, Stl} = require('tree');
+const {Iterator, ReverseIterator} = require('iterators');
 
 function createNode(id) {
-    let n = new Node();
+    let n = new TreeNode();
     n.id = id;
     return n;
 }
@@ -69,118 +71,6 @@ function buildTree(...keys) {
     return [t, ...nodes];
 }
 
-describe('Tree node tests', function() {
-
-    it('Node.grandparent; no parent', function(done) {
-        let n = new Node();
-        let actual = n.grandparent();
-        let expected = null;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.grandparent; no grandparent', function(done) {
-        let p = new Node();
-        let n = new Node();
-        n.parent = p;
-        let actual = n.grandparent();
-        let expected = null;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.grandparent; valid grandparent', function(done) {
-        let g = new Node();
-        let p = new Node();
-        let n = new Node();
-        p.parent = g;
-        n.parent = p;
-        let actual = n.grandparent();
-        should.strictEqual(g, actual);
-
-        done();
-    });
-
-    it('Node.sibling; no parent', function(done) {
-        let n = new Node();
-        let actual = n.sibling();
-        let expected = null;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.sibling; left sibling', function(done) {
-        let p = new Node();
-        let n = new Node();
-        let s = new Node();
-        p.left = s;
-        p.right = n;
-        n.parent = p;
-        s.parent = p;
-        let actual = n.sibling();
-        let expected = s;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.sibling; right sibling', function(done) {
-        let p = new Node();
-        let n = new Node();
-        let s = new Node();
-        p.left = n;
-        p.right = s;
-        n.parent = p;
-        s.parent = p;
-        let actual = n.sibling();
-        let expected = s;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.uncle; no parent', function(done) {
-        let n = new Node();
-        let actual = n.uncle();
-        let expected = null;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.uncle; no grandparent', function(done) {
-        let p = new Node();
-        let n = new Node();
-        n.parent = p;
-        let actual = n.uncle();
-        let expected = null;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-
-    it('Node.uncle; valid uncle', function(done) {
-        let g = new Node();
-        let p = new Node();
-        let u = new Node();
-        let n = new Node();
-        n.parent = p;
-        p.left = n;
-        p.parent = g;
-        u.parent = g;
-        g.left = p;
-        g.right = u;
-        let actual = n.uncle();
-        let expected = u;
-        should.strictEqual(expected, actual);
-
-        done();
-    });
-});
-
 describe('Compare tests', function() {
 
     it('numbers', function(done) {
@@ -218,8 +108,8 @@ describe('Tree tests', function() {
     });
 
     it('replaceNode; root', function(done) {
-        let p = new Node();
-        let n = new Node();
+        let p = new TreeNode();
+        let n = new TreeNode();
         let t = new Tree();
         t.head.root = p;
         t.head.leftmost = p;
@@ -1166,6 +1056,8 @@ describe('Tree tests', function() {
         should.equal(12, n.key); // matches a node with the same value
         n = t.lowerBound(21).node;
         should.equal(22, n.key); // matches the nearest larger value
+        n = t.lowerBound(2).node; // the smallest value
+        should.equal(2, n.key); // matches the smallest value
         n = t.lowerBound(-1).node; // less than the smallest value
         should.equal(2, n.key); // matches the smallest value
         n = t.lowerBound(100).node; // larger than the largest value
@@ -1185,18 +1077,20 @@ describe('Tree tests', function() {
     it('upperBound', function(done) {
         let [t, n2, n4, n6, n8, n10, n12, n14, n16, n18, n20, n22, n24, n26, n28, n30, n32] =
             buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
-        let n = t.upperBound(9).node; // n8 - root of the tree
-        should.equal(8, n.key); // matches a node with a lesser value
-        n = t.upperBound(24).node; // n22 - node with no children
-        should.equal(22, n.key); // matches a node with a lesser value
-        n = t.upperBound(14).node; // n12 - node with children
-        should.equal(12, n.key); // matches a node with a lesser value
-        n = t.upperBound(23).node;
+        let n = t.upperBound(7).node; // n8 - root of the tree
+        should.equal(8, n.key); // matches a node with a larger value
+        n = t.upperBound(20).node; // n22 - node with no children
+        should.equal(22, n.key); // matches a node with a larger value
+        n = t.upperBound(10).node; // n12 - node with children
+        should.equal(12, n.key); // matches a node with a larger value
+        n = t.upperBound(21).node;
         should.equal(22, n.key); // matches the nearest larger value
         n = t.upperBound(-1).node; // less than the smallest value
+        should.equal(2, n.key); // matches the first node
+        n = t.upperBound(32).node; // the largest value
         should.equal(t.head, n); // matches the head
         n = t.upperBound(100).node; // larger than the largest value
-        should.equal(32, n.key); // matches the largest value
+        should.equal(t.head, n); // matches the head
 
         done();
     });
@@ -1262,15 +1156,6 @@ describe('Tree tests', function() {
         done();
     });
 
-    it('prev; head', function(done) {
-        let [t, ...ignore] = buildTree(2, 4, 6);
-        let n = t.head;
-        n = t.prev(n);
-        should.equal(6, n.key);
-
-        done();
-    });
-
     it('for-of-loop', function(done) {
         let [t, ...ignore] =
             buildTree(32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2);
@@ -1319,74 +1204,66 @@ describe('Tree tests', function() {
         done();
     });
 
-    it('backward; with function', function(done) {
-        let t = new Tree();
-        for (let i = 1; i < 17; ++i) {
-            let [n] = addNodes(t, 2 * i);
-            n.id = `N${2 * i}`;
-        }
-
+    it('forward stl-like iterator', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
         let actual = [];
-        for (let v of t.backward(function(node) {
-            return node.id;
-        })) {
-            actual.push(v);
+        for (let it = t.begin(); !it.equals(t.end()); it.next()) {
+            actual.push(it.node.key);
         }
-        let expected = ['N32', 'N30', 'N28', 'N26', 'N24', 'N22', 'N20', 'N18', 'N16', 'N14', 'N12', 'N10', 'N8', 'N6', 'N4', 'N2'];
+        let expected = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32];
         should.deepEqual(expected, actual);
 
         done();
     });
 
-    it('range of same values', function(done) {
+    it('forward stl-like iterator; empty tree', function(done) {
+        let t = new Tree();
+        let actual = [];
+        for (let it = t.begin(); !it.equals(t.end()); it.next()) {
+            actual.push(it.node.key);
+        }
+        let expected = [];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('backward stl-like iterator', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+        let actual = [];
+        for (let it = t.rbegin(); !it.equals(t.rend()); it.next()) {
+            actual.push(it.node.key);
+        }
+        let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('backward stl-like iterator; empty tree', function(done) {
+        let t = new Tree();
+        let actual = [];
+        for (let it = t.rbegin(); !it.equals(t.rend()); it.next()) {
+            actual.push(it.node.key);
+        }
+        let expected = [];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('lowerBound/upperBound range; same values', function(done) {
         let t = new Tree();
         for (let i = 1; i < 6; ++i) {
             let [n] = addNodes(t, 12);
             n.id = `N${i}`;
         }
 
+        let from = t.lowerBound(12);
+        let to = t.upperBound(12);
         let actual = [];
-        for (let it = t.lowerBound(12); !it.equals(t.upperBound(12)); it.next()) {
-            let n = it.node;
-            actual.push(n.id);
-        }
-        let expected = ['N1', 'N2', 'N3', 'N4', 'N5'];
-        should.deepEqual(expected, actual);
-
-        done();
-    });
-});
-describe('Stl tests', function() {
-    it('reverse', function(done) {
-        let t = new Tree();
-        for (let i = 1; i < 6; ++i) {
-            let [n] = addNodes(t, 12);
-            n.id = `N${i}`;
-        }
-
-        let actual = [];
-        let from = Stl.reverse(t.upperBound(12));
-        let to = Stl.reverse(t.lowerBound(12));
-        for (let it = from; !it.equals(to); it.next()) {
-            let n = it.node;
-            actual.push(n.id);
-        }
-        let expected = ['N5', 'N4', 'N3', 'N2', 'N1'];
-        should.deepEqual(expected, actual);
-
-        done();
-    });
-
-    it('reverse; reverse twice', function(done) {
-        let t = new Tree();
-        for (let i = 1; i < 6; ++i) {
-            let [n] = addNodes(t, 12);
-            n.id = `N${i}`;
-        }
-
-        let actual = [];
-        let from = Stl.reverse(Stl.reverse(t.lowerBound(12)));
-        let to = Stl.reverse(Stl.reverse(t.upperBound(12)));
         for (let it = from; !it.equals(to); it.next()) {
             let n = it.node;
             actual.push(n.id);
@@ -1397,4 +1274,71 @@ describe('Stl tests', function() {
         done();
     });
 
+    it('lowerBound/upperBound range; regular iteration with forward iterator', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+        let actual = [];
+        let from = t.lowerBound(0);
+        let to = t.upperBound(50);
+        let it = from;
+        while (!it.equals(to)) {
+            actual.push(it.node.key);
+            it.next();
+        }
+        let expected = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('lowerBound/upperBound range; opposite iteration with forward iterator', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+        let actual = [];
+        let from = t.lowerBound(0);
+        let to = t.upperBound(50);
+        let it = to;
+        while (!it.equals(from)) {
+            it.prev();
+            actual.push(it.node.key);
+        }
+        let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('lowerBound/upperBound range; regular iteration with backward iterator', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+        let actual = [];
+        let from = new ReverseIterator(t.upperBound(50));
+        let to = new ReverseIterator(t.lowerBound(0));
+        let it = from;
+        while (!it.equals(to)) {
+            actual.push(it.node.key);
+            it.next();
+        }
+        let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('lowerBound/upperBound range; opposite iteration with backward iterator', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+        let actual = [];
+        let from = new ReverseIterator(t.upperBound(50));
+        let to = new ReverseIterator(t.lowerBound(0));
+        let it = to;
+        while (!it.equals(from)) {
+            it.prev();
+            actual.push(it.node.key);
+        }
+        let expected = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
 });

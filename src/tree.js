@@ -1,51 +1,9 @@
 'use strict';
 
-const RED = 1;
-const BLACK = 2;
-
-class Node {
-
-    constructor() {
-        this.left = null;
-        this.right = null;
-        this.parent = null;
-        this.key = null;
-        this.color = RED;
-    }
-
-    grandparent() {
-        let p = this.parent;
-        if (p === null) {
-            return null;
-        } // No parent means no grandparent
-        return p.parent;
-    }
-
-    sibling() {
-        let p = this.parent;
-        if (p === null) {
-            return null;
-        } // No parent means no sibling
-        if (this === p.left) {
-            return p.right;
-        }
-        else {
-            return p.left;
-        }
-    }
-
-    uncle() {
-        let p = this.parent;
-        if (p === null) {
-            return null;
-        } // No parent means no uncle
-        let g = p.parent;
-        if (g === null) {
-            return null;
-        } // No grandparent means no uncle
-        return p.sibling();
-    }
-}
+const {TreeNode, RED, BLACK} = require('tree-node');
+const {JsIterator, JsReverseIterator} = require('js-iterators');
+const {Iterator, ReverseIterator} = require('iterators');
+const {KeyOnlyPolicy, KeyValuePolicy} = require('policies');
 
 class Head {
     constructor() {
@@ -54,113 +12,6 @@ class Head {
         this.root = this;
         this.size = 0;
         this.id = 'HEAD';
-    }
-}
-
-class JsIterator {
-    constructor(node, container, proc) {
-        this.node = node;
-        this.container = container;
-        this.proc = proc;
-    }
-
-    next() {
-        let res = {};
-        res.done = (this.node === this.container.jsEnd());
-        if (!res.done) {
-            // FIXME VK: fix for maps
-            let v = this.node.key;
-            if (this.proc !== undefined) {
-                v = this.proc(this.node);
-            }
-            res.value = v;
-
-            this.node = this.container.next(this.node);
-        }
-        return res;
-    }
-}
-
-class JsReverseIterator {
-    constructor(node, container, proc) {
-        this.node = node;
-        this.container = container;
-        this.proc = proc;
-    }
-
-    next() {
-        let res = {};
-        res.done = (this.node === this.container.jsRend());
-        if (!res.done) {
-            // FIXME VK: fix for maps
-            let v = this.node.key;
-            if (this.proc !== undefined) {
-                v = this.proc(this.node);
-            }
-            res.value = v;
-
-            this.node = this.container.prev(this.node);
-        }
-        return res;
-    }
-}
-
-class StlBaseIterator {
-    constructor(node, container) {
-        this.n = node;
-        this.container = container;
-    }
-
-    equals(rhs) {
-        let lhsClass = this.constructor.name;
-        let rhsClass = rhs.constructor.name;
-        if (lhsClass !== rhsClass) {
-            throw new Error(`Can't compare with an instance of ${rhsClass}`);
-        }
-        if (this.container !== rhs.container) {
-            throw new Error('Iterators belong to different containers');
-        }
-        return this.n === rhs.node;
-    }
-
-    get node() {
-        return this.n;
-    }
-}
-
-class StlIterator extends StlBaseIterator {
-    constructor(node, container) {
-        super(node, container);
-    }
-
-    next() {
-        this.n = this.container.next(this.n);
-    }
-
-    prev() {
-        this.n = this.container.prev(this.n);
-    }
-
-    clone() {
-        return new StlIterator(this.n, this.container);
-    }
-}
-
-class StlReverseIterator extends StlBaseIterator {
-    constructor(node, container) {
-        super(node, container);
-    }
-
-    next() {
-        this.n = this.container.prev(this.n);
-    }
-
-    prev() {
-        this.n = this.container.next(this.n);
-    }
-
-    clone() {
-        return new StlReverseIterator(this.n, this.container);
     }
 }
 
@@ -180,6 +31,7 @@ class Tree {
     constructor() {
         this.head = new Head();
         this.compare = compare;
+        this.valuePolicy = new KeyOnlyPolicy();
     }
 
     clear() {
@@ -426,8 +278,7 @@ class Tree {
             && !this.isLeaf(node.right)) {
             let pred = this.fetchMaximum(node.left);
 
-            // FIXME VK: fix for maps which have values
-            node.key = pred.key;
+            this.valuePolicy.copy(node, pred);
             node = pred;
         }
 
@@ -605,23 +456,23 @@ class Tree {
                 x = x.right;
             }
         }
-        return new StlIterator(y, this);
+        return new Iterator(y, this);
     }
 
     upperBound(k) {
         let y = this.head;
         let x = y.root;
         while (!this.isLeaf(x)) {
-            let rc = this.compare(k, x.key);
+            let rc = this.compare(x.key, k);
             if (rc > 0) {
                 y = x;
-                x = x.right;
-            }
-            else {
                 x = x.left;
             }
+            else {
+                x = x.right;
+            }
         }
-        return new StlIterator(y, this);
+        return new Iterator(y, this);
     }
 
     /* ===========================
@@ -629,19 +480,19 @@ class Tree {
        =========================== */
 
     begin() {
-        return new StlIterator(this.head.leftmost, this);
+        return new Iterator(this.head.leftmost, this);
     }
 
     end() {
-        return new StlIterator(this.head, this);
+        return new Iterator(this.head, this);
     }
 
     rbegin() {
-        return new StlReverseIterator(this.head.rightmost, this);
+        return new ReverseIterator(this.head.rightmost, this);
     }
 
     rend() {
-        return new StlReverseIterator(this.head, this);
+        return new ReverseIterator(this.head, this);
     }
 
     jsBegin() {
@@ -699,41 +550,21 @@ class Tree {
     }
 
     [Symbol.iterator]() {
-        let t = this;
-        return new JsIterator(t.jsBegin(), t);
+        return new JsIterator(this);
     }
 
-    backward(proc) {
+    backward() {
         let t = this;
         return {
             [Symbol.iterator]() {
-                return new JsReverseIterator(t.jsRbegin(), t, proc);
+                return new JsReverseIterator(t);
             }
         };
     }
 
 }
 
-class Stl {
-    static reverse(it) {
-        let itClass = it.constructor.name;
-        if (itClass === 'StlIterator') {
-            let c = it.container;
-            return new StlReverseIterator(c.prev(it.node), c);
-        }
-        else if (itClass === 'StlReverseIterator') {
-            let c = it.container;
-            return new StlIterator(c.next(it.node), c);
-        }
-        throw new Error(`Can't reverse an instance of type ${itClass}`);
-    }
-}
-
 module.exports = {
-    Node: Node,
     Tree: Tree,
-    Stl: Stl,
-    compare: compare,
-    BLACK: BLACK,
-    RED: RED
+    compare: compare
 };
