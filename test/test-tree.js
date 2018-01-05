@@ -11,6 +11,7 @@ const assert = require('assert');
 const {TreeNode, RED, BLACK} = require('tree-node');
 const {Tree, compare, Stl} = require('tree');
 const {Iterator, ReverseIterator} = require('iterators');
+const {KeyOnlyPolicy, KeyValuePolicy} = require('policies');
 
 function createNode(id) {
     let n = new TreeNode();
@@ -1254,11 +1255,34 @@ describe('Tree tests', function() {
         done();
     });
 
-    it('lowerBound/upperBound range; same values', function(done) {
+    it('tree with keys and values', function(done) {
         let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
         for (let i = 1; i < 6; ++i) {
-            let [n] = addNodes(t, 12);
-            n.id = `N${i}`;
+            let n = new TreeNode();
+            n.key = i * 2;
+            n.value = `N${i}`;
+            t.insertUnique(n);
+        }
+
+        let actual = [];
+        for (let [k, v] of t) {
+            actual.push([k, v]);
+        }
+        let expected = [[2, 'N1'], [4, 'N2'], [6, 'N3'], [8, 'N4'], [10, 'N5']];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('insertMulti; lowerBound/upperBound range; same values', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = 12;
+            n.value = `N${i}`;
+            t.insertMulti(n);
         }
 
         let from = t.lowerBound(12);
@@ -1266,9 +1290,55 @@ describe('Tree tests', function() {
         let actual = [];
         for (let it = from; !it.equals(to); it.next()) {
             let n = it.node;
-            actual.push(n.id);
+            actual.push(n.value);
         }
         let expected = ['N1', 'N2', 'N3', 'N4', 'N5'];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('insertUnique; lowerBound/upperBound range; same values', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = 12;
+            n.value = `N${i}`;
+            t.insertUnique(n);
+        }
+
+        let from = t.lowerBound(12);
+        let to = t.upperBound(12);
+        let actual = [];
+        for (let it = from; !it.equals(to); it.next()) {
+            let n = it.node;
+            actual.push(n.value);
+        }
+        let expected = ['N1'];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('insertOrReplace; lowerBound/upperBound range; same values', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = 12;
+            n.value = `N${i}`;
+            t.insertOrReplace(n);
+        }
+
+        let from = t.lowerBound(12);
+        let to = t.upperBound(12);
+        let actual = [];
+        for (let it = from; !it.equals(to); it.next()) {
+            let n = it.node;
+            actual.push(n.value);
+        }
+        let expected = ['N5'];
         should.deepEqual(expected, actual);
 
         done();
@@ -1337,6 +1407,50 @@ describe('Tree tests', function() {
             actual.push(it.node.key);
         }
         let expected = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('tree with custom comparison function', function(done) {
+        /* Test ability to compare alphanumeric structures like ['A',123]
+           First string portion is compared. If string portions of two objects are equal then numeric portions are compared */
+        class Id {
+            constructor(a, n) {
+                this.alpha = a;
+                this.num = n;
+            }
+        }
+
+        function compareIds(idLhs, idRhs) {
+            if (idLhs.alpha < idRhs.alpha) {
+                return -1;
+            }
+            else if (idLhs.alpha > idRhs.alpha) {
+                return 1;
+            }
+            else {
+                if (idLhs.num < idRhs.num) {
+                    return -1;
+                }
+                else if (idLhs.num > idRhs.num) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+
+        let t = new Tree();
+        t.compare = compareIds;
+        addNodes(t, new Id('B', 8), new Id('A', 340), new Id('A', 12), new Id('AA', 147));
+
+        let actual = [];
+        for (let k of t) {
+            actual.push([k.alpha, k.num]);
+        }
+        let expected = [['A', 12], ['A', 340], ['AA', 147], ['B', 8]];
         should.deepEqual(expected, actual);
 
         done();

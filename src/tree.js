@@ -5,6 +5,10 @@ const {JsIterator, JsReverseIterator} = require('js-iterators');
 const {Iterator, ReverseIterator} = require('iterators');
 const {KeyOnlyPolicy, KeyValuePolicy} = require('policies');
 
+const INSERT_MULTI = 1;
+const INSERT_UNIQUE = 2;
+const INSERT_REPLACE = 3;
+
 class Head {
     constructor() {
         this.leftmost = this;
@@ -135,8 +139,19 @@ class Tree {
     /* ===========================
        INSERT
        =========================== */
-    insertNode(n) {
-        this.insertNodeInternal(this.head.root, n);
+    insertMulti(n) {
+        this.insertNode(n, INSERT_MULTI);
+    }
+    insertUnique(n) {
+        this.insertNode(n, INSERT_UNIQUE);
+    }
+
+    insertOrReplace(n) {
+        this.insertNode(n, INSERT_REPLACE);
+    }
+
+    insertNode(n, mode = INSERT_MULTI) {
+        this.insertNodeInternal(this.head.root, n, mode);
         if (this.head.size === 0) {
             this.head.root = n;
             this.head.leftmost = n;
@@ -157,19 +172,34 @@ class Tree {
         this.head.size = this.head.size + 1;
     }
 
-    insertNodeInternal(root, n) {
+    insertNodeInternal(root, n, mode) {
         // recursively descend the tree until a leaf is found
         let x = root;
         let y = null;
         let rc = -1;
+        // find matching node
         while (!this.isLeaf(x)) {
             y = x;
             rc = this.compareNodes(n, y);
             if (rc < 0) {
                 x = y.left;
             }
-            else {
+            else if (rc > 0) {
                 x = y.right;
+            }
+            else {
+                // node with the same key value
+                switch (mode) {
+                    case INSERT_UNIQUE:
+                        // it's a duplicate
+                        return;
+                    case INSERT_REPLACE:
+                        this.valuePolicy.copy(y, n);
+                        return;
+                    default:
+                        // INSERT_MULTI
+                        x = y.right;
+                }
             }
         }
         if (this.isLeaf(y)) {
