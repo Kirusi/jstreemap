@@ -1,17 +1,12 @@
 'use strict';
 
-// Enables you to require modules using relative paths
-const amp = require('app-module-path');
-const path = require('path');
-const srcPath = path.resolve(__dirname, '../src');
-amp.addPath(srcPath);
 const should = require('should');
 const assert = require('assert');
 
-const {TreeNode, RED, BLACK} = require('tree-node');
-const {Tree, compare, Stl} = require('tree');
-const {Iterator, ReverseIterator} = require('iterators');
-const {KeyOnlyPolicy, KeyValuePolicy} = require('policies');
+const {TreeNode, RED, BLACK} = require('../src/internal/tree-node');
+const {Tree, compare} = require('../src/internal/tree');
+const {Iterator, ReverseIterator} = require('../src/public/iterators');
+const {KeyOnlyPolicy, KeyValuePolicy} = require('../src/internal/policies');
 
 function createNode(id) {
     let n = new TreeNode();
@@ -103,7 +98,7 @@ describe('Tree tests', function() {
     it('size', function(done) {
         let t = new Tree();
         t.head.size = 5;
-        should.equal(5, t.size);
+        should.equal(5, t.size());
 
         done();
     });
@@ -1031,8 +1026,8 @@ describe('Tree tests', function() {
             // erase
             let i = randomInt(0, MAX_SIZE);
             let k = keys[i];
-            let n = t.find(k);
-            t.erase(n);
+            let it = t.find(k);
+            t.erase(it.node);
             let res = isValidTree(t);
             should.ok(res.isValid, res.errorMessage);
             // insert
@@ -1107,26 +1102,26 @@ describe('Tree tests', function() {
     it('find', function(done) {
         let [t, n2, n4, n6, n8, n10, n12, n14, n16, n18, n20, n22, n24, n26, n28, n30, n32] =
             buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
-        let n = t.find(8); // n8 - root of the tree
-        should.equal(8, n.key); // matches a node with the same value
-        n = t.find(22); // n22 - node with no children
-        should.equal(22, n.key); // matches a node with the same value
-        n = t.find(12); // n12 - node with children
-        should.equal(12, n.key); // matches a node with the same value
-        n = t.find(23);
-        should.equal(t.head, n); // matches the head
-        n = t.find(-1); // less than the smallest value
-        should.equal(t.head, n); // matches the head
-        n = t.find(100); // larger than the largest value
-        should.equal(t.head, n); // matches the head
+        let it = t.find(8); // n8 - root of the tree
+        should.equal(8, it.key); // matches a node with the same value
+        it = t.find(22); // n22 - node with no children
+        should.equal(22, it.key); // matches a node with the same value
+        it = t.find(12); // n12 - node with children
+        should.equal(12, it.key); // matches a node with the same value
+        it = t.find(23);
+        should.equal(t.head, it.node); // matches the head
+        it = t.find(-1); // less than the smallest value
+        should.equal(t.head, it.node); // matches the head
+        it = t.find(100); // larger than the largest value
+        should.equal(t.head, it.node); // matches the head
 
         done();
     });
 
     it('find; empty tree', function(done) {
         let t = new Tree();
-        let n = t.find(22);
-        should.equal(t.head, n); // matches the head
+        let it = t.find(22);
+        should.equal(t.head, it.node); // matches the head
 
         done();
     });
@@ -1200,6 +1195,69 @@ describe('Tree tests', function() {
             actual.push(v);
         }
         let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('keys', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = i * 2;
+            n.value = `N${i}`;
+            t.insertUnique(n);
+        }
+
+        let actual = [];
+
+        for (let k of t.keys()) {
+            actual.push(k);
+        }
+        let expected = [2, 4, 6, 8, 10];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('values', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = i * 2;
+            n.value = `N${i}`;
+            t.insertUnique(n);
+        }
+
+        let actual = [];
+
+        for (let v of t.values()) {
+            actual.push(v);
+        }
+        let expected = ['N1', 'N2', 'N3', 'N4', 'N5'];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('entries', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = i * 2;
+            n.value = `N${i}`;
+            t.insertUnique(n);
+        }
+
+        let actual = [];
+
+        for (let [k, v] of t.entries()) {
+            actual.push([k, v]);
+        }
+        let expected = [[2, 'N1'], [4, 'N2'], [6, 'N3'], [8, 'N4'], [10, 'N5']];
         should.deepEqual(expected, actual);
 
         done();
@@ -1289,8 +1347,7 @@ describe('Tree tests', function() {
         let to = t.upperBound(12);
         let actual = [];
         for (let it = from; !it.equals(to); it.next()) {
-            let n = it.node;
-            actual.push(n.value);
+            actual.push(it.value);
         }
         let expected = ['N1', 'N2', 'N3', 'N4', 'N5'];
         should.deepEqual(expected, actual);
@@ -1455,4 +1512,56 @@ describe('Tree tests', function() {
 
         done();
     });
+
+    it('toString; keys only', function(done) {
+        let expected = '[object Tree]';
+        let actual = Object.prototype.toString.call(new Tree());
+        should.strictEqual(expected, actual);
+
+        done();
+    });
+
+    it('toString; keys only', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 6; ++i) {
+            let n = new TreeNode();
+            n.key = i * 2;
+            n.value = `N${i}`;
+            t.insertOrReplace(n);
+        }
+        let expected = '{2:N1,4:N2,6:N3,8:N4,10:N5}';
+        let actual = t.toString();
+        should.strictEqual(expected, actual);
+
+        done();
+    });
+
+    it('toString; keys and values', function(done) {
+        let [t, ...ignore] =
+            buildTree(2, 4, 6);
+        let expected = '{2,4,6}';
+        let actual = t.toString();
+        should.strictEqual(expected, actual);
+
+        done();
+    });
+
+    it('species; on object', function(done) {
+        let t = new Tree();
+        let ctr = Object.getPrototypeOf(t).constructor[Symbol.species];
+        let actual = new ctr();
+        should.ok(actual instanceof Tree);
+
+        done();
+    });
+
+    it('species; on class', function(done) {
+        let ctr = Tree[Symbol.species];
+        let actual = new ctr();
+        should.ok(actual instanceof Tree);
+
+        done();
+    });
+
 });

@@ -1,18 +1,39 @@
 'use strict';
 
+/**
+ * @private
+ */
 const RED = 1;
+/**
+ * @private
+ */
 const BLACK = 2;
 
+/**
+ * @private
+ * A node for a red-black tree
+ */
 class TreeNode {
 
+    /**
+     * Default constructor
+     */
     constructor() {
+        /** left child */
         this.left = null;
+        /** right child */
         this.right = null;
+        /** parent node */
         this.parent = null;
+        /** key object (additional 'value' data member is added in map-like classes) */
         this.key = null;
+        /** by default new node is red */
         this.color = RED;
     }
 
+    /**
+     * @returns parent of parent
+     */
     grandparent() {
         let p = this.parent;
         if (p === null) {
@@ -21,6 +42,9 @@ class TreeNode {
         return p.parent;
     }
 
+    /**
+     * @returns the other child of the same parent
+     */
     sibling() {
         let p = this.parent;
         if (p === null) {
@@ -34,6 +58,9 @@ class TreeNode {
         }
     }
 
+    /**
+     * @returns another child of the grandparent
+     */
     uncle() {
         let p = this.parent;
         if (p === null) {

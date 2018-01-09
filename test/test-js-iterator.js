@@ -1,14 +1,9 @@
 'use strict';
 
-// Enables you to require modules using relative paths
-const amp = require('app-module-path');
-const path = require('path');
-const srcPath = path.resolve(__dirname, '../src');
-amp.addPath(srcPath);
 const should = require('should');
 const assert = require('assert');
 
-const {JsIterator, JsReverseIterator} = require('js-iterators');
+const {JsIterator, JsReverseIterator} = require('../src/public/js-iterators');
 
 class NodeIsValuePolicy {
     fetch(n) {

@@ -1,24 +1,48 @@
 'use strict';
 
-const {TreeNode, RED, BLACK} = require('tree-node');
-const {JsIterator, JsReverseIterator} = require('js-iterators');
-const {Iterator, ReverseIterator} = require('iterators');
-const {KeyOnlyPolicy, KeyValuePolicy} = require('policies');
+/** @ignore */
+const {TreeNode, RED, BLACK} = require('./tree-node');
+/** @ignore */
+const {JsIterator, JsReverseIterator} = require('../public/js-iterators');
+/** @ignore */
+const {Iterator, ReverseIterator} = require('../public/iterators');
+/** @ignore */
+const {KeyOnlyPolicy, ValueOnlyPolicy, KeyValuePolicy} = require('./policies');
 
+/** insertion mode of a multimap, nodes with the same keys can be added */
 const INSERT_MULTI = 1;
+/** if a node with the same key already exists then the subsequent attempts are ignored */
 const INSERT_UNIQUE = 2;
+/** if a node with the same key already exists then it's value is replaced on subsequent attempts */
 const INSERT_REPLACE = 3;
 
+/**
+ * @private
+ * Special node in a tree is created for performance reasons
+ */
 class Head {
+    /** default constructor */
     constructor() {
+        /** node with the smallest key */
         this.leftmost = this;
+        /** node with the largest key */
         this.rightmost = this;
+        /** root node of the tree */
         this.root = this;
+        /** number of nodes in the tree */
         this.size = 0;
+        /** extra tag used in debuggin of unit tests */
         this.id = 'HEAD';
     }
 }
 
+/**
+ * @private
+ * 3-way comparison, similar to strcmp and memcp in C programming language
+ * @returns +1 if the value of rhs is greater than lhs
+ *          -1 if the value of rhs is less than lhs
+ *           0 if values are the same
+ */
 function compare(lhs, rhs) {
     if (lhs < rhs) {
         return -1;
@@ -31,25 +55,49 @@ function compare(lhs, rhs) {
     }
 }
 
+/**
+ * Red-black tree
+ * @access private
+ */
 class Tree {
+    /** default constructor of an empty tree */
     constructor() {
+        /** head */
         this.head = new Head();
+        /** 3-way comparison function */
         this.compare = compare;
+        /** must be an instance of KeyOnlyPolicy for sets, or KeyValuePolicy for maps */
         this.valuePolicy = new KeyOnlyPolicy();
     }
 
+    /**
+     * Deletes all nodes in the tree
+     */
     clear() {
         this.head = new Head();
     }
 
-    get size() {
+    /**
+     * @returns number of nodes in the tree
+     */
+    size() {
         return this.head.size;
     }
 
+    /**
+     * @private
+     * A wrapper that calls 3-way comparison of node keys
+     * @param {*} lhs
+     * @param {*} rhs
+     */
     compareNodes(lhs, rhs) {
         return this.compare(lhs.key, rhs.key);
     }
 
+    /**
+     * @private
+     * used by rotation operations
+     */
     replaceNode(oldNode, newNode) {
         if (oldNode === newNode) {
             return;
@@ -71,15 +119,16 @@ class Tree {
         }
     }
 
-    /*
+    /**
+     * Rebalances tree as described below
+
               X                                           Y
              / \                                         / \
             Y   c         right rotate -->              a   X
            / \            <--  left rotate                 / \
           a   b                                           b   c
-
-    */
-
+     * @private
+     */
     rotateLeft(node) {
         let right = node.right;
         if (this.isLeaf(right)) {
@@ -96,6 +145,10 @@ class Tree {
         node.parent = right;
     }
 
+    /**
+     * Rebalances tree as described in rotateLeft
+     * @param {*} node - parent node
+     */
     rotateRight(node) {
         let left = node.left;
         if (this.isLeaf(left)) {
@@ -112,6 +165,10 @@ class Tree {
         node.parent = left;
     }
 
+    /**
+     * @returns true - for null pointers and head node; false - for all other nodes
+     * @param {*} node
+     */
     isLeaf(node) {
         if (node === null || node === this.head) {
             return true;
@@ -119,6 +176,10 @@ class Tree {
         return false;
     }
 
+    /**
+     * Leaf nodes are considered 'black'. All real nodes contain 'color' data member
+     * @param {*} node
+     */
     fetchColor(node) {
         if (this.isLeaf(node)) {
             return BLACK;
@@ -128,10 +189,18 @@ class Tree {
         }
     }
 
+    /**
+     * Tests a node for 'blackness'.
+     * @param {*} node
+     */
     isBlack(node) {
         return (this.fetchColor(node) === BLACK);
     }
 
+    /**
+     * Tests node for 'redness'.
+     * @param {*} node
+     */
     isRed(node) {
         return (this.fetchColor(node) === RED);
     }
@@ -139,17 +208,36 @@ class Tree {
     /* ===========================
        INSERT
        =========================== */
-    insertMulti(n) {
-        this.insertNode(n, INSERT_MULTI);
-    }
-    insertUnique(n) {
-        this.insertNode(n, INSERT_UNIQUE);
-    }
-
-    insertOrReplace(n) {
-        this.insertNode(n, INSERT_REPLACE);
+    /**
+     * A node will be inserted into the tree even if nodes with the same key already exist
+     * @param {*} node
+     */
+    insertMulti(node) {
+        this.insertNode(node, INSERT_MULTI);
     }
 
+    /**
+     * The node is inserted into the tree only if nodes with the same key do not exist there
+     * @param {*} node
+     */
+    insertUnique(node) {
+        this.insertNode(node, INSERT_UNIQUE);
+    }
+
+    /**
+     * The node i inserted. If a node with the same key exists it's value will be replaced by the value of the new node
+     * @param {*} node
+     */
+    insertOrReplace(node) {
+        this.insertNode(node, INSERT_REPLACE);
+    }
+
+    /**
+     * @private
+     * Inserts node. Updates head node. Rebalances tree.
+     * @param {*} n - node
+     * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
+     */
     insertNode(n, mode = INSERT_MULTI) {
         this.insertNodeInternal(this.head.root, n, mode);
         if (this.head.size === 0) {
@@ -172,6 +260,13 @@ class Tree {
         this.head.size = this.head.size + 1;
     }
 
+    /**
+     * @private
+     * Inserts node according to the mode
+     * @param {*} root - root node of the tree
+     * @param {*} n - node to be inserted
+     * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
+     */
     insertNodeInternal(root, n, mode) {
         // recursively descend the tree until a leaf is found
         let x = root;
@@ -218,6 +313,11 @@ class Tree {
         }
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+     * @param {*} n - node
+     */
     insertRepairTree(n) {
         if (n.parent === null) {
             this.repairCase1(n);
@@ -234,10 +334,20 @@ class Tree {
         }
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+     * @param {*} n - node
+     */
     repairCase1(n) {
         n.color = BLACK;
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+     * @param {*} n - node
+     */
     repairCase3(n) {
         n.parent.color = BLACK;
         n.uncle().color = BLACK;
@@ -245,6 +355,11 @@ class Tree {
         this.insertRepairTree(n.grandparent());
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+     * @param {*} n - node
+     */
     repairCase4(n) {
         let p = n.parent;
         let g = n.grandparent();
@@ -274,6 +389,10 @@ class Tree {
         g.color = RED;
     }
 
+    /**
+     * @returns the node with the highest key for the subtree of the specified root node
+     * @param {*} node - root node of the subtree to be evaluated
+     */
     fetchMaximum(node) {
         while (!this.isLeaf(node.right)) {
             node = node.right;
@@ -282,6 +401,10 @@ class Tree {
         return node;
     }
 
+    /**
+     * @returns the node with the lowest key for the subtree of the specified root node
+     * @param {*} node - root node of the subtree to be evaluated
+     */
     fetchMinimum(node) {
         while (!this.isLeaf(node.left)) {
             node = node.left;
@@ -293,6 +416,10 @@ class Tree {
     /* ===========================
        ERASE
        =========================== */
+    /**
+     * Removes node from the tree
+     * @param {*} node
+     */
     erase(node) {
         if (this.isLeaf(node)) {
             return;
@@ -303,6 +430,11 @@ class Tree {
         h.size = h.size - 1;
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node - node
+     */
     eraseInternal(node) {
         if (!this.isLeaf(node.left)
             && !this.isLeaf(node.right)) {
@@ -320,6 +452,7 @@ class Tree {
         }
         this.replaceNode(node, child);
 
+        // update head if necessary
         let h = this.head;
         if ((this.isLeaf(child))
             && (h.leftmost === node)) {
@@ -345,6 +478,11 @@ class Tree {
         }
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node
+     */
     eraseCase1(node) {
         if (node.parent === null) {
             return;
@@ -354,6 +492,11 @@ class Tree {
         }
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node
+     */
     eraseCase2(node) {
         let s = node.sibling();
 
@@ -371,6 +514,11 @@ class Tree {
         this.eraseCase3(node);
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node
+     */
     eraseCase3(node) {
         let s = node.sibling();
         let p = node.parent;
@@ -387,6 +535,11 @@ class Tree {
         }
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node
+     */
     eraseCase4(node) {
         let s = node.sibling();
         let p = node.parent;
@@ -403,6 +556,11 @@ class Tree {
         }
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node
+     */
     eraseCase5(node) {
         let s = node.sibling();
         let p = node.parent;
@@ -434,6 +592,11 @@ class Tree {
         this.eraseCase6(node);
     }
 
+    /**
+     * @private
+     * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+     * @param {*} node
+     */
     eraseCase6(node) {
         let s = node.sibling();
         let p = node.parent;
@@ -453,6 +616,10 @@ class Tree {
     /* ===========================
        SEARCH BY KEY
        =========================== */
+    /**
+    * @returns an iterator pointin to a node with matching key value. If node is not found then end() iterator is returned.
+    * @param {*} k - key value
+    */
     find(k) {
         let y = this.head;
         let x = y.root;
@@ -467,12 +634,17 @@ class Tree {
                 x = x.right;
             }
             else {
-                return x;
+                return new Iterator(x, this);
             }
         }
-        return this.head;
+        return new Iterator(this.head, this);
     }
 
+    /**
+     * @returns an iterator pointing to the first node in the tree that is not less than
+     * (i.e. greater or equal to) the specified key value, or end() if no such node is found.
+     * @param {*} k - key value
+     */
     lowerBound(k) {
         let y = this.head;
         let x = y.root;
@@ -489,6 +661,11 @@ class Tree {
         return new Iterator(y, this);
     }
 
+    /**
+     * @returns an iterator pointing to the first node in the tree that is greater than
+     * the specified key value, or end() if no such node is found.
+     * @param {*} k - key value
+     */
     upperBound(k) {
         let y = this.head;
         let x = y.root;
@@ -509,38 +686,70 @@ class Tree {
        ITERATORS
        =========================== */
 
+    /**
+     * @returns iterator pointing to the node with the lowest key
+     */
     begin() {
         return new Iterator(this.head.leftmost, this);
     }
 
+    /**
+     * @returns iterator pointing to the node following the node with the highest key
+     */
     end() {
         return new Iterator(this.head, this);
     }
 
+    /**
+     * @returns iterator pointing to the node with the highest key
+     */
     rbegin() {
         return new ReverseIterator(this.head.rightmost, this);
     }
 
+    /**
+     * @returns iterator pointing to the node preceding the node with the lowest key
+     */
     rend() {
         return new ReverseIterator(this.head, this);
     }
 
+    /**
+     * @private
+     * provides support for ES6 forward iteration
+     */
     jsBegin() {
         return this.head.leftmost;
     }
 
+    /**
+     * @private
+     * provides support for ES6 forward iteration
+     */
     jsEnd() {
         return this.head;
     }
 
+    /**
+     * @private
+     * provides support for ES6 reverse iteration
+     */
     jsRbegin() {
         return this.head.rightmost;
     }
 
+    /**
+     * @private
+     * provides support for ES6 forward iteration
+     */
     jsRend() {
         return this.head;
     }
 
+    /**
+     * @returns node following the specified node in ascending order of their keys
+     * @param {*} n - node
+     */
     next(n) {
         if (n === this.head) {
             return this.head.leftmost;
@@ -560,6 +769,10 @@ class Tree {
         }
     }
 
+    /**
+     * @returns node preceding the specified node in ascending order of their keys
+     * @param {*} n - node
+     */
     prev(n) {
         if (n === this.head) {
             return this.head.rightmost;
@@ -579,17 +792,65 @@ class Tree {
         }
     }
 
+    /**
+     * ES6 forward iteration
+     */
     [Symbol.iterator]() {
         return new JsIterator(this);
     }
 
+    /**
+     * ES6 reverse iteration
+     */
     backward() {
-        let t = this;
-        return {
-            [Symbol.iterator]() {
-                return new JsReverseIterator(t);
-            }
-        };
+        return new JsReverseIterator(this);
+    }
+
+    /**
+     * @returns a new JsIterator object that contains the [key, value] pairs for each element in the order of the keys.
+     */
+    entries() {
+        return new JsIterator(this);
+    }
+
+    /**
+     * @returns a new JsIterator object that contains the keys for each element in the order of the keys.
+     */
+    keys() {
+        return new JsIterator(this, new KeyOnlyPolicy());
+    }
+
+    /**
+     * @returns a new JsIterator object that contains the values for each element in the order of the keys.
+     */
+    values() {
+        return new JsIterator(this, new ValueOnlyPolicy());
+    }
+
+    /**
+     * @returns String representation of the container
+     */
+    toString() {
+        let parts = [];
+        for (let it = this.begin(); !it.equals(this.end()); it.next()) {
+            // convert each key-value pair
+            parts.push(this.valuePolicy.toString(it.node));
+        }
+        return '{' + parts.join(',') + '}';
+    }
+
+    /**
+     * @returns String tag of this class
+     */
+    get [Symbol.toStringTag]() {
+        return 'Tree';
+    }
+
+    /**
+     * @returns constructor object for this class
+     */
+    static get [Symbol.species]() {
+        return Tree;
     }
 
 }

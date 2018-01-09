@@ -1,0 +1,28 @@
+{
+  "source": "./src",
+  "destination": "./build/docs",
+  "plugins": [
+    {
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "lint": {"enable": true},
+        "coverage": {"enable": true},
+        "accessor": {"access": ["public"], "autoPrivate": true},
+        "undocumentIdentifier": {"enable": true},
+        "unexportedIdentifier": {"enable": false},
+        "typeInference": {"enable": true},
+        "brand": {
+          "title": "setmap Library",
+          "description": "this is awesome library",
+          "repository": "https://github.com/foo/bar",
+          "site": "http://my-library.org",
+          "author": "https://twitter.com/foo",
+          "image": "http://my-library.org/logo.png"
+        }
+      }
+    },
+    {
+      "name": "esdoc-node"
+    }
+  ]
+}
