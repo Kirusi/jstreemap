@@ -1,0 +1,42 @@
+{
+  "coverage": "100%",
+  "expectCount": 192,
+  "actualCount": 192,
+  "files": {
+    "src/internal/policies.js": {
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
+    },
+    "src/internal/tree-node.js": {
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
+    },
+    "src/internal/tree.js": {
+      "expectCount": 70,
+      "actualCount": 70,
+      "undocumentLines": []
+    },
+    "src/public/iterators.js": {
+      "expectCount": 19,
+      "actualCount": 19,
+      "undocumentLines": []
+    },
+    "src/public/js-iterators.js": {
+      "expectCount": 16,
+      "actualCount": 16,
+      "undocumentLines": []
+    },
+    "src/public/tree-map.js": {
+      "expectCount": 31,
+      "actualCount": 31,
+      "undocumentLines": []
+    },
+    "src/public/tree-multimap.js": {
+      "expectCount": 32,
+      "actualCount": 32,
+      "undocumentLines": []
+    }
+  }
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/public/iterators.js | jstreemap Library</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Associative containers (sets, maps) library for JavaScript, using red-black trees."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="jstreemap Library"><meta property="twitter:description" content="Associative containers (sets, maps) library for JavaScript, using red-black trees."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/Kirusi/jstreemap"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html">TreeMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html">TreeMultiMap</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/public/iterators.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
+/**
+ * Base class for STL-like iterators. It references a node (or index) and a container.
+ * Navigation is achieved by calling container&apos;s prev() and next() methods.
+ */
+class BaseIterator {
+    /**
+     * @param {*} node - current node
+     * @param {*} container - container
+     */
+    constructor(node, container) {
+        /**
+         * @private
+         * __n - internal node reference
+         */
+        this.__n = node;
+        /**
+         * @private
+         * __c - internal container reference
+         */
+        this.__c = container;
+    }
+
+    /**
+     * Two iterators are considered to be equal if they point to the same node of the same container
+     * @param {BaseIterator} rhs - object on the &apos;right-hand side&apos; of .eq. operator
+     * @returns {boolean}
+     */
+    equals(rhs) {
+        let lhsClass = this.constructor.name;
+        let rhsClass = rhs.constructor.name;
+        if (lhsClass !== rhsClass) {
+            throw new Error(`Can&apos;t compare an instance of ${lhsClass} with an instance of ${rhsClass}`);
+        }
+        if (this.__c !== rhs.__c) {
+            throw new Error(&apos;Iterators belong to different containers&apos;);
+        }
+        return this.__n === rhs.__n;
+    }
+
+    /**
+     * @private
+     * @returns current node
+     */
+    get node() {
+        return this.__n;
+    }
+
+    /**
+     * @private
+     * @returns key of the current node
+     */
+    get key() {
+        return this.__n.key;
+    }
+
+    /**
+     * @private
+     * @returns value of the current node
+     */
+    get value() {
+        return this.__n.value;
+    }
+
+    /**
+     * @private
+     * @returns container that holds current node
+     */
+    get container() {
+        return this.__c;
+    }
+}
+
+/**
+ * STL-like forward iterator. It&apos;s more verbose than ES6 iterators, but allows iteration over any part of the container
+ *
+ * @example
+ * let m = new TreeMap();
+ * ...
+ * for (let it = m.begin(); !it.equals(m.end()); it.next()) {
+ *   console.log(`key: ${it.key}, value: ${it.value}`);
+ * }
+ */
+class Iterator extends BaseIterator {
+    /**
+     * There are 3 ways to construct an iterator:
+     *
+     * 1. Using a node and a container
+     * 2. Copy constructor / clone
+     * 3. Copy constructor / clone from ReverseIterator instance
+     * @param {*} args
+     *
+     * @example
+     * // Using a node and a container
+     * let it = new Iterator(node, container);
+     *
+     * // Copy constructor / clone
+     * let it1 = new Iterator(node, container);
+     * let it2 = new Iterator(it1);
+     *
+     * // Copy constructor / clone from ReverseIterator instance
+     * let it1 = new ReverseIterator(node, container);
+     * let it2 = new Iterator(it1);
+     */
+    constructor(...args) {
+        if (args.length === 2) {
+            let [node, container] = args;
+            super(node, container);
+        }
+        else if (args.length === 1) {
+            let [obj] = args;
+            let className = obj.constructor.name;
+            if (className === Iterator.name) {
+                super(obj.__n, obj.__c);
+            }
+            // eslint-disable-next-line no-use-before-define
+            else if (className === ReverseIterator.name) {
+                let c = obj.__c;
+                super(c.next(obj.__n), c);
+            }
+            else {
+                throw new Error(`Can&apos;t create an Iterator from ${className}`);
+            }
+        }
+        else {
+            throw new Error(&apos;Can\&apos;t create an Iterator with provided parameters&apos;);
+        }
+    }
+
+    /**
+     * Replaces node reference with the reference of the next node in the container.
+     * Can be used for manual iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = t.lowerBound(0);
+     * let to = t.upperBound(50);
+     * let it = from;
+     * while (!it.equals(to)) {
+     *   console.log(it.key);
+     *   it.next();
+     * }
+     */
+    next() {
+        /**
+         * __n and __c are defined in the base class
+         */
+        this.__n = this.__c.next(this.__n);
+    }
+
+    /**
+     * Replaces node reference with the reference of the previous node in the container
+     * Can be used for manual reverse iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = t.lowerBound(0);
+     * let to = t.upperBound(50);
+     * let it = to;
+     * while (!it.equals(from)) {
+     *   it.prev();
+     *   console.log(it.key);
+     * }
+     */
+    prev() {
+        this.__n = this.__c.prev(this.__n);
+    }
+}
+
+/**
+ * STL-like backward iterator. Can be used to traverse container or a range in the reverse order.
+ * It&apos;s more verbose than ES6 iterators, but allows iteration over any part of the container
+ *
+ * @example
+ * let m = new TreeMap();
+ * ...
+ * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
+ *   console.log(`key: ${it.key}, value: ${it.value}`);
+ * }
+ */
+class ReverseIterator extends BaseIterator {
+    /**
+     * There are 3 ways to construct a reverse iterator:
+     *
+     * 1. Using a node and a container
+     * 2. Copy constructor / clone
+     * 3. Copy constructor / clone from forward Iterator instance
+     * @param {*} args
+     *
+     * @example
+     * // Using a node and a container
+     * let it = new ReverseIterator(node, container);
+     *
+     * // Copy constructor / clone
+     * let it1 = new ReverseIterator(node, container);
+     * let it2 = new ReverseIterator(it1);
+     *
+     * // Copy constructor / clone from forward Iterator instance
+     * let it1 = new Iterator(node, container);
+     * let it2 = new ReverseIterator(it1);
+     */
+    constructor(...args) {
+        if (args.length === 2) {
+            let [node, container] = args;
+            super(node, container);
+        }
+        else if (args.length === 1) {
+            let [obj] = args;
+            let className = obj.constructor.name;
+            if (className === ReverseIterator.name) {
+                super(obj.__n, obj.__c);
+            }
+            else if (className === Iterator.name) {
+                let c = obj.__c;
+                super(c.prev(obj.__n), c);
+            }
+            else {
+                throw new Error(`Can&apos;t create an ReverseIterator from ${className}`);
+            }
+        }
+        else {
+            throw new Error(&apos;Can\&apos;t create a Reverse Iterator with provided parameters&apos;);
+        }
+    }
+
+    /**
+     *  Replaces node reference with the reference of the previous node in the container, because it works in reverse order
+     * Can be used for manual reverse iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = new ReverseIterator(t.upperBound(50));
+     * let to = new ReverseIterator(t.lowerBound(0));
+     * let it = from;
+     * while (!it.equals(to)) {
+     *   console.log(it.key);
+     *   it.next();
+     * }
+     */
+    next() {
+        /**
+         * __n and __c are defined in the base class
+         */
+        this.__n = this.__c.prev(this.__n);
+    }
+
+    /**
+     *  Replaces node reference with the reference of the next node in the container, because it works in reverse order
+     * Can be used for manual forward iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = new ReverseIterator(t.upperBound(50));
+     * let to = new ReverseIterator(t.lowerBound(0));
+     * let it = to;
+     * while (!it.equals(from)) {
+     *   it.prev();
+     *   console.log(it.key);
+     * }
+     */
+    prev() {
+        this.__n = this.__c.next(this.__n);
+    }
+}
+
+module.exports = {
+    Iterator: Iterator,
+    ReverseIterator: ReverseIterator
+};</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
