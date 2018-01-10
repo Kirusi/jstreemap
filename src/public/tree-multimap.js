@@ -6,20 +6,26 @@ const {KeyValuePolicy} = require('../internal/policies');
 const {TreeNode} = require('../internal/tree-node');
 
 /**
- * This is an associative container class storing key-value pairs in ascending order
+ * This is an associative container class storing key-value pairs in ascending order. This map permits having identical keys with different values
  * @example
- * let map = new TreeMap();
+ * let map = new TreeMultiMap();
  * // add few values
  * map.set(1, 'a');
  * map.set(2, 'b');
+ * map.set(2, 'c');
  * // find a value by key
  * let v = map.get(1); // << 'a'
+ * find all values for a given key
  * // print all key-value pairs
- * for (let [key, value] of map) {
- *   console.log(`key: ${key}, value: ${value}`);
+ * let from = map.lowerBound(2);
+ * let to = map.upperBound(2);
+ * let it = from;
+ * while (!it.equals(to)) {
+ *   console.log(it.key);
+ *   it.next();
  * }
  */
-class TreeMap {
+class TreeMultiMap {
     /*======================================================
      * Methods of ES6 Map
      *======================================================*/
@@ -29,9 +35,9 @@ class TreeMap {
      * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.
      * @example
      * // Create an empty map
-     * let map1 = new TreeMap();
+     * let map1 = new TreeMultiMap();
      * // Create and initialize map
-     * let map2 = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map2 = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      */
     constructor(iterable) {
         /** Internal tree */
@@ -46,7 +52,7 @@ class TreeMap {
                 }
             }
             else {
-                throw new Error('TreeMap constructor accepts only iterable objects');
+                throw new Error('TreeMultiMap constructor accepts only iterable objects');
             }
         }
     }
@@ -55,28 +61,28 @@ class TreeMap {
      * String tag of this class
      * @returns {String}
      * @example
-     * Object.prototype.toString.call(new TreeMap()); // "[object TreeMap]"
+     * Object.prototype.toString.call(new TreeMultiMap()); // "[object TreeMultiMap]"
      */
     get [Symbol.toStringTag]() {
-        return 'TreeMap';
+        return 'TreeMultiMap';
     }
 
     /**
      * Allows to create programmatically an instance of the same class
      * @returns constructor object for this class.
      * @example
-     * let map = new TreeMap();
+     * let map = new TreeMultiMap();
      * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
      * let map2 = new constrFunc();
      */
     static get [Symbol.species]() {
-        return TreeMap;
+        return TreeMultiMap;
     }
 
     /**
      * Removes all key-value pairs.
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * map.clear();
      * console.log(map.size); // 0
      */
@@ -87,7 +93,7 @@ class TreeMap {
     /**
      * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * map.delete(2);
      * console.log(map.toString()); // {1:A,3:C}
      */
@@ -102,7 +108,7 @@ class TreeMap {
      * Forward ES6 iterator for all key-value pairs in ascending order of the keys.
      * @returns {JsIterator}
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let [key,value] of map.entries()) {
      *   console.log(`key: ${key}, value: ${value}`);
      * }
@@ -115,7 +121,7 @@ class TreeMap {
      * Iterates all key-value pairs using a callback in ascending order of the keys.
      * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * map.forEach(function(value, key, container) {
      *   console.log(`key: ${key}, value: ${value}`);
      * });
@@ -131,7 +137,7 @@ class TreeMap {
      * @returns {*}
      * @param {*} key a value of any type that can be compared with a key
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * let v = map.get(3); // 'C'
      * * let v = map.get(4); // returns undefined
      */
@@ -150,7 +156,7 @@ class TreeMap {
      * @returns {Boolean}
      * @param {*} key a value of any type that can be compared with a key
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * let b = map.get(3); // true
      */
     has(key) {
@@ -168,12 +174,12 @@ class TreeMap {
      * @returns {JsIterator}
      * @example
      * // iterate all keys
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let k of map.keys()) {
      *   console.log(k); // 1, 2, 3
      * }
      * // iterate all keys in reverse order
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let k of map.keys().backward()) {
      *   console.log(k); // 3, 2, 1
      * }
@@ -183,18 +189,23 @@ class TreeMap {
     }
 
     /**
-     * Adds or updates key-value pair to the map.
+     * Adds a key-value pair to the map. Multiple key-value pairs with the same key are allowed in TreeMultiMap.
      * @param {*} key
      * @param {*} value
      * @example
-     * let map = new TreeMap();
+     * let map = new TreeMultiMap();
      * map.set(1, 'A');
+     * map.set(1, 'B');
+     * map.set(2, 'C');
+     * for (let k of map.values()) {
+     *   console.log(k); // A, B, C
+     * }
      */
     set(key, value) {
         let n = new TreeNode();
         n.key = key;
         n.value = value;
-        this.__t.insertOrReplace(n);
+        this.__t.insertMulti(n);
     }
 
     /**
@@ -210,12 +221,12 @@ class TreeMap {
      * @returns {JsITerator}
      * @example
      * // iterate all values
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let v of map.values()) {
      *   console.log(v); // 'A', 'B', 'C'
      * }
      * // iterate all values in reverse order
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let v of map.values().backward()) {
      *   console.log(v); // 'C', 'B', 'A'
      * }
@@ -228,7 +239,7 @@ class TreeMap {
      * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method
      * @returns {JsIterator}
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let [key,value] of map) {
      *   console.log(`key: ${key}, value: ${value}`);
      * }
@@ -244,7 +255,7 @@ class TreeMap {
      * ES6 reverse iterator for all key-value pairs in descending order of the keys.
      * @returns {JsReverseIterator}
      * @example
-     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * for (let [key,value] of map.backwards()) {
      *   console.log(`key: ${key}, value: ${value}`);
      * }
@@ -273,7 +284,7 @@ class TreeMap {
      * Forward iterator to the first element
      * @returns {Iterator}
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ...
      * for (let it = m.begin(); !it.equals(m.end()); it.next()) {
      *   console.log(`key: ${it.key}, value: ${it.value}`);
@@ -287,7 +298,7 @@ class TreeMap {
      * Forward iterator to the element following the last element
      * @returns {Iterator}
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ...
      * for (let it = m.begin(); !it.equals(m.end()); it.next()) {
      *   console.log(`key: ${it.key}, value: ${it.value}`);
@@ -302,7 +313,7 @@ class TreeMap {
      * @param {*} key
      * @returns {Iterator}
      * @example
-     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
      * ...
      * let it = m.find(1);
      * if (!it.equals(m.end())) {
@@ -318,7 +329,7 @@ class TreeMap {
      * @param {*} key
      * @param {*} value
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * m.insertUnique(1, 'A');
      * m.insertUnique(1, 'B'); // this step has no effect on the map
      * let v = m.get(1); // 'A'
@@ -335,7 +346,7 @@ class TreeMap {
      * @param {*} key
      * @param {*} value
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * m.insertOrReplace(1, 'A');
      * m.insertOrReplace(1, 'B'); // replaces the value for key 1
      * let v = m.get(1); // 'B'
@@ -348,11 +359,28 @@ class TreeMap {
     }
 
     /**
+     * Adds key-value pair. If such key already exists in the map then adds another node with the same key and a new value.
+     * @param {*} key
+     * @param {*} value
+     * @example
+     * let m = new TreeMultiMap();
+     * m.insertMulti(1, 'A');
+     * m.insertMulti(1, 'B'); // this step has no effect on the map
+     * let v = m.get(1); // undefined
+     */
+    insertMulti(key, value) {
+        let n = new TreeNode();
+        n.key = key;
+        n.value = value;
+        return this.__t.insertMulti(n);
+    }
+
+    /**
      * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.
      * @param {*} key
      * @returns {Iterator}
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive
      * let from = t.lowerBound(0);
@@ -363,7 +391,7 @@ class TreeMap {
      *   it.next();
      * }
      *
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
      * let from = new ReverseIterator(t.upperBound(50));
@@ -382,7 +410,7 @@ class TreeMap {
      * Reverse iterator to the last element.
      * @returns {ReverseIterator}
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ...
      * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
      *   console.log(`key: ${it.key}, value: ${it.value}`);
@@ -396,7 +424,7 @@ class TreeMap {
      * Reverse iterator pointing to before the first element.
      * @returns {ReverseIterator}
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ...
      * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
      *   console.log(`key: ${it.key}, value: ${it.value}`);
@@ -411,7 +439,7 @@ class TreeMap {
      * @param {*} key
      * @returns {Iterator}
      * @example
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive
      * let from = t.lowerBound(0);
@@ -422,7 +450,7 @@ class TreeMap {
      *   it.next();
      * }
      *
-     * let m = new TreeMap();
+     * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
      * let from = new ReverseIterator(t.upperBound(50));
@@ -447,5 +475,5 @@ class TreeMap {
 }
 
 module.exports = {
-    TreeMap: TreeMap,
+    TreeMultiMap: TreeMultiMap,
 };

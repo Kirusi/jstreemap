@@ -1,6 +1,6 @@
 {
   "source": "./src",
-  "destination": "./build/docs",
+  "destination": "./docs",
   "plugins": [
     {
       "name": "esdoc-standard-plugin",
@@ -12,12 +12,11 @@
         "unexportedIdentifier": {"enable": false},
         "typeInference": {"enable": true},
         "brand": {
-          "title": "setmap Library",
-          "description": "this is awesome library",
-          "repository": "https://github.com/foo/bar",
-          "site": "http://my-library.org",
-          "author": "https://twitter.com/foo",
-          "image": "http://my-library.org/logo.png"
+          "title": "jstreemap Library",
+          "description": "Associative containers (sets, maps) library for JavaScript, using red-black trees.",
+          "repository": "https://github.com/Kirusi/jstreemap",
+          "site": "https://github.com/Kirusi/jstreemap",
+          "author": "https://github.com/Kirusi"
         }
       }
     },
