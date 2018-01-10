@@ -78,4 +78,30 @@ describe('JsIterator tests', function() {
 
         done();
     });
+
+    it('backward iteration using forward iterator', function(done) {
+        let c = new ContainerStub();
+        let it = new JsIterator(c);
+        let actual = [];
+        for (let v of it.backwards()) {
+            actual.push(v);
+        }
+        let expected = [4, 3, 2, 1, 0];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
+
+    it('forward iteration using backward iterator', function(done) {
+        let c = new ContainerStub();
+        let it = new JsReverseIterator(c);
+        let actual = [];
+        for (let v of it.backwards()) {
+            actual.push(v);
+        }
+        let expected = [0, 1, 2, 3, 4];
+        should.deepEqual(expected, actual);
+
+        done();
+    });
 });

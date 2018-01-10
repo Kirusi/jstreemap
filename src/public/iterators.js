@@ -77,7 +77,7 @@ class BaseIterator {
  * @example
  * let m = new TreeMap();
  * ...
- * for (let it = t.begin(); !it.equals(t.end()); it.next()) {
+ * for (let it = m.begin(); !it.equals(m.end()); it.next()) {
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
@@ -128,7 +128,18 @@ class Iterator extends BaseIterator {
     }
 
     /**
-     *  Replaces node reference with the reference of the next node in the container
+     * Replaces node reference with the reference of the next node in the container.
+     * Can be used for manual iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = t.lowerBound(0);
+     * let to = t.upperBound(50);
+     * let it = from;
+     * while (!it.equals(to)) {
+     *   console.log(it.key);
+     *   it.next();
+     * }
      */
     next() {
         /**
@@ -138,7 +149,18 @@ class Iterator extends BaseIterator {
     }
 
     /**
-     *  Replaces node reference with the reference of the previous node in the container
+     * Replaces node reference with the reference of the previous node in the container
+     * Can be used for manual reverse iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = t.lowerBound(0);
+     * let to = t.upperBound(50);
+     * let it = to;
+     * while (!it.equals(from)) {
+     *   it.prev();
+     *   console.log(it.key);
+     * }
      */
     prev() {
         this.__n = this.__c.prev(this.__n);
@@ -152,7 +174,7 @@ class Iterator extends BaseIterator {
  * @example
  * let m = new TreeMap();
  * ...
- * for (let it = t.rbegin(); !it.equals(t.rend()); it.next()) {
+ * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
@@ -203,6 +225,17 @@ class ReverseIterator extends BaseIterator {
 
     /**
      *  Replaces node reference with the reference of the previous node in the container, because it works in reverse order
+     * Can be used for manual reverse iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = new ReverseIterator(t.upperBound(50));
+     * let to = new ReverseIterator(t.lowerBound(0));
+     * let it = from;
+     * while (!it.equals(to)) {
+     *   console.log(it.key);
+     *   it.next();
+     * }
      */
     next() {
         /**
@@ -213,6 +246,17 @@ class ReverseIterator extends BaseIterator {
 
     /**
      *  Replaces node reference with the reference of the next node in the container, because it works in reverse order
+     * Can be used for manual forward iteration over a range of key-value pairs.
+     * @example
+     * let m = new TreeMap();
+     * ... // add key-value pairs., using numbers as keys
+     * let from = new ReverseIterator(t.upperBound(50));
+     * let to = new ReverseIterator(t.lowerBound(0));
+     * let it = to;
+     * while (!it.equals(from)) {
+     *   it.prev();
+     *   console.log(it.key);
+     * }
      */
     prev() {
         this.__n = this.__c.next(this.__n);

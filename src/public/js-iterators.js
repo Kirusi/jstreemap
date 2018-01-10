@@ -43,8 +43,8 @@ class JsIterator {
     }
 
     /**
-     * As documented in ES6 iteration protocol. It can be used for manual iteration
-     * @returns {{done: boolean, value: [key, [value]]}}
+     * As documented in ES6 iteration protocol. It can be used for manual iteration.
+     * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
      *
      * @example
      * let m = new TreeMap();
@@ -68,13 +68,17 @@ class JsIterator {
         return res;
     }
 
-    /** Support for ES6 for-of loops */
+    /**
+     * Support for ES6 for-of loops.
+     * @returns {JsIterator}
+     */
     [Symbol.iterator]() {
         return this;
     }
 
     /**
-     * @returns {JsReverseIterator} a reverse iterator for the same container
+     * A reverse iterator for the same container.
+     * @returns {JsReverseIterator}
      * @example
      * let m = new TreeMap();
      * ...
@@ -132,8 +136,8 @@ class JsReverseIterator {
     }
 
     /**
-     * As documented in ES6 iteration protocol. It can be used for manual iteration
-     * @returns {{done: boolean, value: [key, [value]]}}
+     * As documented in ES6 iteration protocol. It can be used for manual iteration.
+     * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
      *
      * @example
      * let m = new TreeMap();
@@ -157,13 +161,17 @@ class JsReverseIterator {
         return res;
     }
 
-    /** Support for ES6 for-of loops */
+    /**
+     * Support for ES6 for-of loops.
+     * @returns {JsReverseIterator}
+     */
     [Symbol.iterator]() {
         return this;
     }
 
     /**
-     * @returns {JsIterator} a forward iterator for the same container
+     * A forward iterator for the same container
+     * @returns {JsIterator}
      * @example
      * let m = new TreeMap();
      * ...

@@ -410,8 +410,8 @@ describe('Tree tests', function() {
         }
         catch (err) {
             let msg = err.message;
-            should.ok(msg.includes('rotateRight'));
-            should.ok(msg.includes('corrupted'));
+            should.ok(msg.includes('rotateRight'), msg);
+            should.ok(msg.includes('corrupted'), msg);
         }
 
         done();
@@ -1513,7 +1513,7 @@ describe('Tree tests', function() {
         done();
     });
 
-    it('toString; keys only', function(done) {
+    it('toStringTag; keys only', function(done) {
         let expected = '[object Tree]';
         let actual = Object.prototype.toString.call(new Tree());
         should.strictEqual(expected, actual);
