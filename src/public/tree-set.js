@@ -6,7 +6,7 @@ const {KeyOnlyPolicy} = require('../internal/policies');
 const {TreeNode} = require('../internal/tree-node');
 
 /**
- * This is an associative container class storing key-value pairs in ascending order
+ * This is an associative container class storing key values in ascending order. Duplicate key values are ignored.
  * @example
  * let set = new TreeSet();
  * // add few values
@@ -66,7 +66,7 @@ class TreeSet {
      * @returns constructor object for this class.
      * @example
      * let set = new TreeSet();
-     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
+     * let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];
      * let set2 = new constrFunc();
      */
     static get [Symbol.species]() {
@@ -254,9 +254,9 @@ class TreeSet {
      * Forward iterator to the first element
      * @returns {Iterator}
      * @example
-     * let m = new TreeSet();
+     * let set = new TreeSet();
      * ...
-     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {
+     * for (let it = set.begin(); !it.equals(set.end()); it.next()) {
      *   console.log(`key: ${it.key}`);
      * }
      */
@@ -268,9 +268,9 @@ class TreeSet {
      * Forward iterator to the element following the last element
      * @returns {Iterator}
      * @example
-     * let m = new TreeSet();
+     * let set = new TreeSet();
      * ...
-     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {
+     * for (let it = set.begin(); !it.equals(set.end()); it.next()) {
      *   console.log(`key: ${it.key}`);
      * }
      */
@@ -283,10 +283,10 @@ class TreeSet {
      * @param {*} key
      * @returns {Iterator}
      * @example
-     * let m = new TreeSet([1, 2, 3]);
+     * let set = new TreeSet([1, 2, 3]);
      * ...
-     * let it = m.find(1);
-     * if (!it.equals(m.end())) {
+     * let it = set.find(1);
+     * if (!it.equals(set.end())) {
      *   console.log(`Found key: ${it.key}`); // 1
      * }
      */

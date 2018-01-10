@@ -36,6 +36,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html">TreeMap</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html">TreeMultiMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html">TreeMultiSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html">TreeSet</a></span></span></li>
 </ul>
 </div>
@@ -68,7 +69,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>This is an associative container class storing key-value pairs in ascending order</p>
+  <div class="description" data-ice="description"><p>This is an associative container class storing key values in ascending order. Duplicate key values are ignored.</p>
 </div>
   
 
@@ -854,7 +855,7 @@ for (let key of set) {
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
-let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
+let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];
 let set2 = new constrFunc();</code></pre>
     </div>
 </div>
@@ -1366,9 +1367,9 @@ for (let key of set.backwards()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeSet();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 ...
-for (let it = m.begin(); !it.equals(m.end()); it.next()) {
+for (let it = set.begin(); !it.equals(set.end()); it.next()) {
   console.log(`key: ${it.key}`);
 }</code></pre>
     </div>
@@ -1555,9 +1556,9 @@ console.log(set.toString()); // {1,3}</code></pre>
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeSet();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 ...
-for (let it = m.begin(); !it.equals(m.end()); it.next()) {
+for (let it = set.begin(); !it.equals(set.end()); it.next()) {
   console.log(`key: ${it.key}`);
 }</code></pre>
     </div>
@@ -1704,10 +1705,10 @@ for (let key of set.entries()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeSet([1, 2, 3]);
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
 ...
-let it = m.find(1);
-if (!it.equals(m.end())) {
+let it = set.find(1);
+if (!it.equals(set.end())) {
   console.log(`Found key: ${it.key}`); // 1
 }</code></pre>
     </div>

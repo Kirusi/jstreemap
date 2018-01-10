@@ -323,6 +323,7 @@ describe('TreeMap tests', function() {
         map.insertUnique(1, 'A');
         map.insertUnique(1, 'B');
         should.equal('A', map.get(1));
+        should.equal(1, map.size);
 
         done();
     });
@@ -332,6 +333,7 @@ describe('TreeMap tests', function() {
         map.insertOrReplace(1, 'A');
         map.insertOrReplace(1, 'B');
         should.equal('B', map.get(1));
+        should.equal(1, map.size);
 
         done();
     });

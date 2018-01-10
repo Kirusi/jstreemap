@@ -8,18 +8,18 @@ const {TreeSet} = require('../src/public/tree-set');
 describe('TreeSet tests', function() {
 
     it('constructor;', function(done) {
-        let m = new TreeSet();
-        should.equal(0, m.size);
+        let set = new TreeSet();
+        should.equal(0, set.size);
 
         done();
     });
 
     it('constructor; array literal', function(done) {
-        let m = new TreeSet([1, 2, 3]);
-        should.equal(3, m.size);
+        let set = new TreeSet([1, 2, 3]);
+        should.equal(3, set.size);
 
         let actual = [];
-        for (let k of m) {
+        for (let k of set) {
             actual.push(k);
         }
 
@@ -31,11 +31,11 @@ describe('TreeSet tests', function() {
 
     it('constructor; ES6 set', function(done) {
         let jsSet = new Set([2, 1, 3]);
-        let m = new TreeSet(jsSet);
-        should.equal(3, m.size);
+        let set = new TreeSet(jsSet);
+        should.equal(3, set.size);
 
         let actual = [];
-        for (let k of m) {
+        for (let k of set) {
             actual.push(k);
         }
 
@@ -51,11 +51,11 @@ describe('TreeSet tests', function() {
                 yield i;
             }
         };
-        let m = new TreeSet(gen());
-        should.equal(3, m.size);
+        let set = new TreeSet(gen());
+        should.equal(3, set.size);
 
         let actual = [];
-        for (let k of m) {
+        for (let k of set) {
             actual.push(k);
         }
 
@@ -95,15 +95,15 @@ describe('TreeSet tests', function() {
             }
         }
 
-        let m = new TreeSet();
-        m.compareFunc = compareIds;
-        m.add(new Id('B', 8));
-        m.add(new Id('A', 340));
-        m.add(new Id('A', 12));
-        m.add({alpha: 'AA', num: 147}); // create an ad-hoc object
+        let set = new TreeSet();
+        set.compareFunc = compareIds;
+        set.add(new Id('B', 8));
+        set.add(new Id('A', 340));
+        set.add(new Id('A', 12));
+        set.add({alpha: 'AA', num: 147}); // create an ad-hoc object
 
         let actual = [];
-        for (let k of m) {
+        for (let k of set) {
             actual.push([k.alpha, k.num]);
         }
         let expected = [['A', 12], ['A', 340], ['AA', 147], ['B', 8]];
@@ -114,7 +114,7 @@ describe('TreeSet tests', function() {
 
     it('constructor; invalid literal', function(done) {
         try {
-            let m = new TreeSet(35);
+            let set = new TreeSet(35);
             assert(false, 'The error was not detected');
         }
         catch (err) {
@@ -125,15 +125,15 @@ describe('TreeSet tests', function() {
     });
 
     it('constructor; null', function(done) {
-        let m = new TreeSet(null);
-        should.equal(0, m.size);
+        let set = new TreeSet(null);
+        should.equal(0, set.size);
 
         done();
     });
 
     it('constructor; null', function(done) {
-        let m = new TreeSet(undefined);
-        should.equal(0, m.size);
+        let set = new TreeSet(undefined);
+        should.equal(0, set.size);
 
         done();
     });
@@ -164,20 +164,20 @@ describe('TreeSet tests', function() {
     });
 
     it('clear', function(done) {
-        let map = new TreeSet([1, 2, 3]);
-        map.clear();
-        should.equal(0, map.size);
+        let set = new TreeSet([1, 2, 3]);
+        set.clear();
+        should.equal(0, set.size);
 
         done();
     });
 
     it('delete', function(done) {
-        let map = new TreeSet([1, 2, 3]);
-        map.delete(2);
+        let set = new TreeSet([1, 2, 3]);
+        set.delete(2);
         let expected = '{1,3}';
-        should.equal(expected, map.toString());
-        map.delete(4);
-        should.equal(expected, map.toString());
+        should.equal(expected, set.toString());
+        set.delete(4);
+        should.equal(expected, set.toString());
 
         done();
     });

@@ -1355,7 +1355,7 @@ describe('Tree tests', function() {
         done();
     });
 
-    it('insertUnique; lowerBound/upperBound range; same values', function(done) {
+    it('insertMulti; lowerBound/upperBound range; same values', function(done) {
         let t = new Tree();
         t.valuePolicy = new KeyValuePolicy();
         for (let i = 1; i < 6; ++i) {
@@ -1374,6 +1374,7 @@ describe('Tree tests', function() {
         }
         let expected = ['N1'];
         should.deepEqual(expected, actual);
+        should.equal(1, t.size());
 
         done();
     });
@@ -1397,6 +1398,7 @@ describe('Tree tests', function() {
         }
         let expected = ['N5'];
         should.deepEqual(expected, actual);
+        should.equal(1, t.size());
 
         done();
     });

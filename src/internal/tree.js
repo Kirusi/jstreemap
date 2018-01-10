@@ -239,25 +239,27 @@ class Tree {
      * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
      */
     insertNode(n, mode = INSERT_MULTI) {
-        this.insertNodeInternal(this.head.root, n, mode);
-        if (this.head.size === 0) {
-            this.head.root = n;
-            this.head.leftmost = n;
-            this.head.rightmost = n;
+        let wasInserted = this.insertNodeInternal(this.head.root, n, mode);
+        if (wasInserted) {
+            if (this.head.size === 0) {
+                this.head.root = n;
+                this.head.leftmost = n;
+                this.head.rightmost = n;
 
-            n.left = this.head;
-            n.right = this.head;
+                n.left = this.head;
+                n.right = this.head;
+            }
+            else if (this.head.leftmost.left === n) {
+                this.head.leftmost = n;
+                n.left = this.head;
+            }
+            else if (this.head.rightmost.right === n) {
+                this.head.rightmost = n;
+                n.right = this.head;
+            }
+            this.insertRepairTree(n);
+            this.head.size = this.head.size + 1;
         }
-        else if (this.head.leftmost.left === n) {
-            this.head.leftmost = n;
-            n.left = this.head;
-        }
-        else if (this.head.rightmost.right === n) {
-            this.head.rightmost = n;
-            n.right = this.head;
-        }
-        this.insertRepairTree(n);
-        this.head.size = this.head.size + 1;
     }
 
     /**
@@ -266,6 +268,7 @@ class Tree {
      * @param {*} root - root node of the tree
      * @param {*} n - node to be inserted
      * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
+     * @returns {Boolean} indicator whether the node was added.
      */
     insertNodeInternal(root, n, mode) {
         // recursively descend the tree until a leaf is found
@@ -287,10 +290,10 @@ class Tree {
                 switch (mode) {
                     case INSERT_UNIQUE:
                         // it's a duplicate
-                        return;
+                        return false;
                     case INSERT_REPLACE:
                         this.valuePolicy.copy(y, n);
-                        return;
+                        return false;
                     default:
                         // INSERT_MULTI
                         x = y.right;
@@ -311,6 +314,7 @@ class Tree {
                 y.right = n;
             }
         }
+        return true;
     }
 
     /**
