@@ -1,5 +1,5 @@
 {
-  "name": "setmap",
+  "name": "jstreemap",
   "version": "1.7.1",
   "description": "Library of associative containers.",
   "main": "index.js",
