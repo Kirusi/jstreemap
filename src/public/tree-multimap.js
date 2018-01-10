@@ -383,8 +383,8 @@ class TreeMultiMap {
      * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive
-     * let from = t.lowerBound(0);
-     * let to = t.upperBound(50);
+     * let from = m.lowerBound(0);
+     * let to = m.upperBound(50);
      * let it = from;
      * while (!it.equals(to)) {
      *   console.log(it.key);
@@ -394,8 +394,8 @@ class TreeMultiMap {
      * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
-     * let from = new ReverseIterator(t.upperBound(50));
-     * let to = new ReverseIterator(t.lowerBound(0));
+     * let from = new ReverseIterator(m.upperBound(50));
+     * let to = new ReverseIterator(m.lowerBound(0));
      * let it = from;
      * while (!it.equals(to)) {
      *   console.log(it.key);
@@ -442,8 +442,8 @@ class TreeMultiMap {
      * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive
-     * let from = t.lowerBound(0);
-     * let to = t.upperBound(50);
+     * let from = m.lowerBound(0);
+     * let to = m.upperBound(50);
      * let it = from;
      * while (!it.equals(to)) {
      *   console.log(it.key);
@@ -453,8 +453,8 @@ class TreeMultiMap {
      * let m = new TreeMultiMap();
      * ... // add key-value pairs., using numbers as keys
      * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
-     * let from = new ReverseIterator(t.upperBound(50));
-     * let to = new ReverseIterator(t.lowerBound(0));
+     * let from = new ReverseIterator(m.upperBound(50));
+     * let to = new ReverseIterator(m.lowerBound(0));
      * let it = from;
      * while (!it.equals(to)) {
      *   console.log(it.key);

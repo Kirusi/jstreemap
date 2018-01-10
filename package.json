@@ -2,7 +2,7 @@
   "name": "jstreemap",
   "version": "1.7.1",
   "description": "Library of associative containers.",
-  "main": "index.js",
+  "main": "jstreemap.js",
   "scripts": {
     "build": "webpack --config ./config/webpack.config.js",
     "esdoc": "esdoc -c ./esdoc.json",

@@ -3,43 +3,43 @@
 const should = require('should');
 const assert = require('assert');
 
-const {TreeMap} = require('../src/public/tree-map');
+const {TreeSet} = require('../src/public/tree-set');
 
-describe('TreeMap tests', function() {
+describe('TreeSet tests', function() {
 
     it('constructor;', function(done) {
-        let m = new TreeMap();
+        let m = new TreeSet();
         should.equal(0, m.size);
 
         done();
     });
 
     it('constructor; array literal', function(done) {
-        let m = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
+        let m = new TreeSet([1, 2, 3]);
         should.equal(3, m.size);
 
         let actual = [];
-        for (let [k, v] of m) {
-            actual.push([k, v]);
+        for (let k of m) {
+            actual.push(k);
         }
 
-        let expected = [[1, 'A'], [2, 'B'], [3, 'C']];
+        let expected = [1, 2, 3];
         should.deepEqual(expected, actual);
 
         done();
     });
 
-    it('constructor; ES6 map', function(done) {
-        let jsMap = new Map([[2, 'B'], [1, 'A'], [3, 'C']]);
-        let m = new TreeMap(jsMap);
+    it('constructor; ES6 set', function(done) {
+        let jsSet = new Set([2, 1, 3]);
+        let m = new TreeSet(jsSet);
         should.equal(3, m.size);
 
         let actual = [];
-        for (let [k, v] of m) {
-            actual.push([k, v]);
+        for (let k of m) {
+            actual.push(k);
         }
 
-        let expected = [[1, 'A'], [2, 'B'], [3, 'C']];
+        let expected = [1, 2, 3];
         should.deepEqual(expected, actual);
 
         done();
@@ -48,18 +48,18 @@ describe('TreeMap tests', function() {
     it('constructor; generator function', function(done) {
         let gen = function*() {
             for (let i = 1; i < 4; ++i) {
-                yield [i, `N${i * 2}`];
+                yield i;
             }
         };
-        let m = new TreeMap(gen());
+        let m = new TreeSet(gen());
         should.equal(3, m.size);
 
         let actual = [];
-        for (let [k, v] of m) {
-            actual.push([k, v]);
+        for (let k of m) {
+            actual.push(k);
         }
 
-        let expected = [[1, 'N2'], [2, 'N4'], [3, 'N6']];
+        let expected = [1, 2, 3];
         should.deepEqual(expected, actual);
 
         done();
@@ -95,23 +95,18 @@ describe('TreeMap tests', function() {
             }
         }
 
-        let m = new TreeMap();
+        let m = new TreeSet();
         m.compareFunc = compareIds;
-        m.set(new Id('B', 8), 'Book with id B8');
-        m.set(new Id('A', 340), 'Book with id A340');
-        m.set(new Id('A', 12), 'Book with id A12');
-        m.set({alpha: 'AA', num: 147}, 'Book with id AA147'); // create an ad-hoc object
+        m.add(new Id('B', 8));
+        m.add(new Id('A', 340));
+        m.add(new Id('A', 12));
+        m.add({alpha: 'AA', num: 147}); // create an ad-hoc object
 
         let actual = [];
-        for (let [k, v] of m) {
-            actual.push([k.alpha, k.num, v]);
+        for (let k of m) {
+            actual.push([k.alpha, k.num]);
         }
-        let expected = [
-            ['A', 12, 'Book with id A12'],
-            ['A', 340, 'Book with id A340'],
-            ['AA', 147, 'Book with id AA147'],
-            ['B', 8, 'Book with id B8']
-        ];
+        let expected = [['A', 12], ['A', 340], ['AA', 147], ['B', 8]];
         should.deepEqual(expected, actual);
 
         done();
@@ -119,7 +114,7 @@ describe('TreeMap tests', function() {
 
     it('constructor; invalid literal', function(done) {
         try {
-            let m = new TreeMap(35);
+            let m = new TreeSet(35);
             assert(false, 'The error was not detected');
         }
         catch (err) {
@@ -130,46 +125,46 @@ describe('TreeMap tests', function() {
     });
 
     it('constructor; null', function(done) {
-        let m = new TreeMap(null);
+        let m = new TreeSet(null);
         should.equal(0, m.size);
 
         done();
     });
 
     it('constructor; null', function(done) {
-        let m = new TreeMap(undefined);
+        let m = new TreeSet(undefined);
         should.equal(0, m.size);
 
         done();
     });
 
     it('toStringTag', function(done) {
-        let expected = '[object TreeMap]';
-        let actual = Object.prototype.toString.call(new TreeMap());
+        let expected = '[object TreeSet]';
+        let actual = Object.prototype.toString.call(new TreeSet());
         should.strictEqual(expected, actual);
 
         done();
     });
 
     it('species; on object', function(done) {
-        let map = new TreeMap();
-        let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
-        let map2 = new constrFunc();
-        should.ok(map2 instanceof TreeMap);
+        let set = new TreeSet();
+        let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];
+        let set2 = new constrFunc();
+        should.ok(set2 instanceof TreeSet);
 
         done();
     });
 
     it('species; on class', function(done) {
-        let ctr = TreeMap[Symbol.species];
+        let ctr = TreeSet[Symbol.species];
         let actual = new ctr();
-        should.ok(actual instanceof TreeMap);
+        should.ok(actual instanceof TreeSet);
 
         done();
     });
 
     it('clear', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let map = new TreeSet([1, 2, 3]);
         map.clear();
         should.equal(0, map.size);
 
@@ -177,9 +172,9 @@ describe('TreeMap tests', function() {
     });
 
     it('delete', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let map = new TreeSet([1, 2, 3]);
         map.delete(2);
-        let expected = '{1:A,3:C}';
+        let expected = '{1,3}';
         should.equal(expected, map.toString());
         map.delete(4);
         should.equal(expected, map.toString());
@@ -188,49 +183,41 @@ describe('TreeMap tests', function() {
     });
 
     it('entries', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        for (let [key, value] of map.entries()) {
-            actual.push([key, value]);
+        for (let key of set.entries()) {
+            actual.push(key);
         }
-        let expected = [[1, 'A'], [2, 'B'], [3, 'C']];
+        let expected = [1, 2, 3];
         should.deepEqual(expected, actual);
 
         done();
     });
 
     it('forEach', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        map.forEach(function(value, key, container) {
+        set.forEach(function(value, key, container) {
             actual.push([key, value]);
         });
-        let expected = [[1, 'A'], [2, 'B'], [3, 'C']];
+        let expected = [[1, 1], [2, 2], [3, 3]];
         should.deepEqual(expected, actual);
 
         done();
     });
 
-    it('get', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-        should.equal('A', map.get(1));
-        should.equal(undefined, map.get(4));
-
-        done();
-    });
-
     it('has', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-        should.equal(true, map.has(1));
-        should.equal(false, map.has(4));
+        let set = new TreeSet([1, 2, 3]);
+        should.equal(true, set.has(1));
+        should.equal(false, set.has(4));
 
         done();
     });
 
     it('keys', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        for (let key of map.keys()) {
+        for (let key of set.keys()) {
             actual.push(key);
         }
         let expected = [1, 2, 3];
@@ -240,73 +227,72 @@ describe('TreeMap tests', function() {
     });
 
     it('values', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        for (let value of map.values()) {
+        for (let value of set.values()) {
             actual.push(value);
         }
-        let expected = ['A', 'B', 'C'];
+        let expected = [1, 2, 3];
         should.deepEqual(expected, actual);
 
         done();
     });
 
     it('backward', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        for (let [key, value] of map.backward()) {
-            actual.push([key, value]);
+        for (let key of set.backward()) {
+            actual.push(key);
         }
-        let expected = [[3, 'C'], [2, 'B'], [1, 'A']];
+        let expected = [3, 2, 1];
         should.deepEqual(expected, actual);
 
         done();
     });
 
     it('begin/end', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        for (let it = map.begin(); !it.equals(map.end()); it.next()) {
-            actual.push([it.key, it.value]);
+        for (let it = set.begin(); !it.equals(set.end()); it.next()) {
+            actual.push(it.key);
         }
-        let expected = [[1, 'A'], [2, 'B'], [3, 'C']];
+        let expected = [1, 2, 3];
         should.deepEqual(expected, actual);
 
         done();
     });
 
     it('rbegin/rend', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let set = new TreeSet([1, 2, 3]);
         let actual = [];
-        for (let it = map.rbegin(); !it.equals(map.rend()); it.next()) {
-            actual.push([it.key, it.value]);
+        for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
+            actual.push(it.key);
         }
-        let expected = [[3, 'C'], [2, 'B'], [1, 'A']];
+        let expected = [3, 2, 1];
         should.deepEqual(expected, actual);
 
         done();
     });
 
     it('find', function(done) {
-        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-        let it = map.find(2);
+        let set = new TreeSet([1, 2, 3]);
+        let it = set.find(2);
         should.equal(2, it.key);
-        should.equal('B', it.value);
 
-        it = map.find(4);
-        should.ok(it.equals(map.end()));
+        it = set.find(4);
+        should.ok(it.equals(set.end()));
 
         done();
     });
 
     it('lowerBound / upperBound', function(done) {
-        let map = new TreeMap();
+        let set = new TreeSet();
         for (let i = 1; i <= 16; ++i) {
-            map.set(i * 2, `N${i}`);
+            set.add(i * 2, `N${i}`);
         }
         let actual = [];
-        let from = map.lowerBound(0);
-        let to = map.upperBound(50);
+        let from = set.lowerBound(0);
+        let to = set.upperBound(50);
         let it = to;
         while (!it.equals(from)) {
             it.prev();
@@ -314,24 +300,6 @@ describe('TreeMap tests', function() {
         }
         let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
         should.deepEqual(expected, actual);
-
-        done();
-    });
-
-    it('insertUnique', function(done) {
-        let map = new TreeMap();
-        map.insertUnique(1, 'A');
-        map.insertUnique(1, 'B');
-        should.equal('A', map.get(1));
-
-        done();
-    });
-
-    it('insertOrReplace', function(done) {
-        let map = new TreeMap();
-        map.insertOrReplace(1, 'A');
-        map.insertOrReplace(1, 'B');
-        should.equal('B', map.get(1));
 
         done();
     });

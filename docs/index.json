@@ -3854,7 +3854,7 @@
     "__docId__": 187,
     "kind": "file",
     "name": "src/public/tree-map.js",
-    "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyValuePolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * This is an associative container class storing key-value pairs in ascending order\r\n * @example\r\n * let map = new TreeMap();\r\n * // add few values\r\n * map.set(1, 'a');\r\n * map.set(2, 'b');\r\n * // find a value by key\r\n * let v = map.get(1); // << 'a'\r\n * // print all key-value pairs\r\n * for (let [key, value] of map) {\r\n *   console.log(`key: ${key}, value: ${value}`);\r\n * }\r\n */\r\nclass TreeMap {\r\n    /*======================================================\r\n     * Methods of ES6 Map\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized map.\r\n     * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.\r\n     * @example\r\n     * // Create an empty map\r\n     * let map1 = new TreeMap();\r\n     * // Create and initialize map\r\n     * let map2 = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyValuePolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let [k, v] of iterable) {\r\n                    this.set(k, v);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMap constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMap()); // \"[object TreeMap]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMap';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let map = new TreeMap();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let map2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMap;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.clear();\r\n     * console.log(map.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.delete(2);\r\n     * console.log(map.toString()); // {1:A,3:C}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.entries()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all key-value pairs using a callback in ascending order of the keys.\r\n     * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.forEach(function(value, key, container) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let [k, v] of this.__t) {\r\n            callback(v, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds value associated with the specified key. If specified key does not exist then undefined is returned.\r\n     * @returns {*}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let v = map.get(3); // 'C'\r\n     * * let v = map.get(4); // returns undefined\r\n     */\r\n    get(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return it.value;\r\n        }\r\n        else {\r\n            return undefined;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether map contains a key-value pair with the specified key\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let b = map.get(3); // true\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds or updates key-value pair to the map.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let map = new TreeMap();\r\n     * map.set(1, 'A');\r\n     */\r\n    set(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Number of key-value pairs in the map.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order of the keys.\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values()) {\r\n     *   console.log(v); // 'A', 'B', 'C'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values().backward()) {\r\n     *   console.log(v); // 'C', 'B', 'A'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.values();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all key-value pairs in descending order of the keys.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * m.insertUnique(1, 'A');\r\n     * m.insertUnique(1, 'B'); // this step has no effect on the map\r\n     * let v = m.get(1); // 'A'\r\n     */\r\n    insertUnique(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * m.insertOrReplace(1, 'A');\r\n     * m.insertOrReplace(1, 'B'); // replaces the value for key 1\r\n     * let v = m.get(1); // 'B'\r\n     */\r\n    insertOrReplace(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = t.lowerBound(0);\r\n     * let to = t.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(t.upperBound(50));\r\n     * let to = new ReverseIterator(t.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = t.lowerBound(0);\r\n     * let to = t.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(t.upperBound(50));\r\n     * let to = new ReverseIterator(t.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the map in the form {key1:value1,key2:value2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMap: TreeMap,\r\n};",
+    "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyValuePolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * This is an associative container class storing key-value pairs in ascending order\r\n * @example\r\n * let map = new TreeMap();\r\n * // add few values\r\n * map.set(1, 'a');\r\n * map.set(2, 'b');\r\n * // find a value by key\r\n * let v = map.get(1); // << 'a'\r\n * // print all key-value pairs\r\n * for (let [key, value] of map) {\r\n *   console.log(`key: ${key}, value: ${value}`);\r\n * }\r\n */\r\nclass TreeMap {\r\n    /*======================================================\r\n     * Methods of ES6 Map\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized map.\r\n     * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.\r\n     * @example\r\n     * // Create an empty map\r\n     * let map1 = new TreeMap();\r\n     * // Create and initialize map\r\n     * let map2 = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyValuePolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let [k, v] of iterable) {\r\n                    this.set(k, v);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMap constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMap()); // \"[object TreeMap]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMap';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let map = new TreeMap();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let map2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMap;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.clear();\r\n     * console.log(map.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.delete(2);\r\n     * console.log(map.toString()); // {1:A,3:C}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.entries()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all key-value pairs using a callback in ascending order of the keys.\r\n     * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.forEach(function(value, key, container) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let [k, v] of this.__t) {\r\n            callback(v, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds value associated with the specified key. If specified key does not exist then undefined is returned.\r\n     * @returns {*}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let v = map.get(3); // 'C'\r\n     * * let v = map.get(4); // returns undefined\r\n     */\r\n    get(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return it.value;\r\n        }\r\n        else {\r\n            return undefined;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether map contains a key-value pair with the specified key\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let b = map.get(3); // true\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds or updates key-value pair to the map.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let map = new TreeMap();\r\n     * map.set(1, 'A');\r\n     */\r\n    set(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Number of key-value pairs in the map.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order of the keys.\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values()) {\r\n     *   console.log(v); // 'A', 'B', 'C'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values().backward()) {\r\n     *   console.log(v); // 'C', 'B', 'A'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.values();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all key-value pairs in descending order of the keys.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * m.insertUnique(1, 'A');\r\n     * m.insertUnique(1, 'B'); // this step has no effect on the map\r\n     * let v = m.get(1); // 'A'\r\n     */\r\n    insertUnique(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * m.insertOrReplace(1, 'A');\r\n     * m.insertOrReplace(1, 'B'); // replaces the value for key 1\r\n     * let v = m.get(1); // 'B'\r\n     */\r\n    insertOrReplace(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the map in the form {key1:value1,key2:value2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMap: TreeMap,\r\n};",
     "static": true,
     "longname": "D:/Personal/Projects/jstreemap/src/public/tree-map.js",
     "access": "public",
@@ -4647,7 +4647,7 @@
     "access": "public",
     "description": "Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.",
     "examples": [
-      "let m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = t.lowerBound(0);\nlet to = t.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(t.upperBound(50));\nlet to = new ReverseIterator(t.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
+      "let m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = m.lowerBound(0);\nlet to = m.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(m.upperBound(50));\nlet to = new ReverseIterator(m.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
     ],
     "lineNumber": 377,
     "unknown": [
@@ -4751,7 +4751,7 @@
     "access": "public",
     "description": "Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.",
     "examples": [
-      "let m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = t.lowerBound(0);\nlet to = t.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(t.upperBound(50));\nlet to = new ReverseIterator(t.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
+      "let m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = m.lowerBound(0);\nlet to = m.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(m.upperBound(50));\nlet to = new ReverseIterator(m.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
     ],
     "lineNumber": 436,
     "unknown": [
@@ -4813,7 +4813,7 @@
     "__docId__": 219,
     "kind": "file",
     "name": "src/public/tree-multimap.js",
-    "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyValuePolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * This is an associative container class storing key-value pairs in ascending order. This map permits having identical keys with different values\r\n * @example\r\n * let map = new TreeMultiMap();\r\n * // add few values\r\n * map.set(1, 'a');\r\n * map.set(2, 'b');\r\n * map.set(2, 'c');\r\n * // find a value by key\r\n * let v = map.get(1); // << 'a'\r\n * find all values for a given key\r\n * // print all key-value pairs\r\n * let from = map.lowerBound(2);\r\n * let to = map.upperBound(2);\r\n * let it = from;\r\n * while (!it.equals(to)) {\r\n *   console.log(it.key);\r\n *   it.next();\r\n * }\r\n */\r\nclass TreeMultiMap {\r\n    /*======================================================\r\n     * Methods of ES6 Map\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized map.\r\n     * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.\r\n     * @example\r\n     * // Create an empty map\r\n     * let map1 = new TreeMultiMap();\r\n     * // Create and initialize map\r\n     * let map2 = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyValuePolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let [k, v] of iterable) {\r\n                    this.set(k, v);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMultiMap constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMultiMap()); // \"[object TreeMultiMap]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMultiMap';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let map = new TreeMultiMap();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let map2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMultiMap;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.clear();\r\n     * console.log(map.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.delete(2);\r\n     * console.log(map.toString()); // {1:A,3:C}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.entries()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all key-value pairs using a callback in ascending order of the keys.\r\n     * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.forEach(function(value, key, container) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let [k, v] of this.__t) {\r\n            callback(v, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds value associated with the specified key. If specified key does not exist then undefined is returned.\r\n     * @returns {*}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let v = map.get(3); // 'C'\r\n     * * let v = map.get(4); // returns undefined\r\n     */\r\n    get(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return it.value;\r\n        }\r\n        else {\r\n            return undefined;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether map contains a key-value pair with the specified key\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let b = map.get(3); // true\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds a key-value pair to the map. Multiple key-value pairs with the same key are allowed in TreeMultiMap.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let map = new TreeMultiMap();\r\n     * map.set(1, 'A');\r\n     * map.set(1, 'B');\r\n     * map.set(2, 'C');\r\n     * for (let k of map.values()) {\r\n     *   console.log(k); // A, B, C\r\n     * }\r\n     */\r\n    set(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Number of key-value pairs in the map.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order of the keys.\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values()) {\r\n     *   console.log(v); // 'A', 'B', 'C'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values().backward()) {\r\n     *   console.log(v); // 'C', 'B', 'A'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.values();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all key-value pairs in descending order of the keys.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * m.insertUnique(1, 'A');\r\n     * m.insertUnique(1, 'B'); // this step has no effect on the map\r\n     * let v = m.get(1); // 'A'\r\n     */\r\n    insertUnique(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * m.insertOrReplace(1, 'A');\r\n     * m.insertOrReplace(1, 'B'); // replaces the value for key 1\r\n     * let v = m.get(1); // 'B'\r\n     */\r\n    insertOrReplace(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair. If such key already exists in the map then adds another node with the same key and a new value.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * m.insertMulti(1, 'A');\r\n     * m.insertMulti(1, 'B'); // this step has no effect on the map\r\n     * let v = m.get(1); // undefined\r\n     */\r\n    insertMulti(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = t.lowerBound(0);\r\n     * let to = t.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(t.upperBound(50));\r\n     * let to = new ReverseIterator(t.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = t.lowerBound(0);\r\n     * let to = t.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(t.upperBound(50));\r\n     * let to = new ReverseIterator(t.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the map in the form {key1:value1,key2:value2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMultiMap: TreeMultiMap,\r\n};",
+    "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyValuePolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * This is an associative container class storing key-value pairs in ascending order. This map permits having identical keys with different values\r\n * @example\r\n * let map = new TreeMultiMap();\r\n * // add few values\r\n * map.set(1, 'a');\r\n * map.set(2, 'b');\r\n * map.set(2, 'c');\r\n * // find a value by key\r\n * let v = map.get(1); // << 'a'\r\n * find all values for a given key\r\n * // print all key-value pairs\r\n * let from = map.lowerBound(2);\r\n * let to = map.upperBound(2);\r\n * let it = from;\r\n * while (!it.equals(to)) {\r\n *   console.log(it.key);\r\n *   it.next();\r\n * }\r\n */\r\nclass TreeMultiMap {\r\n    /*======================================================\r\n     * Methods of ES6 Map\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized map.\r\n     * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.\r\n     * @example\r\n     * // Create an empty map\r\n     * let map1 = new TreeMultiMap();\r\n     * // Create and initialize map\r\n     * let map2 = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyValuePolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let [k, v] of iterable) {\r\n                    this.set(k, v);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMultiMap constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMultiMap()); // \"[object TreeMultiMap]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMultiMap';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let map = new TreeMultiMap();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let map2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMultiMap;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.clear();\r\n     * console.log(map.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.delete(2);\r\n     * console.log(map.toString()); // {1:A,3:C}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.entries()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all key-value pairs using a callback in ascending order of the keys.\r\n     * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.forEach(function(value, key, container) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let [k, v] of this.__t) {\r\n            callback(v, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds value associated with the specified key. If specified key does not exist then undefined is returned.\r\n     * @returns {*}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let v = map.get(3); // 'C'\r\n     * * let v = map.get(4); // returns undefined\r\n     */\r\n    get(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return it.value;\r\n        }\r\n        else {\r\n            return undefined;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether map contains a key-value pair with the specified key\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let b = map.get(3); // true\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds a key-value pair to the map. Multiple key-value pairs with the same key are allowed in TreeMultiMap.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let map = new TreeMultiMap();\r\n     * map.set(1, 'A');\r\n     * map.set(1, 'B');\r\n     * map.set(2, 'C');\r\n     * for (let k of map.values()) {\r\n     *   console.log(k); // A, B, C\r\n     * }\r\n     */\r\n    set(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Number of key-value pairs in the map.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order of the keys.\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values()) {\r\n     *   console.log(v); // 'A', 'B', 'C'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values().backward()) {\r\n     *   console.log(v); // 'C', 'B', 'A'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.values();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all key-value pairs in descending order of the keys.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * m.insertUnique(1, 'A');\r\n     * m.insertUnique(1, 'B'); // this step has no effect on the map\r\n     * let v = m.get(1); // 'A'\r\n     */\r\n    insertUnique(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * m.insertOrReplace(1, 'A');\r\n     * m.insertOrReplace(1, 'B'); // replaces the value for key 1\r\n     * let v = m.get(1); // 'B'\r\n     */\r\n    insertOrReplace(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair. If such key already exists in the map then adds another node with the same key and a new value.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * m.insertMulti(1, 'A');\r\n     * m.insertMulti(1, 'B'); // this step has no effect on the map\r\n     * let v = m.get(1); // undefined\r\n     */\r\n    insertMulti(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the map in the form {key1:value1,key2:value2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMultiMap: TreeMultiMap,\r\n};",
     "static": true,
     "longname": "D:/Personal/Projects/jstreemap/src/public/tree-multimap.js",
     "access": "public",
@@ -5649,7 +5649,7 @@
     "access": "public",
     "description": "Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.",
     "examples": [
-      "let m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = t.lowerBound(0);\nlet to = t.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(t.upperBound(50));\nlet to = new ReverseIterator(t.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
+      "let m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = m.lowerBound(0);\nlet to = m.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(m.upperBound(50));\nlet to = new ReverseIterator(m.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
     ],
     "lineNumber": 405,
     "unknown": [
@@ -5753,7 +5753,7 @@
     "access": "public",
     "description": "Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.",
     "examples": [
-      "let m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = t.lowerBound(0);\nlet to = t.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(t.upperBound(50));\nlet to = new ReverseIterator(t.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
+      "let m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = m.lowerBound(0);\nlet to = m.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet m = new TreeMultiMap();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(m.upperBound(50));\nlet to = new ReverseIterator(m.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
     ],
     "lineNumber": 464,
     "unknown": [
@@ -5812,6 +5812,827 @@
     "params": []
   },
   {
+    "__docId__": 252,
+    "kind": "file",
+    "name": "src/public/tree-set.js",
+    "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyOnlyPolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * This is an associative container class storing key-value pairs in ascending order\r\n * @example\r\n * let set = new TreeSet();\r\n * // add few values\r\n * set.add(1);\r\n * set.add(2);\r\n * // check whether key exists\r\n * let flag = set.has(1); // << true\r\n * // print all keys\r\n * for (let key of set) {\r\n *   console.log(`key: ${key}`);\r\n * }\r\n */\r\nclass TreeSet {\r\n    /*======================================================\r\n     * Methods of ES6 Set\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized set.\r\n     * @param {*} [iterable] Another iterable object whose values are added into the newly created set.\r\n     * @example\r\n     * // Create an empty set\r\n     * let set = new TreeSet();\r\n     * // Create and initialize set\r\n     * let set2 = new TreeSet([1, 2, 3]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyOnlyPolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let k of iterable) {\r\n                    this.add(k);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeSet constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeSet()); // \"[object TreeSet]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeSet';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let set2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeSet;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * set.clear();\r\n     * console.log(set.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * set.delete(2);\r\n     * console.log(set.toString()); // {1,3}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let key of set.entries()) {\r\n     *   console.log(`key: ${key}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all values using a callback in ascending order.\r\n     * Note that ES6 specifies the order of key parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * set.forEach(function(value, key, container) {\r\n     *   // value is the same as key\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let k of this.__t) {\r\n            callback(k, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether set contains the specified key.\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * let b = set.get(3); // true\r\n     * b = set.get(4); // false\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let k of set.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let k of set.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds a key to the set, unless the key already exists.\r\n     * @param {*} key\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * set.add(1);\r\n     */\r\n    add(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Number of keys in the set.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order. It is the same as keys() method\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let v of set.values()) {\r\n     *   console.log(v); // '1', '2', '3'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let v of set.values().backward()) {\r\n     *   console.log(v); // '3', '2', '1'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let key of set) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all keys in descending order.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let key of set.backwards()) {\r\n     *   console.log(`key: ${key}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeSet();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeSet();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeSet([1, 2, 3]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`Found key: ${it.key}`); // 1\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeSet: TreeSet,\r\n};",
+    "static": true,
+    "longname": "D:/Personal/Projects/jstreemap/src/public/tree-set.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 253,
+    "kind": "variable",
+    "name": "Tree",
+    "memberof": "src/public/tree-set.js",
+    "static": true,
+    "longname": "src/public/tree-set.js~Tree",
+    "access": "public",
+    "export": false,
+    "importPath": "jstreemap/src/public/tree-set.js",
+    "importStyle": null,
+    "description": "An implementation of red-black tree",
+    "lineNumber": 2,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 254,
+    "kind": "variable",
+    "name": "KeyOnlyPolicy",
+    "memberof": "src/public/tree-set.js",
+    "static": true,
+    "longname": "src/public/tree-set.js~KeyOnlyPolicy",
+    "access": "public",
+    "export": false,
+    "importPath": "jstreemap/src/public/tree-set.js",
+    "importStyle": null,
+    "description": "Classes that regulate whether tree nodes hold keys only, or key-value pairs",
+    "lineNumber": 4,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 255,
+    "kind": "variable",
+    "name": "TreeNode",
+    "memberof": "src/public/tree-set.js",
+    "static": true,
+    "longname": "src/public/tree-set.js~TreeNode",
+    "access": "public",
+    "export": false,
+    "importPath": "jstreemap/src/public/tree-set.js",
+    "importStyle": null,
+    "description": "Node for a red-black tree",
+    "lineNumber": 6,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 256,
+    "kind": "class",
+    "name": "TreeSet",
+    "memberof": "src/public/tree-set.js",
+    "static": true,
+    "longname": "src/public/tree-set.js~TreeSet",
+    "access": "public",
+    "export": true,
+    "importPath": "jstreemap/src/public/tree-set.js",
+    "importStyle": "{TreeSet}",
+    "description": "This is an associative container class storing key-value pairs in ascending order",
+    "examples": [
+      "let set = new TreeSet();\n// add few values\nset.add(1);\nset.add(2);\n// check whether key exists\nlet flag = set.has(1); // << true\n// print all keys\nfor (let key of set) {\n  console.log(`key: ${key}`);\n}"
+    ],
+    "lineNumber": 22,
+    "interface": false
+  },
+  {
+    "__docId__": 257,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#constructor",
+    "access": "public",
+    "description": "Creates an empty, or a pre-initialized set.",
+    "examples": [
+      "// Create an empty set\nlet set = new TreeSet();\n// Create and initialize set\nlet set2 = new TreeSet([1, 2, 3]);"
+    ],
+    "lineNumber": 36,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "iterable",
+        "description": "Another iterable object whose values are added into the newly created set."
+      }
+    ]
+  },
+  {
+    "__docId__": 258,
+    "kind": "member",
+    "name": "__t",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#__t",
+    "access": "private",
+    "description": "Internal tree",
+    "lineNumber": 38,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 259,
+    "kind": "get",
+    "name": "[Symbol.toStringTag]",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#[Symbol.toStringTag]",
+    "access": "public",
+    "description": "String tag of this class",
+    "examples": [
+      "Object.prototype.toString.call(new TreeSet()); // \"[object TreeSet]\""
+    ],
+    "lineNumber": 60,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{String}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 260,
+    "kind": "get",
+    "name": "[Symbol.species]",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/public/tree-set.js~TreeSet.[Symbol.species]",
+    "access": "public",
+    "description": "Allows to create programmatically an instance of the same class",
+    "examples": [
+      "let set = new TreeSet();\nlet constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\nlet set2 = new constrFunc();"
+    ],
+    "lineNumber": 72,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "constructor object for this class."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "constructor object for this class."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 261,
+    "kind": "method",
+    "name": "clear",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#clear",
+    "access": "public",
+    "description": "Removes all key-value pairs.",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nset.clear();\nconsole.log(set.size); // 0"
+    ],
+    "lineNumber": 83,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 262,
+    "kind": "method",
+    "name": "delete",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#delete",
+    "access": "public",
+    "description": "Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nset.delete(2);\nconsole.log(set.toString()); // {1,3}"
+    ],
+    "lineNumber": 94,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 263,
+    "kind": "method",
+    "name": "entries",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#entries",
+    "access": "public",
+    "description": "Forward ES6 iterator for all values in ascending order.",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nfor (let key of set.entries()) {\n  console.log(`key: ${key}`);\n}"
+    ],
+    "lineNumber": 110,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{JsIterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "JsIterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 264,
+    "kind": "method",
+    "name": "forEach",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#forEach",
+    "access": "public",
+    "description": "Iterates all values using a callback in ascending order.\nNote that ES6 specifies the order of key parameters in the callback differently from for-of loop.",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nset.forEach(function(value, key, container) {\n  // value is the same as key\n  console.log(`key: ${key}, value: ${value}`);\n});"
+    ],
+    "lineNumber": 124,
+    "params": [
+      {
+        "name": "callback",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 265,
+    "kind": "method",
+    "name": "has",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#has",
+    "access": "public",
+    "description": "A boolean indicator whether set contains the specified key.",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nlet b = set.get(3); // true\nb = set.get(4); // false"
+    ],
+    "lineNumber": 139,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "a value of any type that can be compared with a key"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 266,
+    "kind": "method",
+    "name": "keys",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#keys",
+    "access": "public",
+    "description": "Forward ES6 iterator for all keys in ascending order.",
+    "examples": [
+      "// iterate all keys\nlet set = new TreeSet([1, 2, 3]);\nfor (let k of set.keys()) {\n  console.log(k); // 1, 2, 3\n}\n// iterate all keys in reverse order\nlet set = new TreeSet([1, 2, 3]);\nfor (let k of set.keys().backward()) {\n  console.log(k); // 3, 2, 1\n}"
+    ],
+    "lineNumber": 164,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{JsIterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "JsIterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 267,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#add",
+    "access": "public",
+    "description": "Adds a key to the set, unless the key already exists.",
+    "examples": [
+      "let set = new TreeSet();\nset.add(1);"
+    ],
+    "lineNumber": 175,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 268,
+    "kind": "get",
+    "name": "size",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#size",
+    "access": "public",
+    "description": "Number of keys in the set.",
+    "lineNumber": 185,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Number}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 269,
+    "kind": "method",
+    "name": "values",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#values",
+    "access": "public",
+    "description": "Forward ES6 iterator for all keys in ascending order. It is the same as keys() method",
+    "examples": [
+      "// iterate all values\nlet set = new TreeSet([1, 2, 3]);\nfor (let v of set.values()) {\n  console.log(v); // '1', '2', '3'\n}\n// iterate all values in reverse order\nlet set = new TreeSet([1, 2, 3]);\nfor (let v of set.values().backward()) {\n  console.log(v); // '3', '2', '1'\n}"
+    ],
+    "lineNumber": 204,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{JsITerator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "JsITerator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 270,
+    "kind": "method",
+    "name": "[Symbol.iterator]",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#[Symbol.iterator]",
+    "access": "public",
+    "description": "Forward ES6 iterator for all keys in ascending order. The same as entries() method",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nfor (let key of set) {\n  console.log(`key: ${key}, value: ${value}`);\n}"
+    ],
+    "lineNumber": 217,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{JsIterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "JsIterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 271,
+    "kind": "method",
+    "name": "backward",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#backward",
+    "access": "public",
+    "description": "ES6 reverse iterator for all keys in descending order.",
+    "examples": [
+      "let set = new TreeSet([1, 2, 3]);\nfor (let key of set.backwards()) {\n  console.log(`key: ${key}`);\n}"
+    ],
+    "lineNumber": 233,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{JsReverseIterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "JsReverseIterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 272,
+    "kind": "set",
+    "name": "compareFunc",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#compareFunc",
+    "access": "public",
+    "description": "Sets custom comparison function if key values are not of primitive types.\nCallback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\n     +1 if the value of rhs is greater than lhs\n     -1 if the value of rhs is less than lhs\n      0 if values are the same",
+    "lineNumber": 244
+  },
+  {
+    "__docId__": 273,
+    "kind": "method",
+    "name": "begin",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#begin",
+    "access": "public",
+    "description": "Forward iterator to the first element",
+    "examples": [
+      "let m = new TreeSet();\n...\nfor (let it = m.begin(); !it.equals(m.end()); it.next()) {\n  console.log(`key: ${it.key}`);\n}"
+    ],
+    "lineNumber": 263,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Iterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 274,
+    "kind": "method",
+    "name": "end",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#end",
+    "access": "public",
+    "description": "Forward iterator to the element following the last element",
+    "examples": [
+      "let m = new TreeSet();\n...\nfor (let it = m.begin(); !it.equals(m.end()); it.next()) {\n  console.log(`key: ${it.key}`);\n}"
+    ],
+    "lineNumber": 277,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Iterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 275,
+    "kind": "method",
+    "name": "find",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#find",
+    "access": "public",
+    "description": "Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.",
+    "examples": [
+      "let m = new TreeSet([1, 2, 3]);\n...\nlet it = m.find(1);\nif (!it.equals(m.end())) {\n  console.log(`Found key: ${it.key}`); // 1\n}"
+    ],
+    "lineNumber": 293,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Iterator}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterator"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 276,
+    "kind": "method",
+    "name": "lowerBound",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#lowerBound",
+    "access": "public",
+    "description": "Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.",
+    "examples": [
+      "let set = new TreeSet();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = set.lowerBound(0);\nlet to = set.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet set = new TreeSet();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(set.upperBound(50));\nlet to = new ReverseIterator(set.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
+    ],
+    "lineNumber": 324,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Iterator}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterator"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 277,
+    "kind": "method",
+    "name": "rbegin",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#rbegin",
+    "access": "public",
+    "description": "Reverse iterator to the last element.",
+    "examples": [
+      "let set = new TreeSet();\n...\nfor (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\n  console.log(`key: ${it.key}`);\n}"
+    ],
+    "lineNumber": 338,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{ReverseIterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "ReverseIterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 278,
+    "kind": "method",
+    "name": "rend",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#rend",
+    "access": "public",
+    "description": "Reverse iterator pointing to before the first element.",
+    "examples": [
+      "let set = new TreeSet();\n...\nfor (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\n  console.log(`key: ${it.key}`);\n}"
+    ],
+    "lineNumber": 352,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{ReverseIterator}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "ReverseIterator"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 279,
+    "kind": "method",
+    "name": "upperBound",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#upperBound",
+    "access": "public",
+    "description": "Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.",
+    "examples": [
+      "let set = new TreeSet();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive\nlet from = set.lowerBound(0);\nlet to = set.upperBound(50);\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}\n\nlet set = new TreeSet();\n... // add key-value pairs., using numbers as keys\n// iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\nlet from = new ReverseIterator(set.upperBound(50));\nlet to = new ReverseIterator(set.lowerBound(0));\nlet it = from;\nwhile (!it.equals(to)) {\n  console.log(it.key);\n  it.next();\n}"
+    ],
+    "lineNumber": 383,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Iterator}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Iterator"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 280,
+    "kind": "method",
+    "name": "toString",
+    "memberof": "src/public/tree-set.js~TreeSet",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/public/tree-set.js~TreeSet#toString",
+    "access": "public",
+    "description": "Serializes contents of the set in the form {key1,key2,...}",
+    "lineNumber": 391,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{String}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
     "kind": "index",
     "content": "# jstreemap\r\nAssociative containers (sets, maps) library for JavaScript, using red-black trees.\r\n",
     "longname": "D:\\Personal\\Projects\\jstreemap\\README.md",
@@ -5821,7 +6642,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"jstreemap\",\n  \"version\": \"1.7.1\",\n  \"description\": \"Library of associative containers.\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"webpack --config ./config/webpack.config.js\",\n    \"esdoc\": \"esdoc -c ./esdoc.json\",\n    \"eslint\": \"eslint --config=./config/eslint.config.json src/**/*.js test/**/*.js\",\n    \"eslint-fix\": \"eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js\",\n    \"eslint-watch\": \"esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js ./*.js\",\n    \"test-watch\": \"mocha --reporter spec -w --recursive test\",\n    \"test\": \"nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/**/*.js\"\n  },\n  \"directories\": {\n    \"test\": \"test\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/kirusi/setmap.git\"\n  },\n  \"keywords\": [\n    \"set\",\n    \"map\",\n    \"red\",\n    \"black\",\n    \"tree\",\n    \"stl\",\n    \"iterator\",\n    \"multimap\",\n    \"treemap\",\n    \"multiset\",\n    \"treeset\",\n    \"lower_bound\",\n    \"lowerBound\",\n    \"upper_bound\",\n    \"upperBound\",\n    \"ordered\",\n    \"container\",\n    \"find\",\n    \"insert\",\n    \"delete\",\n    \"erase\",\n    \"template\",\n    \"library\"\n  ],\n  \"author\": \"Kirusi Msafiri\",\n  \"license\": \"0BSD\",\n  \"bugs\": {\n    \"url\": \"https://github.com/kirusi/setmap/issues\"\n  },\n  \"homepage\": \"https://github.com/kirusi/setmap#readme\",\n  \"dependencies\": {\n    \"app-module-path\": \"^2.2.0\",\n    \"should\": \"^13.1.3\"\n  },\n  \"devDependencies\": {\n    \"cross-env\": \"^5.1.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.2\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.13.1\",\n    \"eslint-watch\": \"^3.1.3\",\n    \"grunt\": \"^1.0.1\",\n    \"grunt-contrib-watch\": \"^1.0.0\",\n    \"grunt-exec\": \"^3.0.0\",\n    \"grunt-run\": \"^0.8.0\",\n    \"mocha\": \"^4.0.1\",\n    \"mocha-webpack\": \"^1.0.1\",\n    \"nyc\": \"^11.4.1\",\n    \"webpack\": \"^3.10.0\",\n    \"yarn\": \"^1.3.2\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"jstreemap\",\n  \"version\": \"1.7.1\",\n  \"description\": \"Library of associative containers.\",\n  \"main\": \"jstreemap.js\",\n  \"scripts\": {\n    \"build\": \"webpack --config ./config/webpack.config.js\",\n    \"esdoc\": \"esdoc -c ./esdoc.json\",\n    \"eslint\": \"eslint --config=./config/eslint.config.json src/**/*.js test/**/*.js\",\n    \"eslint-fix\": \"eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js\",\n    \"eslint-watch\": \"esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js ./*.js\",\n    \"test-watch\": \"mocha --reporter spec -w --recursive test\",\n    \"test\": \"nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/**/*.js\"\n  },\n  \"directories\": {\n    \"test\": \"test\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/kirusi/setmap.git\"\n  },\n  \"keywords\": [\n    \"set\",\n    \"map\",\n    \"red\",\n    \"black\",\n    \"tree\",\n    \"stl\",\n    \"iterator\",\n    \"multimap\",\n    \"treemap\",\n    \"multiset\",\n    \"treeset\",\n    \"lower_bound\",\n    \"lowerBound\",\n    \"upper_bound\",\n    \"upperBound\",\n    \"ordered\",\n    \"container\",\n    \"find\",\n    \"insert\",\n    \"delete\",\n    \"erase\",\n    \"template\",\n    \"library\"\n  ],\n  \"author\": \"Kirusi Msafiri\",\n  \"license\": \"0BSD\",\n  \"bugs\": {\n    \"url\": \"https://github.com/kirusi/setmap/issues\"\n  },\n  \"homepage\": \"https://github.com/kirusi/setmap#readme\",\n  \"dependencies\": {\n    \"app-module-path\": \"^2.2.0\",\n    \"should\": \"^13.1.3\"\n  },\n  \"devDependencies\": {\n    \"cross-env\": \"^5.1.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.2\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.13.1\",\n    \"eslint-watch\": \"^3.1.3\",\n    \"grunt\": \"^1.0.1\",\n    \"grunt-contrib-watch\": \"^1.0.0\",\n    \"grunt-exec\": \"^3.0.0\",\n    \"grunt-run\": \"^0.8.0\",\n    \"mocha\": \"^4.0.1\",\n    \"mocha-webpack\": \"^1.0.1\",\n    \"nyc\": \"^11.4.1\",\n    \"webpack\": \"^3.10.0\",\n    \"yarn\": \"^1.3.2\"\n  }\n}\n",
     "longname": "D:\\Personal\\Projects\\jstreemap\\package.json",
     "name": "package.json",
     "static": true,

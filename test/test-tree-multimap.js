@@ -47,10 +47,10 @@ describe('TreeMap tests', function() {
 
     it('constructor; generator function', function(done) {
         let gen = function*() {
-            for (let i=1; i< 4; ++i){
-                yield [i, `N${i*2}`];
+            for (let i = 1; i < 4; ++i) {
+                yield [i, `N${i * 2}`];
             }
-        }
+        };
         let m = new TreeMultiMap(gen());
         should.equal(3, m.size);
 
@@ -97,21 +97,23 @@ describe('TreeMap tests', function() {
 
         let m = new TreeMultiMap();
         m.compareFunc = compareIds;
-        m.set(new Id('B', 8), "Book with id B8");
-        m.set(new Id('A', 340), "Book with id A340");
-        m.set(new Id('A', 12), "Book with id A12");
-        m.set(new Id('A', 12), "Another book with id A12");
-        m.set({alpha: 'AA', num: 147}, "Book with id AA147"); // create an ad-hoc object
+        m.set(new Id('B', 8), 'Book with id B8');
+        m.set(new Id('A', 340), 'Book with id A340');
+        m.set(new Id('A', 12), 'Book with id A12');
+        m.set(new Id('A', 12), 'Another book with id A12');
+        m.set({alpha: 'AA', num: 147}, 'Book with id AA147'); // create an ad-hoc object
 
         let actual = [];
-        for (let [k,v] of m) {
+        for (let [k, v] of m) {
             actual.push([k.alpha, k.num, v]);
         }
-        let expected = [['A', 12, "Book with id A12"],
-            ['A', 12, "Another book with id A12"],
-            ['A', 340, "Book with id A340"],
-            ['AA', 147, "Book with id AA147"],
-            ['B', 8, "Book with id B8"]];
+        let expected = [
+            ['A', 12, 'Book with id A12'],
+            ['A', 12, 'Another book with id A12'],
+            ['A', 340, 'Book with id A340'],
+            ['AA', 147, 'Book with id AA147'],
+            ['B', 8, 'Book with id B8']
+        ];
         should.deepEqual(expected, actual);
 
         done();
@@ -177,9 +179,12 @@ describe('TreeMap tests', function() {
     });
 
     it('delete', function(done) {
-        let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [2, 'C'], [3, 'D']]);
         map.delete(2);
-        let expected = '{1:A,3:C}';
+        let expected = '{1:A,2:C,3:D}';
+        should.equal(expected, map.toString());
+        map.delete(2);
+        expected = '{1:A,3:D}';
         should.equal(expected, map.toString());
         map.delete(4);
         should.equal(expected, map.toString());

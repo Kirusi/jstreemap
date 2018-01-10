@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 192,
-  "actualCount": 192,
+  "expectCount": 220,
+  "actualCount": 220,
   "files": {
     "src/internal/policies.js": {
       "expectCount": 12,
@@ -36,6 +36,11 @@
     "src/public/tree-multimap.js": {
       "expectCount": 32,
       "actualCount": 32,
+      "undocumentLines": []
+    },
+    "src/public/tree-set.js": {
+      "expectCount": 28,
+      "actualCount": 28,
       "undocumentLines": []
     }
   }

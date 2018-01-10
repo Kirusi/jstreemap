@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">TreeMultiMap | jstreemap Library</title>
+  <title data-ice="title">TreeSet | jstreemap Library</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -42,17 +42,17 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMultiMap} from &apos;<span><a href="file/src/public/tree-multimap.js.html#lineNumber28">jstreemap/src/public/tree-multimap.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeSet} from &apos;<span><a href="file/src/public/tree-set.js.html#lineNumber22">jstreemap/src/public/tree-set.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/public/tree-multimap.js.html#lineNumber28">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/public/tree-set.js.html#lineNumber22">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">TreeMultiMap</h1>
+  <h1 data-ice="name">TreeSet</h1>
 
   
 
@@ -68,7 +68,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>This is an associative container class storing key-value pairs in ascending order. This map permits having identical keys with different values</p>
+  <div class="description" data-ice="description"><p>This is an associative container class storing key-value pairs in ascending order</p>
 </div>
   
 
@@ -79,21 +79,15 @@
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 // add few values
-map.set(1, &apos;a&apos;);
-map.set(2, &apos;b&apos;);
-map.set(2, &apos;c&apos;);
-// find a value by key
-let v = map.get(1); // &lt;&lt; &apos;a&apos;
-find all values for a given key
-// print all key-value pairs
-let from = map.lowerBound(2);
-let to = map.upperBound(2);
-let it = from;
-while (!it.equals(to)) {
-  console.log(it.key);
-  it.next();
+set.add(1);
+set.add(2);
+// check whether key exists
+let flag = set.has(1); // &lt;&lt; true
+// print all keys
+for (let key of set) {
+  console.log(`key: ${key}`);
 }</code></pre>
     </div>
 </div>
@@ -121,7 +115,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#static-get-[Symbol.species]">[Symbol.species]</a></span></span><span class="code" data-ice="signature">: <span>*</span>: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#static-get-[Symbol.species]">[Symbol.species]</a></span></span><span class="code" data-ice="signature">: <span>*</span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -158,13 +152,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(iterable: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(iterable: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Creates an empty, or a pre-initialized map.</p>
+        <div data-ice="description"><p>Creates an empty, or a pre-initialized set.</p>
 </div>
       </div>
     </td>
@@ -194,7 +188,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -223,7 +217,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-set-compareFunc">compareFunc</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-set-compareFunc">compareFunc</a></span></span>
         </p>
       </div>
       <div>
@@ -252,13 +246,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-get-size">size</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-get-size">size</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Number of key-value pairs in the map.</p>
+        <div data-ice="description"><p>Number of keys in the set.</p>
 </div>
       </div>
     </td>
@@ -288,13 +282,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-[Symbol.iterator]">[Symbol.iterator]</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-[Symbol.iterator]">[Symbol.iterator]</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Forward ES6 iterator for all key-value pairs in ascending order of the keys.</p>
+        <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order.</p>
 </div>
       </div>
     </td>
@@ -317,13 +311,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-backward">backward</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-add">add</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>ES6 reverse iterator for all key-value pairs in descending order of the keys.</p>
+        <div data-ice="description"><p>Adds a key to the set, unless the key already exists.</p>
 </div>
       </div>
     </td>
@@ -346,7 +340,36 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-begin">begin</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-backward">backward</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>ES6 reverse iterator for all keys in descending order.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-begin">begin</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -375,7 +398,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-clear">clear</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-clear">clear</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -404,7 +427,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-delete">delete</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-delete">delete</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -433,7 +456,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-end">end</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-end">end</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -462,13 +485,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-entries">entries</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-entries">entries</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Forward ES6 iterator for all key-value pairs in ascending order of the keys.</p>
+        <div data-ice="description"><p>Forward ES6 iterator for all values in ascending order.</p>
 </div>
       </div>
     </td>
@@ -491,7 +514,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -520,13 +543,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-forEach">forEach</a></span></span><span class="code" data-ice="signature">(callback: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-forEach">forEach</a></span></span><span class="code" data-ice="signature">(callback: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Iterates all key-value pairs using a callback in ascending order of the keys.</p>
+        <div data-ice="description"><p>Iterates all values using a callback in ascending order.</p>
 </div>
       </div>
     </td>
@@ -549,13 +572,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-get">get</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-has">has</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Finds value associated with the specified key.</p>
+        <div data-ice="description"><p>A boolean indicator whether set contains the specified key.</p>
 </div>
       </div>
     </td>
@@ -578,13 +601,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-has">has</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-keys">keys</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>A boolean indicator whether map contains a key-value pair with the specified key</p>
+        <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order.</p>
 </div>
       </div>
     </td>
@@ -607,123 +630,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertMulti">insertMulti</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Adds key-value pair.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Adds key-value pair if such key does not exist in the map.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Adds key-value pair if such key does not exist in the map</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-keys">keys</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order of the keys.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-lowerBound">lowerBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-lowerBound">lowerBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -752,7 +659,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-rbegin">rbegin</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-rbegin">rbegin</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span>
         </p>
       </div>
       <div>
@@ -781,7 +688,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-rend">rend</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-rend">rend</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span>
         </p>
       </div>
       <div>
@@ -810,13 +717,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-set">set</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Adds a key-value pair to the map.</p>
+        <div data-ice="description"><p>Serializes contents of the set in the form {key1,key2,...}</p>
 </div>
       </div>
     </td>
@@ -839,36 +746,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Serializes contents of the map in the form {key1:value1,key2:value2,...}</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-upperBound">upperBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-upperBound">upperBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -897,13 +775,13 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-values">values</a></span></span><span class="code" data-ice="signature">(): <span>JsITerator</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-values">values</a></span></span><span class="code" data-ice="signature">(): <span>JsITerator</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Forward ES6 iterator for all values in ascending order of the keys.</p>
+        <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order.</p>
 </div>
       </div>
     </td>
@@ -932,7 +810,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber78">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber72">source</a></span></span>
     </span>
   </h3>
 
@@ -975,9 +853,9 @@ while (!it.equals(to)) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
-let map2 = new constrFunc();</code></pre>
+let set2 = new constrFunc();</code></pre>
     </div>
 </div>
 
@@ -1002,14 +880,14 @@ let map2 = new constrFunc();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber42">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber36">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Creates an empty, or a pre-initialized map.</p>
+  <div data-ice="description"><p>Creates an empty, or a pre-initialized set.</p>
 </div>
 
   
@@ -1026,7 +904,7 @@ let map2 = new constrFunc();</code></pre>
       <td data-ice="name" class="code" data-depth="0">iterable</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"><ul><li>optional</li></ul></td>
-      <td data-ice="description"><p>Another iterable object whose key-value pairs are added into the newly created map.</p>
+      <td data-ice="description"><p>Another iterable object whose values are added into the newly created set.</p>
 </td>
     </tr>
 </tbody>
@@ -1049,10 +927,10 @@ let map2 = new constrFunc();</code></pre>
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">// Create an empty map
-let map1 = new TreeMultiMap();
-// Create and initialize map
-let map2 = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);</code></pre>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">// Create an empty set
+let set = new TreeSet();
+// Create and initialize set
+let set2 = new TreeSet([1, 2, 3]);</code></pre>
     </div>
 </div>
 
@@ -1076,7 +954,7 @@ let map2 = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber66">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber60">source</a></span></span>
     </span>
   </h3>
 
@@ -1118,7 +996,7 @@ let map2 = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">Object.prototype.toString.call(new TreeMultiMap()); // &quot;[object TreeMultiMap]&quot;</code></pre>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">Object.prototype.toString.call(new TreeSet()); // &quot;[object TreeSet]&quot;</code></pre>
     </div>
 </div>
 
@@ -1139,7 +1017,7 @@ let map2 = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber274">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber244">source</a></span></span>
     </span>
   </h3>
 
@@ -1187,14 +1065,14 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber215">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber185">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Number of key-value pairs in the map.</p>
+  <div data-ice="description"><p>Number of keys in the set.</p>
 </div>
 
   
@@ -1246,14 +1124,14 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber247">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber217">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method</p>
+  <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order. The same as entries() method</p>
 </div>
 
   
@@ -1288,10 +1166,78 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let [key,value] of map) {
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+for (let key of set) {
   console.log(`key: ${key}, value: ${value}`);
 }</code></pre>
+    </div>
+</div>
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-add">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">add</span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber175">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Adds a key to the set, unless the key already exists.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">key</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
+set.add(1);</code></pre>
     </div>
 </div>
 
@@ -1312,14 +1258,14 @@ for (let [key,value] of map) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber263">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber233">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>ES6 reverse iterator for all key-value pairs in descending order of the keys.</p>
+  <div data-ice="description"><p>ES6 reverse iterator for all keys in descending order.</p>
 </div>
 
   
@@ -1354,9 +1300,9 @@ for (let [key,value] of map) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let [key,value] of map.backwards()) {
-  console.log(`key: ${key}, value: ${value}`);
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+for (let key of set.backwards()) {
+  console.log(`key: ${key}`);
 }</code></pre>
     </div>
 </div>
@@ -1378,7 +1324,7 @@ for (let [key,value] of map.backwards()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber293">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber263">source</a></span></span>
     </span>
   </h3>
 
@@ -1420,10 +1366,10 @@ for (let [key,value] of map.backwards()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeSet();
 ...
 for (let it = m.begin(); !it.equals(m.end()); it.next()) {
-  console.log(`key: ${it.key}, value: ${it.value}`);
+  console.log(`key: ${it.key}`);
 }</code></pre>
     </div>
 </div>
@@ -1445,7 +1391,7 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber83">source</a></span></span>
     </span>
   </h3>
 
@@ -1475,9 +1421,9 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-map.clear();
-console.log(map.size); // 0</code></pre>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+set.clear();
+console.log(set.size); // 0</code></pre>
     </div>
 </div>
 
@@ -1498,7 +1444,7 @@ console.log(map.size); // 0</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber100">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber94">source</a></span></span>
     </span>
   </h3>
 
@@ -1544,9 +1490,9 @@ console.log(map.size); // 0</code></pre>
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-map.delete(2);
-console.log(map.toString()); // {1:A,3:C}</code></pre>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+set.delete(2);
+console.log(set.toString()); // {1,3}</code></pre>
     </div>
 </div>
 
@@ -1567,7 +1513,7 @@ console.log(map.toString()); // {1:A,3:C}</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber307">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber277">source</a></span></span>
     </span>
   </h3>
 
@@ -1609,10 +1555,10 @@ console.log(map.toString()); // {1:A,3:C}</code></pre>
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeSet();
 ...
 for (let it = m.begin(); !it.equals(m.end()); it.next()) {
-  console.log(`key: ${it.key}, value: ${it.value}`);
+  console.log(`key: ${it.key}`);
 }</code></pre>
     </div>
 </div>
@@ -1634,14 +1580,14 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber116">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber110">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Forward ES6 iterator for all key-value pairs in ascending order of the keys.</p>
+  <div data-ice="description"><p>Forward ES6 iterator for all values in ascending order.</p>
 </div>
 
   
@@ -1676,9 +1622,9 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let [key,value] of map.entries()) {
-  console.log(`key: ${key}, value: ${value}`);
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+for (let key of set.entries()) {
+  console.log(`key: ${key}`);
 }</code></pre>
     </div>
 </div>
@@ -1700,7 +1646,7 @@ for (let [key,value] of map.entries()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber323">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber293">source</a></span></span>
     </span>
   </h3>
 
@@ -1758,11 +1704,11 @@ for (let [key,value] of map.entries()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeSet([1, 2, 3]);
 ...
 let it = m.find(1);
 if (!it.equals(m.end())) {
-  console.log(`key: ${it.key}, value: ${it.value}`); // 1, &apos;A&apos;
+  console.log(`Found key: ${it.key}`); // 1
 }</code></pre>
     </div>
 </div>
@@ -1784,15 +1730,15 @@ if (!it.equals(m.end())) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber129">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber124">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Iterates all key-value pairs using a callback in ascending order of the keys.
-Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.</p>
+  <div data-ice="description"><p>Iterates all values using a callback in ascending order.
+Note that ES6 specifies the order of key parameters in the callback differently from for-of loop.</p>
 </div>
 
   
@@ -1831,92 +1777,11 @@ Note that ES6 specifies the order of key value parameters in the callback differ
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-map.forEach(function(value, key, container) {
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+set.forEach(function(value, key, container) {
+  // value is the same as key
   console.log(`key: ${key}, value: ${value}`);
 });</code></pre>
-    </div>
-</div>
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-get">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">get</span><span class="code" data-ice="signature">(key: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber144">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Finds value associated with the specified key. If specified key does not exist then undefined is returned.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>a value of any type that can be compared with a key</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-let v = map.get(3); // &apos;C&apos;
-* let v = map.get(4); // returns undefined</code></pre>
     </div>
 </div>
 
@@ -1937,14 +1802,14 @@ let v = map.get(3); // &apos;C&apos;
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber162">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber139">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A boolean indicator whether map contains a key-value pair with the specified key</p>
+  <div data-ice="description"><p>A boolean indicator whether set contains the specified key.</p>
 </div>
 
   
@@ -1996,272 +1861,9 @@ let v = map.get(3); // &apos;C&apos;
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-let b = map.get(3); // true</code></pre>
-    </div>
-</div>
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-insertMulti">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">insertMulti</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber371">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Adds key-value pair. If such key already exists in the map then adds another node with the same key and a new value.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
-m.insertMulti(1, &apos;A&apos;);
-m.insertMulti(1, &apos;B&apos;); // this step has no effect on the map
-let v = m.get(1); // undefined</code></pre>
-    </div>
-</div>
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-insertOrReplace">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber354">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Adds key-value pair if such key does not exist in the map. Replaces value if such key exists</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
-m.insertOrReplace(1, &apos;A&apos;);
-m.insertOrReplace(1, &apos;B&apos;); // replaces the value for key 1
-let v = m.get(1); // &apos;B&apos;</code></pre>
-    </div>
-</div>
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-insertUnique">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber337">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Adds key-value pair if such key does not exist in the map</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
-m.insertUnique(1, &apos;A&apos;);
-m.insertUnique(1, &apos;B&apos;); // this step has no effect on the map
-let v = m.get(1); // &apos;A&apos;</code></pre>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet([1, 2, 3]);
+let b = set.get(3); // true
+b = set.get(4); // false</code></pre>
     </div>
 </div>
 
@@ -2282,14 +1884,14 @@ let v = m.get(1); // &apos;A&apos;</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber187">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber164">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order of the keys.</p>
+  <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order.</p>
 </div>
 
   
@@ -2325,13 +1927,13 @@ let v = m.get(1); // &apos;A&apos;</code></pre>
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">// iterate all keys
-let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let k of map.keys()) {
+let set = new TreeSet([1, 2, 3]);
+for (let k of set.keys()) {
   console.log(k); // 1, 2, 3
 }
 // iterate all keys in reverse order
-let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let k of map.keys().backward()) {
+let set = new TreeSet([1, 2, 3]);
+for (let k of set.keys().backward()) {
   console.log(k); // 3, 2, 1
 }</code></pre>
     </div>
@@ -2354,7 +1956,7 @@ for (let k of map.keys().backward()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber405">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber324">source</a></span></span>
     </span>
   </h3>
 
@@ -2412,22 +2014,22 @@ for (let k of map.keys().backward()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 ... // add key-value pairs., using numbers as keys
 // iterate through all key-value pairs with keys between 0 and 50 inclusive
-let from = m.lowerBound(0);
-let to = m.upperBound(50);
+let from = set.lowerBound(0);
+let to = set.upperBound(50);
 let it = from;
 while (!it.equals(to)) {
   console.log(it.key);
   it.next();
 }
 
-let m = new TreeMultiMap();
+let set = new TreeSet();
 ... // add key-value pairs., using numbers as keys
 // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
-let from = new ReverseIterator(m.upperBound(50));
-let to = new ReverseIterator(m.lowerBound(0));
+let from = new ReverseIterator(set.upperBound(50));
+let to = new ReverseIterator(set.lowerBound(0));
 let it = from;
 while (!it.equals(to)) {
   console.log(it.key);
@@ -2453,7 +2055,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber419">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber338">source</a></span></span>
     </span>
   </h3>
 
@@ -2495,10 +2097,10 @@ while (!it.equals(to)) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 ...
-for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
-  console.log(`key: ${it.key}, value: ${it.value}`);
+for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
+  console.log(`key: ${it.key}`);
 }</code></pre>
     </div>
 </div>
@@ -2520,7 +2122,7 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber433">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber352">source</a></span></span>
     </span>
   </h3>
 
@@ -2562,89 +2164,10 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 ...
-for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
-  console.log(`key: ${it.key}, value: ${it.value}`);
-}</code></pre>
-    </div>
-</div>
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-set">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">set</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber204">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Adds a key-value pair to the map. Multiple key-value pairs with the same key are allowed in TreeMultiMap.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMultiMap();
-map.set(1, &apos;A&apos;);
-map.set(1, &apos;B&apos;);
-map.set(2, &apos;C&apos;);
-for (let k of map.values()) {
-  console.log(k); // A, B, C
+for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
+  console.log(`key: ${it.key}`);
 }</code></pre>
     </div>
 </div>
@@ -2666,14 +2189,14 @@ for (let k of map.values()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber472">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber391">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Serializes contents of the map in the form {key1:value1,key2:value2,...}</p>
+  <div data-ice="description"><p>Serializes contents of the set in the form {key1,key2,...}</p>
 </div>
 
   
@@ -2722,7 +2245,7 @@ for (let k of map.values()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber464">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber383">source</a></span></span>
     </span>
   </h3>
 
@@ -2780,22 +2303,22 @@ for (let k of map.values()) {
     
   <div class="example-doc" data-ice="exampleDoc">
       
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
 ... // add key-value pairs., using numbers as keys
 // iterate through all key-value pairs with keys between 0 and 50 inclusive
-let from = m.lowerBound(0);
-let to = m.upperBound(50);
+let from = set.lowerBound(0);
+let to = set.upperBound(50);
 let it = from;
 while (!it.equals(to)) {
   console.log(it.key);
   it.next();
 }
 
-let m = new TreeMultiMap();
+let set = new TreeSet();
 ... // add key-value pairs., using numbers as keys
 // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
-let from = new ReverseIterator(m.upperBound(50));
-let to = new ReverseIterator(m.lowerBound(0));
+let from = new ReverseIterator(set.upperBound(50));
+let to = new ReverseIterator(set.lowerBound(0));
 let it = from;
 while (!it.equals(to)) {
   console.log(it.key);
@@ -2821,14 +2344,14 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber234">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber204">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Forward ES6 iterator for all values in ascending order of the keys.</p>
+  <div data-ice="description"><p>Forward ES6 iterator for all keys in ascending order. It is the same as keys() method</p>
 </div>
 
   
@@ -2864,14 +2387,14 @@ while (!it.equals(to)) {
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">// iterate all values
-let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let v of map.values()) {
-  console.log(v); // &apos;A&apos;, &apos;B&apos;, &apos;C&apos;
+let set = new TreeSet([1, 2, 3]);
+for (let v of set.values()) {
+  console.log(v); // &apos;1&apos;, &apos;2&apos;, &apos;3&apos;
 }
 // iterate all values in reverse order
-let map = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
-for (let v of map.values().backward()) {
-  console.log(v); // &apos;C&apos;, &apos;B&apos;, &apos;A&apos;
+let set = new TreeSet([1, 2, 3]);
+for (let v of set.values().backward()) {
+  console.log(v); // &apos;3&apos;, &apos;2&apos;, &apos;1&apos;
 }</code></pre>
     </div>
 </div>
