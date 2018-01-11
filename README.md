@@ -50,7 +50,7 @@ for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
 ## Why jstreemap?
 Ordered associative containers are not provided by default with JavaScript. This library provides an efficient implementation where performance of insert, delete and search operations is O(log(n)).
 
-Unlike standard sets and maps in ES6, this library provides  ordered containers. Iteration through container contents will be done in sorted order without any additional performance load.
+Unlike standard sets and maps in ES6, this library provides  ordered containers. Iteration through container contents will be done in sorted order without any additional performance overhead.
 
 [Container API](https://kirusi.github.io/jstreemap) implements features of default ES6 maps and sets as well as parts of STL (C++ library) interface.
 
