@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 13862,
+  "end": 14241,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 453,
+      "line": 467,
       "column": 31
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 13862,
+    "end": 14241,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 453,
+        "line": 467,
         "column": 31
       }
     },
@@ -628,14 +628,14 @@
       {
         "type": "Identifier",
         "start": 1486,
-        "end": 13827,
+        "end": 14206,
         "loc": {
           "start": {
             "line": 37,
             "column": 0
           },
           "end": {
-            "line": 451,
+            "line": 465,
             "column": 1
           }
         },
@@ -661,14 +661,14 @@
         "body": {
           "type": "ClassBody",
           "start": 1500,
-          "end": 13827,
+          "end": 14206,
           "loc": {
             "start": {
               "line": 37,
               "column": 14
             },
             "end": {
-              "line": 451,
+              "line": 465,
               "column": 1
             }
           },
@@ -7421,16 +7421,16 @@
               "trailingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+                  "value": "*\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     ",
                   "start": 10750,
-                  "end": 11780,
+                  "end": 11051,
                   "loc": {
                     "start": {
                       "line": 354,
                       "column": 4
                     },
                     "end": {
-                      "line": 380,
+                      "line": 363,
                       "column": 7
                     }
                   }
@@ -7439,15 +7439,15 @@
             },
             {
               "type": "ClassMethod",
-              "start": 11786,
-              "end": 11852,
+              "start": 11057,
+              "end": 11121,
               "loc": {
                 "start": {
-                  "line": 381,
+                  "line": 364,
                   "column": 4
                 },
                 "end": {
-                  "line": 383,
+                  "line": 366,
                   "column": 5
                 }
               },
@@ -7455,15 +7455,292 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 11786,
-                "end": 11796,
+                "start": 11057,
+                "end": 11062,
                 "loc": {
                   "start": {
-                    "line": 381,
+                    "line": 364,
                     "column": 4
                   },
                   "end": {
-                    "line": 381,
+                    "line": 364,
+                    "column": 9
+                  },
+                  "identifierName": "erase"
+                },
+                "name": "erase",
+                "leadingComments": null
+              },
+              "kind": "method",
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 11063,
+                  "end": 11071,
+                  "loc": {
+                    "start": {
+                      "line": 364,
+                      "column": 10
+                    },
+                    "end": {
+                      "line": 364,
+                      "column": 18
+                    },
+                    "identifierName": "iterator"
+                  },
+                  "name": "iterator"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "start": 11073,
+                "end": 11121,
+                "loc": {
+                  "start": {
+                    "line": 364,
+                    "column": 20
+                  },
+                  "end": {
+                    "line": 366,
+                    "column": 5
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "start": 11084,
+                    "end": 11114,
+                    "loc": {
+                      "start": {
+                        "line": 365,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 365,
+                        "column": 38
+                      }
+                    },
+                    "expression": {
+                      "type": "CallExpression",
+                      "start": 11084,
+                      "end": 11113,
+                      "loc": {
+                        "start": {
+                          "line": 365,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 365,
+                          "column": 37
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 11084,
+                        "end": 11098,
+                        "loc": {
+                          "start": {
+                            "line": 365,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 365,
+                            "column": 22
+                          }
+                        },
+                        "object": {
+                          "type": "MemberExpression",
+                          "start": 11084,
+                          "end": 11092,
+                          "loc": {
+                            "start": {
+                              "line": 365,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 365,
+                              "column": 16
+                            }
+                          },
+                          "object": {
+                            "type": "ThisExpression",
+                            "start": 11084,
+                            "end": 11088,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 12
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 11089,
+                            "end": 11092,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 13
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 16
+                              },
+                              "identifierName": "__t"
+                            },
+                            "name": "__t"
+                          },
+                          "computed": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 11093,
+                          "end": 11098,
+                          "loc": {
+                            "start": {
+                              "line": 365,
+                              "column": 17
+                            },
+                            "end": {
+                              "line": 365,
+                              "column": 22
+                            },
+                            "identifierName": "erase"
+                          },
+                          "name": "erase"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "MemberExpression",
+                          "start": 11099,
+                          "end": 11112,
+                          "loc": {
+                            "start": {
+                              "line": 365,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 365,
+                              "column": 36
+                            }
+                          },
+                          "object": {
+                            "type": "Identifier",
+                            "start": 11099,
+                            "end": 11107,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 23
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 31
+                              },
+                              "identifierName": "iterator"
+                            },
+                            "name": "iterator"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 11108,
+                            "end": 11112,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 32
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 36
+                              },
+                              "identifierName": "node"
+                            },
+                            "name": "node"
+                          },
+                          "computed": false
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "directives": [],
+                "trailingComments": null
+              },
+              "leadingComments": [
+                {
+                  "type": "CommentBlock",
+                  "value": "*\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     ",
+                  "start": 10750,
+                  "end": 11051,
+                  "loc": {
+                    "start": {
+                      "line": 354,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 363,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "CommentBlock",
+                  "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+                  "start": 11129,
+                  "end": 12159,
+                  "loc": {
+                    "start": {
+                      "line": 368,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 394,
+                      "column": 7
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ClassMethod",
+              "start": 12165,
+              "end": 12231,
+              "loc": {
+                "start": {
+                  "line": 395,
+                  "column": 4
+                },
+                "end": {
+                  "line": 397,
+                  "column": 5
+                }
+              },
+              "static": false,
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 12165,
+                "end": 12175,
+                "loc": {
+                  "start": {
+                    "line": 395,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 395,
                     "column": 14
                   },
                   "identifierName": "lowerBound"
@@ -7479,15 +7756,15 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 11797,
-                  "end": 11800,
+                  "start": 12176,
+                  "end": 12179,
                   "loc": {
                     "start": {
-                      "line": 381,
+                      "line": 395,
                       "column": 15
                     },
                     "end": {
-                      "line": 381,
+                      "line": 395,
                       "column": 18
                     },
                     "identifierName": "key"
@@ -7497,101 +7774,101 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 11802,
-                "end": 11852,
+                "start": 12181,
+                "end": 12231,
                 "loc": {
                   "start": {
-                    "line": 381,
+                    "line": 395,
                     "column": 20
                   },
                   "end": {
-                    "line": 383,
+                    "line": 397,
                     "column": 5
                   }
                 },
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 11813,
-                    "end": 11845,
+                    "start": 12192,
+                    "end": 12224,
                     "loc": {
                       "start": {
-                        "line": 382,
+                        "line": 396,
                         "column": 8
                       },
                       "end": {
-                        "line": 382,
+                        "line": 396,
                         "column": 40
                       }
                     },
                     "argument": {
                       "type": "CallExpression",
-                      "start": 11820,
-                      "end": 11844,
+                      "start": 12199,
+                      "end": 12223,
                       "loc": {
                         "start": {
-                          "line": 382,
+                          "line": 396,
                           "column": 15
                         },
                         "end": {
-                          "line": 382,
+                          "line": 396,
                           "column": 39
                         }
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 11820,
-                        "end": 11839,
+                        "start": 12199,
+                        "end": 12218,
                         "loc": {
                           "start": {
-                            "line": 382,
+                            "line": 396,
                             "column": 15
                           },
                           "end": {
-                            "line": 382,
+                            "line": 396,
                             "column": 34
                           }
                         },
                         "object": {
                           "type": "MemberExpression",
-                          "start": 11820,
-                          "end": 11828,
+                          "start": 12199,
+                          "end": 12207,
                           "loc": {
                             "start": {
-                              "line": 382,
+                              "line": 396,
                               "column": 15
                             },
                             "end": {
-                              "line": 382,
+                              "line": 396,
                               "column": 23
                             }
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 11820,
-                            "end": 11824,
+                            "start": 12199,
+                            "end": 12203,
                             "loc": {
                               "start": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 15
                               },
                               "end": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 19
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 11825,
-                            "end": 11828,
+                            "start": 12204,
+                            "end": 12207,
                             "loc": {
                               "start": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 20
                               },
                               "end": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 23
                               },
                               "identifierName": "__t"
@@ -7602,15 +7879,15 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 11829,
-                          "end": 11839,
+                          "start": 12208,
+                          "end": 12218,
                           "loc": {
                             "start": {
-                              "line": 382,
+                              "line": 396,
                               "column": 24
                             },
                             "end": {
-                              "line": 382,
+                              "line": 396,
                               "column": 34
                             },
                             "identifierName": "lowerBound"
@@ -7622,15 +7899,15 @@
                       "arguments": [
                         {
                           "type": "Identifier",
-                          "start": 11840,
-                          "end": 11843,
+                          "start": 12219,
+                          "end": 12222,
                           "loc": {
                             "start": {
-                              "line": 382,
+                              "line": 396,
                               "column": 35
                             },
                             "end": {
-                              "line": 382,
+                              "line": 396,
                               "column": 38
                             },
                             "identifierName": "key"
@@ -7648,15 +7925,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-                  "start": 10750,
-                  "end": 11780,
+                  "start": 11129,
+                  "end": 12159,
                   "loc": {
                     "start": {
-                      "line": 354,
+                      "line": 368,
                       "column": 4
                     },
                     "end": {
-                      "line": 380,
+                      "line": 394,
                       "column": 7
                     }
                   }
@@ -7666,15 +7943,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                  "start": 11860,
-                  "end": 12139,
+                  "start": 12239,
+                  "end": 12518,
                   "loc": {
                     "start": {
-                      "line": 385,
+                      "line": 399,
                       "column": 4
                     },
                     "end": {
-                      "line": 394,
+                      "line": 408,
                       "column": 7
                     }
                   }
@@ -7683,15 +7960,15 @@
             },
             {
               "type": "ClassMethod",
-              "start": 12145,
-              "end": 12197,
+              "start": 12524,
+              "end": 12576,
               "loc": {
                 "start": {
-                  "line": 395,
+                  "line": 409,
                   "column": 4
                 },
                 "end": {
-                  "line": 397,
+                  "line": 411,
                   "column": 5
                 }
               },
@@ -7699,15 +7976,15 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 12145,
-                "end": 12151,
+                "start": 12524,
+                "end": 12530,
                 "loc": {
                   "start": {
-                    "line": 395,
+                    "line": 409,
                     "column": 4
                   },
                   "end": {
-                    "line": 395,
+                    "line": 409,
                     "column": 10
                   },
                   "identifierName": "rbegin"
@@ -7723,101 +8000,101 @@
               "params": [],
               "body": {
                 "type": "BlockStatement",
-                "start": 12154,
-                "end": 12197,
+                "start": 12533,
+                "end": 12576,
                 "loc": {
                   "start": {
-                    "line": 395,
+                    "line": 409,
                     "column": 13
                   },
                   "end": {
-                    "line": 397,
+                    "line": 411,
                     "column": 5
                   }
                 },
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 12165,
-                    "end": 12190,
+                    "start": 12544,
+                    "end": 12569,
                     "loc": {
                       "start": {
-                        "line": 396,
+                        "line": 410,
                         "column": 8
                       },
                       "end": {
-                        "line": 396,
+                        "line": 410,
                         "column": 33
                       }
                     },
                     "argument": {
                       "type": "CallExpression",
-                      "start": 12172,
-                      "end": 12189,
+                      "start": 12551,
+                      "end": 12568,
                       "loc": {
                         "start": {
-                          "line": 396,
+                          "line": 410,
                           "column": 15
                         },
                         "end": {
-                          "line": 396,
+                          "line": 410,
                           "column": 32
                         }
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 12172,
-                        "end": 12187,
+                        "start": 12551,
+                        "end": 12566,
                         "loc": {
                           "start": {
-                            "line": 396,
+                            "line": 410,
                             "column": 15
                           },
                           "end": {
-                            "line": 396,
+                            "line": 410,
                             "column": 30
                           }
                         },
                         "object": {
                           "type": "MemberExpression",
-                          "start": 12172,
-                          "end": 12180,
+                          "start": 12551,
+                          "end": 12559,
                           "loc": {
                             "start": {
-                              "line": 396,
+                              "line": 410,
                               "column": 15
                             },
                             "end": {
-                              "line": 396,
+                              "line": 410,
                               "column": 23
                             }
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 12172,
-                            "end": 12176,
+                            "start": 12551,
+                            "end": 12555,
                             "loc": {
                               "start": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 15
                               },
                               "end": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 19
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 12177,
-                            "end": 12180,
+                            "start": 12556,
+                            "end": 12559,
                             "loc": {
                               "start": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 20
                               },
                               "end": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 23
                               },
                               "identifierName": "__t"
@@ -7828,15 +8105,15 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 12181,
-                          "end": 12187,
+                          "start": 12560,
+                          "end": 12566,
                           "loc": {
                             "start": {
-                              "line": 396,
+                              "line": 410,
                               "column": 24
                             },
                             "end": {
-                              "line": 396,
+                              "line": 410,
                               "column": 30
                             },
                             "identifierName": "rbegin"
@@ -7856,26 +8133,8 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                  "start": 11860,
-                  "end": 12139,
-                  "loc": {
-                    "start": {
-                      "line": 385,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 394,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "trailingComments": [
-                {
-                  "type": "CommentBlock",
-                  "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                  "start": 12205,
-                  "end": 12501,
+                  "start": 12239,
+                  "end": 12518,
                   "loc": {
                     "start": {
                       "line": 399,
@@ -7887,19 +8146,37 @@
                     }
                   }
                 }
+              ],
+              "trailingComments": [
+                {
+                  "type": "CommentBlock",
+                  "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
+                  "start": 12584,
+                  "end": 12880,
+                  "loc": {
+                    "start": {
+                      "line": 413,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 422,
+                      "column": 7
+                    }
+                  }
+                }
               ]
             },
             {
               "type": "ClassMethod",
-              "start": 12507,
-              "end": 12555,
+              "start": 12886,
+              "end": 12934,
               "loc": {
                 "start": {
-                  "line": 409,
+                  "line": 423,
                   "column": 4
                 },
                 "end": {
-                  "line": 411,
+                  "line": 425,
                   "column": 5
                 }
               },
@@ -7907,15 +8184,15 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 12507,
-                "end": 12511,
+                "start": 12886,
+                "end": 12890,
                 "loc": {
                   "start": {
-                    "line": 409,
+                    "line": 423,
                     "column": 4
                   },
                   "end": {
-                    "line": 409,
+                    "line": 423,
                     "column": 8
                   },
                   "identifierName": "rend"
@@ -7931,101 +8208,101 @@
               "params": [],
               "body": {
                 "type": "BlockStatement",
-                "start": 12514,
-                "end": 12555,
+                "start": 12893,
+                "end": 12934,
                 "loc": {
                   "start": {
-                    "line": 409,
+                    "line": 423,
                     "column": 11
                   },
                   "end": {
-                    "line": 411,
+                    "line": 425,
                     "column": 5
                   }
                 },
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 12525,
-                    "end": 12548,
+                    "start": 12904,
+                    "end": 12927,
                     "loc": {
                       "start": {
-                        "line": 410,
+                        "line": 424,
                         "column": 8
                       },
                       "end": {
-                        "line": 410,
+                        "line": 424,
                         "column": 31
                       }
                     },
                     "argument": {
                       "type": "CallExpression",
-                      "start": 12532,
-                      "end": 12547,
+                      "start": 12911,
+                      "end": 12926,
                       "loc": {
                         "start": {
-                          "line": 410,
+                          "line": 424,
                           "column": 15
                         },
                         "end": {
-                          "line": 410,
+                          "line": 424,
                           "column": 30
                         }
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 12532,
-                        "end": 12545,
+                        "start": 12911,
+                        "end": 12924,
                         "loc": {
                           "start": {
-                            "line": 410,
+                            "line": 424,
                             "column": 15
                           },
                           "end": {
-                            "line": 410,
+                            "line": 424,
                             "column": 28
                           }
                         },
                         "object": {
                           "type": "MemberExpression",
-                          "start": 12532,
-                          "end": 12540,
+                          "start": 12911,
+                          "end": 12919,
                           "loc": {
                             "start": {
-                              "line": 410,
+                              "line": 424,
                               "column": 15
                             },
                             "end": {
-                              "line": 410,
+                              "line": 424,
                               "column": 23
                             }
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 12532,
-                            "end": 12536,
+                            "start": 12911,
+                            "end": 12915,
                             "loc": {
                               "start": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 15
                               },
                               "end": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 19
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 12537,
-                            "end": 12540,
+                            "start": 12916,
+                            "end": 12919,
                             "loc": {
                               "start": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 20
                               },
                               "end": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 23
                               },
                               "identifierName": "__t"
@@ -8036,15 +8313,15 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 12541,
-                          "end": 12545,
+                          "start": 12920,
+                          "end": 12924,
                           "loc": {
                             "start": {
-                              "line": 410,
+                              "line": 424,
                               "column": 24
                             },
                             "end": {
-                              "line": 410,
+                              "line": 424,
                               "column": 28
                             },
                             "identifierName": "rend"
@@ -8064,15 +8341,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                  "start": 12205,
-                  "end": 12501,
+                  "start": 12584,
+                  "end": 12880,
                   "loc": {
                     "start": {
-                      "line": 399,
+                      "line": 413,
                       "column": 4
                     },
                     "end": {
-                      "line": 408,
+                      "line": 422,
                       "column": 7
                     }
                   }
@@ -8082,15 +8359,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-                  "start": 12563,
-                  "end": 13577,
+                  "start": 12942,
+                  "end": 13956,
                   "loc": {
                     "start": {
-                      "line": 413,
+                      "line": 427,
                       "column": 4
                     },
                     "end": {
-                      "line": 439,
+                      "line": 453,
                       "column": 7
                     }
                   }
@@ -8099,15 +8376,15 @@
             },
             {
               "type": "ClassMethod",
-              "start": 13583,
-              "end": 13649,
+              "start": 13962,
+              "end": 14028,
               "loc": {
                 "start": {
-                  "line": 440,
+                  "line": 454,
                   "column": 4
                 },
                 "end": {
-                  "line": 442,
+                  "line": 456,
                   "column": 5
                 }
               },
@@ -8115,15 +8392,15 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 13583,
-                "end": 13593,
+                "start": 13962,
+                "end": 13972,
                 "loc": {
                   "start": {
-                    "line": 440,
+                    "line": 454,
                     "column": 4
                   },
                   "end": {
-                    "line": 440,
+                    "line": 454,
                     "column": 14
                   },
                   "identifierName": "upperBound"
@@ -8139,15 +8416,15 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 13594,
-                  "end": 13597,
+                  "start": 13973,
+                  "end": 13976,
                   "loc": {
                     "start": {
-                      "line": 440,
+                      "line": 454,
                       "column": 15
                     },
                     "end": {
-                      "line": 440,
+                      "line": 454,
                       "column": 18
                     },
                     "identifierName": "key"
@@ -8157,101 +8434,101 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 13599,
-                "end": 13649,
+                "start": 13978,
+                "end": 14028,
                 "loc": {
                   "start": {
-                    "line": 440,
+                    "line": 454,
                     "column": 20
                   },
                   "end": {
-                    "line": 442,
+                    "line": 456,
                     "column": 5
                   }
                 },
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 13610,
-                    "end": 13642,
+                    "start": 13989,
+                    "end": 14021,
                     "loc": {
                       "start": {
-                        "line": 441,
+                        "line": 455,
                         "column": 8
                       },
                       "end": {
-                        "line": 441,
+                        "line": 455,
                         "column": 40
                       }
                     },
                     "argument": {
                       "type": "CallExpression",
-                      "start": 13617,
-                      "end": 13641,
+                      "start": 13996,
+                      "end": 14020,
                       "loc": {
                         "start": {
-                          "line": 441,
+                          "line": 455,
                           "column": 15
                         },
                         "end": {
-                          "line": 441,
+                          "line": 455,
                           "column": 39
                         }
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 13617,
-                        "end": 13636,
+                        "start": 13996,
+                        "end": 14015,
                         "loc": {
                           "start": {
-                            "line": 441,
+                            "line": 455,
                             "column": 15
                           },
                           "end": {
-                            "line": 441,
+                            "line": 455,
                             "column": 34
                           }
                         },
                         "object": {
                           "type": "MemberExpression",
-                          "start": 13617,
-                          "end": 13625,
+                          "start": 13996,
+                          "end": 14004,
                           "loc": {
                             "start": {
-                              "line": 441,
+                              "line": 455,
                               "column": 15
                             },
                             "end": {
-                              "line": 441,
+                              "line": 455,
                               "column": 23
                             }
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 13617,
-                            "end": 13621,
+                            "start": 13996,
+                            "end": 14000,
                             "loc": {
                               "start": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 15
                               },
                               "end": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 19
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 13622,
-                            "end": 13625,
+                            "start": 14001,
+                            "end": 14004,
                             "loc": {
                               "start": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 20
                               },
                               "end": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 23
                               },
                               "identifierName": "__t"
@@ -8262,15 +8539,15 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 13626,
-                          "end": 13636,
+                          "start": 14005,
+                          "end": 14015,
                           "loc": {
                             "start": {
-                              "line": 441,
+                              "line": 455,
                               "column": 24
                             },
                             "end": {
-                              "line": 441,
+                              "line": 455,
                               "column": 34
                             },
                             "identifierName": "upperBound"
@@ -8282,15 +8559,15 @@
                       "arguments": [
                         {
                           "type": "Identifier",
-                          "start": 13637,
-                          "end": 13640,
+                          "start": 14016,
+                          "end": 14019,
                           "loc": {
                             "start": {
-                              "line": 441,
+                              "line": 455,
                               "column": 35
                             },
                             "end": {
-                              "line": 441,
+                              "line": 455,
                               "column": 38
                             },
                             "identifierName": "key"
@@ -8308,15 +8585,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-                  "start": 12563,
-                  "end": 13577,
+                  "start": 12942,
+                  "end": 13956,
                   "loc": {
                     "start": {
-                      "line": 413,
+                      "line": 427,
                       "column": 4
                     },
                     "end": {
-                      "line": 439,
+                      "line": 453,
                       "column": 7
                     }
                   }
@@ -8326,15 +8603,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     ",
-                  "start": 13657,
-                  "end": 13762,
+                  "start": 14036,
+                  "end": 14141,
                   "loc": {
                     "start": {
-                      "line": 444,
+                      "line": 458,
                       "column": 4
                     },
                     "end": {
-                      "line": 447,
+                      "line": 461,
                       "column": 7
                     }
                   }
@@ -8343,15 +8620,15 @@
             },
             {
               "type": "ClassMethod",
-              "start": 13768,
-              "end": 13824,
+              "start": 14147,
+              "end": 14203,
               "loc": {
                 "start": {
-                  "line": 448,
+                  "line": 462,
                   "column": 4
                 },
                 "end": {
-                  "line": 450,
+                  "line": 464,
                   "column": 5
                 }
               },
@@ -8359,15 +8636,15 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 13768,
-                "end": 13776,
+                "start": 14147,
+                "end": 14155,
                 "loc": {
                   "start": {
-                    "line": 448,
+                    "line": 462,
                     "column": 4
                   },
                   "end": {
-                    "line": 448,
+                    "line": 462,
                     "column": 12
                   },
                   "identifierName": "toString"
@@ -8383,101 +8660,101 @@
               "params": [],
               "body": {
                 "type": "BlockStatement",
-                "start": 13779,
-                "end": 13824,
+                "start": 14158,
+                "end": 14203,
                 "loc": {
                   "start": {
-                    "line": 448,
+                    "line": 462,
                     "column": 15
                   },
                   "end": {
-                    "line": 450,
+                    "line": 464,
                     "column": 5
                   }
                 },
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 13790,
-                    "end": 13817,
+                    "start": 14169,
+                    "end": 14196,
                     "loc": {
                       "start": {
-                        "line": 449,
+                        "line": 463,
                         "column": 8
                       },
                       "end": {
-                        "line": 449,
+                        "line": 463,
                         "column": 35
                       }
                     },
                     "argument": {
                       "type": "CallExpression",
-                      "start": 13797,
-                      "end": 13816,
+                      "start": 14176,
+                      "end": 14195,
                       "loc": {
                         "start": {
-                          "line": 449,
+                          "line": 463,
                           "column": 15
                         },
                         "end": {
-                          "line": 449,
+                          "line": 463,
                           "column": 34
                         }
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 13797,
-                        "end": 13814,
+                        "start": 14176,
+                        "end": 14193,
                         "loc": {
                           "start": {
-                            "line": 449,
+                            "line": 463,
                             "column": 15
                           },
                           "end": {
-                            "line": 449,
+                            "line": 463,
                             "column": 32
                           }
                         },
                         "object": {
                           "type": "MemberExpression",
-                          "start": 13797,
-                          "end": 13805,
+                          "start": 14176,
+                          "end": 14184,
                           "loc": {
                             "start": {
-                              "line": 449,
+                              "line": 463,
                               "column": 15
                             },
                             "end": {
-                              "line": 449,
+                              "line": 463,
                               "column": 23
                             }
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 13797,
-                            "end": 13801,
+                            "start": 14176,
+                            "end": 14180,
                             "loc": {
                               "start": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 15
                               },
                               "end": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 19
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 13802,
-                            "end": 13805,
+                            "start": 14181,
+                            "end": 14184,
                             "loc": {
                               "start": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 20
                               },
                               "end": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 23
                               },
                               "identifierName": "__t"
@@ -8488,15 +8765,15 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 13806,
-                          "end": 13814,
+                          "start": 14185,
+                          "end": 14193,
                           "loc": {
                             "start": {
-                              "line": 449,
+                              "line": 463,
                               "column": 24
                             },
                             "end": {
-                              "line": 449,
+                              "line": 463,
                               "column": 32
                             },
                             "identifierName": "toString"
@@ -8515,15 +8792,15 @@
                 {
                   "type": "CommentBlock",
                   "value": "*\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     ",
-                  "start": 13657,
-                  "end": 13762,
+                  "start": 14036,
+                  "end": 14141,
                   "loc": {
                     "start": {
-                      "line": 444,
+                      "line": 458,
                       "column": 4
                     },
                     "end": {
-                      "line": 447,
+                      "line": 461,
                       "column": 7
                     }
                   }
@@ -8538,15 +8815,15 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 13831,
-        "end": 13862,
+        "start": 14210,
+        "end": 14241,
         "loc": {
           "start": {
-            "line": 453,
+            "line": 467,
             "column": 0
           },
           "end": {
-            "line": 453,
+            "line": 467,
             "column": 31
           }
         },
@@ -8554,29 +8831,29 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 13840,
-            "end": 13858,
+            "start": 14219,
+            "end": 14237,
             "loc": {
               "start": {
-                "line": 453,
+                "line": 467,
                 "column": 9
               },
               "end": {
-                "line": 453,
+                "line": 467,
                 "column": 27
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 13840,
-              "end": 13847,
+              "start": 14219,
+              "end": 14226,
               "loc": {
                 "start": {
-                  "line": 453,
+                  "line": 467,
                   "column": 9
                 },
                 "end": {
-                  "line": 453,
+                  "line": 467,
                   "column": 16
                 },
                 "identifierName": "TreeSet"
@@ -8585,15 +8862,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 13851,
-              "end": 13858,
+              "start": 14230,
+              "end": 14237,
               "loc": {
                 "start": {
-                  "line": 453,
+                  "line": 467,
                   "column": 20
                 },
                 "end": {
-                  "line": 453,
+                  "line": 467,
                   "column": 27
                 },
                 "identifierName": "TreeSet"
@@ -8606,29 +8883,29 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 13831,
-        "end": 13862,
+        "start": 14210,
+        "end": 14241,
         "loc": {
           "start": {
-            "line": 453,
+            "line": 467,
             "column": 0
           },
           "end": {
-            "line": 453,
+            "line": 467,
             "column": 31
           }
         },
         "declaration": {
           "type": "ClassDeclaration",
           "start": 1486,
-          "end": 13827,
+          "end": 14206,
           "loc": {
             "start": {
               "line": 37,
               "column": 0
             },
             "end": {
-              "line": 451,
+              "line": 465,
               "column": 1
             }
           },
@@ -8654,14 +8931,14 @@
           "body": {
             "type": "ClassBody",
             "start": 1500,
-            "end": 13827,
+            "end": 14206,
             "loc": {
               "start": {
                 "line": 37,
                 "column": 14
               },
               "end": {
-                "line": 451,
+                "line": 465,
                 "column": 1
               }
             },
@@ -15414,16 +15691,16 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+                    "value": "*\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     ",
                     "start": 10750,
-                    "end": 11780,
+                    "end": 11051,
                     "loc": {
                       "start": {
                         "line": 354,
                         "column": 4
                       },
                       "end": {
-                        "line": 380,
+                        "line": 363,
                         "column": 7
                       }
                     }
@@ -15432,15 +15709,15 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 11786,
-                "end": 11852,
+                "start": 11057,
+                "end": 11121,
                 "loc": {
                   "start": {
-                    "line": 381,
+                    "line": 364,
                     "column": 4
                   },
                   "end": {
-                    "line": 383,
+                    "line": 366,
                     "column": 5
                   }
                 },
@@ -15448,15 +15725,292 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 11786,
-                  "end": 11796,
+                  "start": 11057,
+                  "end": 11062,
                   "loc": {
                     "start": {
-                      "line": 381,
+                      "line": 364,
                       "column": 4
                     },
                     "end": {
-                      "line": 381,
+                      "line": 364,
+                      "column": 9
+                    },
+                    "identifierName": "erase"
+                  },
+                  "name": "erase",
+                  "leadingComments": null
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 11063,
+                    "end": 11071,
+                    "loc": {
+                      "start": {
+                        "line": 364,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 364,
+                        "column": 18
+                      },
+                      "identifierName": "iterator"
+                    },
+                    "name": "iterator"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 11073,
+                  "end": 11121,
+                  "loc": {
+                    "start": {
+                      "line": 364,
+                      "column": 20
+                    },
+                    "end": {
+                      "line": 366,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 11084,
+                      "end": 11114,
+                      "loc": {
+                        "start": {
+                          "line": 365,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 365,
+                          "column": 38
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 11084,
+                        "end": 11113,
+                        "loc": {
+                          "start": {
+                            "line": 365,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 365,
+                            "column": 37
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 11084,
+                          "end": 11098,
+                          "loc": {
+                            "start": {
+                              "line": 365,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 365,
+                              "column": 22
+                            }
+                          },
+                          "object": {
+                            "type": "MemberExpression",
+                            "start": 11084,
+                            "end": 11092,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 16
+                              }
+                            },
+                            "object": {
+                              "type": "ThisExpression",
+                              "start": 11084,
+                              "end": 11088,
+                              "loc": {
+                                "start": {
+                                  "line": 365,
+                                  "column": 8
+                                },
+                                "end": {
+                                  "line": 365,
+                                  "column": 12
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 11089,
+                              "end": 11092,
+                              "loc": {
+                                "start": {
+                                  "line": 365,
+                                  "column": 13
+                                },
+                                "end": {
+                                  "line": 365,
+                                  "column": 16
+                                },
+                                "identifierName": "__t"
+                              },
+                              "name": "__t"
+                            },
+                            "computed": false
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 11093,
+                            "end": 11098,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 22
+                              },
+                              "identifierName": "erase"
+                            },
+                            "name": "erase"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "MemberExpression",
+                            "start": 11099,
+                            "end": 11112,
+                            "loc": {
+                              "start": {
+                                "line": 365,
+                                "column": 23
+                              },
+                              "end": {
+                                "line": 365,
+                                "column": 36
+                              }
+                            },
+                            "object": {
+                              "type": "Identifier",
+                              "start": 11099,
+                              "end": 11107,
+                              "loc": {
+                                "start": {
+                                  "line": 365,
+                                  "column": 23
+                                },
+                                "end": {
+                                  "line": 365,
+                                  "column": 31
+                                },
+                                "identifierName": "iterator"
+                              },
+                              "name": "iterator"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 11108,
+                              "end": 11112,
+                              "loc": {
+                                "start": {
+                                  "line": 365,
+                                  "column": 32
+                                },
+                                "end": {
+                                  "line": 365,
+                                  "column": 36
+                                },
+                                "identifierName": "node"
+                              },
+                              "name": "node"
+                            },
+                            "computed": false
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     ",
+                    "start": 10750,
+                    "end": 11051,
+                    "loc": {
+                      "start": {
+                        "line": 354,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 363,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+                    "start": 11129,
+                    "end": 12159,
+                    "loc": {
+                      "start": {
+                        "line": 368,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 394,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 12165,
+                "end": 12231,
+                "loc": {
+                  "start": {
+                    "line": 395,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 397,
+                    "column": 5
+                  }
+                },
+                "static": false,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 12165,
+                  "end": 12175,
+                  "loc": {
+                    "start": {
+                      "line": 395,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 395,
                       "column": 14
                     },
                     "identifierName": "lowerBound"
@@ -15472,15 +16026,15 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 11797,
-                    "end": 11800,
+                    "start": 12176,
+                    "end": 12179,
                     "loc": {
                       "start": {
-                        "line": 381,
+                        "line": 395,
                         "column": 15
                       },
                       "end": {
-                        "line": 381,
+                        "line": 395,
                         "column": 18
                       },
                       "identifierName": "key"
@@ -15490,101 +16044,101 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 11802,
-                  "end": 11852,
+                  "start": 12181,
+                  "end": 12231,
                   "loc": {
                     "start": {
-                      "line": 381,
+                      "line": 395,
                       "column": 20
                     },
                     "end": {
-                      "line": 383,
+                      "line": 397,
                       "column": 5
                     }
                   },
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 11813,
-                      "end": 11845,
+                      "start": 12192,
+                      "end": 12224,
                       "loc": {
                         "start": {
-                          "line": 382,
+                          "line": 396,
                           "column": 8
                         },
                         "end": {
-                          "line": 382,
+                          "line": 396,
                           "column": 40
                         }
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 11820,
-                        "end": 11844,
+                        "start": 12199,
+                        "end": 12223,
                         "loc": {
                           "start": {
-                            "line": 382,
+                            "line": 396,
                             "column": 15
                           },
                           "end": {
-                            "line": 382,
+                            "line": 396,
                             "column": 39
                           }
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 11820,
-                          "end": 11839,
+                          "start": 12199,
+                          "end": 12218,
                           "loc": {
                             "start": {
-                              "line": 382,
+                              "line": 396,
                               "column": 15
                             },
                             "end": {
-                              "line": 382,
+                              "line": 396,
                               "column": 34
                             }
                           },
                           "object": {
                             "type": "MemberExpression",
-                            "start": 11820,
-                            "end": 11828,
+                            "start": 12199,
+                            "end": 12207,
                             "loc": {
                               "start": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 15
                               },
                               "end": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 23
                               }
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 11820,
-                              "end": 11824,
+                              "start": 12199,
+                              "end": 12203,
                               "loc": {
                                 "start": {
-                                  "line": 382,
+                                  "line": 396,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 382,
+                                  "line": 396,
                                   "column": 19
                                 }
                               }
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 11825,
-                              "end": 11828,
+                              "start": 12204,
+                              "end": 12207,
                               "loc": {
                                 "start": {
-                                  "line": 382,
+                                  "line": 396,
                                   "column": 20
                                 },
                                 "end": {
-                                  "line": 382,
+                                  "line": 396,
                                   "column": 23
                                 },
                                 "identifierName": "__t"
@@ -15595,15 +16149,15 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 11829,
-                            "end": 11839,
+                            "start": 12208,
+                            "end": 12218,
                             "loc": {
                               "start": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 24
                               },
                               "end": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 34
                               },
                               "identifierName": "lowerBound"
@@ -15615,15 +16169,15 @@
                         "arguments": [
                           {
                             "type": "Identifier",
-                            "start": 11840,
-                            "end": 11843,
+                            "start": 12219,
+                            "end": 12222,
                             "loc": {
                               "start": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 35
                               },
                               "end": {
-                                "line": 382,
+                                "line": 396,
                                 "column": 38
                               },
                               "identifierName": "key"
@@ -15641,15 +16195,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-                    "start": 10750,
-                    "end": 11780,
+                    "start": 11129,
+                    "end": 12159,
                     "loc": {
                       "start": {
-                        "line": 354,
+                        "line": 368,
                         "column": 4
                       },
                       "end": {
-                        "line": 380,
+                        "line": 394,
                         "column": 7
                       }
                     }
@@ -15659,15 +16213,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                    "start": 11860,
-                    "end": 12139,
+                    "start": 12239,
+                    "end": 12518,
                     "loc": {
                       "start": {
-                        "line": 385,
+                        "line": 399,
                         "column": 4
                       },
                       "end": {
-                        "line": 394,
+                        "line": 408,
                         "column": 7
                       }
                     }
@@ -15676,15 +16230,15 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 12145,
-                "end": 12197,
+                "start": 12524,
+                "end": 12576,
                 "loc": {
                   "start": {
-                    "line": 395,
+                    "line": 409,
                     "column": 4
                   },
                   "end": {
-                    "line": 397,
+                    "line": 411,
                     "column": 5
                   }
                 },
@@ -15692,15 +16246,15 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 12145,
-                  "end": 12151,
+                  "start": 12524,
+                  "end": 12530,
                   "loc": {
                     "start": {
-                      "line": 395,
+                      "line": 409,
                       "column": 4
                     },
                     "end": {
-                      "line": 395,
+                      "line": 409,
                       "column": 10
                     },
                     "identifierName": "rbegin"
@@ -15716,101 +16270,101 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 12154,
-                  "end": 12197,
+                  "start": 12533,
+                  "end": 12576,
                   "loc": {
                     "start": {
-                      "line": 395,
+                      "line": 409,
                       "column": 13
                     },
                     "end": {
-                      "line": 397,
+                      "line": 411,
                       "column": 5
                     }
                   },
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 12165,
-                      "end": 12190,
+                      "start": 12544,
+                      "end": 12569,
                       "loc": {
                         "start": {
-                          "line": 396,
+                          "line": 410,
                           "column": 8
                         },
                         "end": {
-                          "line": 396,
+                          "line": 410,
                           "column": 33
                         }
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 12172,
-                        "end": 12189,
+                        "start": 12551,
+                        "end": 12568,
                         "loc": {
                           "start": {
-                            "line": 396,
+                            "line": 410,
                             "column": 15
                           },
                           "end": {
-                            "line": 396,
+                            "line": 410,
                             "column": 32
                           }
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 12172,
-                          "end": 12187,
+                          "start": 12551,
+                          "end": 12566,
                           "loc": {
                             "start": {
-                              "line": 396,
+                              "line": 410,
                               "column": 15
                             },
                             "end": {
-                              "line": 396,
+                              "line": 410,
                               "column": 30
                             }
                           },
                           "object": {
                             "type": "MemberExpression",
-                            "start": 12172,
-                            "end": 12180,
+                            "start": 12551,
+                            "end": 12559,
                             "loc": {
                               "start": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 15
                               },
                               "end": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 23
                               }
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 12172,
-                              "end": 12176,
+                              "start": 12551,
+                              "end": 12555,
                               "loc": {
                                 "start": {
-                                  "line": 396,
+                                  "line": 410,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 396,
+                                  "line": 410,
                                   "column": 19
                                 }
                               }
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 12177,
-                              "end": 12180,
+                              "start": 12556,
+                              "end": 12559,
                               "loc": {
                                 "start": {
-                                  "line": 396,
+                                  "line": 410,
                                   "column": 20
                                 },
                                 "end": {
-                                  "line": 396,
+                                  "line": 410,
                                   "column": 23
                                 },
                                 "identifierName": "__t"
@@ -15821,15 +16375,15 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 12181,
-                            "end": 12187,
+                            "start": 12560,
+                            "end": 12566,
                             "loc": {
                               "start": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 24
                               },
                               "end": {
-                                "line": 396,
+                                "line": 410,
                                 "column": 30
                               },
                               "identifierName": "rbegin"
@@ -15849,26 +16403,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                    "start": 11860,
-                    "end": 12139,
-                    "loc": {
-                      "start": {
-                        "line": 385,
-                        "column": 4
-                      },
-                      "end": {
-                        "line": 394,
-                        "column": 7
-                      }
-                    }
-                  }
-                ],
-                "trailingComments": [
-                  {
-                    "type": "CommentBlock",
-                    "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                    "start": 12205,
-                    "end": 12501,
+                    "start": 12239,
+                    "end": 12518,
                     "loc": {
                       "start": {
                         "line": 399,
@@ -15880,19 +16416,37 @@
                       }
                     }
                   }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
+                    "start": 12584,
+                    "end": 12880,
+                    "loc": {
+                      "start": {
+                        "line": 413,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 422,
+                        "column": 7
+                      }
+                    }
+                  }
                 ]
               },
               {
                 "type": "ClassMethod",
-                "start": 12507,
-                "end": 12555,
+                "start": 12886,
+                "end": 12934,
                 "loc": {
                   "start": {
-                    "line": 409,
+                    "line": 423,
                     "column": 4
                   },
                   "end": {
-                    "line": 411,
+                    "line": 425,
                     "column": 5
                   }
                 },
@@ -15900,15 +16454,15 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 12507,
-                  "end": 12511,
+                  "start": 12886,
+                  "end": 12890,
                   "loc": {
                     "start": {
-                      "line": 409,
+                      "line": 423,
                       "column": 4
                     },
                     "end": {
-                      "line": 409,
+                      "line": 423,
                       "column": 8
                     },
                     "identifierName": "rend"
@@ -15924,101 +16478,101 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 12514,
-                  "end": 12555,
+                  "start": 12893,
+                  "end": 12934,
                   "loc": {
                     "start": {
-                      "line": 409,
+                      "line": 423,
                       "column": 11
                     },
                     "end": {
-                      "line": 411,
+                      "line": 425,
                       "column": 5
                     }
                   },
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 12525,
-                      "end": 12548,
+                      "start": 12904,
+                      "end": 12927,
                       "loc": {
                         "start": {
-                          "line": 410,
+                          "line": 424,
                           "column": 8
                         },
                         "end": {
-                          "line": 410,
+                          "line": 424,
                           "column": 31
                         }
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 12532,
-                        "end": 12547,
+                        "start": 12911,
+                        "end": 12926,
                         "loc": {
                           "start": {
-                            "line": 410,
+                            "line": 424,
                             "column": 15
                           },
                           "end": {
-                            "line": 410,
+                            "line": 424,
                             "column": 30
                           }
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 12532,
-                          "end": 12545,
+                          "start": 12911,
+                          "end": 12924,
                           "loc": {
                             "start": {
-                              "line": 410,
+                              "line": 424,
                               "column": 15
                             },
                             "end": {
-                              "line": 410,
+                              "line": 424,
                               "column": 28
                             }
                           },
                           "object": {
                             "type": "MemberExpression",
-                            "start": 12532,
-                            "end": 12540,
+                            "start": 12911,
+                            "end": 12919,
                             "loc": {
                               "start": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 15
                               },
                               "end": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 23
                               }
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 12532,
-                              "end": 12536,
+                              "start": 12911,
+                              "end": 12915,
                               "loc": {
                                 "start": {
-                                  "line": 410,
+                                  "line": 424,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 410,
+                                  "line": 424,
                                   "column": 19
                                 }
                               }
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 12537,
-                              "end": 12540,
+                              "start": 12916,
+                              "end": 12919,
                               "loc": {
                                 "start": {
-                                  "line": 410,
+                                  "line": 424,
                                   "column": 20
                                 },
                                 "end": {
-                                  "line": 410,
+                                  "line": 424,
                                   "column": 23
                                 },
                                 "identifierName": "__t"
@@ -16029,15 +16583,15 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 12541,
-                            "end": 12545,
+                            "start": 12920,
+                            "end": 12924,
                             "loc": {
                               "start": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 24
                               },
                               "end": {
-                                "line": 410,
+                                "line": 424,
                                 "column": 28
                               },
                               "identifierName": "rend"
@@ -16057,15 +16611,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-                    "start": 12205,
-                    "end": 12501,
+                    "start": 12584,
+                    "end": 12880,
                     "loc": {
                       "start": {
-                        "line": 399,
+                        "line": 413,
                         "column": 4
                       },
                       "end": {
-                        "line": 408,
+                        "line": 422,
                         "column": 7
                       }
                     }
@@ -16075,15 +16629,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-                    "start": 12563,
-                    "end": 13577,
+                    "start": 12942,
+                    "end": 13956,
                     "loc": {
                       "start": {
-                        "line": 413,
+                        "line": 427,
                         "column": 4
                       },
                       "end": {
-                        "line": 439,
+                        "line": 453,
                         "column": 7
                       }
                     }
@@ -16092,15 +16646,15 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 13583,
-                "end": 13649,
+                "start": 13962,
+                "end": 14028,
                 "loc": {
                   "start": {
-                    "line": 440,
+                    "line": 454,
                     "column": 4
                   },
                   "end": {
-                    "line": 442,
+                    "line": 456,
                     "column": 5
                   }
                 },
@@ -16108,15 +16662,15 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 13583,
-                  "end": 13593,
+                  "start": 13962,
+                  "end": 13972,
                   "loc": {
                     "start": {
-                      "line": 440,
+                      "line": 454,
                       "column": 4
                     },
                     "end": {
-                      "line": 440,
+                      "line": 454,
                       "column": 14
                     },
                     "identifierName": "upperBound"
@@ -16132,15 +16686,15 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 13594,
-                    "end": 13597,
+                    "start": 13973,
+                    "end": 13976,
                     "loc": {
                       "start": {
-                        "line": 440,
+                        "line": 454,
                         "column": 15
                       },
                       "end": {
-                        "line": 440,
+                        "line": 454,
                         "column": 18
                       },
                       "identifierName": "key"
@@ -16150,101 +16704,101 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 13599,
-                  "end": 13649,
+                  "start": 13978,
+                  "end": 14028,
                   "loc": {
                     "start": {
-                      "line": 440,
+                      "line": 454,
                       "column": 20
                     },
                     "end": {
-                      "line": 442,
+                      "line": 456,
                       "column": 5
                     }
                   },
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 13610,
-                      "end": 13642,
+                      "start": 13989,
+                      "end": 14021,
                       "loc": {
                         "start": {
-                          "line": 441,
+                          "line": 455,
                           "column": 8
                         },
                         "end": {
-                          "line": 441,
+                          "line": 455,
                           "column": 40
                         }
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 13617,
-                        "end": 13641,
+                        "start": 13996,
+                        "end": 14020,
                         "loc": {
                           "start": {
-                            "line": 441,
+                            "line": 455,
                             "column": 15
                           },
                           "end": {
-                            "line": 441,
+                            "line": 455,
                             "column": 39
                           }
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 13617,
-                          "end": 13636,
+                          "start": 13996,
+                          "end": 14015,
                           "loc": {
                             "start": {
-                              "line": 441,
+                              "line": 455,
                               "column": 15
                             },
                             "end": {
-                              "line": 441,
+                              "line": 455,
                               "column": 34
                             }
                           },
                           "object": {
                             "type": "MemberExpression",
-                            "start": 13617,
-                            "end": 13625,
+                            "start": 13996,
+                            "end": 14004,
                             "loc": {
                               "start": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 15
                               },
                               "end": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 23
                               }
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 13617,
-                              "end": 13621,
+                              "start": 13996,
+                              "end": 14000,
                               "loc": {
                                 "start": {
-                                  "line": 441,
+                                  "line": 455,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 441,
+                                  "line": 455,
                                   "column": 19
                                 }
                               }
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 13622,
-                              "end": 13625,
+                              "start": 14001,
+                              "end": 14004,
                               "loc": {
                                 "start": {
-                                  "line": 441,
+                                  "line": 455,
                                   "column": 20
                                 },
                                 "end": {
-                                  "line": 441,
+                                  "line": 455,
                                   "column": 23
                                 },
                                 "identifierName": "__t"
@@ -16255,15 +16809,15 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 13626,
-                            "end": 13636,
+                            "start": 14005,
+                            "end": 14015,
                             "loc": {
                               "start": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 24
                               },
                               "end": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 34
                               },
                               "identifierName": "upperBound"
@@ -16275,15 +16829,15 @@
                         "arguments": [
                           {
                             "type": "Identifier",
-                            "start": 13637,
-                            "end": 13640,
+                            "start": 14016,
+                            "end": 14019,
                             "loc": {
                               "start": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 35
                               },
                               "end": {
-                                "line": 441,
+                                "line": 455,
                                 "column": 38
                               },
                               "identifierName": "key"
@@ -16301,15 +16855,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-                    "start": 12563,
-                    "end": 13577,
+                    "start": 12942,
+                    "end": 13956,
                     "loc": {
                       "start": {
-                        "line": 413,
+                        "line": 427,
                         "column": 4
                       },
                       "end": {
-                        "line": 439,
+                        "line": 453,
                         "column": 7
                       }
                     }
@@ -16319,15 +16873,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     ",
-                    "start": 13657,
-                    "end": 13762,
+                    "start": 14036,
+                    "end": 14141,
                     "loc": {
                       "start": {
-                        "line": 444,
+                        "line": 458,
                         "column": 4
                       },
                       "end": {
-                        "line": 447,
+                        "line": 461,
                         "column": 7
                       }
                     }
@@ -16336,15 +16890,15 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 13768,
-                "end": 13824,
+                "start": 14147,
+                "end": 14203,
                 "loc": {
                   "start": {
-                    "line": 448,
+                    "line": 462,
                     "column": 4
                   },
                   "end": {
-                    "line": 450,
+                    "line": 464,
                     "column": 5
                   }
                 },
@@ -16352,15 +16906,15 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 13768,
-                  "end": 13776,
+                  "start": 14147,
+                  "end": 14155,
                   "loc": {
                     "start": {
-                      "line": 448,
+                      "line": 462,
                       "column": 4
                     },
                     "end": {
-                      "line": 448,
+                      "line": 462,
                       "column": 12
                     },
                     "identifierName": "toString"
@@ -16376,101 +16930,101 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 13779,
-                  "end": 13824,
+                  "start": 14158,
+                  "end": 14203,
                   "loc": {
                     "start": {
-                      "line": 448,
+                      "line": 462,
                       "column": 15
                     },
                     "end": {
-                      "line": 450,
+                      "line": 464,
                       "column": 5
                     }
                   },
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 13790,
-                      "end": 13817,
+                      "start": 14169,
+                      "end": 14196,
                       "loc": {
                         "start": {
-                          "line": 449,
+                          "line": 463,
                           "column": 8
                         },
                         "end": {
-                          "line": 449,
+                          "line": 463,
                           "column": 35
                         }
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 13797,
-                        "end": 13816,
+                        "start": 14176,
+                        "end": 14195,
                         "loc": {
                           "start": {
-                            "line": 449,
+                            "line": 463,
                             "column": 15
                           },
                           "end": {
-                            "line": 449,
+                            "line": 463,
                             "column": 34
                           }
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 13797,
-                          "end": 13814,
+                          "start": 14176,
+                          "end": 14193,
                           "loc": {
                             "start": {
-                              "line": 449,
+                              "line": 463,
                               "column": 15
                             },
                             "end": {
-                              "line": 449,
+                              "line": 463,
                               "column": 32
                             }
                           },
                           "object": {
                             "type": "MemberExpression",
-                            "start": 13797,
-                            "end": 13805,
+                            "start": 14176,
+                            "end": 14184,
                             "loc": {
                               "start": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 15
                               },
                               "end": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 23
                               }
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 13797,
-                              "end": 13801,
+                              "start": 14176,
+                              "end": 14180,
                               "loc": {
                                 "start": {
-                                  "line": 449,
+                                  "line": 463,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 449,
+                                  "line": 463,
                                   "column": 19
                                 }
                               }
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 13802,
-                              "end": 13805,
+                              "start": 14181,
+                              "end": 14184,
                               "loc": {
                                 "start": {
-                                  "line": 449,
+                                  "line": 463,
                                   "column": 20
                                 },
                                 "end": {
-                                  "line": 449,
+                                  "line": 463,
                                   "column": 23
                                 },
                                 "identifierName": "__t"
@@ -16481,15 +17035,15 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 13806,
-                            "end": 13814,
+                            "start": 14185,
+                            "end": 14193,
                             "loc": {
                               "start": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 24
                               },
                               "end": {
-                                "line": 449,
+                                "line": 463,
                                 "column": 32
                               },
                               "identifierName": "toString"
@@ -16508,15 +17062,15 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     ",
-                    "start": 13657,
-                    "end": 13762,
+                    "start": 14036,
+                    "end": 14141,
                     "loc": {
                       "start": {
-                        "line": 444,
+                        "line": 458,
                         "column": 4
                       },
                       "end": {
-                        "line": 447,
+                        "line": 461,
                         "column": 7
                       }
                     }
@@ -17020,28 +17574,28 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+      "value": "*\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     ",
       "start": 10750,
-      "end": 11780,
+      "end": 11051,
       "loc": {
         "start": {
           "line": 354,
           "column": 4
         },
         "end": {
-          "line": 380,
+          "line": 363,
           "column": 7
         }
       }
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-      "start": 11860,
-      "end": 12139,
+      "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+      "start": 11129,
+      "end": 12159,
       "loc": {
         "start": {
-          "line": 385,
+          "line": 368,
           "column": 4
         },
         "end": {
@@ -17052,9 +17606,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-      "start": 12205,
-      "end": 12501,
+      "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
+      "start": 12239,
+      "end": 12518,
       "loc": {
         "start": {
           "line": 399,
@@ -17068,16 +17622,32 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-      "start": 12563,
-      "end": 13577,
+      "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
+      "start": 12584,
+      "end": 12880,
       "loc": {
         "start": {
           "line": 413,
           "column": 4
         },
         "end": {
-          "line": 439,
+          "line": 422,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+      "start": 12942,
+      "end": 13956,
+      "loc": {
+        "start": {
+          "line": 427,
+          "column": 4
+        },
+        "end": {
+          "line": 453,
           "column": 7
         }
       }
@@ -17085,15 +17655,15 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     ",
-      "start": 13657,
-      "end": 13762,
+      "start": 14036,
+      "end": 14141,
       "loc": {
         "start": {
-          "line": 444,
+          "line": 458,
           "column": 4
         },
         "end": {
-          "line": 447,
+          "line": 461,
           "column": 7
         }
       }
@@ -31016,16 +31586,16 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+      "value": "*\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     ",
       "start": 10750,
-      "end": 11780,
+      "end": 11051,
       "loc": {
         "start": {
           "line": 354,
           "column": 4
         },
         "end": {
-          "line": 380,
+          "line": 363,
           "column": 7
         }
       }
@@ -31042,17 +31612,17 @@
         "postfix": false,
         "binop": null
       },
-      "value": "lowerBound",
-      "start": 11786,
-      "end": 11796,
+      "value": "erase",
+      "start": 11057,
+      "end": 11062,
       "loc": {
         "start": {
-          "line": 381,
+          "line": 364,
           "column": 4
         },
         "end": {
-          "line": 381,
-          "column": 14
+          "line": 364,
+          "column": 9
         }
       }
     },
@@ -31068,16 +31638,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 11796,
-      "end": 11797,
+      "start": 11062,
+      "end": 11063,
       "loc": {
         "start": {
-          "line": 381,
-          "column": 14
+          "line": 364,
+          "column": 9
         },
         "end": {
-          "line": 381,
-          "column": 15
+          "line": 364,
+          "column": 10
         }
       }
     },
@@ -31093,16 +31663,16 @@
         "postfix": false,
         "binop": null
       },
-      "value": "key",
-      "start": 11797,
-      "end": 11800,
+      "value": "iterator",
+      "start": 11063,
+      "end": 11071,
       "loc": {
         "start": {
-          "line": 381,
-          "column": 15
+          "line": 364,
+          "column": 10
         },
         "end": {
-          "line": 381,
+          "line": 364,
           "column": 18
         }
       }
@@ -31119,15 +31689,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 11800,
-      "end": 11801,
+      "start": 11071,
+      "end": 11072,
       "loc": {
         "start": {
-          "line": 381,
+          "line": 364,
           "column": 18
         },
         "end": {
-          "line": 381,
+          "line": 364,
           "column": 19
         }
       }
@@ -31144,44 +31714,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 11802,
-      "end": 11803,
+      "start": 11073,
+      "end": 11074,
       "loc": {
         "start": {
-          "line": 381,
+          "line": 364,
           "column": 20
         },
         "end": {
-          "line": 381,
+          "line": 364,
           "column": 21
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "return",
-        "keyword": "return",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "value": "return",
-      "start": 11813,
-      "end": 11819,
-      "loc": {
-        "start": {
-          "line": 382,
-          "column": 8
-        },
-        "end": {
-          "line": 382,
-          "column": 14
         }
       }
     },
@@ -31200,16 +31742,16 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 11820,
-      "end": 11824,
+      "start": 11084,
+      "end": 11088,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 15
+          "line": 365,
+          "column": 8
         },
         "end": {
-          "line": 382,
-          "column": 19
+          "line": 365,
+          "column": 12
         }
       }
     },
@@ -31226,16 +31768,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 11824,
-      "end": 11825,
+      "start": 11088,
+      "end": 11089,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 19
+          "line": 365,
+          "column": 12
         },
         "end": {
-          "line": 382,
-          "column": 20
+          "line": 365,
+          "column": 13
         }
       }
     },
@@ -31252,16 +31794,16 @@
         "binop": null
       },
       "value": "__t",
-      "start": 11825,
-      "end": 11828,
+      "start": 11089,
+      "end": 11092,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 20
+          "line": 365,
+          "column": 13
         },
         "end": {
-          "line": 382,
-          "column": 23
+          "line": 365,
+          "column": 16
         }
       }
     },
@@ -31278,16 +31820,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 11828,
-      "end": 11829,
+      "start": 11092,
+      "end": 11093,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 23
+          "line": 365,
+          "column": 16
         },
         "end": {
-          "line": 382,
-          "column": 24
+          "line": 365,
+          "column": 17
         }
       }
     },
@@ -31303,17 +31845,17 @@
         "postfix": false,
         "binop": null
       },
-      "value": "lowerBound",
-      "start": 11829,
-      "end": 11839,
+      "value": "erase",
+      "start": 11093,
+      "end": 11098,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 24
+          "line": 365,
+          "column": 17
         },
         "end": {
-          "line": 382,
-          "column": 34
+          "line": 365,
+          "column": 22
         }
       }
     },
@@ -31329,16 +31871,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 11839,
-      "end": 11840,
+      "start": 11098,
+      "end": 11099,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 34
+          "line": 365,
+          "column": 22
         },
         "end": {
-          "line": 382,
-          "column": 35
+          "line": 365,
+          "column": 23
         }
       }
     },
@@ -31354,17 +31896,69 @@
         "postfix": false,
         "binop": null
       },
-      "value": "key",
-      "start": 11840,
-      "end": 11843,
+      "value": "iterator",
+      "start": 11099,
+      "end": 11107,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 35
+          "line": 365,
+          "column": 23
         },
         "end": {
-          "line": 382,
-          "column": 38
+          "line": 365,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 11107,
+      "end": 11108,
+      "loc": {
+        "start": {
+          "line": 365,
+          "column": 31
+        },
+        "end": {
+          "line": 365,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "node",
+      "start": 11108,
+      "end": 11112,
+      "loc": {
+        "start": {
+          "line": 365,
+          "column": 32
+        },
+        "end": {
+          "line": 365,
+          "column": 36
         }
       }
     },
@@ -31380,16 +31974,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 11843,
-      "end": 11844,
+      "start": 11112,
+      "end": 11113,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 38
+          "line": 365,
+          "column": 36
         },
         "end": {
-          "line": 382,
-          "column": 39
+          "line": 365,
+          "column": 37
         }
       }
     },
@@ -31406,16 +32000,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 11844,
-      "end": 11845,
+      "start": 11113,
+      "end": 11114,
       "loc": {
         "start": {
-          "line": 382,
-          "column": 39
+          "line": 365,
+          "column": 37
         },
         "end": {
-          "line": 382,
-          "column": 40
+          "line": 365,
+          "column": 38
         }
       }
     },
@@ -31431,27 +32025,27 @@
         "postfix": false,
         "binop": null
       },
-      "start": 11851,
-      "end": 11852,
+      "start": 11120,
+      "end": 11121,
       "loc": {
         "start": {
-          "line": 383,
+          "line": 366,
           "column": 4
         },
         "end": {
-          "line": 383,
+          "line": 366,
           "column": 5
         }
       }
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-      "start": 11860,
-      "end": 12139,
+      "value": "*\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
+      "start": 11129,
+      "end": 12159,
       "loc": {
         "start": {
-          "line": 385,
+          "line": 368,
           "column": 4
         },
         "end": {
@@ -31472,9 +32066,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "rbegin",
-      "start": 12145,
-      "end": 12151,
+      "value": "lowerBound",
+      "start": 12165,
+      "end": 12175,
       "loc": {
         "start": {
           "line": 395,
@@ -31482,7 +32076,7 @@
         },
         "end": {
           "line": 395,
-          "column": 10
+          "column": 14
         }
       }
     },
@@ -31498,16 +32092,42 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12151,
-      "end": 12152,
+      "start": 12175,
+      "end": 12176,
       "loc": {
         "start": {
           "line": 395,
-          "column": 10
+          "column": 14
         },
         "end": {
           "line": 395,
-          "column": 11
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "key",
+      "start": 12176,
+      "end": 12179,
+      "loc": {
+        "start": {
+          "line": 395,
+          "column": 15
+        },
+        "end": {
+          "line": 395,
+          "column": 18
         }
       }
     },
@@ -31523,16 +32143,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12152,
-      "end": 12153,
+      "start": 12179,
+      "end": 12180,
       "loc": {
         "start": {
           "line": 395,
-          "column": 11
+          "column": 18
         },
         "end": {
           "line": 395,
-          "column": 12
+          "column": 19
         }
       }
     },
@@ -31548,16 +32168,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12154,
-      "end": 12155,
+      "start": 12181,
+      "end": 12182,
       "loc": {
         "start": {
           "line": 395,
-          "column": 13
+          "column": 20
         },
         "end": {
           "line": 395,
-          "column": 14
+          "column": 21
         }
       }
     },
@@ -31576,8 +32196,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 12165,
-      "end": 12171,
+      "start": 12192,
+      "end": 12198,
       "loc": {
         "start": {
           "line": 396,
@@ -31604,8 +32224,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 12172,
-      "end": 12176,
+      "start": 12199,
+      "end": 12203,
       "loc": {
         "start": {
           "line": 396,
@@ -31630,8 +32250,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 12176,
-      "end": 12177,
+      "start": 12203,
+      "end": 12204,
       "loc": {
         "start": {
           "line": 396,
@@ -31656,8 +32276,8 @@
         "binop": null
       },
       "value": "__t",
-      "start": 12177,
-      "end": 12180,
+      "start": 12204,
+      "end": 12207,
       "loc": {
         "start": {
           "line": 396,
@@ -31682,8 +32302,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 12180,
-      "end": 12181,
+      "start": 12207,
+      "end": 12208,
       "loc": {
         "start": {
           "line": 396,
@@ -31707,9 +32327,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "rbegin",
-      "start": 12181,
-      "end": 12187,
+      "value": "lowerBound",
+      "start": 12208,
+      "end": 12218,
       "loc": {
         "start": {
           "line": 396,
@@ -31717,7 +32337,7 @@
         },
         "end": {
           "line": 396,
-          "column": 30
+          "column": 34
         }
       }
     },
@@ -31733,16 +32353,42 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12187,
-      "end": 12188,
+      "start": 12218,
+      "end": 12219,
       "loc": {
         "start": {
           "line": 396,
-          "column": 30
+          "column": 34
         },
         "end": {
           "line": 396,
-          "column": 31
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "key",
+      "start": 12219,
+      "end": 12222,
+      "loc": {
+        "start": {
+          "line": 396,
+          "column": 35
+        },
+        "end": {
+          "line": 396,
+          "column": 38
         }
       }
     },
@@ -31758,16 +32404,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12188,
-      "end": 12189,
+      "start": 12222,
+      "end": 12223,
       "loc": {
         "start": {
           "line": 396,
-          "column": 31
+          "column": 38
         },
         "end": {
           "line": 396,
-          "column": 32
+          "column": 39
         }
       }
     },
@@ -31784,16 +32430,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 12189,
-      "end": 12190,
+      "start": 12223,
+      "end": 12224,
       "loc": {
         "start": {
           "line": 396,
-          "column": 32
+          "column": 39
         },
         "end": {
           "line": 396,
-          "column": 33
+          "column": 40
         }
       }
     },
@@ -31809,8 +32455,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12196,
-      "end": 12197,
+      "start": 12230,
+      "end": 12231,
       "loc": {
         "start": {
           "line": 397,
@@ -31824,9 +32470,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
-      "start": 12205,
-      "end": 12501,
+      "value": "*\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
+      "start": 12239,
+      "end": 12518,
       "loc": {
         "start": {
           "line": 399,
@@ -31850,9 +32496,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "rend",
-      "start": 12507,
-      "end": 12511,
+      "value": "rbegin",
+      "start": 12524,
+      "end": 12530,
       "loc": {
         "start": {
           "line": 409,
@@ -31860,7 +32506,7 @@
         },
         "end": {
           "line": 409,
-          "column": 8
+          "column": 10
         }
       }
     },
@@ -31876,16 +32522,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12511,
-      "end": 12512,
+      "start": 12530,
+      "end": 12531,
       "loc": {
         "start": {
           "line": 409,
-          "column": 8
+          "column": 10
         },
         "end": {
           "line": 409,
-          "column": 9
+          "column": 11
         }
       }
     },
@@ -31901,16 +32547,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12512,
-      "end": 12513,
+      "start": 12531,
+      "end": 12532,
       "loc": {
         "start": {
           "line": 409,
-          "column": 9
+          "column": 11
         },
         "end": {
           "line": 409,
-          "column": 10
+          "column": 12
         }
       }
     },
@@ -31926,16 +32572,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12514,
-      "end": 12515,
+      "start": 12533,
+      "end": 12534,
       "loc": {
         "start": {
           "line": 409,
-          "column": 11
+          "column": 13
         },
         "end": {
           "line": 409,
-          "column": 12
+          "column": 14
         }
       }
     },
@@ -31954,8 +32600,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 12525,
-      "end": 12531,
+      "start": 12544,
+      "end": 12550,
       "loc": {
         "start": {
           "line": 410,
@@ -31982,8 +32628,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 12532,
-      "end": 12536,
+      "start": 12551,
+      "end": 12555,
       "loc": {
         "start": {
           "line": 410,
@@ -32008,8 +32654,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 12536,
-      "end": 12537,
+      "start": 12555,
+      "end": 12556,
       "loc": {
         "start": {
           "line": 410,
@@ -32034,8 +32680,8 @@
         "binop": null
       },
       "value": "__t",
-      "start": 12537,
-      "end": 12540,
+      "start": 12556,
+      "end": 12559,
       "loc": {
         "start": {
           "line": 410,
@@ -32060,8 +32706,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 12540,
-      "end": 12541,
+      "start": 12559,
+      "end": 12560,
       "loc": {
         "start": {
           "line": 410,
@@ -32085,9 +32731,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "rend",
-      "start": 12541,
-      "end": 12545,
+      "value": "rbegin",
+      "start": 12560,
+      "end": 12566,
       "loc": {
         "start": {
           "line": 410,
@@ -32095,6 +32741,384 @@
         },
         "end": {
           "line": 410,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 12566,
+      "end": 12567,
+      "loc": {
+        "start": {
+          "line": 410,
+          "column": 30
+        },
+        "end": {
+          "line": 410,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 12567,
+      "end": 12568,
+      "loc": {
+        "start": {
+          "line": 410,
+          "column": 31
+        },
+        "end": {
+          "line": 410,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 12568,
+      "end": 12569,
+      "loc": {
+        "start": {
+          "line": 410,
+          "column": 32
+        },
+        "end": {
+          "line": 410,
+          "column": 33
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 12575,
+      "end": 12576,
+      "loc": {
+        "start": {
+          "line": 411,
+          "column": 4
+        },
+        "end": {
+          "line": 411,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     ",
+      "start": 12584,
+      "end": 12880,
+      "loc": {
+        "start": {
+          "line": 413,
+          "column": 4
+        },
+        "end": {
+          "line": 422,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rend",
+      "start": 12886,
+      "end": 12890,
+      "loc": {
+        "start": {
+          "line": 423,
+          "column": 4
+        },
+        "end": {
+          "line": 423,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 12890,
+      "end": 12891,
+      "loc": {
+        "start": {
+          "line": 423,
+          "column": 8
+        },
+        "end": {
+          "line": 423,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 12891,
+      "end": 12892,
+      "loc": {
+        "start": {
+          "line": 423,
+          "column": 9
+        },
+        "end": {
+          "line": 423,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 12893,
+      "end": 12894,
+      "loc": {
+        "start": {
+          "line": 423,
+          "column": 11
+        },
+        "end": {
+          "line": 423,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 12904,
+      "end": 12910,
+      "loc": {
+        "start": {
+          "line": 424,
+          "column": 8
+        },
+        "end": {
+          "line": 424,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "this",
+        "keyword": "this",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "this",
+      "start": 12911,
+      "end": 12915,
+      "loc": {
+        "start": {
+          "line": 424,
+          "column": 15
+        },
+        "end": {
+          "line": 424,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 12915,
+      "end": 12916,
+      "loc": {
+        "start": {
+          "line": 424,
+          "column": 19
+        },
+        "end": {
+          "line": 424,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "__t",
+      "start": 12916,
+      "end": 12919,
+      "loc": {
+        "start": {
+          "line": 424,
+          "column": 20
+        },
+        "end": {
+          "line": 424,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 12919,
+      "end": 12920,
+      "loc": {
+        "start": {
+          "line": 424,
+          "column": 23
+        },
+        "end": {
+          "line": 424,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rend",
+      "start": 12920,
+      "end": 12924,
+      "loc": {
+        "start": {
+          "line": 424,
+          "column": 24
+        },
+        "end": {
+          "line": 424,
           "column": 28
         }
       }
@@ -32111,15 +33135,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12545,
-      "end": 12546,
+      "start": 12924,
+      "end": 12925,
       "loc": {
         "start": {
-          "line": 410,
+          "line": 424,
           "column": 28
         },
         "end": {
-          "line": 410,
+          "line": 424,
           "column": 29
         }
       }
@@ -32136,15 +33160,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12546,
-      "end": 12547,
+      "start": 12925,
+      "end": 12926,
       "loc": {
         "start": {
-          "line": 410,
+          "line": 424,
           "column": 29
         },
         "end": {
-          "line": 410,
+          "line": 424,
           "column": 30
         }
       }
@@ -32162,15 +33186,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 12547,
-      "end": 12548,
+      "start": 12926,
+      "end": 12927,
       "loc": {
         "start": {
-          "line": 410,
+          "line": 424,
           "column": 30
         },
         "end": {
-          "line": 410,
+          "line": 424,
           "column": 31
         }
       }
@@ -32187,15 +33211,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 12554,
-      "end": 12555,
+      "start": 12933,
+      "end": 12934,
       "loc": {
         "start": {
-          "line": 411,
+          "line": 425,
           "column": 4
         },
         "end": {
-          "line": 411,
+          "line": 425,
           "column": 5
         }
       }
@@ -32203,15 +33227,15 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     ",
-      "start": 12563,
-      "end": 13577,
+      "start": 12942,
+      "end": 13956,
       "loc": {
         "start": {
-          "line": 413,
+          "line": 427,
           "column": 4
         },
         "end": {
-          "line": 439,
+          "line": 453,
           "column": 7
         }
       }
@@ -32229,15 +33253,15 @@
         "binop": null
       },
       "value": "upperBound",
-      "start": 13583,
-      "end": 13593,
+      "start": 13962,
+      "end": 13972,
       "loc": {
         "start": {
-          "line": 440,
+          "line": 454,
           "column": 4
         },
         "end": {
-          "line": 440,
+          "line": 454,
           "column": 14
         }
       }
@@ -32254,15 +33278,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13593,
-      "end": 13594,
+      "start": 13972,
+      "end": 13973,
       "loc": {
         "start": {
-          "line": 440,
+          "line": 454,
           "column": 14
         },
         "end": {
-          "line": 440,
+          "line": 454,
           "column": 15
         }
       }
@@ -32280,15 +33304,15 @@
         "binop": null
       },
       "value": "key",
-      "start": 13594,
-      "end": 13597,
+      "start": 13973,
+      "end": 13976,
       "loc": {
         "start": {
-          "line": 440,
+          "line": 454,
           "column": 15
         },
         "end": {
-          "line": 440,
+          "line": 454,
           "column": 18
         }
       }
@@ -32305,15 +33329,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13597,
-      "end": 13598,
+      "start": 13976,
+      "end": 13977,
       "loc": {
         "start": {
-          "line": 440,
+          "line": 454,
           "column": 18
         },
         "end": {
-          "line": 440,
+          "line": 454,
           "column": 19
         }
       }
@@ -32330,15 +33354,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13599,
-      "end": 13600,
+      "start": 13978,
+      "end": 13979,
       "loc": {
         "start": {
-          "line": 440,
+          "line": 454,
           "column": 20
         },
         "end": {
-          "line": 440,
+          "line": 454,
           "column": 21
         }
       }
@@ -32358,15 +33382,15 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 13610,
-      "end": 13616,
+      "start": 13989,
+      "end": 13995,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 8
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 14
         }
       }
@@ -32386,15 +33410,15 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 13617,
-      "end": 13621,
+      "start": 13996,
+      "end": 14000,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 15
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 19
         }
       }
@@ -32412,15 +33436,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13621,
-      "end": 13622,
+      "start": 14000,
+      "end": 14001,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 19
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 20
         }
       }
@@ -32438,15 +33462,15 @@
         "binop": null
       },
       "value": "__t",
-      "start": 13622,
-      "end": 13625,
+      "start": 14001,
+      "end": 14004,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 20
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 23
         }
       }
@@ -32464,15 +33488,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13625,
-      "end": 13626,
+      "start": 14004,
+      "end": 14005,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 23
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 24
         }
       }
@@ -32490,15 +33514,15 @@
         "binop": null
       },
       "value": "upperBound",
-      "start": 13626,
-      "end": 13636,
+      "start": 14005,
+      "end": 14015,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 24
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 34
         }
       }
@@ -32515,15 +33539,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13636,
-      "end": 13637,
+      "start": 14015,
+      "end": 14016,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 34
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 35
         }
       }
@@ -32541,15 +33565,15 @@
         "binop": null
       },
       "value": "key",
-      "start": 13637,
-      "end": 13640,
+      "start": 14016,
+      "end": 14019,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 35
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 38
         }
       }
@@ -32566,15 +33590,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13640,
-      "end": 13641,
+      "start": 14019,
+      "end": 14020,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 38
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 39
         }
       }
@@ -32592,15 +33616,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13641,
-      "end": 13642,
+      "start": 14020,
+      "end": 14021,
       "loc": {
         "start": {
-          "line": 441,
+          "line": 455,
           "column": 39
         },
         "end": {
-          "line": 441,
+          "line": 455,
           "column": 40
         }
       }
@@ -32617,15 +33641,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13648,
-      "end": 13649,
+      "start": 14027,
+      "end": 14028,
       "loc": {
         "start": {
-          "line": 442,
+          "line": 456,
           "column": 4
         },
         "end": {
-          "line": 442,
+          "line": 456,
           "column": 5
         }
       }
@@ -32633,15 +33657,15 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     ",
-      "start": 13657,
-      "end": 13762,
+      "start": 14036,
+      "end": 14141,
       "loc": {
         "start": {
-          "line": 444,
+          "line": 458,
           "column": 4
         },
         "end": {
-          "line": 447,
+          "line": 461,
           "column": 7
         }
       }
@@ -32659,15 +33683,15 @@
         "binop": null
       },
       "value": "toString",
-      "start": 13768,
-      "end": 13776,
+      "start": 14147,
+      "end": 14155,
       "loc": {
         "start": {
-          "line": 448,
+          "line": 462,
           "column": 4
         },
         "end": {
-          "line": 448,
+          "line": 462,
           "column": 12
         }
       }
@@ -32684,15 +33708,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13776,
-      "end": 13777,
+      "start": 14155,
+      "end": 14156,
       "loc": {
         "start": {
-          "line": 448,
+          "line": 462,
           "column": 12
         },
         "end": {
-          "line": 448,
+          "line": 462,
           "column": 13
         }
       }
@@ -32709,15 +33733,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13777,
-      "end": 13778,
+      "start": 14156,
+      "end": 14157,
       "loc": {
         "start": {
-          "line": 448,
+          "line": 462,
           "column": 13
         },
         "end": {
-          "line": 448,
+          "line": 462,
           "column": 14
         }
       }
@@ -32734,15 +33758,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13779,
-      "end": 13780,
+      "start": 14158,
+      "end": 14159,
       "loc": {
         "start": {
-          "line": 448,
+          "line": 462,
           "column": 15
         },
         "end": {
-          "line": 448,
+          "line": 462,
           "column": 16
         }
       }
@@ -32762,15 +33786,15 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 13790,
-      "end": 13796,
+      "start": 14169,
+      "end": 14175,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 8
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 14
         }
       }
@@ -32790,15 +33814,15 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 13797,
-      "end": 13801,
+      "start": 14176,
+      "end": 14180,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 15
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 19
         }
       }
@@ -32816,15 +33840,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13801,
-      "end": 13802,
+      "start": 14180,
+      "end": 14181,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 19
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 20
         }
       }
@@ -32842,15 +33866,15 @@
         "binop": null
       },
       "value": "__t",
-      "start": 13802,
-      "end": 13805,
+      "start": 14181,
+      "end": 14184,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 20
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 23
         }
       }
@@ -32868,15 +33892,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13805,
-      "end": 13806,
+      "start": 14184,
+      "end": 14185,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 23
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 24
         }
       }
@@ -32894,15 +33918,15 @@
         "binop": null
       },
       "value": "toString",
-      "start": 13806,
-      "end": 13814,
+      "start": 14185,
+      "end": 14193,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 24
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 32
         }
       }
@@ -32919,15 +33943,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13814,
-      "end": 13815,
+      "start": 14193,
+      "end": 14194,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 32
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 33
         }
       }
@@ -32944,15 +33968,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13815,
-      "end": 13816,
+      "start": 14194,
+      "end": 14195,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 33
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 34
         }
       }
@@ -32970,15 +33994,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13816,
-      "end": 13817,
+      "start": 14195,
+      "end": 14196,
       "loc": {
         "start": {
-          "line": 449,
+          "line": 463,
           "column": 34
         },
         "end": {
-          "line": 449,
+          "line": 463,
           "column": 35
         }
       }
@@ -32995,15 +34019,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13823,
-      "end": 13824,
+      "start": 14202,
+      "end": 14203,
       "loc": {
         "start": {
-          "line": 450,
+          "line": 464,
           "column": 4
         },
         "end": {
-          "line": 450,
+          "line": 464,
           "column": 5
         }
       }
@@ -33020,15 +34044,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13826,
-      "end": 13827,
+      "start": 14205,
+      "end": 14206,
       "loc": {
         "start": {
-          "line": 451,
+          "line": 465,
           "column": 0
         },
         "end": {
-          "line": 451,
+          "line": 465,
           "column": 1
         }
       }
@@ -33048,15 +34072,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 13831,
-      "end": 13837,
+      "start": 14210,
+      "end": 14216,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 0
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 6
         }
       }
@@ -33073,15 +34097,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13838,
-      "end": 13839,
+      "start": 14217,
+      "end": 14218,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 7
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 8
         }
       }
@@ -33099,15 +34123,15 @@
         "binop": null
       },
       "value": "TreeSet",
-      "start": 13840,
-      "end": 13847,
+      "start": 14219,
+      "end": 14226,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 9
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 16
         }
       }
@@ -33125,15 +34149,15 @@
         "binop": null
       },
       "value": "as",
-      "start": 13848,
-      "end": 13850,
+      "start": 14227,
+      "end": 14229,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 17
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 19
         }
       }
@@ -33151,15 +34175,15 @@
         "binop": null
       },
       "value": "TreeSet",
-      "start": 13851,
-      "end": 13858,
+      "start": 14230,
+      "end": 14237,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 20
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 27
         }
       }
@@ -33177,15 +34201,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13858,
-      "end": 13859,
+      "start": 14237,
+      "end": 14238,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 27
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 28
         }
       }
@@ -33202,15 +34226,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 13860,
-      "end": 13861,
+      "start": 14239,
+      "end": 14240,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 29
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 30
         }
       }
@@ -33228,15 +34252,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13861,
-      "end": 13862,
+      "start": 14240,
+      "end": 14241,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 30
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 31
         }
       }
@@ -33254,15 +34278,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 13862,
-      "end": 13862,
+      "start": 14241,
+      "end": 14241,
       "loc": {
         "start": {
-          "line": 453,
+          "line": 467,
           "column": 31
         },
         "end": {
-          "line": 453,
+          "line": 467,
           "column": 31
         }
       }

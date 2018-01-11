@@ -413,6 +413,20 @@ class TreeMultiMap {
     }
 
     /**
+     * Removes key-value pair for the specified iterator.
+     * @param {Iterator} iterator
+     * @example
+     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let it = map.find(2);
+     * it.prev();
+     * map.erase(it); // removes a node with key 1
+     * console.log(map.toString()); // {2:B,3:C}
+     */
+    erase(iterator) {
+        this.__t.erase(iterator.node);
+    }
+
+    /**
      * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.
      * @param {*} key
      * @returns {Iterator}

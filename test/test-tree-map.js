@@ -360,4 +360,17 @@ describe('TreeMap tests', function() {
         done();
     });
 
+    it('erase', function(done) {
+        let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+        let it = map.find(2);
+        it.prev();
+        map.erase(it);
+        let expected = '{2:B,3:C}';
+        should.equal(expected, map.toString());
+        map.delete(4);
+        should.equal(expected, map.toString());
+
+        done();
+    });
+
 });

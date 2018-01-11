@@ -358,4 +358,17 @@ describe('TreeMultiSet tests', function() {
         done();
     });
 
+    it('erase', function(done) {
+        let map = new TreeMultiSet([1, 2, 3]);
+        let it = map.find(2);
+        it.prev();
+        map.erase(it);
+        let expected = '{2,3}';
+        should.equal(expected, map.toString());
+        map.delete(4);
+        should.equal(expected, map.toString());
+
+        done();
+    });
+
 });

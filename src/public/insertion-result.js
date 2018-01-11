@@ -5,8 +5,8 @@
 class InsertionResult {
     /**
      * Default constructor
-     * @param {Boolean} wasAdded 
-     * @param {Boolean} wasReplaced 
+     * @param {Boolean} wasAdded
+     * @param {Boolean} wasReplaced
      * @param {Iterator} iterator only provided if the node was added, or replaced
      */
     constructor(wasAdded, wasReplaced, iterator) {

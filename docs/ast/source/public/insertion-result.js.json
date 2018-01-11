@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 947,
+  "end": 945,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 947,
+    "end": 945,
     "loc": {
       "start": {
         "line": 1,
@@ -31,7 +31,7 @@
       {
         "type": "Identifier",
         "start": 217,
-        "end": 897,
+        "end": 895,
         "loc": {
           "start": {
             "line": 5,
@@ -64,7 +64,7 @@
         "body": {
           "type": "ClassBody",
           "start": 239,
-          "end": 897,
+          "end": 895,
           "loc": {
             "start": {
               "line": 5,
@@ -78,8 +78,8 @@
           "body": [
             {
               "type": "ClassMethod",
-              "start": 449,
-              "end": 894,
+              "start": 447,
+              "end": 892,
               "loc": {
                 "start": {
                   "line": 12,
@@ -94,8 +94,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 449,
-                "end": 460,
+                "start": 447,
+                "end": 458,
                 "loc": {
                   "start": {
                     "line": 12,
@@ -118,8 +118,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 461,
-                  "end": 469,
+                  "start": 459,
+                  "end": 467,
                   "loc": {
                     "start": {
                       "line": 12,
@@ -135,8 +135,8 @@
                 },
                 {
                   "type": "Identifier",
-                  "start": 471,
-                  "end": 482,
+                  "start": 469,
+                  "end": 480,
                   "loc": {
                     "start": {
                       "line": 12,
@@ -152,8 +152,8 @@
                 },
                 {
                   "type": "Identifier",
-                  "start": 484,
-                  "end": 492,
+                  "start": 482,
+                  "end": 490,
                   "loc": {
                     "start": {
                       "line": 12,
@@ -170,8 +170,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 494,
-                "end": 894,
+                "start": 492,
+                "end": 892,
                 "loc": {
                   "start": {
                     "line": 12,
@@ -185,8 +185,8 @@
                 "body": [
                   {
                     "type": "ExpressionStatement",
-                    "start": 596,
-                    "end": 621,
+                    "start": 594,
+                    "end": 619,
                     "loc": {
                       "start": {
                         "line": 16,
@@ -199,8 +199,8 @@
                     },
                     "expression": {
                       "type": "AssignmentExpression",
-                      "start": 596,
-                      "end": 620,
+                      "start": 594,
+                      "end": 618,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -214,8 +214,8 @@
                       "operator": "=",
                       "left": {
                         "type": "MemberExpression",
-                        "start": 596,
-                        "end": 609,
+                        "start": 594,
+                        "end": 607,
                         "loc": {
                           "start": {
                             "line": 16,
@@ -228,8 +228,8 @@
                         },
                         "object": {
                           "type": "ThisExpression",
-                          "start": 596,
-                          "end": 600,
+                          "start": 594,
+                          "end": 598,
                           "loc": {
                             "start": {
                               "line": 16,
@@ -244,8 +244,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 601,
-                          "end": 609,
+                          "start": 599,
+                          "end": 607,
                           "loc": {
                             "start": {
                               "line": 16,
@@ -264,8 +264,8 @@
                       },
                       "right": {
                         "type": "Identifier",
-                        "start": 612,
-                        "end": 620,
+                        "start": 610,
+                        "end": 618,
                         "loc": {
                           "start": {
                             "line": 16,
@@ -285,8 +285,8 @@
                       {
                         "type": "CommentBlock",
                         "value": "*\r\n         * Boolean flag indicating whether an element was added\r\n         ",
-                        "start": 505,
-                        "end": 586,
+                        "start": 503,
+                        "end": 584,
                         "loc": {
                           "start": {
                             "line": 13,
@@ -303,8 +303,8 @@
                       {
                         "type": "CommentBlock",
                         "value": "*\r\n         * Boolean flag indicating whether an existing node was updated\r\n         ",
-                        "start": 631,
-                        "end": 720,
+                        "start": 629,
+                        "end": 718,
                         "loc": {
                           "start": {
                             "line": 17,
@@ -320,8 +320,8 @@
                   },
                   {
                     "type": "ExpressionStatement",
-                    "start": 730,
-                    "end": 761,
+                    "start": 728,
+                    "end": 759,
                     "loc": {
                       "start": {
                         "line": 20,
@@ -334,8 +334,8 @@
                     },
                     "expression": {
                       "type": "AssignmentExpression",
-                      "start": 730,
-                      "end": 760,
+                      "start": 728,
+                      "end": 758,
                       "loc": {
                         "start": {
                           "line": 20,
@@ -349,8 +349,8 @@
                       "operator": "=",
                       "left": {
                         "type": "MemberExpression",
-                        "start": 730,
-                        "end": 746,
+                        "start": 728,
+                        "end": 744,
                         "loc": {
                           "start": {
                             "line": 20,
@@ -363,8 +363,8 @@
                         },
                         "object": {
                           "type": "ThisExpression",
-                          "start": 730,
-                          "end": 734,
+                          "start": 728,
+                          "end": 732,
                           "loc": {
                             "start": {
                               "line": 20,
@@ -379,8 +379,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 735,
-                          "end": 746,
+                          "start": 733,
+                          "end": 744,
                           "loc": {
                             "start": {
                               "line": 20,
@@ -399,8 +399,8 @@
                       },
                       "right": {
                         "type": "Identifier",
-                        "start": 749,
-                        "end": 760,
+                        "start": 747,
+                        "end": 758,
                         "loc": {
                           "start": {
                             "line": 20,
@@ -420,8 +420,8 @@
                       {
                         "type": "CommentBlock",
                         "value": "*\r\n         * Boolean flag indicating whether an existing node was updated\r\n         ",
-                        "start": 631,
-                        "end": 720,
+                        "start": 629,
+                        "end": 718,
                         "loc": {
                           "start": {
                             "line": 17,
@@ -438,8 +438,8 @@
                       {
                         "type": "CommentBlock",
                         "value": "*\r\n         * {Iterator} instance pointing to the newly added node\r\n         ",
-                        "start": 771,
-                        "end": 852,
+                        "start": 769,
+                        "end": 850,
                         "loc": {
                           "start": {
                             "line": 21,
@@ -455,8 +455,8 @@
                   },
                   {
                     "type": "ExpressionStatement",
-                    "start": 862,
-                    "end": 887,
+                    "start": 860,
+                    "end": 885,
                     "loc": {
                       "start": {
                         "line": 24,
@@ -469,8 +469,8 @@
                     },
                     "expression": {
                       "type": "AssignmentExpression",
-                      "start": 862,
-                      "end": 886,
+                      "start": 860,
+                      "end": 884,
                       "loc": {
                         "start": {
                           "line": 24,
@@ -484,8 +484,8 @@
                       "operator": "=",
                       "left": {
                         "type": "MemberExpression",
-                        "start": 862,
-                        "end": 875,
+                        "start": 860,
+                        "end": 873,
                         "loc": {
                           "start": {
                             "line": 24,
@@ -498,8 +498,8 @@
                         },
                         "object": {
                           "type": "ThisExpression",
-                          "start": 862,
-                          "end": 866,
+                          "start": 860,
+                          "end": 864,
                           "loc": {
                             "start": {
                               "line": 24,
@@ -514,8 +514,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 867,
-                          "end": 875,
+                          "start": 865,
+                          "end": 873,
                           "loc": {
                             "start": {
                               "line": 24,
@@ -534,8 +534,8 @@
                       },
                       "right": {
                         "type": "Identifier",
-                        "start": 878,
-                        "end": 886,
+                        "start": 876,
+                        "end": 884,
                         "loc": {
                           "start": {
                             "line": 24,
@@ -555,8 +555,8 @@
                       {
                         "type": "CommentBlock",
                         "value": "*\r\n         * {Iterator} instance pointing to the newly added node\r\n         ",
-                        "start": 771,
-                        "end": 852,
+                        "start": 769,
+                        "end": 850,
                         "loc": {
                           "start": {
                             "line": 21,
@@ -576,9 +576,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded \r\n     * @param {Boolean} wasReplaced \r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
+                  "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded\r\n     * @param {Boolean} wasReplaced\r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
                   "start": 246,
-                  "end": 443,
+                  "end": 441,
                   "loc": {
                     "start": {
                       "line": 6,
@@ -600,8 +600,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 901,
-        "end": 947,
+        "start": 899,
+        "end": 945,
         "loc": {
           "start": {
             "line": 28,
@@ -616,8 +616,8 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 910,
-            "end": 944,
+            "start": 908,
+            "end": 942,
             "loc": {
               "start": {
                 "line": 28,
@@ -630,8 +630,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 910,
-              "end": 925,
+              "start": 908,
+              "end": 923,
               "loc": {
                 "start": {
                   "line": 28,
@@ -647,8 +647,8 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 929,
-              "end": 944,
+              "start": 927,
+              "end": 942,
               "loc": {
                 "start": {
                   "line": 28,
@@ -668,8 +668,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 901,
-        "end": 947,
+        "start": 899,
+        "end": 945,
         "loc": {
           "start": {
             "line": 28,
@@ -683,7 +683,7 @@
         "declaration": {
           "type": "ClassDeclaration",
           "start": 217,
-          "end": 897,
+          "end": 895,
           "loc": {
             "start": {
               "line": 5,
@@ -716,7 +716,7 @@
           "body": {
             "type": "ClassBody",
             "start": 239,
-            "end": 897,
+            "end": 895,
             "loc": {
               "start": {
                 "line": 5,
@@ -730,8 +730,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 449,
-                "end": 894,
+                "start": 447,
+                "end": 892,
                 "loc": {
                   "start": {
                     "line": 12,
@@ -746,8 +746,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 449,
-                  "end": 460,
+                  "start": 447,
+                  "end": 458,
                   "loc": {
                     "start": {
                       "line": 12,
@@ -770,8 +770,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 461,
-                    "end": 469,
+                    "start": 459,
+                    "end": 467,
                     "loc": {
                       "start": {
                         "line": 12,
@@ -787,8 +787,8 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 471,
-                    "end": 482,
+                    "start": 469,
+                    "end": 480,
                     "loc": {
                       "start": {
                         "line": 12,
@@ -804,8 +804,8 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 484,
-                    "end": 492,
+                    "start": 482,
+                    "end": 490,
                     "loc": {
                       "start": {
                         "line": 12,
@@ -822,8 +822,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 494,
-                  "end": 894,
+                  "start": 492,
+                  "end": 892,
                   "loc": {
                     "start": {
                       "line": 12,
@@ -837,8 +837,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 596,
-                      "end": 621,
+                      "start": 594,
+                      "end": 619,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -851,8 +851,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 596,
-                        "end": 620,
+                        "start": 594,
+                        "end": 618,
                         "loc": {
                           "start": {
                             "line": 16,
@@ -866,8 +866,8 @@
                         "operator": "=",
                         "left": {
                           "type": "MemberExpression",
-                          "start": 596,
-                          "end": 609,
+                          "start": 594,
+                          "end": 607,
                           "loc": {
                             "start": {
                               "line": 16,
@@ -880,8 +880,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 596,
-                            "end": 600,
+                            "start": 594,
+                            "end": 598,
                             "loc": {
                               "start": {
                                 "line": 16,
@@ -896,8 +896,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 601,
-                            "end": 609,
+                            "start": 599,
+                            "end": 607,
                             "loc": {
                               "start": {
                                 "line": 16,
@@ -916,8 +916,8 @@
                         },
                         "right": {
                           "type": "Identifier",
-                          "start": 612,
-                          "end": 620,
+                          "start": 610,
+                          "end": 618,
                           "loc": {
                             "start": {
                               "line": 16,
@@ -937,8 +937,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * Boolean flag indicating whether an element was added\r\n         ",
-                          "start": 505,
-                          "end": 586,
+                          "start": 503,
+                          "end": 584,
                           "loc": {
                             "start": {
                               "line": 13,
@@ -955,8 +955,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * Boolean flag indicating whether an existing node was updated\r\n         ",
-                          "start": 631,
-                          "end": 720,
+                          "start": 629,
+                          "end": 718,
                           "loc": {
                             "start": {
                               "line": 17,
@@ -972,8 +972,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 730,
-                      "end": 761,
+                      "start": 728,
+                      "end": 759,
                       "loc": {
                         "start": {
                           "line": 20,
@@ -986,8 +986,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 730,
-                        "end": 760,
+                        "start": 728,
+                        "end": 758,
                         "loc": {
                           "start": {
                             "line": 20,
@@ -1001,8 +1001,8 @@
                         "operator": "=",
                         "left": {
                           "type": "MemberExpression",
-                          "start": 730,
-                          "end": 746,
+                          "start": 728,
+                          "end": 744,
                           "loc": {
                             "start": {
                               "line": 20,
@@ -1015,8 +1015,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 730,
-                            "end": 734,
+                            "start": 728,
+                            "end": 732,
                             "loc": {
                               "start": {
                                 "line": 20,
@@ -1031,8 +1031,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 735,
-                            "end": 746,
+                            "start": 733,
+                            "end": 744,
                             "loc": {
                               "start": {
                                 "line": 20,
@@ -1051,8 +1051,8 @@
                         },
                         "right": {
                           "type": "Identifier",
-                          "start": 749,
-                          "end": 760,
+                          "start": 747,
+                          "end": 758,
                           "loc": {
                             "start": {
                               "line": 20,
@@ -1072,8 +1072,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * Boolean flag indicating whether an existing node was updated\r\n         ",
-                          "start": 631,
-                          "end": 720,
+                          "start": 629,
+                          "end": 718,
                           "loc": {
                             "start": {
                               "line": 17,
@@ -1090,8 +1090,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * {Iterator} instance pointing to the newly added node\r\n         ",
-                          "start": 771,
-                          "end": 852,
+                          "start": 769,
+                          "end": 850,
                           "loc": {
                             "start": {
                               "line": 21,
@@ -1107,8 +1107,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 862,
-                      "end": 887,
+                      "start": 860,
+                      "end": 885,
                       "loc": {
                         "start": {
                           "line": 24,
@@ -1121,8 +1121,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 862,
-                        "end": 886,
+                        "start": 860,
+                        "end": 884,
                         "loc": {
                           "start": {
                             "line": 24,
@@ -1136,8 +1136,8 @@
                         "operator": "=",
                         "left": {
                           "type": "MemberExpression",
-                          "start": 862,
-                          "end": 875,
+                          "start": 860,
+                          "end": 873,
                           "loc": {
                             "start": {
                               "line": 24,
@@ -1150,8 +1150,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 862,
-                            "end": 866,
+                            "start": 860,
+                            "end": 864,
                             "loc": {
                               "start": {
                                 "line": 24,
@@ -1166,8 +1166,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 867,
-                            "end": 875,
+                            "start": 865,
+                            "end": 873,
                             "loc": {
                               "start": {
                                 "line": 24,
@@ -1186,8 +1186,8 @@
                         },
                         "right": {
                           "type": "Identifier",
-                          "start": 878,
-                          "end": 886,
+                          "start": 876,
+                          "end": 884,
                           "loc": {
                             "start": {
                               "line": 24,
@@ -1207,8 +1207,8 @@
                         {
                           "type": "CommentBlock",
                           "value": "*\r\n         * {Iterator} instance pointing to the newly added node\r\n         ",
-                          "start": 771,
-                          "end": 852,
+                          "start": 769,
+                          "end": 850,
                           "loc": {
                             "start": {
                               "line": 21,
@@ -1228,9 +1228,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded \r\n     * @param {Boolean} wasReplaced \r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
+                    "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded\r\n     * @param {Boolean} wasReplaced\r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
                     "start": 246,
-                    "end": 443,
+                    "end": 441,
                     "loc": {
                       "start": {
                         "line": 6,
@@ -1293,9 +1293,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded \r\n     * @param {Boolean} wasReplaced \r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
+      "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded\r\n     * @param {Boolean} wasReplaced\r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
       "start": 246,
-      "end": 443,
+      "end": 441,
       "loc": {
         "start": {
           "line": 6,
@@ -1310,8 +1310,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * Boolean flag indicating whether an element was added\r\n         ",
-      "start": 505,
-      "end": 586,
+      "start": 503,
+      "end": 584,
       "loc": {
         "start": {
           "line": 13,
@@ -1326,8 +1326,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * Boolean flag indicating whether an existing node was updated\r\n         ",
-      "start": 631,
-      "end": 720,
+      "start": 629,
+      "end": 718,
       "loc": {
         "start": {
           "line": 17,
@@ -1342,8 +1342,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * {Iterator} instance pointing to the newly added node\r\n         ",
-      "start": 771,
-      "end": 852,
+      "start": 769,
+      "end": 850,
       "loc": {
         "start": {
           "line": 21,
@@ -1454,9 +1454,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded \r\n     * @param {Boolean} wasReplaced \r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
+      "value": "*\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded\r\n     * @param {Boolean} wasReplaced\r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     ",
       "start": 246,
-      "end": 443,
+      "end": 441,
       "loc": {
         "start": {
           "line": 6,
@@ -1481,8 +1481,8 @@
         "binop": null
       },
       "value": "constructor",
-      "start": 449,
-      "end": 460,
+      "start": 447,
+      "end": 458,
       "loc": {
         "start": {
           "line": 12,
@@ -1506,8 +1506,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 460,
-      "end": 461,
+      "start": 458,
+      "end": 459,
       "loc": {
         "start": {
           "line": 12,
@@ -1532,8 +1532,8 @@
         "binop": null
       },
       "value": "wasAdded",
-      "start": 461,
-      "end": 469,
+      "start": 459,
+      "end": 467,
       "loc": {
         "start": {
           "line": 12,
@@ -1558,8 +1558,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 469,
-      "end": 470,
+      "start": 467,
+      "end": 468,
       "loc": {
         "start": {
           "line": 12,
@@ -1584,8 +1584,8 @@
         "binop": null
       },
       "value": "wasReplaced",
-      "start": 471,
-      "end": 482,
+      "start": 469,
+      "end": 480,
       "loc": {
         "start": {
           "line": 12,
@@ -1610,8 +1610,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 482,
-      "end": 483,
+      "start": 480,
+      "end": 481,
       "loc": {
         "start": {
           "line": 12,
@@ -1636,8 +1636,8 @@
         "binop": null
       },
       "value": "iterator",
-      "start": 484,
-      "end": 492,
+      "start": 482,
+      "end": 490,
       "loc": {
         "start": {
           "line": 12,
@@ -1661,8 +1661,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 492,
-      "end": 493,
+      "start": 490,
+      "end": 491,
       "loc": {
         "start": {
           "line": 12,
@@ -1686,8 +1686,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 494,
-      "end": 495,
+      "start": 492,
+      "end": 493,
       "loc": {
         "start": {
           "line": 12,
@@ -1702,8 +1702,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * Boolean flag indicating whether an element was added\r\n         ",
-      "start": 505,
-      "end": 586,
+      "start": 503,
+      "end": 584,
       "loc": {
         "start": {
           "line": 13,
@@ -1730,8 +1730,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 596,
-      "end": 600,
+      "start": 594,
+      "end": 598,
       "loc": {
         "start": {
           "line": 16,
@@ -1756,8 +1756,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 600,
-      "end": 601,
+      "start": 598,
+      "end": 599,
       "loc": {
         "start": {
           "line": 16,
@@ -1782,8 +1782,8 @@
         "binop": null
       },
       "value": "wasAdded",
-      "start": 601,
-      "end": 609,
+      "start": 599,
+      "end": 607,
       "loc": {
         "start": {
           "line": 16,
@@ -1809,8 +1809,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 610,
-      "end": 611,
+      "start": 608,
+      "end": 609,
       "loc": {
         "start": {
           "line": 16,
@@ -1835,8 +1835,8 @@
         "binop": null
       },
       "value": "wasAdded",
-      "start": 612,
-      "end": 620,
+      "start": 610,
+      "end": 618,
       "loc": {
         "start": {
           "line": 16,
@@ -1861,8 +1861,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 620,
-      "end": 621,
+      "start": 618,
+      "end": 619,
       "loc": {
         "start": {
           "line": 16,
@@ -1877,8 +1877,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * Boolean flag indicating whether an existing node was updated\r\n         ",
-      "start": 631,
-      "end": 720,
+      "start": 629,
+      "end": 718,
       "loc": {
         "start": {
           "line": 17,
@@ -1905,8 +1905,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 730,
-      "end": 734,
+      "start": 728,
+      "end": 732,
       "loc": {
         "start": {
           "line": 20,
@@ -1931,8 +1931,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 734,
-      "end": 735,
+      "start": 732,
+      "end": 733,
       "loc": {
         "start": {
           "line": 20,
@@ -1957,8 +1957,8 @@
         "binop": null
       },
       "value": "wasReplaced",
-      "start": 735,
-      "end": 746,
+      "start": 733,
+      "end": 744,
       "loc": {
         "start": {
           "line": 20,
@@ -1984,8 +1984,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 747,
-      "end": 748,
+      "start": 745,
+      "end": 746,
       "loc": {
         "start": {
           "line": 20,
@@ -2010,8 +2010,8 @@
         "binop": null
       },
       "value": "wasReplaced",
-      "start": 749,
-      "end": 760,
+      "start": 747,
+      "end": 758,
       "loc": {
         "start": {
           "line": 20,
@@ -2036,8 +2036,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 760,
-      "end": 761,
+      "start": 758,
+      "end": 759,
       "loc": {
         "start": {
           "line": 20,
@@ -2052,8 +2052,8 @@
     {
       "type": "CommentBlock",
       "value": "*\r\n         * {Iterator} instance pointing to the newly added node\r\n         ",
-      "start": 771,
-      "end": 852,
+      "start": 769,
+      "end": 850,
       "loc": {
         "start": {
           "line": 21,
@@ -2080,8 +2080,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 862,
-      "end": 866,
+      "start": 860,
+      "end": 864,
       "loc": {
         "start": {
           "line": 24,
@@ -2106,8 +2106,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 866,
-      "end": 867,
+      "start": 864,
+      "end": 865,
       "loc": {
         "start": {
           "line": 24,
@@ -2132,8 +2132,8 @@
         "binop": null
       },
       "value": "iterator",
-      "start": 867,
-      "end": 875,
+      "start": 865,
+      "end": 873,
       "loc": {
         "start": {
           "line": 24,
@@ -2159,8 +2159,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 876,
-      "end": 877,
+      "start": 874,
+      "end": 875,
       "loc": {
         "start": {
           "line": 24,
@@ -2185,8 +2185,8 @@
         "binop": null
       },
       "value": "iterator",
-      "start": 878,
-      "end": 886,
+      "start": 876,
+      "end": 884,
       "loc": {
         "start": {
           "line": 24,
@@ -2211,8 +2211,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 886,
-      "end": 887,
+      "start": 884,
+      "end": 885,
       "loc": {
         "start": {
           "line": 24,
@@ -2236,8 +2236,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 893,
-      "end": 894,
+      "start": 891,
+      "end": 892,
       "loc": {
         "start": {
           "line": 25,
@@ -2261,8 +2261,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 896,
-      "end": 897,
+      "start": 894,
+      "end": 895,
       "loc": {
         "start": {
           "line": 26,
@@ -2289,8 +2289,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 901,
-      "end": 907,
+      "start": 899,
+      "end": 905,
       "loc": {
         "start": {
           "line": 28,
@@ -2314,8 +2314,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 908,
-      "end": 909,
+      "start": 906,
+      "end": 907,
       "loc": {
         "start": {
           "line": 28,
@@ -2340,8 +2340,8 @@
         "binop": null
       },
       "value": "InsertionResult",
-      "start": 910,
-      "end": 925,
+      "start": 908,
+      "end": 923,
       "loc": {
         "start": {
           "line": 28,
@@ -2366,8 +2366,8 @@
         "binop": null
       },
       "value": "as",
-      "start": 926,
-      "end": 928,
+      "start": 924,
+      "end": 926,
       "loc": {
         "start": {
           "line": 28,
@@ -2392,8 +2392,8 @@
         "binop": null
       },
       "value": "InsertionResult",
-      "start": 929,
-      "end": 944,
+      "start": 927,
+      "end": 942,
       "loc": {
         "start": {
           "line": 28,
@@ -2417,8 +2417,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 945,
-      "end": 946,
+      "start": 943,
+      "end": 944,
       "loc": {
         "start": {
           "line": 28,
@@ -2443,8 +2443,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 946,
-      "end": 947,
+      "start": 944,
+      "end": 945,
       "loc": {
         "start": {
           "line": 28,
@@ -2469,8 +2469,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 947,
-      "end": 947,
+      "start": 945,
+      "end": 945,
       "loc": {
         "start": {
           "line": 28,

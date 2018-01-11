@@ -531,6 +531,35 @@ for (let key of set) {
           
           
           
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-erase">erase</a></span></span><span class="code" data-ice="signature">(iterator: <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Removes value for the specified iterator.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
@@ -1747,6 +1776,77 @@ for (let key of set.entries()) {
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-erase">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">erase</span><span class="code" data-ice="signature">(iterator: <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber383">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Removes value for the specified iterator.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">iterator</td>
+      <td data-ice="type" class="code"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeMultiSet([1,2,3]);
+let it = set.find(2);
+it.prev();
+set.erase(it); // removes a node with key 1
+console.log(set.toString()); // {2,3}</code></pre>
+    </div>
+</div>
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-find">
     <span class="access" data-ice="access">public</span>
     
@@ -2320,7 +2420,7 @@ for (let k of set.keys().backward()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber400">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber414">source</a></span></span>
     </span>
   </h3>
 
@@ -2419,7 +2519,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber414">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber428">source</a></span></span>
     </span>
   </h3>
 
@@ -2486,7 +2586,7 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber428">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber442">source</a></span></span>
     </span>
   </h3>
 
@@ -2553,7 +2653,7 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber467">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber481">source</a></span></span>
     </span>
   </h3>
 
@@ -2609,7 +2709,7 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber459">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber473">source</a></span></span>
     </span>
   </h3>
 
