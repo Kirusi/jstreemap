@@ -324,36 +324,57 @@ describe('TreeMap tests', function() {
     });
 
     it('insertUnique', function(done) {
-        let map = new TreeMultiMap();
-        map.insertUnique(1, 'A');
-        map.insertUnique(1, 'B');
-        should.equal('A', map.get(1));
-        should.equal(1, map.size);
+        let m = new TreeMultiMap();
+        for (let i = 1; i < 4; ++i) {
+            let res = m.insertUnique(1, `N${i}`);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual('N1', res.iterator.value);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(!res.wasReplaced);
+            }
+        }
+        should.equal(1, m.size);
 
         done();
     });
 
-    it('insertOrReplace', function(done) {
-        let map = new TreeMultiMap();
-        map.insertOrReplace(1, 'A');
-        map.insertOrReplace(1, 'B');
-        should.equal('B', map.get(1));
-        should.equal(1, map.size);
+    it('insertOrUpdate', function(done) {
+        let m = new TreeMultiMap();
+        for (let i = 1; i < 4; ++i) {
+            let res = m.insertOrReplace(1, `N${i}`);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual(`N${i}`, res.iterator.value);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual(`N${i}`, res.iterator.value);
+            }
+        }
+        should.equal(1, m.size);
 
         done();
     });
 
     it('insertMulti', function(done) {
-        let map = new TreeMultiMap();
-        map.insertMulti(1, 'A');
-        map.insertMulti(1, 'B');
-        map.insertMulti(2, 'C');
-        let actual = [];
-        for (let [key, value] of map) {
-            actual.push([key, value]);
+        let m = new TreeMultiMap();
+        for (let i = 1; i < 4; ++i) {
+            let res = m.insertMulti(1, `N${i}`);
+            should.ok(res.wasAdded);
+            should.ok(!res.wasReplaced);
+            should.strictEqual(1, res.iterator.key);
+            should.strictEqual(`N${i}`, res.iterator.value);
         }
-        let expected = [[1, 'A'], [1, 'B'], [2, 'C']];
-        should.deepEqual(expected, actual);
+        should.equal(3, m.size);
 
         done();
     });

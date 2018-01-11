@@ -8,6 +8,8 @@ const {JsIterator, JsReverseIterator} = require('../public/js-iterators');
 const {Iterator, ReverseIterator} = require('../public/iterators');
 /** @ignore */
 const {KeyOnlyPolicy, ValueOnlyPolicy, KeyValuePolicy} = require('./policies');
+/** @ignore */
+const {InsertionResult} = require('../public/insertion-result');
 
 /** insertion mode of a multimap, nodes with the same keys can be added */
 const INSERT_MULTI = 1;
@@ -211,25 +213,28 @@ class Tree {
     /**
      * A node will be inserted into the tree even if nodes with the same key already exist
      * @param {*} node
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      */
     insertMulti(node) {
-        this.insertNode(node, INSERT_MULTI);
+        return this.insertNode(node, INSERT_MULTI);
     }
 
     /**
      * The node is inserted into the tree only if nodes with the same key do not exist there
      * @param {*} node
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      */
     insertUnique(node) {
-        this.insertNode(node, INSERT_UNIQUE);
+        return this.insertNode(node, INSERT_UNIQUE);
     }
 
     /**
      * The node i inserted. If a node with the same key exists it's value will be replaced by the value of the new node
      * @param {*} node
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      */
     insertOrReplace(node) {
-        this.insertNode(node, INSERT_REPLACE);
+        return this.insertNode(node, INSERT_REPLACE);
     }
 
     /**
@@ -237,10 +242,11 @@ class Tree {
      * Inserts node. Updates head node. Rebalances tree.
      * @param {*} n - node
      * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      */
     insertNode(n, mode = INSERT_MULTI) {
-        let wasInserted = this.insertNodeInternal(this.head.root, n, mode);
-        if (wasInserted) {
+        let res = this.insertNodeInternal(this.head.root, n, mode);
+        if (res.wasAdded) {
             if (this.head.size === 0) {
                 this.head.root = n;
                 this.head.leftmost = n;
@@ -260,6 +266,7 @@ class Tree {
             this.insertRepairTree(n);
             this.head.size = this.head.size + 1;
         }
+        return res;
     }
 
     /**
@@ -268,7 +275,7 @@ class Tree {
      * @param {*} root - root node of the tree
      * @param {*} n - node to be inserted
      * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
-     * @returns {Boolean} indicator whether the node was added.
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      */
     insertNodeInternal(root, n, mode) {
         // recursively descend the tree until a leaf is found
@@ -290,10 +297,10 @@ class Tree {
                 switch (mode) {
                     case INSERT_UNIQUE:
                         // it's a duplicate
-                        return false;
+                        return new InsertionResult(false, false, undefined);
                     case INSERT_REPLACE:
                         this.valuePolicy.copy(y, n);
-                        return false;
+                        return new InsertionResult(false, true, new Iterator(y, this));
                     default:
                         // INSERT_MULTI
                         x = y.right;
@@ -314,7 +321,7 @@ class Tree {
                 y.right = n;
             }
         }
-        return true;
+        return new InsertionResult(true, false, new Iterator(n, this));
     }
 
     /**

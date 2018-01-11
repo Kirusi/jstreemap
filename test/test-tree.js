@@ -1333,6 +1333,74 @@ describe('Tree tests', function() {
         done();
     });
 
+    it('insertUnique', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 4; ++i) {
+            let n = new TreeNode();
+            n.key = 1;
+            n.value = `N${i}`;
+            let res = t.insertUnique(n);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual('N1', res.iterator.value);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(!res.wasReplaced);
+            }
+        }
+        should.equal(1, t.size());
+
+        done();
+    });
+
+    it('insertOrUpdate', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 4; ++i) {
+            let n = new TreeNode();
+            n.key = 1;
+            n.value = `N${i}`;
+            let res = t.insertOrReplace(n);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual(`N${i}`, res.iterator.value);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual(`N${i}`, res.iterator.value);
+            }
+        }
+        should.equal(1, t.size());
+
+        done();
+    });
+
+    it('insertMulti', function(done) {
+        let t = new Tree();
+        t.valuePolicy = new KeyValuePolicy();
+        for (let i = 1; i < 4; ++i) {
+            let n = new TreeNode();
+            n.key = 1;
+            n.value = `N${i}`;
+            let res = t.insertMulti(n);
+            should.ok(res.wasAdded);
+            should.ok(!res.wasReplaced);
+            should.strictEqual(1, res.iterator.key);
+            should.strictEqual(`N${i}`, res.iterator.value);
+        }
+        should.equal(3, t.size());
+
+        done();
+    });
+
     it('insertMulti; lowerBound/upperBound range; same values', function(done) {
         let t = new Tree();
         t.valuePolicy = new KeyValuePolicy();

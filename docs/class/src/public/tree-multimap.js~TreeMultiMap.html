@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span></li>
@@ -43,13 +44,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMultiMap} from &apos;<span><a href="file/src/public/tree-multimap.js.html#lineNumber28">jstreemap/src/public/tree-multimap.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMultiMap} from &apos;<span><a href="file/src/public/tree-multimap.js.html#lineNumber45">jstreemap/src/public/tree-multimap.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/public/tree-multimap.js.html#lineNumber28">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/public/tree-multimap.js.html#lineNumber45">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -69,7 +70,22 @@
 
   
   
-  <div class="description" data-ice="description"><p>This is an associative container class storing key-value pairs in ascending order. This map permits having identical keys with different values</p>
+  <div class="description" data-ice="description"><p>TreeMultiMap is an associative container that stores elements formed by
+a combination of a key value and a mapped value, following a specific order,
+and where multiple elements can have equivalent keys.</p>
+<p>In a TreeMultiMap, the key values are generally used to sort and uniquely
+identify the elements, while the mapped values store the content
+associated to this key. The types of key and mapped value may differ.</p>
+<h2 id="container-properties">Container properties</h2><ul>
+<li><strong>Associative</strong> - Elements in associative containers are referenced
+by their key and not by their absolute position in the container.</li>
+<li><strong>Ordered</strong> - The elements in the container follow a strict order
+at all times. All inserted elements are given a position in this order.</li>
+<li><strong>Map</strong> - Each element associates a key to a mapped value. Keys are meant
+to identify the elements whose main content is the mapped value.</li>
+<li><strong>Multiple equivalent keys</strong> - Multiple elements in the container
+can have equivalent keys.</li>
+</ul>
 </div>
   
 
@@ -608,7 +624,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertMulti">insertMulti</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertMulti">insertMulti</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -637,7 +653,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -666,7 +682,7 @@ while (!it.equals(to)) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -933,7 +949,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber78">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber95">source</a></span></span>
     </span>
   </h3>
 
@@ -1003,7 +1019,7 @@ let map2 = new constrFunc();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber42">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber59">source</a></span></span>
     </span>
   </h3>
 
@@ -1077,7 +1093,7 @@ let map2 = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber66">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber83">source</a></span></span>
     </span>
   </h3>
 
@@ -1140,7 +1156,7 @@ let map2 = new TreeMultiMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber274">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber291">source</a></span></span>
     </span>
   </h3>
 
@@ -1188,7 +1204,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber215">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber232">source</a></span></span>
     </span>
   </h3>
 
@@ -1247,7 +1263,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber247">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber264">source</a></span></span>
     </span>
   </h3>
 
@@ -1313,7 +1329,7 @@ for (let [key,value] of map) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber263">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber280">source</a></span></span>
     </span>
   </h3>
 
@@ -1379,7 +1395,7 @@ for (let [key,value] of map.backwards()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber293">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber310">source</a></span></span>
     </span>
   </h3>
 
@@ -1446,7 +1462,7 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber106">source</a></span></span>
     </span>
   </h3>
 
@@ -1499,7 +1515,7 @@ console.log(map.size); // 0</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber100">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber117">source</a></span></span>
     </span>
   </h3>
 
@@ -1568,7 +1584,7 @@ console.log(map.toString()); // {1:A,3:C}</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber307">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber324">source</a></span></span>
     </span>
   </h3>
 
@@ -1635,7 +1651,7 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber116">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber133">source</a></span></span>
     </span>
   </h3>
 
@@ -1701,7 +1717,7 @@ for (let [key,value] of map.entries()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber323">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber340">source</a></span></span>
     </span>
   </h3>
 
@@ -1785,7 +1801,7 @@ if (!it.equals(m.end())) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber129">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
@@ -1856,7 +1872,7 @@ map.forEach(function(value, key, container) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber144">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber161">source</a></span></span>
     </span>
   </h3>
 
@@ -1938,7 +1954,7 @@ let v = map.get(3); // &apos;C&apos;
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber162">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber179">source</a></span></span>
     </span>
   </h3>
 
@@ -2015,11 +2031,11 @@ let b = map.get(3); // true</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertMulti</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">insertMulti</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber371">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber408">source</a></span></span>
     </span>
   </h3>
 
@@ -2061,8 +2077,9 @@ let b = map.get(3); // true</code></pre>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>indicates whether a node was added and provides iterator to it.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2084,9 +2101,16 @@ let b = map.get(3); // true</code></pre>
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
-m.insertMulti(1, &apos;A&apos;);
-m.insertMulti(1, &apos;B&apos;); // this step has no effect on the map
-let v = m.get(1); // undefined</code></pre>
+let res = m.insertMulti(1, &apos;A&apos;);
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.value}`); // prints A
+}
+res = m.insertMulti(1, &apos;B&apos;) // adds a new node
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.value}`); // prints B
+  it.prev();
+  console.log(`Previously inserted ${res.iterator.value}`); // prints A
+}</code></pre>
     </div>
 </div>
 
@@ -2103,11 +2127,11 @@ let v = m.get(1); // undefined</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber354">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber383">source</a></span></span>
     </span>
   </h3>
 
@@ -2149,8 +2173,9 @@ let v = m.get(1); // undefined</code></pre>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>indicates whether a node was added and provides iterator to it.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2172,9 +2197,14 @@ let v = m.get(1); // undefined</code></pre>
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
-m.insertOrReplace(1, &apos;A&apos;);
-m.insertOrReplace(1, &apos;B&apos;); // replaces the value for key 1
-let v = m.get(1); // &apos;B&apos;</code></pre>
+let res = m.insertOrReplace(1, &apos;A&apos;);
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.value}`); // prints A
+}
+res = m.insertOrReplace(1, &apos;B&apos;) // replaces value on the existing node
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.key}`); // prints B
+}</code></pre>
     </div>
 </div>
 
@@ -2191,11 +2221,11 @@ let v = m.get(1); // &apos;B&apos;</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber337">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber360">source</a></span></span>
     </span>
   </h3>
 
@@ -2237,8 +2267,9 @@ let v = m.get(1); // &apos;B&apos;</code></pre>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>indicates whether a node was added and provides iterator to it.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2260,9 +2291,14 @@ let v = m.get(1); // &apos;B&apos;</code></pre>
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">let m = new TreeMultiMap();
-m.insertUnique(1, &apos;A&apos;);
-m.insertUnique(1, &apos;B&apos;); // this step has no effect on the map
-let v = m.get(1); // &apos;A&apos;</code></pre>
+let res = m.insertUnique(1, &apos;A&apos;);
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.value}`); // prints A
+}
+res = m.insertUnique(1, &apos;B&apos;) // this step has no effect on the map
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.key}`); // not executed
+}</code></pre>
     </div>
 </div>
 
@@ -2283,7 +2319,7 @@ let v = m.get(1); // &apos;A&apos;</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber187">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber204">source</a></span></span>
     </span>
   </h3>
 
@@ -2355,7 +2391,7 @@ for (let k of map.keys().backward()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber405">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber442">source</a></span></span>
     </span>
   </h3>
 
@@ -2454,7 +2490,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber419">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber456">source</a></span></span>
     </span>
   </h3>
 
@@ -2521,7 +2557,7 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber433">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber470">source</a></span></span>
     </span>
   </h3>
 
@@ -2588,7 +2624,7 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber204">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber221">source</a></span></span>
     </span>
   </h3>
 
@@ -2667,7 +2703,7 @@ for (let k of map.values()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber472">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber509">source</a></span></span>
     </span>
   </h3>
 
@@ -2723,7 +2759,7 @@ for (let k of map.values()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber464">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber501">source</a></span></span>
     </span>
   </h3>
 
@@ -2822,7 +2858,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber234">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multimap.js.html#lineNumber251">source</a></span></span>
     </span>
   </h3>
 

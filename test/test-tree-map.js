@@ -319,21 +319,43 @@ describe('TreeMap tests', function() {
     });
 
     it('insertUnique', function(done) {
-        let map = new TreeMap();
-        map.insertUnique(1, 'A');
-        map.insertUnique(1, 'B');
-        should.equal('A', map.get(1));
-        should.equal(1, map.size);
+        let m = new TreeMap();
+        for (let i = 1; i < 4; ++i) {
+            let res = m.insertUnique(1, `N${i}`);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual('N1', res.iterator.value);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(!res.wasReplaced);
+            }
+        }
+        should.equal(1, m.size);
 
         done();
     });
 
-    it('insertOrReplace', function(done) {
-        let map = new TreeMap();
-        map.insertOrReplace(1, 'A');
-        map.insertOrReplace(1, 'B');
-        should.equal('B', map.get(1));
-        should.equal(1, map.size);
+    it('insertOrUpdate', function(done) {
+        let m = new TreeMap();
+        for (let i = 1; i < 4; ++i) {
+            let res = m.insertOrReplace(1, `N${i}`);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual(`N${i}`, res.iterator.value);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+                should.strictEqual(`N${i}`, res.iterator.value);
+            }
+        }
+        should.equal(1, m.size);
 
         done();
     });

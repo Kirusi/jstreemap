@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span></li>
@@ -42,7 +43,52 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="jstreemap">jstreemap</h1><p>Associative containers (sets, maps) library for JavaScript, using red-black trees. Detailed library documntation is <a href="https://kirusi.github.io/jstreemap">here.</a></p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="jstreemap">jstreemap</h1><p>A JavaScript (ES6) library of tree-based associative containers.</p>
+<ul>
+<li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-set.js~TreeSet.html"><strong>TreeSet</strong></a> - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.</li>
+<li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-map.js~TreeMap.html"><strong>TreeMap</strong></a> - is an associative container that stores elements formed
+by a combination of a key value and a mapped value, following a specific order.
+In a TreeMap, the key values are generally used to sort and uniquely identify
+the elements, while the mapped values store the content associated to this key.
+The types of key and mapped value may differ.</li>
+<li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-multiset.js~TreeMultiSet.html"><strong>TreeMultiSet</strong></a> - is a container that stores elements following a specific order, and where multiple elements can have equivalent values. In a TreeMultiSet, the value of an element also identifies it (the value is itself the key). The value of the elements in a multiset cannot be modified once in the container (the elements are always immutable), but they can be inserted or removed from the container.</li>
+<li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-multimap.js~TreeMultiMap.html"><strong>TreeMultiMap</strong></a> - is an associative container that stores elements formed by a combination of a key value and a mapped value, following a specific order, and where multiple elements can have equivalent keys. In a TreeMultiMap, the key values are generally used to sort and uniquely identify the elements, while the mapped values store the content associated to this key. The types of key and mapped value may differ.</li>
+</ul>
+<p>All container implementations are using  red-black trees. Detailed library documentation is <a href="https://kirusi.github.io/jstreemap">here.</a></p>
+<h2 id="installation">Installation</h2><p>Using npm:</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">$ npm i --save jstreemap</code>
+</code></pre>
+<p>In Node.js:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// Load library.
+const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require(&apos;jstreemap&apos;);
+
+// Create and initialize map.
+let map = new TreeMap([[2, &apos;B&apos;], [1, &apos;A&apos;], [3, &apos;C&apos;]]);
+// Iterate through all key-value pairs
+// Note that entries are stored in the ascending order of the keys,
+// not in the insertion order as in standard ES6 map
+for(let [k,v] of map) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+// Expected output:
+// key: 1, value: A
+// key: 2, value: B
+// key: 3, value: C
+
+// Iterate elements in reverse order
+for(let [k,v] of map.backward()) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+
+// find all elements with keys between 10 and 20 inclusive
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
+    console.log(`key: ${it.key}, value: ${it.value}`);
+}</code>
+</code></pre>
+<h2 id="why-jstreemap-">Why jstreemap?</h2><p>Ordered associative containers are not provided by default with JavaScript. This library provides an efficient implementation where performance of insert, delete and search operations is O(log(n)).</p>
+<p>Unlike standard sets and maps in ES6, this library provides  ordered containers. Iteration through container contents will be done in sorted order without any additional performance load.</p>
+<p><a href="https://kirusi.github.io/jstreemap">Container API</a> implements features of default ES6 maps and sets as well as parts of STL (C++ library) interface.</p>
+<p>The library showcases 100% test coverage and 100% documentation coverage.</p>
 </div>
 </div>
 

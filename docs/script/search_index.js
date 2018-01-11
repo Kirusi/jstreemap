@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "jstreemap/src/public/insertion-result.js~insertionresult",
+    "class/src/public/insertion-result.js~InsertionResult.html",
+    "<span>InsertionResult</span> <span class=\"search-result-import-path\">jstreemap/src/public/insertion-result.js</span>",
+    "class"
+  ],
+  [
     "jstreemap/src/public/iterators.js~iterator",
     "class/src/public/iterators.js~Iterator.html",
     "<span>Iterator</span> <span class=\"search-result-import-path\">jstreemap/src/public/iterators.js</span>",
@@ -352,6 +358,36 @@ window.esdocSearchIndex = [
     "file/src/internal/tree.js.html",
     "src/internal/tree.js",
     "file"
+  ],
+  [
+    "src/public/insertion-result.js",
+    "file/src/public/insertion-result.js.html",
+    "src/public/insertion-result.js",
+    "file"
+  ],
+  [
+    "src/public/insertion-result.js~insertionresult#constructor",
+    "class/src/public/insertion-result.js~InsertionResult.html#instance-constructor-constructor",
+    "src/public/insertion-result.js~InsertionResult#constructor",
+    "method"
+  ],
+  [
+    "src/public/insertion-result.js~insertionresult#iterator",
+    "class/src/public/insertion-result.js~InsertionResult.html#instance-member-iterator",
+    "src/public/insertion-result.js~InsertionResult#iterator",
+    "member"
+  ],
+  [
+    "src/public/insertion-result.js~insertionresult#wasadded",
+    "class/src/public/insertion-result.js~InsertionResult.html#instance-member-wasAdded",
+    "src/public/insertion-result.js~InsertionResult#wasAdded",
+    "member"
+  ],
+  [
+    "src/public/insertion-result.js~insertionresult#wasreplaced",
+    "class/src/public/insertion-result.js~InsertionResult.html#instance-member-wasReplaced",
+    "src/public/insertion-result.js~InsertionResult#wasReplaced",
+    "member"
   ],
   [
     "src/public/iterators.js",
@@ -1041,6 +1077,18 @@ window.esdocSearchIndex = [
     "src/public/tree-set.js~treeset#has",
     "class/src/public/tree-set.js~TreeSet.html#instance-method-has",
     "src/public/tree-set.js~TreeSet#has",
+    "method"
+  ],
+  [
+    "src/public/tree-set.js~treeset#insertorreplace",
+    "class/src/public/tree-set.js~TreeSet.html#instance-method-insertOrReplace",
+    "src/public/tree-set.js~TreeSet#insertOrReplace",
+    "method"
+  ],
+  [
+    "src/public/tree-set.js~treeset#insertunique",
+    "class/src/public/tree-set.js~TreeSet.html#instance-method-insertUnique",
+    "src/public/tree-set.js~TreeSet#insertUnique",
     "method"
   ],
   [

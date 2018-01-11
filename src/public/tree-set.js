@@ -6,7 +6,22 @@ const {KeyOnlyPolicy} = require('../internal/policies');
 const {TreeNode} = require('../internal/tree-node');
 
 /**
- * This is an associative container class storing key values in ascending order. Duplicate key values are ignored.
+ * TreeSet is a container that stores unique elements following a specific order.
+ *
+ * In a TreeSet, the value of an element also identifies it (the value is itself the key),
+ * and each value must be unique. The value of the elements in a TreeSet cannot be modified
+ * once in the container (the elements are immutable), but they can be inserted or removed
+ * from the container.
+ *
+ * ## Container properties
+ * * **Associative** - Elements in associative containers are referenced by their key and
+ * not by their absolute position in the container.</li>
+ * * **Ordered** - The elements in the container follow a strict order at all times.
+ * All inserted elements are given a position in this order.</li>
+ * * **Set** - The value of an element is also the key used to identify it.</li>
+ * * **Unique keys** - No two elements in the container can have equivalent keys.</li>
+ *
+ *
  * @example
  * let set = new TreeSet();
  * // add few values
@@ -292,6 +307,48 @@ class TreeSet {
      */
     find(key) {
         return this.__t.find(key);
+    }
+
+    /**
+     * Adds a key if it doesn't exist
+     * @param {*} key
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
+     * @example
+     * let set = new TreeSet();
+     * let res = set.insertUnique(1);
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+     * }
+     * res = set.insertUnique(1); // this step has no effect on the set
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.key}`); // not executed
+     * }
+     */
+    insertUnique(key) {
+        let n = new TreeNode();
+        n.key = key;
+        return this.__t.insertUnique(n);
+    }
+
+    /**
+     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists
+     * @param {*} key
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
+     * @example
+     * let set = new TreeSet();
+     * let res = set.insertOrReplace(1);
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+     * }
+     * res = set.insertOrReplace(1) // returns iterator to the previously added node
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+     * }
+     */
+    insertOrReplace(key) {
+        let n = new TreeNode();
+        n.key = key;
+        return this.__t.insertOrReplace(n);
     }
 
     /**

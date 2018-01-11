@@ -1,6 +1,6 @@
 {
   "name": "jstreemap",
-  "version": "1.7.1",
+  "version": "1.8.1",
   "description": "Library of associative containers.",
   "main": "jstreemap.js",
   "scripts": {
@@ -22,6 +22,8 @@
   "keywords": [
     "set",
     "map",
+    "multimap",
+    "multiset",
     "red",
     "black",
     "tree",

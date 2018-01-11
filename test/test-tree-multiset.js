@@ -308,19 +308,38 @@ describe('TreeMultiSet tests', function() {
 
     it('insertUnique', function(done) {
         let set = new TreeMultiSet();
-        set.insertUnique(1);
-        set.insertUnique(1);
-        should.ok(set.has(1));
+        for (let i = 1; i < 4; ++i) {
+            let res = set.insertUnique(1);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(!res.wasReplaced);
+            }
+        }
         should.equal(1, set.size);
 
         done();
     });
 
-    it('insertOrReplace', function(done) {
+    it('insertOrUpdate', function(done) {
         let set = new TreeMultiSet();
-        set.insertOrReplace(1);
-        set.insertOrReplace(1);
-        should.ok(set.has(1));
+        for (let i = 1; i < 4; ++i) {
+            let res = set.insertOrReplace(1);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+            }
+        }
         should.equal(1, set.size);
 
         done();
@@ -328,10 +347,13 @@ describe('TreeMultiSet tests', function() {
 
     it('insertMulti', function(done) {
         let set = new TreeMultiSet();
-        set.insertMulti(1);
-        set.insertMulti(1);
-        should.ok(set.has(1));
-        should.equal(2, set.size);
+        for (let i = 1; i < 4; ++i) {
+            let res = set.insertMulti(1);
+            should.ok(res.wasAdded);
+            should.ok(!res.wasReplaced);
+            should.strictEqual(1, res.iterator.key);
+        }
+        should.equal(3, set.size);
 
         done();
     });

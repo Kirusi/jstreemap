@@ -304,4 +304,43 @@ describe('TreeSet tests', function() {
         done();
     });
 
+    it('insertUnique', function(done) {
+        let set = new TreeSet();
+        for (let i = 1; i < 4; ++i) {
+            let res = set.insertUnique(1);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(!res.wasReplaced);
+            }
+        }
+        should.equal(1, set.size);
+
+        done();
+    });
+
+    it('insertOrUpdate', function(done) {
+        let set = new TreeSet();
+        for (let i = 1; i < 4; ++i) {
+            let res = set.insertOrReplace(1);
+            if (i === 1) {
+                should.ok(res.wasAdded);
+                should.ok(!res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+            }
+            else {
+                should.ok(!res.wasAdded);
+                should.ok(res.wasReplaced);
+                should.strictEqual(1, res.iterator.key);
+            }
+        }
+        should.equal(1, set.size);
+
+        done();
+    });
+
 });

@@ -1,7 +1,7 @@
 {
-  "coverage": "100%",
-  "expectCount": 251,
-  "actualCount": 251,
+  "coverage": "99.61%",
+  "expectCount": 259,
+  "actualCount": 258,
   "files": {
     "src/internal/policies.js": {
       "expectCount": 12,
@@ -14,9 +14,16 @@
       "undocumentLines": []
     },
     "src/internal/tree.js": {
-      "expectCount": 70,
-      "actualCount": 70,
+      "expectCount": 71,
+      "actualCount": 71,
       "undocumentLines": []
+    },
+    "src/public/insertion-result.js": {
+      "expectCount": 5,
+      "actualCount": 4,
+      "undocumentLines": [
+        6
+      ]
     },
     "src/public/iterators.js": {
       "expectCount": 19,
@@ -44,8 +51,8 @@
       "undocumentLines": []
     },
     "src/public/tree-set.js": {
-      "expectCount": 28,
-      "actualCount": 28,
+      "expectCount": 30,
+      "actualCount": 30,
       "undocumentLines": []
     }
   }

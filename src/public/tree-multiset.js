@@ -6,7 +6,23 @@ const {KeyOnlyPolicy} = require('../internal/policies');
 const {TreeNode} = require('../internal/tree-node');
 
 /**
- * This is an associative container class storing keys in ascending order, allowing duplicate key values.
+ * TreeMultiSet is a container that stores elements following a specific order,
+ * and where multiple elements can have equivalent values.
+ *
+ * In a TreeMultiSet, the value of an element also identifies it
+ * (the value is itself the key). The value of the elements in a multiset
+ * cannot be modified once in the container (the elements are always immutable),
+ * but they can be inserted or removed from the container.
+ *
+ * ## Container properties
+ * * **Associative** - Elements in associative containers are referenced
+ * by their key and not by their absolute position in the container.
+ * * **Ordered** - The elements in the container follow a strict order
+ * at all times. All inserted elements are given a position in this order.
+ * * **Set** - The value of an element is also the key used to identify it.
+ * * **Multiple equivalent keys** - Multiple elements in the container
+ * can have equivalent keys.
+ *
  * @example
  * let set = new TreeMultiSet();
  * // add few values
@@ -306,6 +322,7 @@ class TreeMultiSet {
     /**
      * Adds key if such key does not exist in the set.
      * @param {*} key
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      * @example
      * let set = new TreeMultiSet();
      * set.insertUnique(1);
@@ -322,6 +339,7 @@ class TreeMultiSet {
     /**
      * Adds key if such key does not exist in the set. Same as insertUnique()
      * @param {*} key
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      * @example
      * let set = new TreeMultiSet();
      * set.insertOrReplace(1);
@@ -338,6 +356,7 @@ class TreeMultiSet {
     /**
      * Adds key whether it exists or not in the set.
      * @param {*} key
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      * @example
      * let set = new TreeMultiSet();
      * set.insertMulti(1);

@@ -6,7 +6,24 @@ const {KeyValuePolicy} = require('../internal/policies');
 const {TreeNode} = require('../internal/tree-node');
 
 /**
- * This is an associative container class storing key-value pairs in ascending order. This map permits having identical keys with different values
+ * TreeMultiMap is an associative container that stores elements formed by
+ * a combination of a key value and a mapped value, following a specific order,
+ * and where multiple elements can have equivalent keys.
+ *
+ * In a TreeMultiMap, the key values are generally used to sort and uniquely
+ * identify the elements, while the mapped values store the content
+ * associated to this key. The types of key and mapped value may differ.
+ *
+ * ## Container properties
+ * * **Associative** - Elements in associative containers are referenced
+ * by their key and not by their absolute position in the container.
+ * * **Ordered** - The elements in the container follow a strict order
+ * at all times. All inserted elements are given a position in this order.
+ * * **Map** - Each element associates a key to a mapped value. Keys are meant
+ * to identify the elements whose main content is the mapped value.
+ * * **Multiple equivalent keys** - Multiple elements in the container
+ * can have equivalent keys.
+ *
  * @example
  * let map = new TreeMultiMap();
  * // add few values
@@ -328,11 +345,17 @@ class TreeMultiMap {
      * Adds key-value pair if such key does not exist in the map
      * @param {*} key
      * @param {*} value
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      * @example
      * let m = new TreeMultiMap();
-     * m.insertUnique(1, 'A');
-     * m.insertUnique(1, 'B'); // this step has no effect on the map
-     * let v = m.get(1); // 'A'
+     * let res = m.insertUnique(1, 'A');
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.value}`); // prints A
+     * }
+     * res = m.insertUnique(1, 'B') // this step has no effect on the map
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.key}`); // not executed
+     * }
      */
     insertUnique(key, value) {
         let n = new TreeNode();
@@ -345,11 +368,17 @@ class TreeMultiMap {
      * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists
      * @param {*} key
      * @param {*} value
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      * @example
      * let m = new TreeMultiMap();
-     * m.insertOrReplace(1, 'A');
-     * m.insertOrReplace(1, 'B'); // replaces the value for key 1
-     * let v = m.get(1); // 'B'
+     * let res = m.insertOrReplace(1, 'A');
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.value}`); // prints A
+     * }
+     * res = m.insertOrReplace(1, 'B') // replaces value on the existing node
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.key}`); // prints B
+     * }
      */
     insertOrReplace(key, value) {
         let n = new TreeNode();
@@ -362,11 +391,19 @@ class TreeMultiMap {
      * Adds key-value pair. If such key already exists in the map then adds another node with the same key and a new value.
      * @param {*} key
      * @param {*} value
+     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      * @example
      * let m = new TreeMultiMap();
-     * m.insertMulti(1, 'A');
-     * m.insertMulti(1, 'B'); // this step has no effect on the map
-     * let v = m.get(1); // undefined
+     * let res = m.insertMulti(1, 'A');
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.value}`); // prints A
+     * }
+     * res = m.insertMulti(1, 'B') // adds a new node
+     * if (res.wasInserted) {
+     *   console.log(`Inserted ${res.iterator.value}`); // prints B
+     *   it.prev();
+     *   console.log(`Previously inserted ${res.iterator.value}`); // prints A
+     * }
      */
     insertMulti(key, value) {
         let n = new TreeNode();

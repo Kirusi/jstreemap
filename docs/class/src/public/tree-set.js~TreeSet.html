@@ -29,7 +29,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span></li>
@@ -43,13 +44,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeSet} from &apos;<span><a href="file/src/public/tree-set.js.html#lineNumber22">jstreemap/src/public/tree-set.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeSet} from &apos;<span><a href="file/src/public/tree-set.js.html#lineNumber37">jstreemap/src/public/tree-set.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/public/tree-set.js.html#lineNumber22">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/public/tree-set.js.html#lineNumber37">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -69,7 +70,19 @@
 
   
   
-  <div class="description" data-ice="description"><p>This is an associative container class storing key values in ascending order. Duplicate key values are ignored.</p>
+  <div class="description" data-ice="description"><p>TreeSet is a container that stores unique elements following a specific order.</p>
+<p>In a TreeSet, the value of an element also identifies it (the value is itself the key),
+and each value must be unique. The value of the elements in a TreeSet cannot be modified
+once in the container (the elements are immutable), but they can be inserted or removed
+from the container.</p>
+<h2 id="container-properties">Container properties</h2><ul>
+<li><strong>Associative</strong> - Elements in associative containers are referenced by their key and
+not by their absolute position in the container.</li>
+<li><strong>Ordered</strong> - The elements in the container follow a strict order at all times.
+All inserted elements are given a position in this order.</li>
+<li><strong>Set</strong> - The value of an element is also the key used to identify it.</li>
+<li><strong>Unique keys</strong> - No two elements in the container can have equivalent keys.</li>
+</ul>
 </div>
   
 
@@ -602,6 +615,64 @@ for (let key of set) {
           
           
           
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Adds key-value pair if such key does not exist in the map.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Adds a key if it doesn&apos;t exist</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html#instance-method-keys">keys</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
         </p>
       </div>
@@ -811,7 +882,7 @@ for (let key of set) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber72">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber87">source</a></span></span>
     </span>
   </h3>
 
@@ -881,7 +952,7 @@ let set2 = new constrFunc();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber36">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -955,7 +1026,7 @@ let set2 = new TreeSet([1, 2, 3]);</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber60">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber75">source</a></span></span>
     </span>
   </h3>
 
@@ -1018,7 +1089,7 @@ let set2 = new TreeSet([1, 2, 3]);</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber244">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber259">source</a></span></span>
     </span>
   </h3>
 
@@ -1066,7 +1137,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber185">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber200">source</a></span></span>
     </span>
   </h3>
 
@@ -1125,7 +1196,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber217">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber232">source</a></span></span>
     </span>
   </h3>
 
@@ -1191,7 +1262,7 @@ for (let key of set) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber175">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber190">source</a></span></span>
     </span>
   </h3>
 
@@ -1259,7 +1330,7 @@ set.add(1);</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber233">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber248">source</a></span></span>
     </span>
   </h3>
 
@@ -1325,7 +1396,7 @@ for (let key of set.backwards()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber263">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber278">source</a></span></span>
     </span>
   </h3>
 
@@ -1392,7 +1463,7 @@ for (let it = set.begin(); !it.equals(set.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber83">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber98">source</a></span></span>
     </span>
   </h3>
 
@@ -1445,7 +1516,7 @@ console.log(set.size); // 0</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber94">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber109">source</a></span></span>
     </span>
   </h3>
 
@@ -1514,7 +1585,7 @@ console.log(set.toString()); // {1,3}</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber277">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber292">source</a></span></span>
     </span>
   </h3>
 
@@ -1581,7 +1652,7 @@ for (let it = set.begin(); !it.equals(set.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber110">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber125">source</a></span></span>
     </span>
   </h3>
 
@@ -1647,7 +1718,7 @@ for (let key of set.entries()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber293">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber308">source</a></span></span>
     </span>
   </h3>
 
@@ -1731,7 +1802,7 @@ if (!it.equals(set.end())) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber124">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber139">source</a></span></span>
     </span>
   </h3>
 
@@ -1803,7 +1874,7 @@ set.forEach(function(value, key, container) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber139">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber154">source</a></span></span>
     </span>
   </h3>
 
@@ -1874,6 +1945,182 @@ b = set.get(4); // false</code></pre>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-insertOrReplace">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber348">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Adds key-value pair if such key does not exist in the map. Replaces value if such key exists</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">key</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>indicates whether a node was added and provides iterator to it.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
+let res = set.insertOrReplace(1);
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.key}`); // prints 1
+}
+res = set.insertOrReplace(1) // returns iterator to the previously added node
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.key}`); // prints 1
+}</code></pre>
+    </div>
+</div>
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-insertUnique">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber327">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Adds a key if it doesn&apos;t exist</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">key</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>indicates whether a node was added and provides iterator to it.</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">let set = new TreeSet();
+let res = set.insertUnique(1);
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.key}`); // prints 1
+}
+res = set.insertUnique(1); // this step has no effect on the set
+if (res.wasInserted) {
+  console.log(`Inserted ${res.iterator.key}`); // not executed
+}</code></pre>
+    </div>
+</div>
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-keys">
     <span class="access" data-ice="access">public</span>
     
@@ -1885,7 +2132,7 @@ b = set.get(4); // false</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber164">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber179">source</a></span></span>
     </span>
   </h3>
 
@@ -1957,7 +2204,7 @@ for (let k of set.keys().backward()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber324">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber381">source</a></span></span>
     </span>
   </h3>
 
@@ -2056,7 +2303,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber338">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber395">source</a></span></span>
     </span>
   </h3>
 
@@ -2123,7 +2370,7 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber352">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber409">source</a></span></span>
     </span>
   </h3>
 
@@ -2190,7 +2437,7 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber391">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber448">source</a></span></span>
     </span>
   </h3>
 
@@ -2246,7 +2493,7 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber383">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber440">source</a></span></span>
     </span>
   </h3>
 
@@ -2345,7 +2592,7 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber204">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-set.js.html#lineNumber219">source</a></span></span>
     </span>
   </h3>
 
