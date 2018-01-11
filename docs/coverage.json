@@ -1,7 +1,7 @@
 {
-  "coverage": "99.61%",
+  "coverage": "100%",
   "expectCount": 259,
-  "actualCount": 258,
+  "actualCount": 259,
   "files": {
     "src/internal/policies.js": {
       "expectCount": 12,
@@ -20,10 +20,8 @@
     },
     "src/public/insertion-result.js": {
       "expectCount": 5,
-      "actualCount": 4,
-      "undocumentLines": [
-        6
-      ]
+      "actualCount": 5,
+      "undocumentLines": []
     },
     "src/public/iterators.js": {
       "expectCount": 19,
