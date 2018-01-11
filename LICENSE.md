@@ -1,4 +1,4 @@
-Copyright (c) 2017 Kirusi Msafiri <kirusi.msafiri@google.com>
+Copyright (c) 2017-2018 Kirusi Msafiri <kirusi.msafiri@google.com>
 
 Permission to use, copy, modify, and distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
