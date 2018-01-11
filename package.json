@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kirusi/setmap.git"
+    "url": "git+https://github.com/kirusi/jstreemap.git"
   },
   "keywords": [
     "set",
@@ -49,9 +49,9 @@
   "author": "Kirusi Msafiri",
   "license": "0BSD",
   "bugs": {
-    "url": "https://github.com/kirusi/setmap/issues"
+    "url": "https://github.com/kirusi/jstreemap/issues"
   },
-  "homepage": "https://github.com/kirusi/setmap#readme",
+  "homepage": "https://github.com/kirusi/jstreemap#readme",
   "dependencies": {
     "app-module-path": "^2.2.0",
     "should": "^13.1.3"
