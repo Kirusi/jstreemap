@@ -1,6 +1,6 @@
 {
   "name": "jstreemap",
-  "version": "1.10.1",
+  "version": "1.11.1",
   "description": "Library of associative containers.",
   "main": "jstreemap.js",
   "scripts": {
