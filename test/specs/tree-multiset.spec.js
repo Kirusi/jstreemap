@@ -1,3 +1,4 @@
+/*global should assert TreeMultiSet*/
 (function() {
 
     describe('TreeMultiSet tests', function() {

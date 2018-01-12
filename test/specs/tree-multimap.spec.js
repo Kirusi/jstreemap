@@ -1,3 +1,4 @@
+/*global should assert TreeMultiMap*/
 (function() {
 
     describe('TreeMultiMap tests', function() {

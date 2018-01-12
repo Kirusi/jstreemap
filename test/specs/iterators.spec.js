@@ -1,3 +1,4 @@
+/*global should assert Iterator ReverseIterator*/
 (function() {
 // Nodes are replaced with integers
     class ContainerStub {

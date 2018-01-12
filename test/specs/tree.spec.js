@@ -1,3 +1,5 @@
+/*global should assert Tree TreeNode KeyValuePolicy ReverseIterator BLACK RED compare*/
+
 (function() {
 
     function createNode(id) {

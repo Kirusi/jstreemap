@@ -1,3 +1,5 @@
+/*global should assert JsIterator JsReverseIterator*/
+
 (function() {
     class NodeIsValuePolicy {
         fetch(n) {

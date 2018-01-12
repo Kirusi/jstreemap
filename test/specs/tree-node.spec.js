@@ -1,3 +1,4 @@
+/*global should assert TreeNode*/
 (function() {
 
     describe('TreeNode tests', function() {

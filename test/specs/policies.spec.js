@@ -1,3 +1,4 @@
+/*global should assert KeyOnlyPolicy KeyValuePolicy ValueOnlyPolicy TreeNode*/
 (function() {
 
     describe('Policy tests', function() {
