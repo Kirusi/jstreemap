@@ -43,7 +43,7 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="jstreemap">jstreemap</h1><p>A JavaScript (ES6) library of tree-based associative containers.</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="jstreemap">jstreemap</h1><p>A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:</p>
 <ul>
 <li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-set.js~TreeSet.html"><strong>TreeSet</strong></a> - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.</li>
 <li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-map.js~TreeMap.html"><strong>TreeMap</strong></a> - is an associative container that stores elements formed
@@ -54,12 +54,39 @@ The types of key and mapped value may differ.</li>
 <li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-multiset.js~TreeMultiSet.html"><strong>TreeMultiSet</strong></a> - is a container that stores elements following a specific order, and where multiple elements can have equivalent values. In a TreeMultiSet, the value of an element also identifies it (the value is itself the key). The value of the elements in a multiset cannot be modified once in the container (the elements are always immutable), but they can be inserted or removed from the container.</li>
 <li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-multimap.js~TreeMultiMap.html"><strong>TreeMultiMap</strong></a> - is an associative container that stores elements formed by a combination of a key value and a mapped value, following a specific order, and where multiple elements can have equivalent keys. In a TreeMultiMap, the key values are generally used to sort and uniquely identify the elements, while the mapped values store the content associated to this key. The types of key and mapped value may differ.</li>
 </ul>
-<p>All container implementations are using  red-black trees. Detailed library documentation is <a href="https://kirusi.github.io/jstreemap">here.</a></p>
+<p>All container implementations are using  red-black trees.</p>
+<p>The library supports ES6 iteration protocol and STL-like iteration. In ES6 one can use a simple for-of loop to iterate through all items.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// forward iteration
+for(let [k,v] of map) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+
+// reverse iteration
+for(let [k,v] of map.backward) {
+    console.log(`key: ${k}, value: ${v}`);
+}</code>
+</code></pre>
+<p>With STL-like explicit iterators one can navigate through specific ranges in the container and update or erase some of the items during iteration.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// find all elements with keys between 10 and 20 inclusive
+let prevIter;
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
+    if (prevIter !== undefined) {
+        // Check whether the previous iterator points to key 15
+        if (prevIter.key === 15) {
+            // we cannot erase current iterator. This would break iteration process
+            // But we can modify other items in the container.
+            map.erase(prevIter);
+        }
+    }
+    prevIter = new Iterator(it); // make a copy of current iterator
+}</code>
+</code></pre>
+<p>Detailed library documentation is <a href="https://kirusi.github.io/jstreemap">here.</a></p>
 <h2 id="installation">Installation</h2><p>Using npm:</p>
 <pre><code class="lang-shell"><code class="source-code prettyprint">$ npm i --save jstreemap</code>
 </code></pre>
 <p>In Node.js:</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">// Load library.
+<pre><code class="lang-js"><code class="source-code prettyprint">// Load library which is UMD packed.
 const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require(&apos;jstreemap&apos;);
 
 // Create and initialize map.
@@ -84,6 +111,37 @@ for(let [k,v] of map.backward()) {
 for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
     console.log(`key: ${it.key}, value: ${it.value}`);
 }</code>
+</code></pre>
+<p>In a browser:</p>
+<pre><code class="lang-html"><code class="source-code prettyprint">&lt;!-- Load library which is UMD packed --&gt;
+&lt;script src=&quot;jstreemap.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+// Classes TreeSet, TreeMap, TreeMultiSet, TreeMultiMap, Iterator, ReverseIterator,  JsIterator, JsReverseIterator are globally available
+
+// Create and initialize map.
+let map = new TreeMap([[2, &apos;B&apos;], [1, &apos;A&apos;], [3, &apos;C&apos;]]);
+// Iterate through all key-value pairs
+// Note that entries are stored in the ascending order of the keys,
+// not in the insertion order as in standard ES6 map
+for(let [k,v] of map) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+// Expected output:
+// key: 1, value: A
+// key: 2, value: B
+// key: 3, value: C
+
+// Iterate elements in reverse order
+for(let [k,v] of map.backward()) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+
+// find all elements with keys between 10 and 20 inclusive
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
+    console.log(`key: ${it.key}, value: ${it.value}`);
+}
+&lt;/script&gt;</code>
 </code></pre>
 <h2 id="why-jstreemap-">Why jstreemap?</h2><p>Ordered associative containers are not provided by default with JavaScript. This library provides an efficient implementation where performance of insert, delete and search operations is O(log(n)).</p>
 <p>Unlike standard sets and maps in ES6, this library provides  ordered containers. Iteration through container contents will be done in sorted order without any additional performance overhead.</p>

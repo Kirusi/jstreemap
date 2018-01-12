@@ -498,6 +498,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/public/main.js",
+    "file/src/public/main.js.html",
+    "src/public/main.js",
+    "file"
+  ],
+  [
     "src/public/tree-map.js",
     "file/src/public/tree-map.js.html",
     "src/public/tree-map.js",

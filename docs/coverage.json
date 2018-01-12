@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 263,
-  "actualCount": 263,
+  "expectCount": 269,
+  "actualCount": 269,
   "files": {
     "src/internal/policies.js": {
       "expectCount": 12,
@@ -31,6 +31,11 @@
     "src/public/js-iterators.js": {
       "expectCount": 16,
       "actualCount": 16,
+      "undocumentLines": []
+    },
+    "src/public/main.js": {
+      "expectCount": 6,
+      "actualCount": 6,
       "undocumentLines": []
     },
     "src/public/tree-map.js": {

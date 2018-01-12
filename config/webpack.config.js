@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    entry: ['src/red-black-tree.js'],
+    entry: ['./src/public/main.js'],
     output: {
-        filename: 'setmap.js',
-        path: path.resolve(__dirname, '../lib'),
+        filename: 'jstreemap.js',
+        path: path.resolve(__dirname, '../'),
         libraryTarget: 'umd'
     }
 };

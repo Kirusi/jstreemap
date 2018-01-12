@@ -8,9 +8,10 @@
     "esdoc": "esdoc -c ./esdoc.json",
     "eslint": "eslint --config=./config/eslint.config.json src/**/*.js test/**/*.js",
     "eslint-fix": "eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js",
-    "eslint-watch": "esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js ./*.js",
+    "eslint-watch": "esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js",
     "test-watch": "mocha --reporter spec -w --recursive test",
-    "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/**/*.js"
+    "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/**/*.js",
+    "postbuild-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec postbuild-test/**/*.js"
   },
   "directories": {
     "test": "test"
