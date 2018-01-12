@@ -1,6 +1,6 @@
 {
   "name": "jstreemap",
-  "version": "1.12.1",
+  "version": "1.13.1",
   "description": "Library of associative containers.",
   "main": "jstreemap.js",
   "scripts": {
@@ -9,9 +9,9 @@
     "eslint": "eslint --config=./config/eslint.config.json src/**/*.js test/**/*.js",
     "eslint-fix": "eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js",
     "eslint-watch": "esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js",
-    "test-watch": "mocha --reporter spec -w --recursive test",
-    "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/**/*.js",
-    "postbuild-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec postbuild-test/**/*.js"
+    "test-watch": "mocha --reporter spec -w --recursive test/dev-tests/**/*.js",
+    "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/dev-tests/**/*.js",
+    "prod-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js"
   },
   "directories": {
     "test": "test"
