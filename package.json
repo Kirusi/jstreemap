@@ -1,7 +1,7 @@
 {
   "name": "jstreemap",
   "version": "1.13.1",
-  "description": "Library of associative containers.",
+  "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
   "main": "jstreemap.js",
   "scripts": {
     "esdoc": "esdoc -c ./esdoc.json",
