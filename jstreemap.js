@@ -500,7 +500,7 @@ class Tree {
     }
 
     /**
-     * The node i inserted. If a node with the same key exists it's value will be replaced by the value of the new node
+     * The node is inserted. If a node with the same key exists it's value will be replaced by the value of the new node
      * @param {*} node
      * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
      */

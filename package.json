@@ -4,14 +4,13 @@
   "description": "Library of associative containers.",
   "main": "jstreemap.js",
   "scripts": {
-    "build": "webpack --config ./config/webpack.config.js",
     "esdoc": "esdoc -c ./esdoc.json",
-    "eslint": "eslint --config=./config/eslint.config.json src/**/*.js test/**/*.js",
-    "eslint-fix": "eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js",
-    "eslint-watch": "esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js",
+    "eslint-fix": "eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js gulpfile.js",
+    "eslint-watch": "esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js gulpfile.js",
     "test-watch": "mocha --reporter spec -w --recursive test/dev-tests/**/*.js",
-    "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/dev-tests/**/*.js",
-    "prod-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js"
+    "dev-test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js",
+    "prod-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js",
+    "webpack": "webpack --config ./config/webpack.config.js"
   },
   "directories": {
     "test": "test"
@@ -53,20 +52,17 @@
     "url": "https://github.com/kirusi/jstreemap/issues"
   },
   "homepage": "https://github.com/kirusi/jstreemap#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "esdoc": "^1.0.4",
     "esdoc-node": "^1.0.2",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.13.1",
     "eslint-watch": "^3.1.3",
-    "grunt": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-exec": "^3.0.0",
-    "grunt-run": "^0.8.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.1",
+    "gulp-util": "^3.0.8",
     "mocha": "^4.0.1",
-    "mocha-webpack": "^1.0.1",
     "nyc": "^11.4.1",
     "should": "^13.1.3",
     "webpack": "^3.10.0",
