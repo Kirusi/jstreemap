@@ -1,10 +1,7 @@
 // grab our gulp packages
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const eslint = require('gulp-eslint');
-const fs = require('fs');
-const stripJsonComments = require('strip-json-comments');
-const { exec, spawn, spawnSync, execSync } = require('child_process');
+const { execSync } = require('child_process');
 
 function runCmd(taskName, cmd) {
     try {
