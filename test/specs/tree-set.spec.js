@@ -178,6 +178,28 @@
             done();
         });
 
+        it('delete; rightmost and root', function(done) {
+            let set = new TreeSet([1, 5, 3]);
+            set.delete(5);
+            set.delete(3);
+            set.add(4);
+            let expected = '{1,4}';
+            should.equal(expected, set.toString());
+
+            done();
+        });
+
+        it('delete; leftmost and root', function(done) {
+            let set = new TreeSet([1, 5, 3]);
+            set.delete(1);
+            set.delete(3);
+            set.add(2);
+            let expected = '{2,5}';
+            should.equal(expected, set.toString());
+
+            done();
+        });
+
         it('entries', function(done) {
             let set = new TreeSet([1, 2, 3]);
             let actual = [];

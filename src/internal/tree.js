@@ -116,7 +116,7 @@ class Tree {
             }
         }
 
-        if (newNode !== null) {
+        if (!this.isLeaf(newNode)) {
             newNode.parent = oldNode.parent;
         }
     }
@@ -458,33 +458,48 @@ class Tree {
         let child = (this.isLeaf(node.right)) ? node.left : node.right;
 
         if (this.isBlack(node)) {
-            node.color = this.fetchColor(child);
             this.eraseCase1(node);
         }
         this.replaceNode(node, child);
+        if (this.head.size === 2) {
+            // Root node must be BLACK
+            child.color = BLACK;
+        }
 
-        // update head if necessary
         let h = this.head;
-        if ((this.isLeaf(child))
-            && (h.leftmost === node)) {
-            let p = node.parent;
-            if (p !== null) {
-                h.leftmost = p;
-                p.left = h;
+        if (this.isLeaf(child)) {
+            /* The node didn't have children and it was removed
+               the head needs to update leftmost, rightmost pointers */
+            if (h.leftmost === node) {
+                let p = node.parent;
+                if (p !== null) {
+                    h.leftmost = p;
+                    p.left = h;
+                }
+                else {
+                    h.leftmost = h;
+                }
             }
-            else {
-                h.leftmost = h;
+            if (h.rightmost === node) {
+                let p = node.parent;
+                if (p !== null) {
+                    h.rightmost = p;
+                    p.right = h;
+                }
+                else {
+                    h.rightmost = h;
+                }
             }
         }
-        if ((this.isLeaf(child))
-            && (h.rightmost === node)) {
-            let p = node.parent;
-            if (p !== null) {
-                h.rightmost = p;
-                p.right = h;
+        else {
+            // the node had a child. Now node is removed. Any references should point to the child now
+            if (h.leftmost === node) {
+                h.leftmost = child;
+                child.left = h;
             }
-            else {
-                h.rightmost = h;
+            if (h.rightmost === node) {
+                h.rightmost = child;
+                child.right = h;
             }
         }
     }

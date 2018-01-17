@@ -655,6 +655,16 @@
             done();
         });
 
+        it('erase; delete leftmost and root', function(done) {
+            let [t, n2, n1, n3] = buildTree(2, 1, 3);
+            t.erase(n1);
+            t.erase(n2);
+            validateHead(t.head, n3, n3, n3, 1);
+            validatePointers(n3, null, t.head, t.head, 3, BLACK);
+
+            done();
+        });
+
         it('erase; delete rightmost child', function(done) {
             let [t, n2, n1, n3] = buildTree(2, 1, 3);
             t.erase(n3);
@@ -673,6 +683,16 @@
             validatePointers(n8, n10, n6, null, 8, BLACK);
             validatePointers(n10, null, n8, n12, 10, BLACK);
             validatePointers(n12, n10, null, t.head, 12, BLACK);
+
+            done();
+        });
+
+        it('erase; delete rightmost and root', function(done) {
+            let [t, n2, n1, n3] = buildTree(2, 1, 3);
+            t.erase(n3);
+            t.erase(n2);
+            validateHead(t.head, n1, n1, n1, 1);
+            validatePointers(n1, null, t.head, t.head, 1, BLACK);
 
             done();
         });
