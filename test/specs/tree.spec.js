@@ -655,12 +655,32 @@
             done();
         });
 
-        it('erase; delete leftmost and root', function(done) {
+        it('erase; delete leftmost and root, then root again', function(done) {
             let [t, n2, n1, n3] = buildTree(2, 1, 3);
             t.erase(n1);
             t.erase(n2);
             validateHead(t.head, n3, n3, n3, 1);
             validatePointers(n3, null, t.head, t.head, 3, BLACK);
+            t.erase(n3);
+            validateHead(t.head, t.head, t.head, t.head, 0);
+
+            done();
+        });
+
+        it('erase; delete 2 nodes, order 1', function(done) {
+            let [t, n1, n3] = buildTree(1, 3);
+            t.erase(n1);
+            t.erase(n3);
+            validateHead(t.head, t.head, t.head, t.head, 0);
+
+            done();
+        });
+
+        it('erase; delete 2 nodes, order 2', function(done) {
+            let [t, n1, n3] = buildTree(1, 3);
+            t.erase(n3);
+            t.erase(n1);
+            validateHead(t.head, t.head, t.head, t.head, 0);
 
             done();
         });
@@ -693,6 +713,8 @@
             t.erase(n2);
             validateHead(t.head, n1, n1, n1, 1);
             validatePointers(n1, null, t.head, t.head, 1, BLACK);
+            t.erase(n1);
+            validateHead(t.head, t.head, t.head, t.head, 0);
 
             done();
         });

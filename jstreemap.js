@@ -733,8 +733,10 @@ class Tree {
         }
         this.replaceNode(node, child);
         if (this.head.size === 2) {
-            // Root node must be BLACK
-            child.color = BLACK;
+            if (!this.isLeaf(child)) {
+                // Root node must be BLACK
+                child.color = BLACK;
+            }
         }
 
         let h = this.head;
