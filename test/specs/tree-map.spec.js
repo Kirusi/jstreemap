@@ -369,6 +369,22 @@
             done();
         });
 
+        it('first / last', function(done) {
+            let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+            should.strictEqual('A', map.first()[1]);
+            should.strictEqual('C', map.last()[1]);
+
+            done();
+        });
+
+        it('first / last; empty map', function(done) {
+            let map = new TreeMap([]);
+            should.strictEqual(undefined, map.first());
+            should.strictEqual(undefined, map.last());
+
+            done();
+        });
+
     });
 
 })();

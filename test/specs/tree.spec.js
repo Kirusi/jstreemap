@@ -1575,6 +1575,38 @@
             done();
         });
 
+        it('first', function(done) {
+            let [t, ...ignore] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+            let actual = t.first();
+            should.strictEqual(2, actual);
+
+            done();
+        });
+
+        it('first; empty tree', function(done) {
+            let [t, ...ignore] = buildTree();
+            let actual = t.first();
+            should.strictEqual(undefined, actual);
+
+            done();
+        });
+
+        it('last', function(done) {
+            let [t, ...ignore] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+            let actual = t.last();
+            should.strictEqual(32, actual);
+
+            done();
+        });
+
+        it('last; empty tree', function(done) {
+            let [t, ...ignore] = buildTree();
+            let actual = t.last();
+            should.strictEqual(undefined, actual);
+
+            done();
+        });
+
         it('tree with custom comparison function', function(done) {
         /* Test ability to compare alphanumeric structures like ['A',123]
            First string portion is compared. If string portions of two objects are equal then numeric portions are compared */

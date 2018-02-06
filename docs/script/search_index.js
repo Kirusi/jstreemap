@@ -582,6 +582,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/public/tree-map.js~treemap#first",
+    "class/src/public/tree-map.js~TreeMap.html#instance-method-first",
+    "src/public/tree-map.js~TreeMap#first",
+    "method"
+  ],
+  [
     "src/public/tree-map.js~treemap#foreach",
     "class/src/public/tree-map.js~TreeMap.html#instance-method-forEach",
     "src/public/tree-map.js~TreeMap#forEach",
@@ -615,6 +621,12 @@ window.esdocSearchIndex = [
     "src/public/tree-map.js~treemap#keys",
     "class/src/public/tree-map.js~TreeMap.html#instance-method-keys",
     "src/public/tree-map.js~TreeMap#keys",
+    "method"
+  ],
+  [
+    "src/public/tree-map.js~treemap#last",
+    "class/src/public/tree-map.js~TreeMap.html#instance-method-last",
+    "src/public/tree-map.js~TreeMap#last",
     "method"
   ],
   [
@@ -750,6 +762,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/public/tree-multimap.js~treemultimap#first",
+    "class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-first",
+    "src/public/tree-multimap.js~TreeMultiMap#first",
+    "method"
+  ],
+  [
     "src/public/tree-multimap.js~treemultimap#foreach",
     "class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-forEach",
     "src/public/tree-multimap.js~TreeMultiMap#forEach",
@@ -789,6 +807,12 @@ window.esdocSearchIndex = [
     "src/public/tree-multimap.js~treemultimap#keys",
     "class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-keys",
     "src/public/tree-multimap.js~TreeMultiMap#keys",
+    "method"
+  ],
+  [
+    "src/public/tree-multimap.js~treemultimap#last",
+    "class/src/public/tree-multimap.js~TreeMultiMap.html#instance-method-last",
+    "src/public/tree-multimap.js~TreeMultiMap#last",
     "method"
   ],
   [
@@ -930,6 +954,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/public/tree-multiset.js~treemultiset#first",
+    "class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-first",
+    "src/public/tree-multiset.js~TreeMultiSet#first",
+    "method"
+  ],
+  [
     "src/public/tree-multiset.js~treemultiset#foreach",
     "class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-forEach",
     "src/public/tree-multiset.js~TreeMultiSet#forEach",
@@ -963,6 +993,12 @@ window.esdocSearchIndex = [
     "src/public/tree-multiset.js~treemultiset#keys",
     "class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-keys",
     "src/public/tree-multiset.js~TreeMultiSet#keys",
+    "method"
+  ],
+  [
+    "src/public/tree-multiset.js~treemultiset#last",
+    "class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-last",
+    "src/public/tree-multiset.js~TreeMultiSet#last",
     "method"
   ],
   [
@@ -1098,6 +1134,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/public/tree-set.js~treeset#first",
+    "class/src/public/tree-set.js~TreeSet.html#instance-method-first",
+    "src/public/tree-set.js~TreeSet#first",
+    "method"
+  ],
+  [
     "src/public/tree-set.js~treeset#foreach",
     "class/src/public/tree-set.js~TreeSet.html#instance-method-forEach",
     "src/public/tree-set.js~TreeSet#forEach",
@@ -1125,6 +1167,12 @@ window.esdocSearchIndex = [
     "src/public/tree-set.js~treeset#keys",
     "class/src/public/tree-set.js~TreeSet.html#instance-method-keys",
     "src/public/tree-set.js~TreeSet#keys",
+    "method"
+  ],
+  [
+    "src/public/tree-set.js~treeset#last",
+    "class/src/public/tree-set.js~TreeSet.html#instance-method-last",
+    "src/public/tree-set.js~TreeSet#last",
     "method"
   ],
   [

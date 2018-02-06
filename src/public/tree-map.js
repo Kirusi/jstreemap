@@ -479,6 +479,34 @@ class TreeMap {
     }
 
     /**
+     * @returns first key/value pair of the container, or undefined if container is empty
+     * @example
+     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let first = m.first();
+     * if (first) {
+     *   let key = first[0];   // 1
+     *   let value = first[1]; // 'A'
+     * }
+     */
+    first() {
+        return this.__t.first();
+    }
+
+    /**
+     * @returns last key/value pair of the container, or undefined if container is empty
+     * @example
+     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let last = m.last();
+     * if (last) {
+     *   let key = last[0];   // 3
+     *   let value = last[1]; // 'C'
+     * }
+     */
+    last() {
+        return this.__t.last();
+    }
+
+    /**
      * Serializes contents of the map in the form {key1:value1,key2:value2,...}
      * @returns {String}
      */

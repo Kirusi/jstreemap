@@ -502,6 +502,26 @@ class TreeSet {
     }
 
     /**
+     * @returns first element of the container, or undefined if container is empty
+     * @example
+     * let set = new TreeSet([1, 2, 3]);
+     * let first = set.first(); // 1
+     */
+    first() {
+        return this.__t.first();
+    }
+
+    /**
+     * @returns last element of the container, or undefined if container is empty
+     * @example
+     * let set = new TreeSet([1, 2, 3]);
+     * let last = set.last(); // 3
+     */
+    last() {
+        return this.__t.last();
+    }
+
+    /**
      * Serializes contents of the set in the form {key1,key2,...}
      * @returns {String}
      */

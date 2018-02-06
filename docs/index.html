@@ -91,6 +91,8 @@ const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require(&apos;jstreemap&a
 
 // Create and initialize map.
 let map = new TreeMap([[2, &apos;B&apos;], [1, &apos;A&apos;], [3, &apos;C&apos;]]);
+map.set(5, &apos;E&apos;);
+map.set(4, &apos;D&apos;);
 // Iterate through all key-value pairs
 // Note that entries are stored in the ascending order of the keys,
 // not in the insertion order as in standard ES6 map
@@ -101,12 +103,14 @@ for(let [k,v] of map) {
 // key: 1, value: A
 // key: 2, value: B
 // key: 3, value: C
-
+// key: 4, value: D
+// key: 5, value: E
+...
 // Iterate elements in reverse order
 for(let [k,v] of map.backward()) {
     console.log(`key: ${k}, value: ${v}`);
 }
-
+...
 // find all elements with keys between 10 and 20 inclusive
 for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
     console.log(`key: ${it.key}, value: ${it.value}`);

@@ -856,6 +856,32 @@ class Tree {
     }
 
     /**
+     * @returns first element of the container, or undefined if container is empty
+     */
+    first() {
+        if (this.size() === 0) {
+            return undefined;
+        }
+        else {
+            let it = this.begin();
+            return this.valuePolicy.fetch(it.node);
+        }
+    }
+
+    /**
+     * @returns last element of the container, or undefined if container is empty
+     */
+    last() {
+        if (this.size() === 0) {
+            return undefined;
+        }
+        else {
+            let it = this.rbegin();
+            return this.valuePolicy.fetch(it.node);
+        }
+    }
+
+    /**
      * @returns String representation of the container
      */
     toString() {

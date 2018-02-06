@@ -388,6 +388,22 @@
             done();
         });
 
+        it('first / last', function(done) {
+            let map = new TreeMultiMap([[1, 'A'], [1, 'B'], [1, 'C']]);
+            should.strictEqual('A', map.first()[1]);
+            should.strictEqual('C', map.last()[1]);
+
+            done();
+        });
+
+        it('first / last; empty map', function(done) {
+            let map = new TreeMultiMap([]);
+            should.strictEqual(undefined, map.first());
+            should.strictEqual(undefined, map.last());
+
+            done();
+        });
+
     });
 
 })();

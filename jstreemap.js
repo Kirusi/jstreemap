@@ -1127,6 +1127,32 @@ class Tree {
     }
 
     /**
+     * @returns first element of the container, or undefined if container is empty
+     */
+    first() {
+        if (this.size() === 0) {
+            return undefined;
+        }
+        else {
+            let it = this.begin();
+            return this.valuePolicy.fetch(it.node);
+        }
+    }
+
+    /**
+     * @returns last element of the container, or undefined if container is empty
+     */
+    last() {
+        if (this.size() === 0) {
+            return undefined;
+        }
+        else {
+            let it = this.rbegin();
+            return this.valuePolicy.fetch(it.node);
+        }
+    }
+
+    /**
      * @returns String representation of the container
      */
     toString() {
@@ -2153,6 +2179,34 @@ class TreeMap {
     }
 
     /**
+     * @returns first key/value pair of the container, or undefined if container is empty
+     * @example
+     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let first = m.first();
+     * if (first) {
+     *   let key = first[0];   // 1
+     *   let value = first[1]; // 'A'
+     * }
+     */
+    first() {
+        return this.__t.first();
+    }
+
+    /**
+     * @returns last key/value pair of the container, or undefined if container is empty
+     * @example
+     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let last = m.last();
+     * if (last) {
+     *   let key = last[0];   // 3
+     *   let value = last[1]; // 'C'
+     * }
+     */
+    last() {
+        return this.__t.last();
+    }
+
+    /**
      * Serializes contents of the map in the form {key1:value1,key2:value2,...}
      * @returns {String}
      */
@@ -2723,6 +2777,34 @@ class TreeMultiMap {
     }
 
     /**
+     * @returns first key/value pair of the container, or undefined if container is empty
+     * @example
+     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let first = m.first();
+     * if (first) {
+     *   let key = first[0];   // 1
+     *   let value = first[1]; // 'A'
+     * }
+     */
+    first() {
+        return this.__t.first();
+    }
+
+    /**
+     * @returns last key/value pair of the container, or undefined if container is empty
+     * @example
+     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
+     * let last = m.last();
+     * if (last) {
+     *   let key = last[0];   // 3
+     *   let value = last[1]; // 'C'
+     * }
+     */
+    last() {
+        return this.__t.last();
+    }
+
+    /**
      * Serializes contents of the map in the form {key1:value1,key2:value2,...}
      * @returns {String}
      */
@@ -3194,6 +3276,26 @@ class TreeSet {
      */
     upperBound(key) {
         return this.__t.upperBound(key);
+    }
+
+    /**
+     * @returns first element of the container, or undefined if container is empty
+     * @example
+     * let set = new TreeSet([1, 2, 3]);
+     * let first = set.first(); // 1
+     */
+    first() {
+        return this.__t.first();
+    }
+
+    /**
+     * @returns last element of the container, or undefined if container is empty
+     * @example
+     * let set = new TreeSet([1, 2, 3]);
+     * let last = set.last(); // 3
+     */
+    last() {
+        return this.__t.last();
     }
 
     /**
@@ -3687,6 +3789,26 @@ class TreeMultiSet {
      */
     upperBound(key) {
         return this.__t.upperBound(key);
+    }
+
+    /**
+     * @returns first element of the container, or undefined if container is empty
+     * @example
+     * let set = new TreeMultiSet([1, 2, 3]);
+     * let first = set.first(); // 1
+     */
+    first() {
+        return this.__t.first();
+    }
+
+    /**
+     * @returns last element of the container, or undefined if container is empty
+     * @example
+     * let set = new TreeMultiSet([1, 2, 3]);
+     * let last = set.last(); // 3
+     */
+    last() {
+        return this.__t.last();
     }
 
     /**

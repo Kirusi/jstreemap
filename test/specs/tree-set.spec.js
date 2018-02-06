@@ -374,6 +374,22 @@
             done();
         });
 
+        it('first / last', function(done) {
+            let set = new TreeSet([1, 2, 3]);
+            should.strictEqual(1, set.first());
+            should.strictEqual(3, set.last());
+
+            done();
+        });
+
+        it('first / last; empty set', function(done) {
+            let set = new TreeSet([]);
+            should.strictEqual(undefined, set.first());
+            should.strictEqual(undefined, set.last());
+
+            done();
+        });
+
     });
 
 })();
