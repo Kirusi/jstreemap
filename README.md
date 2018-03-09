@@ -1,4 +1,5 @@
 # jstreemap
+[![ESDoc coverage](https://doc.esdoc.org/github.com/Kirusi/jstreemap/badge.svg)]
 
 A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:
 * [**TreeSet**](https://kirusi.github.io/jstreemap/class/src/public/tree-set.js~TreeSet.html) - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.
