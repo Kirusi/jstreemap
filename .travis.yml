@@ -6,4 +6,5 @@ install:
   - npm install
 script:
   - npm test
-after_success: coveralls
+after_success: 
+- 'nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
