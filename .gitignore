@@ -5,3 +5,4 @@ build/
 lib/
 yarn.lock
 package-lock.json
+.coverage
