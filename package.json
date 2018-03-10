@@ -1,6 +1,6 @@
 {
   "name": "jstreemap",
-  "version": "1.20.1",
+  "version": "1.21.1",
   "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
   "main": "jstreemap.js",
   "scripts": {
@@ -10,6 +10,7 @@
     "test-watch": "mocha --reporter spec -w --recursive test/dev-tests/**/*.js",
     "dev-test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js",
     "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "prod-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js",
     "webpack": "webpack --config ./config/webpack.config.js"
   },
@@ -45,7 +46,10 @@
     "delete",
     "erase",
     "template",
-    "library"
+    "library",
+    "dictionary",
+    "key",
+    "value"
   ],
   "author": "Kirusi Msafiri",
   "license": "0BSD",
@@ -55,14 +59,16 @@
   "homepage": "https://github.com/kirusi/jstreemap#readme",
   "dependencies": {},
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "esdoc": "^1.0.4",
     "esdoc-node": "^1.0.2",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.13.1",
+    "eslint": "^4.18.2",
     "eslint-watch": "^3.1.3",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
-    "mocha": "^4.0.1",
+    "mocha": "^4.1.0",
+    "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^11.4.1",
     "should": "^13.1.3",
     "webpack": "^3.10.0",

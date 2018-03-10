@@ -1195,106 +1195,6 @@
   {
     "__docId__": 75,
     "kind": "variable",
-    "name": "TreeNode",
-    "memberof": "src/internal/tree.js",
-    "static": true,
-    "longname": "src/internal/tree.js~TreeNode",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/internal/tree.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 4,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 76,
-    "kind": "variable",
-    "name": "JsIterator",
-    "memberof": "src/internal/tree.js",
-    "static": true,
-    "longname": "src/internal/tree.js~JsIterator",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/internal/tree.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 6,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 77,
-    "kind": "variable",
-    "name": "Iterator",
-    "memberof": "src/internal/tree.js",
-    "static": true,
-    "longname": "src/internal/tree.js~Iterator",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/internal/tree.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 8,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 78,
-    "kind": "variable",
-    "name": "KeyOnlyPolicy",
-    "memberof": "src/internal/tree.js",
-    "static": true,
-    "longname": "src/internal/tree.js~KeyOnlyPolicy",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/internal/tree.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 10,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 79,
-    "kind": "variable",
-    "name": "InsertionResult",
-    "memberof": "src/internal/tree.js",
-    "static": true,
-    "longname": "src/internal/tree.js~InsertionResult",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/internal/tree.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 12,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 80,
-    "kind": "variable",
     "name": "INSERT_MULTI",
     "memberof": "src/internal/tree.js",
     "static": true,
@@ -1313,7 +1213,7 @@
     "ignore": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 76,
     "kind": "variable",
     "name": "INSERT_UNIQUE",
     "memberof": "src/internal/tree.js",
@@ -1333,7 +1233,7 @@
     "ignore": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 77,
     "kind": "variable",
     "name": "INSERT_REPLACE",
     "memberof": "src/internal/tree.js",
@@ -1353,7 +1253,7 @@
     "ignore": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 78,
     "kind": "class",
     "name": "Head",
     "memberof": "src/internal/tree.js",
@@ -1369,7 +1269,7 @@
     "ignore": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 79,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/internal/tree.js~Head",
@@ -1382,7 +1282,7 @@
     "lineNumber": 27
   },
   {
-    "__docId__": 85,
+    "__docId__": 80,
     "kind": "member",
     "name": "leftmost",
     "memberof": "src/internal/tree.js~Head",
@@ -1398,7 +1298,7 @@
     }
   },
   {
-    "__docId__": 86,
+    "__docId__": 81,
     "kind": "member",
     "name": "rightmost",
     "memberof": "src/internal/tree.js~Head",
@@ -1414,7 +1314,7 @@
     }
   },
   {
-    "__docId__": 87,
+    "__docId__": 82,
     "kind": "member",
     "name": "root",
     "memberof": "src/internal/tree.js~Head",
@@ -1430,7 +1330,7 @@
     }
   },
   {
-    "__docId__": 88,
+    "__docId__": 83,
     "kind": "member",
     "name": "size",
     "memberof": "src/internal/tree.js~Head",
@@ -1446,7 +1346,7 @@
     }
   },
   {
-    "__docId__": 89,
+    "__docId__": 84,
     "kind": "member",
     "name": "id",
     "memberof": "src/internal/tree.js~Head",
@@ -1462,7 +1362,7 @@
     }
   },
   {
-    "__docId__": 90,
+    "__docId__": 85,
     "kind": "class",
     "name": "Tree",
     "memberof": "src/internal/tree.js",
@@ -1478,7 +1378,7 @@
     "ignore": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 86,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/internal/tree.js~Tree",
@@ -1491,7 +1391,7 @@
     "lineNumber": 66
   },
   {
-    "__docId__": 92,
+    "__docId__": 87,
     "kind": "member",
     "name": "head",
     "memberof": "src/internal/tree.js~Tree",
@@ -1507,7 +1407,7 @@
     }
   },
   {
-    "__docId__": 93,
+    "__docId__": 88,
     "kind": "member",
     "name": "compare",
     "memberof": "src/internal/tree.js~Tree",
@@ -1523,7 +1423,7 @@
     }
   },
   {
-    "__docId__": 94,
+    "__docId__": 89,
     "kind": "member",
     "name": "valuePolicy",
     "memberof": "src/internal/tree.js~Tree",
@@ -1539,7 +1439,7 @@
     }
   },
   {
-    "__docId__": 95,
+    "__docId__": 90,
     "kind": "method",
     "name": "clear",
     "memberof": "src/internal/tree.js~Tree",
@@ -1554,7 +1454,7 @@
     "return": null
   },
   {
-    "__docId__": 97,
+    "__docId__": 92,
     "kind": "method",
     "name": "size",
     "memberof": "src/internal/tree.js~Tree",
@@ -1582,7 +1482,7 @@
     "params": []
   },
   {
-    "__docId__": 98,
+    "__docId__": 93,
     "kind": "method",
     "name": "compareNodes",
     "memberof": "src/internal/tree.js~Tree",
@@ -1623,7 +1523,7 @@
     }
   },
   {
-    "__docId__": 99,
+    "__docId__": 94,
     "kind": "method",
     "name": "replaceNode",
     "memberof": "src/internal/tree.js~Tree",
@@ -1652,7 +1552,7 @@
     "return": null
   },
   {
-    "__docId__": 100,
+    "__docId__": 95,
     "kind": "method",
     "name": "rotateLeft",
     "memberof": "src/internal/tree.js~Tree",
@@ -1675,7 +1575,7 @@
     "return": null
   },
   {
-    "__docId__": 101,
+    "__docId__": 96,
     "kind": "method",
     "name": "rotateRight",
     "memberof": "src/internal/tree.js~Tree",
@@ -1701,7 +1601,7 @@
     "return": null
   },
   {
-    "__docId__": 102,
+    "__docId__": 97,
     "kind": "method",
     "name": "isLeaf",
     "memberof": "src/internal/tree.js~Tree",
@@ -1740,7 +1640,7 @@
     }
   },
   {
-    "__docId__": 103,
+    "__docId__": 98,
     "kind": "method",
     "name": "fetchColor",
     "memberof": "src/internal/tree.js~Tree",
@@ -1770,7 +1670,7 @@
     }
   },
   {
-    "__docId__": 104,
+    "__docId__": 99,
     "kind": "method",
     "name": "isBlack",
     "memberof": "src/internal/tree.js~Tree",
@@ -1800,7 +1700,7 @@
     }
   },
   {
-    "__docId__": 105,
+    "__docId__": 100,
     "kind": "method",
     "name": "isRed",
     "memberof": "src/internal/tree.js~Tree",
@@ -1830,7 +1730,7 @@
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 101,
     "kind": "method",
     "name": "insertMulti",
     "memberof": "src/internal/tree.js~Tree",
@@ -1869,7 +1769,7 @@
     }
   },
   {
-    "__docId__": 107,
+    "__docId__": 102,
     "kind": "method",
     "name": "insertUnique",
     "memberof": "src/internal/tree.js~Tree",
@@ -1908,7 +1808,7 @@
     }
   },
   {
-    "__docId__": 108,
+    "__docId__": 103,
     "kind": "method",
     "name": "insertOrReplace",
     "memberof": "src/internal/tree.js~Tree",
@@ -1947,7 +1847,7 @@
     }
   },
   {
-    "__docId__": 109,
+    "__docId__": 104,
     "kind": "method",
     "name": "insertNode",
     "memberof": "src/internal/tree.js~Tree",
@@ -1997,7 +1897,7 @@
     "ignore": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 105,
     "kind": "method",
     "name": "insertNodeInternal",
     "memberof": "src/internal/tree.js~Tree",
@@ -2057,7 +1957,7 @@
     "ignore": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 106,
     "kind": "method",
     "name": "insertRepairTree",
     "memberof": "src/internal/tree.js~Tree",
@@ -2084,7 +1984,7 @@
     "return": null
   },
   {
-    "__docId__": 112,
+    "__docId__": 107,
     "kind": "method",
     "name": "repairCase1",
     "memberof": "src/internal/tree.js~Tree",
@@ -2111,7 +2011,7 @@
     "return": null
   },
   {
-    "__docId__": 113,
+    "__docId__": 108,
     "kind": "method",
     "name": "repairCase3",
     "memberof": "src/internal/tree.js~Tree",
@@ -2138,7 +2038,7 @@
     "return": null
   },
   {
-    "__docId__": 114,
+    "__docId__": 109,
     "kind": "method",
     "name": "repairCase4",
     "memberof": "src/internal/tree.js~Tree",
@@ -2165,7 +2065,7 @@
     "return": null
   },
   {
-    "__docId__": 115,
+    "__docId__": 110,
     "kind": "method",
     "name": "fetchMaximum",
     "memberof": "src/internal/tree.js~Tree",
@@ -2204,7 +2104,7 @@
     }
   },
   {
-    "__docId__": 116,
+    "__docId__": 111,
     "kind": "method",
     "name": "fetchMinimum",
     "memberof": "src/internal/tree.js~Tree",
@@ -2243,7 +2143,7 @@
     }
   },
   {
-    "__docId__": 117,
+    "__docId__": 112,
     "kind": "method",
     "name": "erase",
     "memberof": "src/internal/tree.js~Tree",
@@ -2269,7 +2169,7 @@
     "return": null
   },
   {
-    "__docId__": 118,
+    "__docId__": 113,
     "kind": "method",
     "name": "eraseInternal",
     "memberof": "src/internal/tree.js~Tree",
@@ -2296,7 +2196,7 @@
     "return": null
   },
   {
-    "__docId__": 119,
+    "__docId__": 114,
     "kind": "method",
     "name": "eraseCase1",
     "memberof": "src/internal/tree.js~Tree",
@@ -2323,7 +2223,7 @@
     "return": null
   },
   {
-    "__docId__": 120,
+    "__docId__": 115,
     "kind": "method",
     "name": "eraseCase2",
     "memberof": "src/internal/tree.js~Tree",
@@ -2350,7 +2250,7 @@
     "return": null
   },
   {
-    "__docId__": 121,
+    "__docId__": 116,
     "kind": "method",
     "name": "eraseCase3",
     "memberof": "src/internal/tree.js~Tree",
@@ -2377,7 +2277,7 @@
     "return": null
   },
   {
-    "__docId__": 122,
+    "__docId__": 117,
     "kind": "method",
     "name": "eraseCase4",
     "memberof": "src/internal/tree.js~Tree",
@@ -2404,7 +2304,7 @@
     "return": null
   },
   {
-    "__docId__": 123,
+    "__docId__": 118,
     "kind": "method",
     "name": "eraseCase5",
     "memberof": "src/internal/tree.js~Tree",
@@ -2431,7 +2331,7 @@
     "return": null
   },
   {
-    "__docId__": 124,
+    "__docId__": 119,
     "kind": "method",
     "name": "eraseCase6",
     "memberof": "src/internal/tree.js~Tree",
@@ -2458,7 +2358,7 @@
     "return": null
   },
   {
-    "__docId__": 125,
+    "__docId__": 120,
     "kind": "method",
     "name": "find",
     "memberof": "src/internal/tree.js~Tree",
@@ -2497,7 +2397,7 @@
     }
   },
   {
-    "__docId__": 126,
+    "__docId__": 121,
     "kind": "method",
     "name": "lowerBound",
     "memberof": "src/internal/tree.js~Tree",
@@ -2536,7 +2436,7 @@
     }
   },
   {
-    "__docId__": 127,
+    "__docId__": 122,
     "kind": "method",
     "name": "upperBound",
     "memberof": "src/internal/tree.js~Tree",
@@ -2575,7 +2475,7 @@
     }
   },
   {
-    "__docId__": 128,
+    "__docId__": 123,
     "kind": "method",
     "name": "begin",
     "memberof": "src/internal/tree.js~Tree",
@@ -2603,7 +2503,7 @@
     "params": []
   },
   {
-    "__docId__": 129,
+    "__docId__": 124,
     "kind": "method",
     "name": "end",
     "memberof": "src/internal/tree.js~Tree",
@@ -2631,7 +2531,7 @@
     "params": []
   },
   {
-    "__docId__": 130,
+    "__docId__": 125,
     "kind": "method",
     "name": "rbegin",
     "memberof": "src/internal/tree.js~Tree",
@@ -2659,7 +2559,7 @@
     "params": []
   },
   {
-    "__docId__": 131,
+    "__docId__": 126,
     "kind": "method",
     "name": "rend",
     "memberof": "src/internal/tree.js~Tree",
@@ -2687,7 +2587,7 @@
     "params": []
   },
   {
-    "__docId__": 132,
+    "__docId__": 127,
     "kind": "method",
     "name": "jsBegin",
     "memberof": "src/internal/tree.js~Tree",
@@ -2707,7 +2607,7 @@
     }
   },
   {
-    "__docId__": 133,
+    "__docId__": 128,
     "kind": "method",
     "name": "jsEnd",
     "memberof": "src/internal/tree.js~Tree",
@@ -2727,7 +2627,7 @@
     }
   },
   {
-    "__docId__": 134,
+    "__docId__": 129,
     "kind": "method",
     "name": "jsRbegin",
     "memberof": "src/internal/tree.js~Tree",
@@ -2747,7 +2647,7 @@
     }
   },
   {
-    "__docId__": 135,
+    "__docId__": 130,
     "kind": "method",
     "name": "jsRend",
     "memberof": "src/internal/tree.js~Tree",
@@ -2767,7 +2667,7 @@
     }
   },
   {
-    "__docId__": 136,
+    "__docId__": 131,
     "kind": "method",
     "name": "next",
     "memberof": "src/internal/tree.js~Tree",
@@ -2806,7 +2706,7 @@
     }
   },
   {
-    "__docId__": 137,
+    "__docId__": 132,
     "kind": "method",
     "name": "prev",
     "memberof": "src/internal/tree.js~Tree",
@@ -2845,7 +2745,7 @@
     }
   },
   {
-    "__docId__": 138,
+    "__docId__": 133,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/internal/tree.js~Tree",
@@ -2864,7 +2764,7 @@
     }
   },
   {
-    "__docId__": 139,
+    "__docId__": 134,
     "kind": "method",
     "name": "backward",
     "memberof": "src/internal/tree.js~Tree",
@@ -2883,7 +2783,7 @@
     }
   },
   {
-    "__docId__": 140,
+    "__docId__": 135,
     "kind": "method",
     "name": "entries",
     "memberof": "src/internal/tree.js~Tree",
@@ -2911,7 +2811,7 @@
     "params": []
   },
   {
-    "__docId__": 141,
+    "__docId__": 136,
     "kind": "method",
     "name": "keys",
     "memberof": "src/internal/tree.js~Tree",
@@ -2939,7 +2839,7 @@
     "params": []
   },
   {
-    "__docId__": 142,
+    "__docId__": 137,
     "kind": "method",
     "name": "values",
     "memberof": "src/internal/tree.js~Tree",
@@ -2967,7 +2867,7 @@
     "params": []
   },
   {
-    "__docId__": 143,
+    "__docId__": 138,
     "kind": "method",
     "name": "first",
     "memberof": "src/internal/tree.js~Tree",
@@ -2995,7 +2895,7 @@
     "params": []
   },
   {
-    "__docId__": 144,
+    "__docId__": 139,
     "kind": "method",
     "name": "last",
     "memberof": "src/internal/tree.js~Tree",
@@ -3023,7 +2923,7 @@
     "params": []
   },
   {
-    "__docId__": 145,
+    "__docId__": 140,
     "kind": "method",
     "name": "toString",
     "memberof": "src/internal/tree.js~Tree",
@@ -3051,7 +2951,7 @@
     "params": []
   },
   {
-    "__docId__": 146,
+    "__docId__": 141,
     "kind": "get",
     "name": "[Symbol.toStringTag]",
     "memberof": "src/internal/tree.js~Tree",
@@ -3083,7 +2983,7 @@
     }
   },
   {
-    "__docId__": 147,
+    "__docId__": 142,
     "kind": "get",
     "name": "[Symbol.species]",
     "memberof": "src/internal/tree.js~Tree",
@@ -3115,7 +3015,7 @@
     }
   },
   {
-    "__docId__": 148,
+    "__docId__": 143,
     "kind": "function",
     "name": "compare",
     "memberof": "src/internal/tree.js",
@@ -3160,7 +3060,7 @@
     ]
   },
   {
-    "__docId__": 149,
+    "__docId__": 144,
     "kind": "file",
     "name": "src/public/insertion-result.js",
     "content": "/**\r\n * An instance of this class reports whether insert operation was successful.\r\n * if a node was added, or an existing one replaced then an iterator is provided. Otherwise the value of iterator is undefined\r\n */\r\nclass InsertionResult {\r\n    /**\r\n     * Default constructor\r\n     * @param {Boolean} wasAdded\r\n     * @param {Boolean} wasReplaced\r\n     * @param {Iterator} iterator only provided if the node was added, or replaced\r\n     */\r\n    constructor(wasAdded, wasReplaced, iterator) {\r\n        /**\r\n         * Boolean flag indicating whether an element was added\r\n         */\r\n        this.wasAdded = wasAdded;\r\n        /**\r\n         * Boolean flag indicating whether an existing node was updated\r\n         */\r\n        this.wasReplaced = wasReplaced;\r\n        /**\r\n         * {Iterator} instance pointing to the newly added node\r\n         */\r\n        this.iterator = iterator;\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    InsertionResult: InsertionResult\r\n};",
@@ -3171,7 +3071,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 150,
+    "__docId__": 145,
     "kind": "class",
     "name": "InsertionResult",
     "memberof": "src/public/insertion-result.js",
@@ -3186,7 +3086,7 @@
     "interface": false
   },
   {
-    "__docId__": 151,
+    "__docId__": 146,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/insertion-result.js~InsertionResult",
@@ -3231,7 +3131,7 @@
     ]
   },
   {
-    "__docId__": 152,
+    "__docId__": 147,
     "kind": "member",
     "name": "wasAdded",
     "memberof": "src/public/insertion-result.js~InsertionResult",
@@ -3247,7 +3147,7 @@
     }
   },
   {
-    "__docId__": 153,
+    "__docId__": 148,
     "kind": "member",
     "name": "wasReplaced",
     "memberof": "src/public/insertion-result.js~InsertionResult",
@@ -3263,7 +3163,7 @@
     }
   },
   {
-    "__docId__": 154,
+    "__docId__": 149,
     "kind": "member",
     "name": "iterator",
     "memberof": "src/public/insertion-result.js~InsertionResult",
@@ -3279,7 +3179,7 @@
     }
   },
   {
-    "__docId__": 155,
+    "__docId__": 150,
     "kind": "file",
     "name": "src/public/iterators.js",
     "content": "'use strict';\r\n/**\r\n * Base class for STL-like iterators. It references a node (or index) and a container.\r\n * Navigation is achieved by calling container's prev() and next() methods.\r\n */\r\nclass BaseIterator {\r\n    /**\r\n     * @param {*} node - current node\r\n     * @param {*} container - container\r\n     */\r\n    constructor(node, container) {\r\n        /**\r\n         * @private\r\n         * __n - internal node reference\r\n         */\r\n        this.__n = node;\r\n        /**\r\n         * @private\r\n         * __c - internal container reference\r\n         */\r\n        this.__c = container;\r\n    }\r\n\r\n    /**\r\n     * Two iterators are considered to be equal if they point to the same node of the same container\r\n     * @param {BaseIterator} rhs - object on the 'right-hand side' of .eq. operator\r\n     * @returns {boolean}\r\n     */\r\n    equals(rhs) {\r\n        let lhsClass = this.constructor.name;\r\n        let rhsClass = rhs.constructor.name;\r\n        if (lhsClass !== rhsClass) {\r\n            throw new Error(`Can't compare an instance of ${lhsClass} with an instance of ${rhsClass}`);\r\n        }\r\n        if (this.__c !== rhs.__c) {\r\n            throw new Error('Iterators belong to different containers');\r\n        }\r\n        return this.__n === rhs.__n;\r\n    }\r\n\r\n    /**\r\n     * @private\r\n     * @returns current node\r\n     */\r\n    get node() {\r\n        return this.__n;\r\n    }\r\n\r\n    /**\r\n     * @private\r\n     * @returns key of the current node\r\n     */\r\n    get key() {\r\n        return this.__n.key;\r\n    }\r\n\r\n    /**\r\n     * @private\r\n     * @returns value of the current node\r\n     */\r\n    get value() {\r\n        return this.__n.value;\r\n    }\r\n\r\n    /**\r\n     * @private\r\n     * @returns container that holds current node\r\n     */\r\n    get container() {\r\n        return this.__c;\r\n    }\r\n}\r\n\r\n/**\r\n * STL-like forward iterator. It's more verbose than ES6 iterators, but allows iteration over any part of the container\r\n *\r\n * @example\r\n * let m = new TreeMap();\r\n * ...\r\n * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n * }\r\n */\r\nclass Iterator extends BaseIterator {\r\n    /**\r\n     * There are 3 ways to construct an iterator:\r\n     *\r\n     * 1. Using a node and a container\r\n     * 2. Copy constructor / clone\r\n     * 3. Copy constructor / clone from ReverseIterator instance\r\n     * @param {*} args\r\n     *\r\n     * @example\r\n     * // Using a node and a container\r\n     * let it = new Iterator(node, container);\r\n     *\r\n     * // Copy constructor / clone\r\n     * let it1 = new Iterator(node, container);\r\n     * let it2 = new Iterator(it1);\r\n     *\r\n     * // Copy constructor / clone from ReverseIterator instance\r\n     * let it1 = new ReverseIterator(node, container);\r\n     * let it2 = new Iterator(it1);\r\n     */\r\n    constructor(...args) {\r\n        if (args.length === 2) {\r\n            let [node, container] = args;\r\n            super(node, container);\r\n        }\r\n        else if (args.length === 1) {\r\n            let [obj] = args;\r\n            let className = obj.constructor.name;\r\n            if (className === Iterator.name) {\r\n                super(obj.__n, obj.__c);\r\n            }\r\n            // eslint-disable-next-line no-use-before-define\r\n            else if (className === ReverseIterator.name) {\r\n                let c = obj.__c;\r\n                super(c.next(obj.__n), c);\r\n            }\r\n            else {\r\n                throw new Error(`Can't create an Iterator from ${className}`);\r\n            }\r\n        }\r\n        else {\r\n            throw new Error('Can\\'t create an Iterator with provided parameters');\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Replaces node reference with the reference of the next node in the container.\r\n     * Can be used for manual iteration over a range of key-value pairs.\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * let from = t.lowerBound(0);\r\n     * let to = t.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    next() {\r\n        /**\r\n         * __n and __c are defined in the base class\r\n         */\r\n        this.__n = this.__c.next(this.__n);\r\n    }\r\n\r\n    /**\r\n     * Replaces node reference with the reference of the previous node in the container\r\n     * Can be used for manual reverse iteration over a range of key-value pairs.\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * let from = t.lowerBound(0);\r\n     * let to = t.upperBound(50);\r\n     * let it = to;\r\n     * while (!it.equals(from)) {\r\n     *   it.prev();\r\n     *   console.log(it.key);\r\n     * }\r\n     */\r\n    prev() {\r\n        this.__n = this.__c.prev(this.__n);\r\n    }\r\n}\r\n\r\n/**\r\n * STL-like backward iterator. Can be used to traverse container or a range in the reverse order.\r\n * It's more verbose than ES6 iterators, but allows iteration over any part of the container\r\n *\r\n * @example\r\n * let m = new TreeMap();\r\n * ...\r\n * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n * }\r\n */\r\nclass ReverseIterator extends BaseIterator {\r\n    /**\r\n     * There are 3 ways to construct a reverse iterator:\r\n     *\r\n     * 1. Using a node and a container\r\n     * 2. Copy constructor / clone\r\n     * 3. Copy constructor / clone from forward Iterator instance\r\n     * @param {*} args\r\n     *\r\n     * @example\r\n     * // Using a node and a container\r\n     * let it = new ReverseIterator(node, container);\r\n     *\r\n     * // Copy constructor / clone\r\n     * let it1 = new ReverseIterator(node, container);\r\n     * let it2 = new ReverseIterator(it1);\r\n     *\r\n     * // Copy constructor / clone from forward Iterator instance\r\n     * let it1 = new Iterator(node, container);\r\n     * let it2 = new ReverseIterator(it1);\r\n     */\r\n    constructor(...args) {\r\n        if (args.length === 2) {\r\n            let [node, container] = args;\r\n            super(node, container);\r\n        }\r\n        else if (args.length === 1) {\r\n            let [obj] = args;\r\n            let className = obj.constructor.name;\r\n            if (className === ReverseIterator.name) {\r\n                super(obj.__n, obj.__c);\r\n            }\r\n            else if (className === Iterator.name) {\r\n                let c = obj.__c;\r\n                super(c.prev(obj.__n), c);\r\n            }\r\n            else {\r\n                throw new Error(`Can't create an ReverseIterator from ${className}`);\r\n            }\r\n        }\r\n        else {\r\n            throw new Error('Can\\'t create a Reverse Iterator with provided parameters');\r\n        }\r\n    }\r\n\r\n    /**\r\n     *  Replaces node reference with the reference of the previous node in the container, because it works in reverse order\r\n     * Can be used for manual reverse iteration over a range of key-value pairs.\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * let from = new ReverseIterator(t.upperBound(50));\r\n     * let to = new ReverseIterator(t.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    next() {\r\n        /**\r\n         * __n and __c are defined in the base class\r\n         */\r\n        this.__n = this.__c.prev(this.__n);\r\n    }\r\n\r\n    /**\r\n     *  Replaces node reference with the reference of the next node in the container, because it works in reverse order\r\n     * Can be used for manual forward iteration over a range of key-value pairs.\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * let from = new ReverseIterator(t.upperBound(50));\r\n     * let to = new ReverseIterator(t.lowerBound(0));\r\n     * let it = to;\r\n     * while (!it.equals(from)) {\r\n     *   it.prev();\r\n     *   console.log(it.key);\r\n     * }\r\n     */\r\n    prev() {\r\n        this.__n = this.__c.next(this.__n);\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    Iterator: Iterator,\r\n    ReverseIterator: ReverseIterator\r\n};",
@@ -3290,7 +3190,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 156,
+    "__docId__": 151,
     "kind": "class",
     "name": "BaseIterator",
     "memberof": "src/public/iterators.js",
@@ -3306,7 +3206,7 @@
     "ignore": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 152,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3341,7 +3241,7 @@
     ]
   },
   {
-    "__docId__": 158,
+    "__docId__": 153,
     "kind": "member",
     "name": "__n",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3358,7 +3258,7 @@
     }
   },
   {
-    "__docId__": 159,
+    "__docId__": 154,
     "kind": "member",
     "name": "__c",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3375,7 +3275,7 @@
     }
   },
   {
-    "__docId__": 160,
+    "__docId__": 155,
     "kind": "method",
     "name": "equals",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3414,7 +3314,7 @@
     }
   },
   {
-    "__docId__": 161,
+    "__docId__": 156,
     "kind": "get",
     "name": "node",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3447,7 +3347,7 @@
     }
   },
   {
-    "__docId__": 162,
+    "__docId__": 157,
     "kind": "get",
     "name": "key",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3480,7 +3380,7 @@
     }
   },
   {
-    "__docId__": 163,
+    "__docId__": 158,
     "kind": "get",
     "name": "value",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3513,7 +3413,7 @@
     }
   },
   {
-    "__docId__": 164,
+    "__docId__": 159,
     "kind": "get",
     "name": "container",
     "memberof": "src/public/iterators.js~BaseIterator",
@@ -3546,7 +3446,7 @@
     }
   },
   {
-    "__docId__": 165,
+    "__docId__": 160,
     "kind": "class",
     "name": "Iterator",
     "memberof": "src/public/iterators.js",
@@ -3567,7 +3467,7 @@
     ]
   },
   {
-    "__docId__": 166,
+    "__docId__": 161,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/iterators.js~Iterator",
@@ -3595,7 +3495,7 @@
     ]
   },
   {
-    "__docId__": 167,
+    "__docId__": 162,
     "kind": "method",
     "name": "next",
     "memberof": "src/public/iterators.js~Iterator",
@@ -3613,7 +3513,7 @@
     "return": null
   },
   {
-    "__docId__": 168,
+    "__docId__": 163,
     "kind": "member",
     "name": "__n",
     "memberof": "src/public/iterators.js~Iterator",
@@ -3630,7 +3530,7 @@
     }
   },
   {
-    "__docId__": 169,
+    "__docId__": 164,
     "kind": "method",
     "name": "prev",
     "memberof": "src/public/iterators.js~Iterator",
@@ -3648,7 +3548,7 @@
     "return": null
   },
   {
-    "__docId__": 171,
+    "__docId__": 166,
     "kind": "class",
     "name": "ReverseIterator",
     "memberof": "src/public/iterators.js",
@@ -3669,7 +3569,7 @@
     ]
   },
   {
-    "__docId__": 172,
+    "__docId__": 167,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/iterators.js~ReverseIterator",
@@ -3697,7 +3597,7 @@
     ]
   },
   {
-    "__docId__": 173,
+    "__docId__": 168,
     "kind": "method",
     "name": "next",
     "memberof": "src/public/iterators.js~ReverseIterator",
@@ -3715,7 +3615,7 @@
     "return": null
   },
   {
-    "__docId__": 174,
+    "__docId__": 169,
     "kind": "member",
     "name": "__n",
     "memberof": "src/public/iterators.js~ReverseIterator",
@@ -3732,7 +3632,7 @@
     }
   },
   {
-    "__docId__": 175,
+    "__docId__": 170,
     "kind": "method",
     "name": "prev",
     "memberof": "src/public/iterators.js~ReverseIterator",
@@ -3750,7 +3650,7 @@
     "return": null
   },
   {
-    "__docId__": 177,
+    "__docId__": 172,
     "kind": "file",
     "name": "src/public/js-iterators.js",
     "content": "'use strict';\r\n\r\n/* Containers are expected to support the following methods:\r\n   jsBegin() - returns the very first node\r\n   jsEnd() - returns the node beyond the last one\r\n   next(node) - returns the next node\r\n   prev(node) - returns the previous node\r\n   valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */\r\n/**\r\n  * ES6-style forward iterator.\r\n  *\r\n  * @example\r\n  * let m = new TreeMap();\r\n  * ...\r\n  * for (let [key, value] of m) {\r\n  *   console.log(`key: ${key}, value: ${value}`);\r\n  * }\r\n  * // iterate values\r\n  * for (let value of m.values()) {\r\n  *   console.log(`value: ${value}`);\r\n  * }\r\n  */\r\nclass JsIterator {\r\n    /**\r\n     * @param {*} container\r\n     */\r\n    constructor(container, valuePolicy = container.valuePolicy) {\r\n        /**\r\n         * @private\r\n         * Internal reference to a container\r\n         */\r\n        this.container = container;\r\n        /**\r\n         * @private\r\n         * valuePolicy implements what members of the node will be returned: key, value, or key and value\r\n         */\r\n        this.valuePolicy = valuePolicy;\r\n        /**\r\n         * @private\r\n         * current node\r\n         */\r\n        this.node = container.jsBegin();\r\n    }\r\n\r\n    /**\r\n     * As documented in ES6 iteration protocol. It can be used for manual iteration.\r\n     * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators\r\n     *\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * let jsIt = m.entries();\r\n     * while (true) {\r\n     *   let res = it.next();\r\n     *   if (res.done) {\r\n     *     break;\r\n     *   }\r\n     *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});\r\n     * }\r\n     */\r\n    next() {\r\n        let res = {};\r\n        res.done = (this.node === this.container.jsEnd());\r\n        if (!res.done) {\r\n            res.value = this.valuePolicy.fetch(this.node);\r\n            this.node = this.container.next(this.node);\r\n        }\r\n        return res;\r\n    }\r\n\r\n    /**\r\n     * Support for ES6 for-of loops.\r\n     * @returns {JsIterator}\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * A reverse iterator for the same container.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * // iterate all key-value pairs in reverse order\r\n     * for (let [key, value] of m.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n    */\r\n    backwards() {\r\n        // eslint-disable-next-line no-use-before-define\r\n        return new JsReverseIterator(this.container, this.valuePolicy);\r\n    }\r\n}\r\n\r\n/* Containers are expected to support the following methods:\r\n   jsRbegin() - returns the very first node in reverse order (e.g. the very last node)\r\n   jsrEnd() - returns the node beyond the last one in reverse order (e.g. the node before the first one)\r\n   next(node) - returns the next node\r\n   prev(node) - returns the previous node\r\n   valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */\r\n/**\r\n  * ES6-style backward iterator\r\n  * @example\r\n  * let m = new TreeMap();\r\n  * ...\r\n  * // iterate all key-value pairs in reverse order\r\n  * for (let [key, value] of m.backwards()) {\r\n  *   console.log(`key: ${key}, value: ${value}`);\r\n  * }\r\n  * // iterate keys in reverse order\r\n  * for (let key of m.keys().backwards()) {\r\n  *   console.log(`key: ${key}`);\r\n  * }\r\n */\r\nclass JsReverseIterator {\r\n    /**\r\n     * @param {*} container\r\n     */\r\n    constructor(container, valuePolicy = container.valuePolicy) {\r\n        /**\r\n         * @private\r\n         * Internal reference to a container\r\n         */\r\n        this.container = container;\r\n        /**\r\n         * @private\r\n         * valuePolicy implements what members of the node will be returned: key, value, or key and value\r\n         */\r\n        this.valuePolicy = valuePolicy;\r\n        /**\r\n         * @private\r\n         * current node\r\n         */\r\n        this.node = container.jsRbegin();\r\n    }\r\n\r\n    /**\r\n     * As documented in ES6 iteration protocol. It can be used for manual iteration.\r\n     * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators\r\n     *\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * let jsIt = m.entries().backwards();\r\n     * while (true) {\r\n     *   let res = it.next();\r\n     *   if (res.done) {\r\n     *     break;\r\n     *   }\r\n     *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});\r\n     * }\r\n     */\r\n    next() {\r\n        let res = {};\r\n        res.done = (this.node === this.container.jsRend());\r\n        if (!res.done) {\r\n            res.value = this.valuePolicy.fetch(this.node);\r\n            this.node = this.container.prev(this.node);\r\n        }\r\n        return res;\r\n    }\r\n\r\n    /**\r\n     * Support for ES6 for-of loops.\r\n     * @returns {JsReverseIterator}\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * A forward iterator for the same container\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * // iterate all key-value pairs in direct order\r\n     * for (let [key, value] of m.backwards().backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     */\r\n    backwards() {\r\n        return new JsIterator(this.container, this.valuePolicy);\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    JsIterator: JsIterator,\r\n    JsReverseIterator: JsReverseIterator\r\n};",
@@ -3761,7 +3661,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 178,
+    "__docId__": 173,
     "kind": "class",
     "name": "JsIterator",
     "memberof": "src/public/js-iterators.js",
@@ -3779,7 +3679,7 @@
     "interface": false
   },
   {
-    "__docId__": 179,
+    "__docId__": 174,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3804,7 +3704,7 @@
     ]
   },
   {
-    "__docId__": 180,
+    "__docId__": 175,
     "kind": "member",
     "name": "container",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3821,7 +3721,7 @@
     }
   },
   {
-    "__docId__": 181,
+    "__docId__": 176,
     "kind": "member",
     "name": "valuePolicy",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3838,7 +3738,7 @@
     }
   },
   {
-    "__docId__": 182,
+    "__docId__": 177,
     "kind": "member",
     "name": "node",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3855,7 +3755,7 @@
     }
   },
   {
-    "__docId__": 183,
+    "__docId__": 178,
     "kind": "method",
     "name": "next",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3877,7 +3777,7 @@
     }
   },
   {
-    "__docId__": 185,
+    "__docId__": 180,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3905,7 +3805,7 @@
     "params": []
   },
   {
-    "__docId__": 186,
+    "__docId__": 181,
     "kind": "method",
     "name": "backwards",
     "memberof": "src/public/js-iterators.js~JsIterator",
@@ -3936,7 +3836,7 @@
     "params": []
   },
   {
-    "__docId__": 187,
+    "__docId__": 182,
     "kind": "class",
     "name": "JsReverseIterator",
     "memberof": "src/public/js-iterators.js",
@@ -3954,7 +3854,7 @@
     "interface": false
   },
   {
-    "__docId__": 188,
+    "__docId__": 183,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -3979,7 +3879,7 @@
     ]
   },
   {
-    "__docId__": 189,
+    "__docId__": 184,
     "kind": "member",
     "name": "container",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -3996,7 +3896,7 @@
     }
   },
   {
-    "__docId__": 190,
+    "__docId__": 185,
     "kind": "member",
     "name": "valuePolicy",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -4013,7 +3913,7 @@
     }
   },
   {
-    "__docId__": 191,
+    "__docId__": 186,
     "kind": "member",
     "name": "node",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -4030,7 +3930,7 @@
     }
   },
   {
-    "__docId__": 192,
+    "__docId__": 187,
     "kind": "method",
     "name": "next",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -4052,7 +3952,7 @@
     }
   },
   {
-    "__docId__": 194,
+    "__docId__": 189,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -4080,7 +3980,7 @@
     "params": []
   },
   {
-    "__docId__": 195,
+    "__docId__": 190,
     "kind": "method",
     "name": "backwards",
     "memberof": "src/public/js-iterators.js~JsReverseIterator",
@@ -4111,7 +4011,7 @@
     "params": []
   },
   {
-    "__docId__": 196,
+    "__docId__": 191,
     "kind": "file",
     "name": "src/public/main.js",
     "content": "/* This is an entry point to the library.\r\n   It collects all public classes and re-exports them */\r\n/**@private */\r\nconst {TreeMap} = require('./tree-map');\r\n/**@private */\r\nconst {TreeMultiMap} = require('./tree-multimap');\r\n/**@private */\r\nconst {TreeSet} = require('./tree-set');\r\n/**@private */\r\nconst {TreeMultiSet} = require('./tree-multiset');\r\n/**@private */\r\nconst {Iterator, ReverseIterator} = require('./iterators');\r\n/**@private */\r\nconst {JsIterator, JsReverseIterator} = require('./js-iterators');\r\n\r\nmodule.exports = {\r\n    Iterator: Iterator,\r\n    ReverseIterator: ReverseIterator,\r\n    JsIterator: JsIterator,\r\n    JsReverseIterator: JsReverseIterator,\r\n    TreeMap: TreeMap,\r\n    TreeMultiMap: TreeMultiMap,\r\n    TreeSet: TreeSet,\r\n    TreeMultiSet: TreeMultiSet,\r\n};",
@@ -4122,127 +4022,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 197,
-    "kind": "variable",
-    "name": "TreeMap",
-    "memberof": "src/public/main.js",
-    "static": true,
-    "longname": "src/public/main.js~TreeMap",
-    "access": "private",
-    "export": false,
-    "importPath": "jstreemap/src/public/main.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 4,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 198,
-    "kind": "variable",
-    "name": "TreeMultiMap",
-    "memberof": "src/public/main.js",
-    "static": true,
-    "longname": "src/public/main.js~TreeMultiMap",
-    "access": "private",
-    "export": false,
-    "importPath": "jstreemap/src/public/main.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 6,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 199,
-    "kind": "variable",
-    "name": "TreeSet",
-    "memberof": "src/public/main.js",
-    "static": true,
-    "longname": "src/public/main.js~TreeSet",
-    "access": "private",
-    "export": false,
-    "importPath": "jstreemap/src/public/main.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 8,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 200,
-    "kind": "variable",
-    "name": "TreeMultiSet",
-    "memberof": "src/public/main.js",
-    "static": true,
-    "longname": "src/public/main.js~TreeMultiSet",
-    "access": "private",
-    "export": false,
-    "importPath": "jstreemap/src/public/main.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 10,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 201,
-    "kind": "variable",
-    "name": "Iterator",
-    "memberof": "src/public/main.js",
-    "static": true,
-    "longname": "src/public/main.js~Iterator",
-    "access": "private",
-    "export": false,
-    "importPath": "jstreemap/src/public/main.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 12,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 202,
-    "kind": "variable",
-    "name": "JsIterator",
-    "memberof": "src/public/main.js",
-    "static": true,
-    "longname": "src/public/main.js~JsIterator",
-    "access": "private",
-    "export": false,
-    "importPath": "jstreemap/src/public/main.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 14,
-    "ignore": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 203,
+    "__docId__": 192,
     "kind": "file",
     "name": "src/public/tree-map.js",
     "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyValuePolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * TreeMap is an associative container that stores elements formed\r\n * by a combination of a key value and a mapped value, following a specific order.\r\n *\r\n * In a TreeMap, the key values are generally used to sort and uniquely identify\r\n * the elements, while the mapped values store the content associated to this key.\r\n * The types of key and mapped value may differ.\r\n *\r\n * ## Container properties\r\n * * **Associative** - Elements in associative containers are referenced by their key\r\n * and not by their absolute position in the container.\r\n * * **Ordered** - The elements in the container follow a strict order at all times.\r\n * All inserted elements are given a position in this order.\r\n * * **Map** - Each element associates a key to a mapped value. Keys are meant\r\n * to identify the elements whose main content is the mapped value.\r\n * * **Unique keys** - No two elements in the container can have equivalent keys.\r\n *\r\n * @example\r\n * let map = new TreeMap();\r\n * // add few values\r\n * map.set(1, 'a');\r\n * map.set(2, 'b');\r\n * // find a value by key\r\n * let v = map.get(1); // << 'a'\r\n * // print all key-value pairs\r\n * for (let [key, value] of map) {\r\n *   console.log(`key: ${key}, value: ${value}`);\r\n * }\r\n */\r\nclass TreeMap {\r\n    /*======================================================\r\n     * Methods of ES6 Map\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized map.\r\n     * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.\r\n     * @example\r\n     * // Create an empty map\r\n     * let map1 = new TreeMap();\r\n     * // Create and initialize map\r\n     * let map2 = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyValuePolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let [k, v] of iterable) {\r\n                    this.set(k, v);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMap constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMap()); // \"[object TreeMap]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMap';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let map = new TreeMap();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let map2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMap;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.clear();\r\n     * console.log(map.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.delete(2);\r\n     * console.log(map.toString()); // {1:A,3:C}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.entries()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all key-value pairs using a callback in ascending order of the keys.\r\n     * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.forEach(function(value, key, container) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let [k, v] of this.__t) {\r\n            callback(v, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds value associated with the specified key. If specified key does not exist then undefined is returned.\r\n     * @returns {*}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let v = map.get(3); // 'C'\r\n     * * let v = map.get(4); // returns undefined\r\n     */\r\n    get(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return it.value;\r\n        }\r\n        else {\r\n            return undefined;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether map contains a key-value pair with the specified key\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let b = map.get(3); // true\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds or updates key-value pair to the map.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let map = new TreeMap();\r\n     * map.set(1, 'A');\r\n     */\r\n    set(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Number of key-value pairs in the map.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order of the keys.\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values()) {\r\n     *   console.log(v); // 'A', 'B', 'C'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values().backward()) {\r\n     *   console.log(v); // 'C', 'B', 'A'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.values();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all key-value pairs in descending order of the keys.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * let res = m.insertUnique(1, 'A');\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.value}`); // prints A\r\n     * }\r\n     * res = m.insertUnique(1, 'B') // this step has no effect on the map\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // not executed\r\n     * }\r\n     */\r\n    insertUnique(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * let res = m.insertOrReplace(1, 'A');\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.value}`); // prints A\r\n     * }\r\n     * res = m.insertOrReplace(1, 'B') // replaces value on the existing node\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // prints B\r\n     * }\r\n     */\r\n    insertOrReplace(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let it = map.find(2);\r\n     * it.prev();\r\n     * map.erase(it); // removes a node with key 1\r\n     * console.log(map.toString()); // {2:B,3:C}\r\n     */\r\n    erase(iterator) {\r\n        this.__t.erase(iterator.node);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * @returns first key/value pair of the container, or undefined if container is empty\r\n     * @example\r\n     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let first = m.first();\r\n     * if (first) {\r\n     *   let key = first[0];   // 1\r\n     *   let value = first[1]; // 'A'\r\n     * }\r\n     */\r\n    first() {\r\n        return this.__t.first();\r\n    }\r\n\r\n    /**\r\n     * @returns last key/value pair of the container, or undefined if container is empty\r\n     * @example\r\n     * let m = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let last = m.last();\r\n     * if (last) {\r\n     *   let key = last[0];   // 3\r\n     *   let value = last[1]; // 'C'\r\n     * }\r\n     */\r\n    last() {\r\n        return this.__t.last();\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the map in the form {key1:value1,key2:value2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMap: TreeMap,\r\n};",
@@ -4253,67 +4033,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 204,
-    "kind": "variable",
-    "name": "Tree",
-    "memberof": "src/public/tree-map.js",
-    "static": true,
-    "longname": "src/public/tree-map.js~Tree",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-map.js",
-    "importStyle": null,
-    "description": "An implementation of red-black tree",
-    "lineNumber": 2,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 205,
-    "kind": "variable",
-    "name": "KeyValuePolicy",
-    "memberof": "src/public/tree-map.js",
-    "static": true,
-    "longname": "src/public/tree-map.js~KeyValuePolicy",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-map.js",
-    "importStyle": null,
-    "description": "Classes that regulate whether tree nodes hold keys only, or key-value pairs",
-    "lineNumber": 4,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 206,
-    "kind": "variable",
-    "name": "TreeNode",
-    "memberof": "src/public/tree-map.js",
-    "static": true,
-    "longname": "src/public/tree-map.js~TreeNode",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-map.js",
-    "importStyle": null,
-    "description": "Node for a red-black tree",
-    "lineNumber": 6,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 207,
+    "__docId__": 193,
     "kind": "class",
     "name": "TreeMap",
     "memberof": "src/public/tree-map.js",
@@ -4331,7 +4051,7 @@
     "interface": false
   },
   {
-    "__docId__": 208,
+    "__docId__": 194,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4359,7 +4079,7 @@
     ]
   },
   {
-    "__docId__": 209,
+    "__docId__": 195,
     "kind": "member",
     "name": "__t",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4376,7 +4096,7 @@
     }
   },
   {
-    "__docId__": 210,
+    "__docId__": 196,
     "kind": "get",
     "name": "[Symbol.toStringTag]",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4411,7 +4131,7 @@
     }
   },
   {
-    "__docId__": 211,
+    "__docId__": 197,
     "kind": "get",
     "name": "[Symbol.species]",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4446,7 +4166,7 @@
     }
   },
   {
-    "__docId__": 212,
+    "__docId__": 198,
     "kind": "method",
     "name": "clear",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4464,7 +4184,7 @@
     "return": null
   },
   {
-    "__docId__": 213,
+    "__docId__": 199,
     "kind": "method",
     "name": "delete",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4489,7 +4209,7 @@
     "return": null
   },
   {
-    "__docId__": 214,
+    "__docId__": 200,
     "kind": "method",
     "name": "entries",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4520,7 +4240,7 @@
     "params": []
   },
   {
-    "__docId__": 215,
+    "__docId__": 201,
     "kind": "method",
     "name": "forEach",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4545,7 +4265,7 @@
     "return": null
   },
   {
-    "__docId__": 216,
+    "__docId__": 202,
     "kind": "method",
     "name": "get",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4587,7 +4307,7 @@
     }
   },
   {
-    "__docId__": 217,
+    "__docId__": 203,
     "kind": "method",
     "name": "has",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4629,7 +4349,7 @@
     }
   },
   {
-    "__docId__": 218,
+    "__docId__": 204,
     "kind": "method",
     "name": "keys",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4660,7 +4380,7 @@
     "params": []
   },
   {
-    "__docId__": 219,
+    "__docId__": 205,
     "kind": "method",
     "name": "set",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4699,7 +4419,7 @@
     "return": null
   },
   {
-    "__docId__": 220,
+    "__docId__": 206,
     "kind": "get",
     "name": "size",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4731,7 +4451,7 @@
     }
   },
   {
-    "__docId__": 221,
+    "__docId__": 207,
     "kind": "method",
     "name": "values",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4762,7 +4482,7 @@
     "params": []
   },
   {
-    "__docId__": 222,
+    "__docId__": 208,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4793,7 +4513,7 @@
     "params": []
   },
   {
-    "__docId__": 223,
+    "__docId__": 209,
     "kind": "method",
     "name": "backward",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4824,7 +4544,7 @@
     "params": []
   },
   {
-    "__docId__": 224,
+    "__docId__": 210,
     "kind": "set",
     "name": "compareFunc",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4837,7 +4557,7 @@
     "lineNumber": 278
   },
   {
-    "__docId__": 225,
+    "__docId__": 211,
     "kind": "method",
     "name": "begin",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4868,7 +4588,7 @@
     "params": []
   },
   {
-    "__docId__": 226,
+    "__docId__": 212,
     "kind": "method",
     "name": "end",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4899,7 +4619,7 @@
     "params": []
   },
   {
-    "__docId__": 227,
+    "__docId__": 213,
     "kind": "method",
     "name": "find",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4941,7 +4661,7 @@
     }
   },
   {
-    "__docId__": 228,
+    "__docId__": 214,
     "kind": "method",
     "name": "insertUnique",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -4993,7 +4713,7 @@
     }
   },
   {
-    "__docId__": 229,
+    "__docId__": 215,
     "kind": "method",
     "name": "insertOrReplace",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5045,7 +4765,7 @@
     }
   },
   {
-    "__docId__": 230,
+    "__docId__": 216,
     "kind": "method",
     "name": "erase",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5074,7 +4794,7 @@
     "return": null
   },
   {
-    "__docId__": 231,
+    "__docId__": 217,
     "kind": "method",
     "name": "lowerBound",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5116,7 +4836,7 @@
     }
   },
   {
-    "__docId__": 232,
+    "__docId__": 218,
     "kind": "method",
     "name": "rbegin",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5147,7 +4867,7 @@
     "params": []
   },
   {
-    "__docId__": 233,
+    "__docId__": 219,
     "kind": "method",
     "name": "rend",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5178,7 +4898,7 @@
     "params": []
   },
   {
-    "__docId__": 234,
+    "__docId__": 220,
     "kind": "method",
     "name": "upperBound",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5220,7 +4940,7 @@
     }
   },
   {
-    "__docId__": 235,
+    "__docId__": 221,
     "kind": "method",
     "name": "first",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5251,7 +4971,7 @@
     "params": []
   },
   {
-    "__docId__": 236,
+    "__docId__": 222,
     "kind": "method",
     "name": "last",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5282,7 +5002,7 @@
     "params": []
   },
   {
-    "__docId__": 237,
+    "__docId__": 223,
     "kind": "method",
     "name": "toString",
     "memberof": "src/public/tree-map.js~TreeMap",
@@ -5310,7 +5030,7 @@
     "params": []
   },
   {
-    "__docId__": 238,
+    "__docId__": 224,
     "kind": "file",
     "name": "src/public/tree-multimap.js",
     "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyValuePolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * TreeMultiMap is an associative container that stores elements formed by\r\n * a combination of a key value and a mapped value, following a specific order,\r\n * and where multiple elements can have equivalent keys.\r\n *\r\n * In a TreeMultiMap, the key values are generally used to sort and uniquely\r\n * identify the elements, while the mapped values store the content\r\n * associated to this key. The types of key and mapped value may differ.\r\n *\r\n * ## Container properties\r\n * * **Associative** - Elements in associative containers are referenced\r\n * by their key and not by their absolute position in the container.\r\n * * **Ordered** - The elements in the container follow a strict order\r\n * at all times. All inserted elements are given a position in this order.\r\n * * **Map** - Each element associates a key to a mapped value. Keys are meant\r\n * to identify the elements whose main content is the mapped value.\r\n * * **Multiple equivalent keys** - Multiple elements in the container\r\n * can have equivalent keys.\r\n *\r\n * @example\r\n * let map = new TreeMultiMap();\r\n * // add few values\r\n * map.set(1, 'a');\r\n * map.set(2, 'b');\r\n * map.set(2, 'c');\r\n * // find a value by key\r\n * let v = map.get(1); // << 'a'\r\n * find all values for a given key\r\n * // print all key-value pairs\r\n * let from = map.lowerBound(2);\r\n * let to = map.upperBound(2);\r\n * let it = from;\r\n * while (!it.equals(to)) {\r\n *   console.log(it.key);\r\n *   it.next();\r\n * }\r\n */\r\nclass TreeMultiMap {\r\n    /*======================================================\r\n     * Methods of ES6 Map\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized map.\r\n     * @param {*} [iterable] Another iterable object whose key-value pairs are added into the newly created map.\r\n     * @example\r\n     * // Create an empty map\r\n     * let map1 = new TreeMultiMap();\r\n     * // Create and initialize map\r\n     * let map2 = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyValuePolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let [k, v] of iterable) {\r\n                    this.set(k, v);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMultiMap constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMultiMap()); // \"[object TreeMultiMap]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMultiMap';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let map = new TreeMultiMap();\r\n     * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];\r\n     * let map2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMultiMap;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.clear();\r\n     * console.log(map.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.delete(2);\r\n     * console.log(map.toString()); // {1:A,3:C}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.entries()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all key-value pairs using a callback in ascending order of the keys.\r\n     * Note that ES6 specifies the order of key value parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * map.forEach(function(value, key, container) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let [k, v] of this.__t) {\r\n            callback(v, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds value associated with the specified key. If specified key does not exist then undefined is returned.\r\n     * @returns {*}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let v = map.get(3); // 'C'\r\n     * * let v = map.get(4); // returns undefined\r\n     */\r\n    get(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return it.value;\r\n        }\r\n        else {\r\n            return undefined;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether map contains a key-value pair with the specified key\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let b = map.get(3); // true\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order of the keys.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let k of map.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds a key-value pair to the map. Multiple key-value pairs with the same key are allowed in TreeMultiMap.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @example\r\n     * let map = new TreeMultiMap();\r\n     * map.set(1, 'A');\r\n     * map.set(1, 'B');\r\n     * map.set(2, 'C');\r\n     * for (let k of map.values()) {\r\n     *   console.log(k); // A, B, C\r\n     * }\r\n     */\r\n    set(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Number of key-value pairs in the map.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order of the keys.\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values()) {\r\n     *   console.log(v); // 'A', 'B', 'C'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let v of map.values().backward()) {\r\n     *   console.log(v); // 'C', 'B', 'A'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.values();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all key-value pairs in ascending order of the keys. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all key-value pairs in descending order of the keys.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * for (let [key,value] of map.backwards()) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.begin(); !it.equals(m.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * ...\r\n     * let it = m.find(1);\r\n     * if (!it.equals(m.end())) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * let res = m.insertUnique(1, 'A');\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.value}`); // prints A\r\n     * }\r\n     * res = m.insertUnique(1, 'B') // this step has no effect on the map\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // not executed\r\n     * }\r\n     */\r\n    insertUnique(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * let res = m.insertOrReplace(1, 'A');\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.value}`); // prints A\r\n     * }\r\n     * res = m.insertOrReplace(1, 'B') // replaces value on the existing node\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // prints B\r\n     * }\r\n     */\r\n    insertOrReplace(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair. If such key already exists in the map then adds another node with the same key and a new value.\r\n     * @param {*} key\r\n     * @param {*} value\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * let res = m.insertMulti(1, 'A');\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.value}`); // prints A\r\n     * }\r\n     * res = m.insertMulti(1, 'B') // adds a new node\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.value}`); // prints B\r\n     *   it.prev();\r\n     *   console.log(`Previously inserted ${res.iterator.value}`); // prints A\r\n     * }\r\n     */\r\n    insertMulti(key, value) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        n.value = value;\r\n        return this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let it = map.find(2);\r\n     * it.prev();\r\n     * map.erase(it); // removes a node with key 1\r\n     * console.log(map.toString()); // {2:B,3:C}\r\n     */\r\n    erase(iterator) {\r\n        this.__t.erase(iterator.node);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ...\r\n     * for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}, value: ${it.value}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = m.lowerBound(0);\r\n     * let to = m.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let m = new TreeMultiMap();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(m.upperBound(50));\r\n     * let to = new ReverseIterator(m.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * @returns first key/value pair of the container, or undefined if container is empty\r\n     * @example\r\n     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let first = m.first();\r\n     * if (first) {\r\n     *   let key = first[0];   // 1\r\n     *   let value = first[1]; // 'A'\r\n     * }\r\n     */\r\n    first() {\r\n        return this.__t.first();\r\n    }\r\n\r\n    /**\r\n     * @returns last key/value pair of the container, or undefined if container is empty\r\n     * @example\r\n     * let m = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);\r\n     * let last = m.last();\r\n     * if (last) {\r\n     *   let key = last[0];   // 3\r\n     *   let value = last[1]; // 'C'\r\n     * }\r\n     */\r\n    last() {\r\n        return this.__t.last();\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the map in the form {key1:value1,key2:value2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMultiMap: TreeMultiMap,\r\n};",
@@ -5321,67 +5041,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 239,
-    "kind": "variable",
-    "name": "Tree",
-    "memberof": "src/public/tree-multimap.js",
-    "static": true,
-    "longname": "src/public/tree-multimap.js~Tree",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-multimap.js",
-    "importStyle": null,
-    "description": "An implementation of red-black tree",
-    "lineNumber": 2,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 240,
-    "kind": "variable",
-    "name": "KeyValuePolicy",
-    "memberof": "src/public/tree-multimap.js",
-    "static": true,
-    "longname": "src/public/tree-multimap.js~KeyValuePolicy",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-multimap.js",
-    "importStyle": null,
-    "description": "Classes that regulate whether tree nodes hold keys only, or key-value pairs",
-    "lineNumber": 4,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 241,
-    "kind": "variable",
-    "name": "TreeNode",
-    "memberof": "src/public/tree-multimap.js",
-    "static": true,
-    "longname": "src/public/tree-multimap.js~TreeNode",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-multimap.js",
-    "importStyle": null,
-    "description": "Node for a red-black tree",
-    "lineNumber": 6,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 242,
+    "__docId__": 225,
     "kind": "class",
     "name": "TreeMultiMap",
     "memberof": "src/public/tree-multimap.js",
@@ -5399,7 +5059,7 @@
     "interface": false
   },
   {
-    "__docId__": 243,
+    "__docId__": 226,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5427,7 +5087,7 @@
     ]
   },
   {
-    "__docId__": 244,
+    "__docId__": 227,
     "kind": "member",
     "name": "__t",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5444,7 +5104,7 @@
     }
   },
   {
-    "__docId__": 245,
+    "__docId__": 228,
     "kind": "get",
     "name": "[Symbol.toStringTag]",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5479,7 +5139,7 @@
     }
   },
   {
-    "__docId__": 246,
+    "__docId__": 229,
     "kind": "get",
     "name": "[Symbol.species]",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5514,7 +5174,7 @@
     }
   },
   {
-    "__docId__": 247,
+    "__docId__": 230,
     "kind": "method",
     "name": "clear",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5532,7 +5192,7 @@
     "return": null
   },
   {
-    "__docId__": 248,
+    "__docId__": 231,
     "kind": "method",
     "name": "delete",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5557,7 +5217,7 @@
     "return": null
   },
   {
-    "__docId__": 249,
+    "__docId__": 232,
     "kind": "method",
     "name": "entries",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5588,7 +5248,7 @@
     "params": []
   },
   {
-    "__docId__": 250,
+    "__docId__": 233,
     "kind": "method",
     "name": "forEach",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5613,7 +5273,7 @@
     "return": null
   },
   {
-    "__docId__": 251,
+    "__docId__": 234,
     "kind": "method",
     "name": "get",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5655,7 +5315,7 @@
     }
   },
   {
-    "__docId__": 252,
+    "__docId__": 235,
     "kind": "method",
     "name": "has",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5697,7 +5357,7 @@
     }
   },
   {
-    "__docId__": 253,
+    "__docId__": 236,
     "kind": "method",
     "name": "keys",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5728,7 +5388,7 @@
     "params": []
   },
   {
-    "__docId__": 254,
+    "__docId__": 237,
     "kind": "method",
     "name": "set",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5767,7 +5427,7 @@
     "return": null
   },
   {
-    "__docId__": 255,
+    "__docId__": 238,
     "kind": "get",
     "name": "size",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5799,7 +5459,7 @@
     }
   },
   {
-    "__docId__": 256,
+    "__docId__": 239,
     "kind": "method",
     "name": "values",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5830,7 +5490,7 @@
     "params": []
   },
   {
-    "__docId__": 257,
+    "__docId__": 240,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5861,7 +5521,7 @@
     "params": []
   },
   {
-    "__docId__": 258,
+    "__docId__": 241,
     "kind": "method",
     "name": "backward",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5892,7 +5552,7 @@
     "params": []
   },
   {
-    "__docId__": 259,
+    "__docId__": 242,
     "kind": "set",
     "name": "compareFunc",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5905,7 +5565,7 @@
     "lineNumber": 291
   },
   {
-    "__docId__": 260,
+    "__docId__": 243,
     "kind": "method",
     "name": "begin",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5936,7 +5596,7 @@
     "params": []
   },
   {
-    "__docId__": 261,
+    "__docId__": 244,
     "kind": "method",
     "name": "end",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -5967,7 +5627,7 @@
     "params": []
   },
   {
-    "__docId__": 262,
+    "__docId__": 245,
     "kind": "method",
     "name": "find",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6009,7 +5669,7 @@
     }
   },
   {
-    "__docId__": 263,
+    "__docId__": 246,
     "kind": "method",
     "name": "insertUnique",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6061,7 +5721,7 @@
     }
   },
   {
-    "__docId__": 264,
+    "__docId__": 247,
     "kind": "method",
     "name": "insertOrReplace",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6113,7 +5773,7 @@
     }
   },
   {
-    "__docId__": 265,
+    "__docId__": 248,
     "kind": "method",
     "name": "insertMulti",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6165,7 +5825,7 @@
     }
   },
   {
-    "__docId__": 266,
+    "__docId__": 249,
     "kind": "method",
     "name": "erase",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6194,7 +5854,7 @@
     "return": null
   },
   {
-    "__docId__": 267,
+    "__docId__": 250,
     "kind": "method",
     "name": "lowerBound",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6236,7 +5896,7 @@
     }
   },
   {
-    "__docId__": 268,
+    "__docId__": 251,
     "kind": "method",
     "name": "rbegin",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6267,7 +5927,7 @@
     "params": []
   },
   {
-    "__docId__": 269,
+    "__docId__": 252,
     "kind": "method",
     "name": "rend",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6298,7 +5958,7 @@
     "params": []
   },
   {
-    "__docId__": 270,
+    "__docId__": 253,
     "kind": "method",
     "name": "upperBound",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6340,7 +6000,7 @@
     }
   },
   {
-    "__docId__": 271,
+    "__docId__": 254,
     "kind": "method",
     "name": "first",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6371,7 +6031,7 @@
     "params": []
   },
   {
-    "__docId__": 272,
+    "__docId__": 255,
     "kind": "method",
     "name": "last",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6402,7 +6062,7 @@
     "params": []
   },
   {
-    "__docId__": 273,
+    "__docId__": 256,
     "kind": "method",
     "name": "toString",
     "memberof": "src/public/tree-multimap.js~TreeMultiMap",
@@ -6430,7 +6090,7 @@
     "params": []
   },
   {
-    "__docId__": 274,
+    "__docId__": 257,
     "kind": "file",
     "name": "src/public/tree-multiset.js",
     "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyOnlyPolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * TreeMultiSet is a container that stores elements following a specific order,\r\n * and where multiple elements can have equivalent values.\r\n *\r\n * In a TreeMultiSet, the value of an element also identifies it\r\n * (the value is itself the key). The value of the elements in a multiset\r\n * cannot be modified once in the container (the elements are always immutable),\r\n * but they can be inserted or removed from the container.\r\n *\r\n * ## Container properties\r\n * * **Associative** - Elements in associative containers are referenced\r\n * by their key and not by their absolute position in the container.\r\n * * **Ordered** - The elements in the container follow a strict order\r\n * at all times. All inserted elements are given a position in this order.\r\n * * **Set** - The value of an element is also the key used to identify it.\r\n * * **Multiple equivalent keys** - Multiple elements in the container\r\n * can have equivalent keys.\r\n *\r\n * @example\r\n * let set = new TreeMultiSet();\r\n * // add few values\r\n * set.add(1);\r\n * set.add(2);\r\n * set.add(2);\r\n * // check whether key exists\r\n * let flag = set.has(1); // << true\r\n * // print all keys\r\n * for (let key of set) {\r\n *   console.log(`key: ${key}`); // 1, 2, 2\r\n * }\r\n */\r\nclass TreeMultiSet {\r\n    /*======================================================\r\n     * Methods of ES6 Set\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized set.\r\n     * @param {*} [iterable] Another iterable object whose values are added into the newly created set.\r\n     * @example\r\n     * // Create an empty set\r\n     * let set = new TreeMultiSet();\r\n     * // Create and initialize set\r\n     * let set2 = new TreeMultiSet([1, 2, 3]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyOnlyPolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let k of iterable) {\r\n                    this.add(k);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeMultiSet constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeMultiSet()); // \"[object TreeMultiSet]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeMultiSet';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];\r\n     * let set2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeMultiSet;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * set.clear();\r\n     * console.log(set.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 2, 3]);\r\n     * set.delete(2);\r\n     * console.log(set.toString()); // {1,2,3}\r\n     * set.delete(2); / remove the second copy of the key\r\n     * console.log(set.toString()); // {1,3}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let key of set.entries()) {\r\n     *   console.log(`key: ${key}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all values using a callback in ascending order.\r\n     * Note that ES6 specifies the order of key parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * set.forEach(function(value, key, container) {\r\n     *   // value is the same as key\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let k of this.__t) {\r\n            callback(k, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether set contains the specified key.\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * let b = set.get(3); // true\r\n     * b = set.get(4); // false\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let k of set.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let k of set.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds a key to the set. If the key already exists then another entry with the same value is added.\r\n     * @param {*} key\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * set.add(1);\r\n     * set.add(1);\r\n     * set.add(2);\r\n     * // print all keys\r\n     * for (let key of set) {\r\n     *   console.log(`key: ${key}`); // 1, 1, 2\r\n     * }\r\n     */\r\n    add(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Number of keys in the set.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order. It is the same as keys() method\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let v of set.values()) {\r\n     *   console.log(v); // '1', '2', '3'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let v of set.values().backward()) {\r\n     *   console.log(v); // '3', '2', '1'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let key of set) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all keys in descending order.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * for (let key of set.backwards()) {\r\n     *   console.log(`key: ${key}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * ...\r\n     * for (let it = set.begin(); !it.equals(set.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * ...\r\n     * for (let it = set.begin(); !it.equals(set.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * ...\r\n     * let it = set.find(1);\r\n     * if (!it.equals(set.end())) {\r\n     *   console.log(`Found key: ${it.key}`); // 1\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds key if such key does not exist in the set.\r\n     * @param {*} key\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * set.insertUnique(1);\r\n     * set.insertUnique(1); // this step has no effect on the set\r\n     * let flag = set.has(1); // true\r\n     * let size = set.size; // 1\r\n     */\r\n    insertUnique(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key if such key does not exist in the set. Same as insertUnique()\r\n     * @param {*} key\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * set.insertOrReplace(1);\r\n     * set.insertOrReplace(1); // this step has no effect on the set\r\n     * let flag = set.has(1); // true\r\n     * let size = set.size; // 1\r\n     */\r\n    insertOrReplace(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key whether it exists or not in the set.\r\n     * @param {*} key\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * set.insertMulti(1);\r\n     * set.insertMulti(1); // this step has no effect on the map\r\n     * let flag = set.has(1); // true\r\n     * let size = set.size; // 2\r\n     */\r\n    insertMulti(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        return this.__t.insertMulti(n);\r\n    }\r\n\r\n    /**\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeMultiSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     */\r\n    erase(iterator) {\r\n        this.__t.erase(iterator.node);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeMultiSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeMultiSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeMultiSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * @returns first element of the container, or undefined if container is empty\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * let first = set.first(); // 1\r\n     */\r\n    first() {\r\n        return this.__t.first();\r\n    }\r\n\r\n    /**\r\n     * @returns last element of the container, or undefined if container is empty\r\n     * @example\r\n     * let set = new TreeMultiSet([1, 2, 3]);\r\n     * let last = set.last(); // 3\r\n     */\r\n    last() {\r\n        return this.__t.last();\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeMultiSet: TreeMultiSet,\r\n};",
@@ -6441,67 +6101,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 275,
-    "kind": "variable",
-    "name": "Tree",
-    "memberof": "src/public/tree-multiset.js",
-    "static": true,
-    "longname": "src/public/tree-multiset.js~Tree",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-multiset.js",
-    "importStyle": null,
-    "description": "An implementation of red-black tree",
-    "lineNumber": 2,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 276,
-    "kind": "variable",
-    "name": "KeyOnlyPolicy",
-    "memberof": "src/public/tree-multiset.js",
-    "static": true,
-    "longname": "src/public/tree-multiset.js~KeyOnlyPolicy",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-multiset.js",
-    "importStyle": null,
-    "description": "Classes that regulate whether tree nodes hold keys only, or key-value pairs",
-    "lineNumber": 4,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 277,
-    "kind": "variable",
-    "name": "TreeNode",
-    "memberof": "src/public/tree-multiset.js",
-    "static": true,
-    "longname": "src/public/tree-multiset.js~TreeNode",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-multiset.js",
-    "importStyle": null,
-    "description": "Node for a red-black tree",
-    "lineNumber": 6,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 278,
+    "__docId__": 258,
     "kind": "class",
     "name": "TreeMultiSet",
     "memberof": "src/public/tree-multiset.js",
@@ -6519,7 +6119,7 @@
     "interface": false
   },
   {
-    "__docId__": 279,
+    "__docId__": 259,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6547,7 +6147,7 @@
     ]
   },
   {
-    "__docId__": 280,
+    "__docId__": 260,
     "kind": "member",
     "name": "__t",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6564,7 +6164,7 @@
     }
   },
   {
-    "__docId__": 281,
+    "__docId__": 261,
     "kind": "get",
     "name": "[Symbol.toStringTag]",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6599,7 +6199,7 @@
     }
   },
   {
-    "__docId__": 282,
+    "__docId__": 262,
     "kind": "get",
     "name": "[Symbol.species]",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6634,7 +6234,7 @@
     }
   },
   {
-    "__docId__": 283,
+    "__docId__": 263,
     "kind": "method",
     "name": "clear",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6652,7 +6252,7 @@
     "return": null
   },
   {
-    "__docId__": 284,
+    "__docId__": 264,
     "kind": "method",
     "name": "delete",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6677,7 +6277,7 @@
     "return": null
   },
   {
-    "__docId__": 285,
+    "__docId__": 265,
     "kind": "method",
     "name": "entries",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6708,7 +6308,7 @@
     "params": []
   },
   {
-    "__docId__": 286,
+    "__docId__": 266,
     "kind": "method",
     "name": "forEach",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6733,7 +6333,7 @@
     "return": null
   },
   {
-    "__docId__": 287,
+    "__docId__": 267,
     "kind": "method",
     "name": "has",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6775,7 +6375,7 @@
     }
   },
   {
-    "__docId__": 288,
+    "__docId__": 268,
     "kind": "method",
     "name": "keys",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6806,7 +6406,7 @@
     "params": []
   },
   {
-    "__docId__": 289,
+    "__docId__": 269,
     "kind": "method",
     "name": "add",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6835,7 +6435,7 @@
     "return": null
   },
   {
-    "__docId__": 290,
+    "__docId__": 270,
     "kind": "get",
     "name": "size",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6867,7 +6467,7 @@
     }
   },
   {
-    "__docId__": 291,
+    "__docId__": 271,
     "kind": "method",
     "name": "values",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6898,7 +6498,7 @@
     "params": []
   },
   {
-    "__docId__": 292,
+    "__docId__": 272,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6929,7 +6529,7 @@
     "params": []
   },
   {
-    "__docId__": 293,
+    "__docId__": 273,
     "kind": "method",
     "name": "backward",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6960,7 +6560,7 @@
     "params": []
   },
   {
-    "__docId__": 294,
+    "__docId__": 274,
     "kind": "set",
     "name": "compareFunc",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -6973,7 +6573,7 @@
     "lineNumber": 269
   },
   {
-    "__docId__": 295,
+    "__docId__": 275,
     "kind": "method",
     "name": "begin",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7004,7 +6604,7 @@
     "params": []
   },
   {
-    "__docId__": 296,
+    "__docId__": 276,
     "kind": "method",
     "name": "end",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7035,7 +6635,7 @@
     "params": []
   },
   {
-    "__docId__": 297,
+    "__docId__": 277,
     "kind": "method",
     "name": "find",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7077,7 +6677,7 @@
     }
   },
   {
-    "__docId__": 298,
+    "__docId__": 278,
     "kind": "method",
     "name": "insertUnique",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7119,7 +6719,7 @@
     }
   },
   {
-    "__docId__": 299,
+    "__docId__": 279,
     "kind": "method",
     "name": "insertOrReplace",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7161,7 +6761,7 @@
     }
   },
   {
-    "__docId__": 300,
+    "__docId__": 280,
     "kind": "method",
     "name": "insertMulti",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7203,7 +6803,7 @@
     }
   },
   {
-    "__docId__": 301,
+    "__docId__": 281,
     "kind": "method",
     "name": "erase",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7232,7 +6832,7 @@
     "return": null
   },
   {
-    "__docId__": 302,
+    "__docId__": 282,
     "kind": "method",
     "name": "lowerBound",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7274,7 +6874,7 @@
     }
   },
   {
-    "__docId__": 303,
+    "__docId__": 283,
     "kind": "method",
     "name": "rbegin",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7305,7 +6905,7 @@
     "params": []
   },
   {
-    "__docId__": 304,
+    "__docId__": 284,
     "kind": "method",
     "name": "rend",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7336,7 +6936,7 @@
     "params": []
   },
   {
-    "__docId__": 305,
+    "__docId__": 285,
     "kind": "method",
     "name": "upperBound",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7378,7 +6978,7 @@
     }
   },
   {
-    "__docId__": 306,
+    "__docId__": 286,
     "kind": "method",
     "name": "first",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7409,7 +7009,7 @@
     "params": []
   },
   {
-    "__docId__": 307,
+    "__docId__": 287,
     "kind": "method",
     "name": "last",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7440,7 +7040,7 @@
     "params": []
   },
   {
-    "__docId__": 308,
+    "__docId__": 288,
     "kind": "method",
     "name": "toString",
     "memberof": "src/public/tree-multiset.js~TreeMultiSet",
@@ -7468,7 +7068,7 @@
     "params": []
   },
   {
-    "__docId__": 309,
+    "__docId__": 289,
     "kind": "file",
     "name": "src/public/tree-set.js",
     "content": "/** An implementation of red-black tree */\r\nconst {Tree} = require('../internal/tree');\r\n/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */\r\nconst {KeyOnlyPolicy} = require('../internal/policies');\r\n/** Node for a red-black tree */\r\nconst {TreeNode} = require('../internal/tree-node');\r\n\r\n/**\r\n * TreeSet is a container that stores unique elements following a specific order.\r\n *\r\n * In a TreeSet, the value of an element also identifies it (the value is itself the key),\r\n * and each value must be unique. The value of the elements in a TreeSet cannot be modified\r\n * once in the container (the elements are immutable), but they can be inserted or removed\r\n * from the container.\r\n *\r\n * ## Container properties\r\n * * **Associative** - Elements in associative containers are referenced by their key and\r\n * not by their absolute position in the container.</li>\r\n * * **Ordered** - The elements in the container follow a strict order at all times.\r\n * All inserted elements are given a position in this order.</li>\r\n * * **Set** - The value of an element is also the key used to identify it.</li>\r\n * * **Unique keys** - No two elements in the container can have equivalent keys.</li>\r\n *\r\n *\r\n * @example\r\n * let set = new TreeSet();\r\n * // add few values\r\n * set.add(1);\r\n * set.add(2);\r\n * // check whether key exists\r\n * let flag = set.has(1); // << true\r\n * // print all keys\r\n * for (let key of set) {\r\n *   console.log(`key: ${key}`);\r\n * }\r\n */\r\nclass TreeSet {\r\n    /*======================================================\r\n     * Methods of ES6 Set\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Creates an empty, or a pre-initialized set.\r\n     * @param {*} [iterable] Another iterable object whose values are added into the newly created set.\r\n     * @example\r\n     * // Create an empty set\r\n     * let set = new TreeSet();\r\n     * // Create and initialize set\r\n     * let set2 = new TreeSet([1, 2, 3]);\r\n     */\r\n    constructor(iterable) {\r\n        /** Internal tree */\r\n        this.__t = new Tree();\r\n        this.__t.valuePolicy = new KeyOnlyPolicy();\r\n        if ((iterable !== undefined)\r\n            && (iterable !== null)) {\r\n            if (iterable[Symbol.iterator] !== undefined) {\r\n                // copy contents\r\n                for (let k of iterable) {\r\n                    this.add(k);\r\n                }\r\n            }\r\n            else {\r\n                throw new Error('TreeSet constructor accepts only iterable objects');\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * String tag of this class\r\n     * @returns {String}\r\n     * @example\r\n     * Object.prototype.toString.call(new TreeSet()); // \"[object TreeSet]\"\r\n     */\r\n    get [Symbol.toStringTag]() {\r\n        return 'TreeSet';\r\n    }\r\n\r\n    /**\r\n     * Allows to create programmatically an instance of the same class\r\n     * @returns constructor object for this class.\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];\r\n     * let set2 = new constrFunc();\r\n     */\r\n    static get [Symbol.species]() {\r\n        return TreeSet;\r\n    }\r\n\r\n    /**\r\n     * Removes all key-value pairs.\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * set.clear();\r\n     * console.log(set.size); // 0\r\n     */\r\n    clear() {\r\n        this.__t.clear();\r\n    }\r\n\r\n    /**\r\n     * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * set.delete(2);\r\n     * console.log(set.toString()); // {1,3}\r\n     */\r\n    delete(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            this.__t.erase(it.node);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all values in ascending order.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let key of set.entries()) {\r\n     *   console.log(`key: ${key}`);\r\n     * }\r\n     */\r\n    entries() {\r\n        return this.__t.entries();\r\n    }\r\n\r\n    /**\r\n     * Iterates all values using a callback in ascending order.\r\n     * Note that ES6 specifies the order of key parameters in the callback differently from for-of loop.\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * set.forEach(function(value, key, container) {\r\n     *   // value is the same as key\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * });\r\n     */\r\n    forEach(callback) {\r\n        for (let k of this.__t) {\r\n            callback(k, k, this);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * A boolean indicator whether set contains the specified key.\r\n     * @returns {Boolean}\r\n     * @param {*} key a value of any type that can be compared with a key\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * let b = set.get(3); // true\r\n     * b = set.get(4); // false\r\n     */\r\n    has(key) {\r\n        let it = this.__t.find(key);\r\n        if (!it.equals(this.__t.end())) {\r\n            return true;\r\n        }\r\n        else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order.\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * // iterate all keys\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let k of set.keys()) {\r\n     *   console.log(k); // 1, 2, 3\r\n     * }\r\n     * // iterate all keys in reverse order\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let k of set.keys().backward()) {\r\n     *   console.log(k); // 3, 2, 1\r\n     * }\r\n     */\r\n    keys() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Adds a key to the set, unless the key already exists.\r\n     * @param {*} key\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * set.add(1);\r\n     */\r\n    add(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Number of keys in the set.\r\n     * @returns {Number}\r\n     */\r\n    get size() {\r\n        return this.__t.size();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order. It is the same as keys() method\r\n     * @returns {JsITerator}\r\n     * @example\r\n     * // iterate all values\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let v of set.values()) {\r\n     *   console.log(v); // '1', '2', '3'\r\n     * }\r\n     * // iterate all values in reverse order\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let v of set.values().backward()) {\r\n     *   console.log(v); // '3', '2', '1'\r\n     * }\r\n     */\r\n    values() {\r\n        return this.__t.keys();\r\n    }\r\n\r\n    /**\r\n     * Forward ES6 iterator for all keys in ascending order. The same as entries() method\r\n     * @returns {JsIterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let key of set) {\r\n     *   console.log(`key: ${key}, value: ${value}`);\r\n     * }\r\n     */\r\n    [Symbol.iterator]() {\r\n        return this.__t[Symbol.iterator]();\r\n    }\r\n\r\n    /*======================================================\r\n     * More methods\r\n     *======================================================*/\r\n    /**\r\n     * ES6 reverse iterator for all keys in descending order.\r\n     * @returns {JsReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * for (let key of set.backwards()) {\r\n     *   console.log(`key: ${key}`);\r\n     * }\r\n     */\r\n    backward() {\r\n        return this.__t.backward();\r\n    }\r\n\r\n    /**\r\n     * Sets custom comparison function if key values are not of primitive types.\r\n     * Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return\r\n     *      +1 if the value of rhs is greater than lhs\r\n     *      -1 if the value of rhs is less than lhs\r\n     *       0 if values are the same\r\n     */\r\n    set compareFunc(func) {\r\n        this.clear();\r\n        this.__t.compare = func;\r\n    }\r\n\r\n    /*======================================================\r\n     * STL-like methods\r\n     *======================================================*/\r\n\r\n    /**\r\n     * Forward iterator to the first element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.begin(); !it.equals(set.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    begin() {\r\n        return this.__t.begin();\r\n    }\r\n\r\n    /**\r\n     * Forward iterator to the element following the last element\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.begin(); !it.equals(set.end()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    end() {\r\n        return this.__t.end();\r\n    }\r\n\r\n    /**\r\n     * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * ...\r\n     * let it = set.find(1);\r\n     * if (!it.equals(set.end())) {\r\n     *   console.log(`Found key: ${it.key}`); // 1\r\n     * }\r\n     */\r\n    find(key) {\r\n        return this.__t.find(key);\r\n    }\r\n\r\n    /**\r\n     * Adds a key if it doesn't exist\r\n     * @param {*} key\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * let res = set.insertUnique(1);\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // prints 1\r\n     * }\r\n     * res = set.insertUnique(1); // this step has no effect on the set\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // not executed\r\n     * }\r\n     */\r\n    insertUnique(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        return this.__t.insertUnique(n);\r\n    }\r\n\r\n    /**\r\n     * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists\r\n     * @param {*} key\r\n     * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * let res = set.insertOrReplace(1);\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // prints 1\r\n     * }\r\n     * res = set.insertOrReplace(1) // returns iterator to the previously added node\r\n     * if (res.wasInserted) {\r\n     *   console.log(`Inserted ${res.iterator.key}`); // prints 1\r\n     * }\r\n     */\r\n    insertOrReplace(key) {\r\n        let n = new TreeNode();\r\n        n.key = key;\r\n        return this.__t.insertOrReplace(n);\r\n    }\r\n\r\n    /**\r\n     * Removes value for the specified iterator.\r\n     * @param {Iterator} iterator\r\n     * @example\r\n     * let set = new TreeSet([1,2,3]);\r\n     * let it = set.find(2);\r\n     * it.prev();\r\n     * set.erase(it); // removes a node with key 1\r\n     * console.log(set.toString()); // {2,3}\r\n     */\r\n    erase(iterator) {\r\n        this.__t.erase(iterator.node);\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    lowerBound(key) {\r\n        return this.__t.lowerBound(key);\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator to the last element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    rbegin() {\r\n        return this.__t.rbegin();\r\n    }\r\n\r\n    /**\r\n     * Reverse iterator pointing to before the first element.\r\n     * @returns {ReverseIterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ...\r\n     * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {\r\n     *   console.log(`key: ${it.key}`);\r\n     * }\r\n     */\r\n    rend() {\r\n        return this.__t.rend();\r\n    }\r\n\r\n    /**\r\n     * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.\r\n     * @param {*} key\r\n     * @returns {Iterator}\r\n     * @example\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive\r\n     * let from = set.lowerBound(0);\r\n     * let to = set.upperBound(50);\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     *\r\n     * let set = new TreeSet();\r\n     * ... // add key-value pairs., using numbers as keys\r\n     * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order\r\n     * let from = new ReverseIterator(set.upperBound(50));\r\n     * let to = new ReverseIterator(set.lowerBound(0));\r\n     * let it = from;\r\n     * while (!it.equals(to)) {\r\n     *   console.log(it.key);\r\n     *   it.next();\r\n     * }\r\n     */\r\n    upperBound(key) {\r\n        return this.__t.upperBound(key);\r\n    }\r\n\r\n    /**\r\n     * @returns first element of the container, or undefined if container is empty\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * let first = set.first(); // 1\r\n     */\r\n    first() {\r\n        return this.__t.first();\r\n    }\r\n\r\n    /**\r\n     * @returns last element of the container, or undefined if container is empty\r\n     * @example\r\n     * let set = new TreeSet([1, 2, 3]);\r\n     * let last = set.last(); // 3\r\n     */\r\n    last() {\r\n        return this.__t.last();\r\n    }\r\n\r\n    /**\r\n     * Serializes contents of the set in the form {key1,key2,...}\r\n     * @returns {String}\r\n     */\r\n    toString() {\r\n        return this.__t.toString();\r\n    }\r\n}\r\n\r\nmodule.exports = {\r\n    TreeSet: TreeSet,\r\n};",
@@ -7479,67 +7079,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 310,
-    "kind": "variable",
-    "name": "Tree",
-    "memberof": "src/public/tree-set.js",
-    "static": true,
-    "longname": "src/public/tree-set.js~Tree",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-set.js",
-    "importStyle": null,
-    "description": "An implementation of red-black tree",
-    "lineNumber": 2,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 311,
-    "kind": "variable",
-    "name": "KeyOnlyPolicy",
-    "memberof": "src/public/tree-set.js",
-    "static": true,
-    "longname": "src/public/tree-set.js~KeyOnlyPolicy",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-set.js",
-    "importStyle": null,
-    "description": "Classes that regulate whether tree nodes hold keys only, or key-value pairs",
-    "lineNumber": 4,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 312,
-    "kind": "variable",
-    "name": "TreeNode",
-    "memberof": "src/public/tree-set.js",
-    "static": true,
-    "longname": "src/public/tree-set.js~TreeNode",
-    "access": "public",
-    "export": false,
-    "importPath": "jstreemap/src/public/tree-set.js",
-    "importStyle": null,
-    "description": "Node for a red-black tree",
-    "lineNumber": 6,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 313,
+    "__docId__": 290,
     "kind": "class",
     "name": "TreeSet",
     "memberof": "src/public/tree-set.js",
@@ -7557,7 +7097,7 @@
     "interface": false
   },
   {
-    "__docId__": 314,
+    "__docId__": 291,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7585,7 +7125,7 @@
     ]
   },
   {
-    "__docId__": 315,
+    "__docId__": 292,
     "kind": "member",
     "name": "__t",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7602,7 +7142,7 @@
     }
   },
   {
-    "__docId__": 316,
+    "__docId__": 293,
     "kind": "get",
     "name": "[Symbol.toStringTag]",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7637,7 +7177,7 @@
     }
   },
   {
-    "__docId__": 317,
+    "__docId__": 294,
     "kind": "get",
     "name": "[Symbol.species]",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7672,7 +7212,7 @@
     }
   },
   {
-    "__docId__": 318,
+    "__docId__": 295,
     "kind": "method",
     "name": "clear",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7690,7 +7230,7 @@
     "return": null
   },
   {
-    "__docId__": 319,
+    "__docId__": 296,
     "kind": "method",
     "name": "delete",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7715,7 +7255,7 @@
     "return": null
   },
   {
-    "__docId__": 320,
+    "__docId__": 297,
     "kind": "method",
     "name": "entries",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7746,7 +7286,7 @@
     "params": []
   },
   {
-    "__docId__": 321,
+    "__docId__": 298,
     "kind": "method",
     "name": "forEach",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7771,7 +7311,7 @@
     "return": null
   },
   {
-    "__docId__": 322,
+    "__docId__": 299,
     "kind": "method",
     "name": "has",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7813,7 +7353,7 @@
     }
   },
   {
-    "__docId__": 323,
+    "__docId__": 300,
     "kind": "method",
     "name": "keys",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7844,7 +7384,7 @@
     "params": []
   },
   {
-    "__docId__": 324,
+    "__docId__": 301,
     "kind": "method",
     "name": "add",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7873,7 +7413,7 @@
     "return": null
   },
   {
-    "__docId__": 325,
+    "__docId__": 302,
     "kind": "get",
     "name": "size",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7905,7 +7445,7 @@
     }
   },
   {
-    "__docId__": 326,
+    "__docId__": 303,
     "kind": "method",
     "name": "values",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7936,7 +7476,7 @@
     "params": []
   },
   {
-    "__docId__": 327,
+    "__docId__": 304,
     "kind": "method",
     "name": "[Symbol.iterator]",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7967,7 +7507,7 @@
     "params": []
   },
   {
-    "__docId__": 328,
+    "__docId__": 305,
     "kind": "method",
     "name": "backward",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -7998,7 +7538,7 @@
     "params": []
   },
   {
-    "__docId__": 329,
+    "__docId__": 306,
     "kind": "set",
     "name": "compareFunc",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8011,7 +7551,7 @@
     "lineNumber": 259
   },
   {
-    "__docId__": 330,
+    "__docId__": 307,
     "kind": "method",
     "name": "begin",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8042,7 +7582,7 @@
     "params": []
   },
   {
-    "__docId__": 331,
+    "__docId__": 308,
     "kind": "method",
     "name": "end",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8073,7 +7613,7 @@
     "params": []
   },
   {
-    "__docId__": 332,
+    "__docId__": 309,
     "kind": "method",
     "name": "find",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8115,7 +7655,7 @@
     }
   },
   {
-    "__docId__": 333,
+    "__docId__": 310,
     "kind": "method",
     "name": "insertUnique",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8157,7 +7697,7 @@
     }
   },
   {
-    "__docId__": 334,
+    "__docId__": 311,
     "kind": "method",
     "name": "insertOrReplace",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8199,7 +7739,7 @@
     }
   },
   {
-    "__docId__": 335,
+    "__docId__": 312,
     "kind": "method",
     "name": "erase",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8228,7 +7768,7 @@
     "return": null
   },
   {
-    "__docId__": 336,
+    "__docId__": 313,
     "kind": "method",
     "name": "lowerBound",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8270,7 +7810,7 @@
     }
   },
   {
-    "__docId__": 337,
+    "__docId__": 314,
     "kind": "method",
     "name": "rbegin",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8301,7 +7841,7 @@
     "params": []
   },
   {
-    "__docId__": 338,
+    "__docId__": 315,
     "kind": "method",
     "name": "rend",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8332,7 +7872,7 @@
     "params": []
   },
   {
-    "__docId__": 339,
+    "__docId__": 316,
     "kind": "method",
     "name": "upperBound",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8374,7 +7914,7 @@
     }
   },
   {
-    "__docId__": 340,
+    "__docId__": 317,
     "kind": "method",
     "name": "first",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8405,7 +7945,7 @@
     "params": []
   },
   {
-    "__docId__": 341,
+    "__docId__": 318,
     "kind": "method",
     "name": "last",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8436,7 +7976,7 @@
     "params": []
   },
   {
-    "__docId__": 342,
+    "__docId__": 319,
     "kind": "method",
     "name": "toString",
     "memberof": "src/public/tree-set.js~TreeSet",
@@ -8473,7 +8013,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"jstreemap\",\n  \"version\": \"1.20.1\",\n  \"description\": \"Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes\",\n  \"main\": \"jstreemap.js\",\n  \"scripts\": {\n    \"esdoc\": \"esdoc -c ./esdoc.json\",\n    \"eslint-fix\": \"eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js gulpfile.js\",\n    \"eslint-watch\": \"esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js gulpfile.js\",\n    \"test-watch\": \"mocha --reporter spec -w --recursive test/dev-tests/**/*.js\",\n    \"dev-test\": \"nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js\",\n    \"test\": \"nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js\",\n    \"prod-test\": \"nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js\",\n    \"webpack\": \"webpack --config ./config/webpack.config.js\"\n  },\n  \"directories\": {\n    \"test\": \"test\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/kirusi/jstreemap.git\"\n  },\n  \"keywords\": [\n    \"set\",\n    \"map\",\n    \"multimap\",\n    \"multiset\",\n    \"red\",\n    \"black\",\n    \"tree\",\n    \"stl\",\n    \"iterator\",\n    \"multimap\",\n    \"treemap\",\n    \"multiset\",\n    \"treeset\",\n    \"lower_bound\",\n    \"lowerBound\",\n    \"upper_bound\",\n    \"upperBound\",\n    \"ordered\",\n    \"container\",\n    \"find\",\n    \"insert\",\n    \"delete\",\n    \"erase\",\n    \"template\",\n    \"library\"\n  ],\n  \"author\": \"Kirusi Msafiri\",\n  \"license\": \"0BSD\",\n  \"bugs\": {\n    \"url\": \"https://github.com/kirusi/jstreemap/issues\"\n  },\n  \"homepage\": \"https://github.com/kirusi/jstreemap#readme\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.2\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.13.1\",\n    \"eslint-watch\": \"^3.1.3\",\n    \"gulp\": \"^3.9.1\",\n    \"gulp-util\": \"^3.0.8\",\n    \"mocha\": \"^4.0.1\",\n    \"nyc\": \"^11.4.1\",\n    \"should\": \"^13.1.3\",\n    \"webpack\": \"^3.10.0\",\n    \"yarn\": \"^1.3.2\"\n  }\n}\n",
+    "content": "{\n  \"name\": \"jstreemap\",\n  \"version\": \"1.21.1\",\n  \"description\": \"Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes\",\n  \"main\": \"jstreemap.js\",\n  \"scripts\": {\n    \"esdoc\": \"esdoc -c ./esdoc.json\",\n    \"eslint-fix\": \"eslint --config=./config/eslint.config.json --fix src/**/*.js test/**/*.js gulpfile.js\",\n    \"eslint-watch\": \"esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js gulpfile.js\",\n    \"test-watch\": \"mocha --reporter spec -w --recursive test/dev-tests/**/*.js\",\n    \"dev-test\": \"nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js\",\n    \"test\": \"nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js\",\n    \"coverage\": \"nyc report --reporter=text-lcov | coveralls\",\n    \"prod-test\": \"nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js\",\n    \"webpack\": \"webpack --config ./config/webpack.config.js\"\n  },\n  \"directories\": {\n    \"test\": \"test\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/kirusi/jstreemap.git\"\n  },\n  \"keywords\": [\n    \"set\",\n    \"map\",\n    \"multimap\",\n    \"multiset\",\n    \"red\",\n    \"black\",\n    \"tree\",\n    \"stl\",\n    \"iterator\",\n    \"multimap\",\n    \"treemap\",\n    \"multiset\",\n    \"treeset\",\n    \"lower_bound\",\n    \"lowerBound\",\n    \"upper_bound\",\n    \"upperBound\",\n    \"ordered\",\n    \"container\",\n    \"find\",\n    \"insert\",\n    \"delete\",\n    \"erase\",\n    \"template\",\n    \"library\",\n    \"dictionary\",\n    \"key\",\n    \"value\"\n  ],\n  \"author\": \"Kirusi Msafiri\",\n  \"license\": \"0BSD\",\n  \"bugs\": {\n    \"url\": \"https://github.com/kirusi/jstreemap/issues\"\n  },\n  \"homepage\": \"https://github.com/kirusi/jstreemap#readme\",\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"coveralls\": \"^3.0.0\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.2\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.18.2\",\n    \"eslint-watch\": \"^3.1.3\",\n    \"gulp\": \"^3.9.1\",\n    \"gulp-util\": \"^3.0.8\",\n    \"mocha\": \"^4.1.0\",\n    \"mocha-lcov-reporter\": \"^1.3.0\",\n    \"nyc\": \"^11.4.1\",\n    \"should\": \"^13.1.3\",\n    \"webpack\": \"^3.10.0\",\n    \"yarn\": \"^1.3.2\"\n  }\n}\n",
     "longname": "D:\\Personal\\Projects\\jstreemap\\package.json",
     "name": "package.json",
     "static": true,
