@@ -17,4 +17,4 @@ test_script:
   - node --version
   - npm --version
   # run tests
-  - npm appveyor-test
+  - npm run appveyor-test
