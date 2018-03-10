@@ -1,5 +1,6 @@
 # jstreemap
 [![Travis build status](https://api.travis-ci.org/Kirusi/jstreemap.svg?branch=master)](https://travis-ci.org/Kirusi/jstreemap)
+[![Code coverage status](https://coveralls.io/repos/github/Kirusi/jstreemap/badge.svg)](https://coveralls.io/github/Kirusi/jstreemap)
 [![ESDoc coverage](https://doc.esdoc.org/github.com/Kirusi/jstreemap/badge.svg)](https://doc.esdoc.org/github.com/Kirusi/jstreemap/)
 
 A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:
