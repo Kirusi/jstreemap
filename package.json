@@ -10,6 +10,7 @@
     "test-watch": "mocha --reporter spec -w --recursive test/dev-tests/**/*.js",
     "dev-test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/dev-tests/**/*.js",
     "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/dev-tests/**/*.js",
+    "appveyor-test": "mocha --reporter mocha-appveyor-reporter test/dev-tests/**/*.js",
     "prod-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/prod-tests/**/*.js",
     "webpack": "webpack --config ./config/webpack.config.js"
   },
@@ -67,6 +68,7 @@
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
     "mocha": "^4.1.0",
+    "mocha-appveyor-reporter": "^0.4.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^11.4.1",
     "should": "^13.1.3",
