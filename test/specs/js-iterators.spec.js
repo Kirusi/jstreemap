@@ -1,14 +1,22 @@
-let lib;
-if (process.env.DEV_TEST) {
-    lib = require('../../src/public/js-iterators');
+/*global should JsIterator JsReverseIterator*/
+// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+if (process) {
+    // Running inside NodeJS
+    let lib;
+    if (process.env.DEV_TEST) {
+        // Use source code
+        lib = require('../../src/public/js-iterators');
+    }
+    else {
+        // use web-packed library
+        lib = require('../../jstreemap');
+    }
+    // eslint-disable-next-line no-global-assign
+    JsIterator = lib.JsIterator;
+    // eslint-disable-next-line no-global-assign
+    JsReverseIterator = lib.JsReverseIterator;
+    require('should');
 }
-else {
-    lib = require('../../jstreemap');
-}
-const {JsIterator, JsReverseIterator} = lib;
-
-const should = require('should');
-const assert = require('assert');
 
 class NodeIsValuePolicy {
     fetch(n) {
@@ -17,7 +25,7 @@ class NodeIsValuePolicy {
 }
 
 // Nodes are replaced with integers
-class ContainerStub {
+class ContainerStubJsIterTest {
     constructor() {
         this.valuePolicy = new NodeIsValuePolicy();
     }
@@ -51,7 +59,7 @@ class ContainerStub {
 describe('JsIterator tests', function() {
 
     it('forward iteration', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubJsIterTest();
         let it = new JsIterator(c);
         let actual = [];
         while (true) {
@@ -68,7 +76,7 @@ describe('JsIterator tests', function() {
     });
 
     it('backward iteration', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubJsIterTest();
         let it = new JsReverseIterator(c);
         let actual = [];
         while (true) {
@@ -85,7 +93,7 @@ describe('JsIterator tests', function() {
     });
 
     it('backward iteration using forward iterator', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubJsIterTest();
         let it = new JsIterator(c);
         let actual = [];
         for (let v of it.backwards()) {
@@ -98,7 +106,7 @@ describe('JsIterator tests', function() {
     });
 
     it('forward iteration using backward iterator', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubJsIterTest();
         let it = new JsReverseIterator(c);
         let actual = [];
         for (let v of it.backwards()) {

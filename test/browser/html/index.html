@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="../../../node_modules/mocha/mocha.css">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../../../node_modules/mocha/mocha.js"></script>
+    <script src="../../../node_modules/should/should.js"></script>
+
+    <script>mocha.setup('bdd')</script>
+
+    <!-- Load library packaged by webpack -->
+    <script src="../../../jstreemap.js"></script>
+
+    <!-- Load public test specs -->
+    <script>
+      let process; // stub for NodeJS module
+    </script>
+    <script src="../../specs/iterators.spec.js"></script>
+    <script src="../../specs/js-iterators.spec.js"></script>
+    <script src="../../specs/tree-map.spec.js"></script>
+    <script src="../../specs/tree-multimap.spec.js"></script>
+    <script src="../../specs/tree-multiset.spec.js"></script>
+    <script src="../../specs/tree-set.spec.js"></script>
+
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

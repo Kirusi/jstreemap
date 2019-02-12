@@ -1,17 +1,25 @@
-let lib;
-if (process.env.DEV_TEST) {
-    lib = require('../../src/public/iterators');
+/*global should Iterator ReverseIterator*/
+// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+if (process) {
+    // Running inside NodeJS
+    let lib;
+    if (process.env.DEV_TEST) {
+        // Use source code
+        lib = require('../../src/public/iterators');
+    }
+    else {
+        // use web-packed library
+        lib = require('../../jstreemap');
+    }
+    // eslint-disable-next-line no-global-assign
+    Iterator = lib.Iterator;
+    // eslint-disable-next-line no-global-assign
+    ReverseIterator = lib.ReverseIterator;
+    require('should');
 }
-else {
-    lib = require('../../jstreemap');
-}
-const {Iterator, ReverseIterator} = lib;
-
-const should = require('should');
-const assert = require('assert');
 
 // Nodes are replaced with integers
-class ContainerStub {
+class ContainerStubIterTest {
     prev(n) {
         return n - 1;
     }
@@ -24,7 +32,7 @@ class ContainerStub {
 describe('Iterator tests', function() {
 
     it('constructor; node and container', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new Iterator(5, c);
         should.strictEqual(5, it.node);
         should.strictEqual(c, it.container);
@@ -33,7 +41,7 @@ describe('Iterator tests', function() {
     });
 
     it('constructor; copy of an Iterator', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new Iterator(5, c);
         let it1 = new Iterator(it);
         should.strictEqual(5, it1.node);
@@ -43,7 +51,7 @@ describe('Iterator tests', function() {
     });
 
     it('constructor; copy of a ReverseIterator', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new ReverseIterator(5, c);
         let it1 = new Iterator(it);
         should.strictEqual(6, it1.node);
@@ -55,7 +63,7 @@ describe('Iterator tests', function() {
     it('constructor; too many paramaters', function(done) {
         try {
             let it = new Iterator('test', 'test', 'test');
-            assert(false, 'Constructor should have failed');
+            should.fail('Constructor should have failed');
         }
         catch (err) {
             let msg = err.message;
@@ -67,7 +75,7 @@ describe('Iterator tests', function() {
     it('constructor; invalid copy request', function(done) {
         try {
             let it = new Iterator('test');
-            assert(false, 'Constructor should have failed');
+            should.fail('Constructor should have failed');
         }
         catch (err) {
             let msg = err.message;
@@ -78,7 +86,7 @@ describe('Iterator tests', function() {
     });
 
     it('next', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new Iterator(5, c);
         it.next();
         should.strictEqual(6, it.node);
@@ -88,7 +96,7 @@ describe('Iterator tests', function() {
     });
 
     it('prev', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new Iterator(5, c);
         it.prev();
         should.strictEqual(4, it.node);
@@ -101,7 +109,7 @@ describe('Iterator tests', function() {
 describe('ReverseIterator tests', function() {
 
     it('constructor; node and container', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new ReverseIterator(5, c);
         should.strictEqual(5, it.node);
         should.strictEqual(c, it.container);
@@ -110,7 +118,7 @@ describe('ReverseIterator tests', function() {
     });
 
     it('constructor; copy of an ReverseIterator', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new ReverseIterator(5, c);
         let it1 = new ReverseIterator(it);
         should.strictEqual(5, it1.node);
@@ -120,7 +128,7 @@ describe('ReverseIterator tests', function() {
     });
 
     it('constructor; copy of a Iterator', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new Iterator(5, c);
         let it1 = new ReverseIterator(it);
         should.strictEqual(4, it1.node);
@@ -132,7 +140,7 @@ describe('ReverseIterator tests', function() {
     it('constructor; too many paramaters', function(done) {
         try {
             let it = new ReverseIterator('test', 'test', 'test');
-            assert(false, 'Constructor should have failed');
+            should.fail('Constructor should have failed');
         }
         catch (err) {
             let msg = err.message;
@@ -144,7 +152,7 @@ describe('ReverseIterator tests', function() {
     it('constructor; invalid copy request', function(done) {
         try {
             let it = new ReverseIterator('test');
-            assert(false, 'Constructor should have failed');
+            should.fail('Constructor should have failed');
         }
         catch (err) {
             let msg = err.message;
@@ -155,7 +163,7 @@ describe('ReverseIterator tests', function() {
     });
 
     it('next', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new ReverseIterator(5, c);
         it.next();
         should.strictEqual(4, it.node);
@@ -165,7 +173,7 @@ describe('ReverseIterator tests', function() {
     });
 
     it('prev', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new ReverseIterator(5, c);
         it.prev();
         should.strictEqual(6, it.node);
@@ -178,7 +186,7 @@ describe('ReverseIterator tests', function() {
 describe('BaseIterator tests', function() {
 
     it('equals; same node', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it1 = new Iterator(5, c);
         let it2 = new Iterator(5, c);
         should.ok(it1.equals(it2));
@@ -188,7 +196,7 @@ describe('BaseIterator tests', function() {
     });
 
     it('equals; different nodes', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it1 = new Iterator(4, c);
         let it2 = new Iterator(5, c);
         should.ok(!it1.equals(it2));
@@ -198,8 +206,8 @@ describe('BaseIterator tests', function() {
     });
 
     it('equals; different containers', function(done) {
-        let c1 = new ContainerStub();
-        let c2 = new ContainerStub();
+        let c1 = new ContainerStubIterTest();
+        let c2 = new ContainerStubIterTest();
         let it1 = new Iterator(4, c1);
         let it2 = new Iterator(5, c2);
         try {
@@ -221,8 +229,8 @@ describe('BaseIterator tests', function() {
     });
 
     it('equals; different types of iterators', function(done) {
-        let c1 = new ContainerStub();
-        let c2 = new ContainerStub();
+        let c1 = new ContainerStubIterTest();
+        let c2 = new ContainerStubIterTest();
         let it1 = new Iterator(4, c1);
         let it2 = new ReverseIterator(5, c2);
         try {
@@ -246,7 +254,7 @@ describe('BaseIterator tests', function() {
     });
 
     it('equals; comparison to non-iterator object', function(done) {
-        let c = new ContainerStub();
+        let c = new ContainerStubIterTest();
         let it = new Iterator(4, c);
         try {
             it.equals('test');

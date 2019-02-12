@@ -1,14 +1,20 @@
-let lib;
-if (process.env.DEV_TEST) {
-    lib = require('../../src/public/tree-multiset');
+/*global should TreeMultiSet*/
+// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+if (process) {
+    // Running inside NodeJS
+    let lib;
+    if (process.env.DEV_TEST) {
+        // Use source code
+        lib = require('../../src/public/tree-multiset');
+    }
+    else {
+        // use web-packed library
+        lib = require('../../jstreemap');
+    }
+    // eslint-disable-next-line no-global-assign
+    TreeMultiSet = lib.TreeMultiSet;
+    require('should');
 }
-else {
-    lib = require('../../jstreemap');
-}
-const {TreeMultiSet} = lib;
-
-const should = require('should');
-const assert = require('assert');
 
 describe('TreeMultiSet tests', function() {
 
@@ -122,7 +128,7 @@ describe('TreeMultiSet tests', function() {
     it('constructor; invalid literal', function(done) {
         try {
             let m = new TreeMultiSet(35);
-            assert(false, 'The error was not detected');
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;

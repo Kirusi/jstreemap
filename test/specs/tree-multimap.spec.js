@@ -1,14 +1,20 @@
-let lib;
-if (process.env.DEV_TEST) {
-    lib = require('../../src/public/tree-multimap');
+/*global should TreeMultiMap*/
+// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+if (process) {
+    // Running inside NodeJS
+    let lib;
+    if (process.env.DEV_TEST) {
+        // Use source code
+        lib = require('../../src/public/tree-multimap');
+    }
+    else {
+        // use web-packed library
+        lib = require('../../jstreemap');
+    }
+    // eslint-disable-next-line no-global-assign
+    TreeMultiMap = lib.TreeMultiMap;
+    require('should');
 }
-else {
-    lib = require('../../jstreemap');
-}
-const {TreeMultiMap} = lib;
-
-const should = require('should');
-const assert = require('assert');
 
 describe('TreeMultiMap tests', function() {
 
@@ -127,7 +133,7 @@ describe('TreeMultiMap tests', function() {
     it('constructor; invalid literal', function(done) {
         try {
             let m = new TreeMultiMap(35);
-            assert(false, 'The error was not detected');
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;
