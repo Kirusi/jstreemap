@@ -1,6 +1,11 @@
-/*global should assert Tree TreeNode KeyValuePolicy ReverseIterator BLACK RED compare*/
+if (process.env.DEV_TEST) {
+    const {TreeNode, RED, BLACK} = require('../../src/internal/tree-node');
+    const {Tree, compare} = require('../../src/internal/tree');
+    const {Iterator, ReverseIterator} = require('../../src/public/iterators');
+    const {KeyOnlyPolicy, KeyValuePolicy} = require('../../src/internal/policies');
 
-(function() {
+    const should = require('should');
+    const assert = require('assert');
 
     function createNode(id) {
         let n = new TreeNode();
@@ -1703,5 +1708,4 @@
         });
 
     });
-
-})();
+}

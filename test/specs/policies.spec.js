@@ -1,5 +1,9 @@
-/*global should assert KeyOnlyPolicy KeyValuePolicy ValueOnlyPolicy TreeNode*/
-(function() {
+if (process.env.DEV_TEST) {
+    const {TreeNode} = require('../../src/internal/tree-node');
+    const {KeyOnlyPolicy, ValueOnlyPolicy, KeyValuePolicy} = require('../../src/internal/policies');
+
+    const should = require('should');
+    const assert = require('assert');
 
     describe('Policy tests', function() {
 
@@ -180,5 +184,4 @@
             done();
         });
     });
-
-})();
+}

@@ -1,5 +1,8 @@
-/*global should assert TreeNode*/
-(function() {
+if (process.env.DEV_TEST) {
+    const {TreeNode} = require('../../src/internal/tree-node'); ;
+
+    const should = require('should');
+    const assert = require('assert');
 
     describe('TreeNode tests', function() {
 
@@ -112,5 +115,4 @@
             done();
         });
     });
-
-})();
+}
