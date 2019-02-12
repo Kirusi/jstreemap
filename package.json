@@ -9,7 +9,7 @@
     "eslint-watch": "esw --config=./config/eslint.config.json -w --fix src/**/*.js test/**/*.js gulpfile.js",
     "test-watch": "mocha --reporter spec -w --recursive test/dev-tests/**/*.js",
     "dev-test": "cross-env DEV_TEST=true nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter spec test/specs/*.spec.js",
-    "test": "nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/specs/*.js",
+    "test": "cross-env DEV_TEST=true nyc --reporter=html --reporter=text --report-dir=./build/coverage mocha --reporter spec test/specs/*.js",
     "prod-test": "nyc --reporter=html --reporter=text --report-dir=./build/postbuild-coverage mocha --reporter spec test/specs/*.js",
     "webpack": "webpack --config ./config/webpack.config.js"
   },
