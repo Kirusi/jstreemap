@@ -2,6 +2,7 @@
 const gulp = require('gulp');
 const PluginError = require('plugin-error');
 const { execSync } = require('child_process');
+const del = require('del');
 
 function runCmd(taskName, cmd) {
     try {
@@ -14,6 +15,11 @@ function runCmd(taskName, cmd) {
         });
     }
 }
+
+gulp.task('clean', function(done) {
+    del.sync(['./build', './docs']);
+    done();
+});
 
 gulp.task('eslint', function eslintTask(done) {
     runCmd('eslint', 'npm run eslint-fix');
