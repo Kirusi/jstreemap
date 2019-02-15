@@ -2,6 +2,7 @@
 [![Travis build status badge](https://api.travis-ci.org/Kirusi/jstreemap.svg?branch=master)](https://travis-ci.org/Kirusi/jstreemap)
 [![Code coverage status badge](https://coveralls.io/repos/github/Kirusi/jstreemap/badge.svg)](https://coveralls.io/github/Kirusi/jstreemap)
 [![ESDoc coverage badge](https://doc.esdoc.org/github.com/Kirusi/jstreemap/badge.svg)](https://doc.esdoc.org/github.com/Kirusi/jstreemap/)
+[![Number of tests](https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true)](https://travis-ci.org/Kirusi/jstreemap)
 [![Codacy code quality badge](https://api.codacy.com/project/badge/Grade/9f1cd5c4a06b46379f3123be48c65abe)](https://www.codacy.com/app/Kirusi/jstreemap?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Kirusi/jstreemap&amp;utm_campaign=Badge_Grade)
 
 A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:

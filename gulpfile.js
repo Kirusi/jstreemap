@@ -1,6 +1,6 @@
 // grab our gulp packages
 const gulp = require('gulp');
-const gutil = require('gulp-util');
+const PluginError = require('plugin-error');
 const { execSync } = require('child_process');
 
 function runCmd(taskName, cmd) {
@@ -8,7 +8,7 @@ function runCmd(taskName, cmd) {
         execSync(cmd, {stdio: [0, 1, 2]});
     }
     catch (error) {
-        throw new gutil.PluginError({
+        throw new PluginError({
             plugin: taskName,
             message: error.message
         });
@@ -25,7 +25,12 @@ gulp.task('dev-test', gulp.series('eslint', function devTestTask(done) {
     done();
 }));
 
-gulp.task('esdoc', gulp.series('dev-test', function esdocTask(done) {
+gulp.task('analyze-tests', gulp.series('dev-test', function devTestTask(done) {
+    runCmd('analyze-tests', 'npm run analyze-tests');
+    done();
+}));
+
+gulp.task('esdoc', gulp.series('analyze-tests', function esdocTask(done) {
     runCmd('esdoc', 'npm run esdoc');
     done();
 }));
@@ -46,7 +51,6 @@ gulp.task('web-test', gulp.series('prod-test', function prodTestTask(done) {
 }));
 
 gulp.task('build', gulp.series('web-test', function buildTask(done) {
-    gutil.log('Build is complete.');
     done();
 }));
 
@@ -56,6 +60,5 @@ gulp.task('watch', function watchTask(done) {
 });
 
 gulp.task('default', gulp.series('build', 'watch', function defaultTask(done) {
-    gutil.log('Default task is complete.');
     done();
 }));
