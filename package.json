@@ -3,6 +3,9 @@
   "version": "1.25.2",
   "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
   "main": "jstreemap.js",
+  "files": [
+    "/jstreemap.js"
+  ],
   "scripts": {
     "analyze-tests": "node ./tools/analyze-tests.js dev-tests.xml",
     "esdoc": "esdoc -c ./esdoc.json",
