@@ -10,25 +10,25 @@ declare module 'jstreemap' {
     export type Entry<K, V> = [K, V];
 
     interface Iterator<T, I extends Iterator<T, I>> {
-        next(): void
-        prev(): void
+        next(): void;
+        prev(): void;
     }
 
     export interface SetIterator<T> extends Iterator<T, SetIterator<T>> {
-        key: T
-        equals(it: SetIterator<T>): boolean
+        key: T;
+        equals(it: SetIterator<T>): boolean;
     }
 
     export interface MapIterator<K, V> extends Iterator<K, MapIterator<K, V>> {
-        key: K
-        value: V
-        equals(it: MapIterator<K, V>): boolean
+        key: K;
+        value: V;
+        equals(it: MapIterator<K, V>): boolean;
     }
 
     export interface InsertionResult<T, I extends Iterator<T, I>> {
-        wasAdded: boolean		
-        wasReplaced: boolean		
-        iterator: I
+        wasAdded: boolean;
+        wasReplaced: boolean;
+        iterator: I;
     }
 
     class Tree<K, V, E, I> {
@@ -101,4 +101,29 @@ declare module 'jstreemap' {
 
     }
 
+    export class TreeMultiMap<K, V> extends Tree<K, V, Entry<K, V>, MapIterator<K, V>> {
+
+        get(key: K): V | undefined;
+
+        set(key: K, value: V): void;
+
+        insertMulti(key: K, value: V): InsertionResult<Entry<K, V>, MapIterator<K, V>>;
+
+        insertOrReplace(key: K, value: V): InsertionResult<Entry<K, V>, MapIterator<K, V>>;
+
+        insertUnique(key: K, value: V): InsertionResult<Entry<K, V>, MapIterator<K, V>>;
+
+    }
+
+    export class TreeMultiSet<T> extends Tree<T, T, T, SetIterator<T>> {
+
+        add(key: T): void;
+    
+        insertMulti(key: T): InsertionResult<T, SetIterator<T>>;
+
+        insertOrReplace(key: T): InsertionResult<T, SetIterator<T>>;
+    
+        insertUnique(key: T): InsertionResult<T, SetIterator<T>>;
+
+    }
 }
