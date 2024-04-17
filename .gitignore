@@ -4,5 +4,5 @@ node_modules/
 build/
 lib/
 yarn.lock
-package-lock.json
+#package-lock.json
 .coverage
