@@ -212,6 +212,7 @@ describe('BaseIterator tests', function() {
         let it2 = new Iterator(5, c2);
         try {
             it1.equals(it2);
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;
@@ -219,6 +220,7 @@ describe('BaseIterator tests', function() {
         }
         try {
             it2.equals(it1);
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;
@@ -235,6 +237,7 @@ describe('BaseIterator tests', function() {
         let it2 = new ReverseIterator(5, c2);
         try {
             it1.equals(it2);
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;
@@ -243,6 +246,7 @@ describe('BaseIterator tests', function() {
         }
         try {
             it2.equals(it1);
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;
@@ -258,6 +262,7 @@ describe('BaseIterator tests', function() {
         let it = new Iterator(4, c);
         try {
             it.equals('test');
+            should.fail('The error was not detected');
         }
         catch (err) {
             let msg = err.message;

@@ -1,8 +1,8 @@
 if (process.env.DEV_TEST) {
-    const {TreeNode, RED, BLACK} = require('../../src/internal/tree-node');
-    const {Tree, compare} = require('../../src/internal/tree');
-    const {Iterator, ReverseIterator} = require('../../src/public/iterators');
-    const {KeyOnlyPolicy, KeyValuePolicy} = require('../../src/internal/policies');
+    const { TreeNode, RED, BLACK } = require('../../src/internal/tree-node');
+    const { Tree, compare } = require('../../src/internal/tree');
+    const { Iterator, ReverseIterator } = require('../../src/public/iterators');
+    const { KeyOnlyPolicy, KeyValuePolicy } = require('../../src/internal/policies');
 
     const should = require('should');
     const assert = require('assert');
@@ -300,7 +300,7 @@ if (process.env.DEV_TEST) {
             t.head.size = 1;
             try {
                 t.rotateLeft(X);
-                assert(false, 'The error was not detected');
+                should.fail('The error was not detected');
             }
             catch (err) {
                 let msg = err.message;
@@ -405,7 +405,7 @@ if (process.env.DEV_TEST) {
             t.head.size = 1;
             try {
                 t.rotateRight(X);
-                assert(false, 'The error was not detected');
+                should.fail('The error was not detected');
             }
             catch (err) {
                 let msg = err.message;
@@ -981,7 +981,7 @@ if (process.env.DEV_TEST) {
                 let resLeft = new ValidationResult();
                 isValidSubtree(t, n.left, resLeft);
                 if (!resLeft.isValid) {
-                // invalid left subtree
+                    // invalid left subtree
                     res.isValid = false;
                     res.errorMessage = resLeft.errorMessage;
                     return;
@@ -989,13 +989,13 @@ if (process.env.DEV_TEST) {
                 let resRight = new ValidationResult();
                 isValidSubtree(t, n.right, resRight);
                 if (!resRight.isValid) {
-                // invalid right subtree
+                    // invalid right subtree
                     res.isValid = false;
                     res.errorMessage = resRight.errorMessage;
                     return;
                 }
                 if (resLeft.height !== resRight.height) {
-                // invalid or different height right subtree
+                    // invalid or different height right subtree
                     res.isValid = false;
                     // eslint-disable-next-line max-len
                     res.errorMessage = `Invalid node ${n.key}. The black height of the left subtree is ${resLeft.height} and different from the black height of the right subtree ${resRight.height}`;
@@ -1064,7 +1064,7 @@ if (process.env.DEV_TEST) {
             }
 
             for (let j = 0; j < MAX_ITERATIONS; ++j) {
-            // erase
+                // erase
                 let i = randomInt(0, MAX_SIZE);
                 let k = keys[i];
                 let it = t.find(k);
@@ -1084,7 +1084,7 @@ if (process.env.DEV_TEST) {
 
         it('lowerBound', function(done) {
             let [t, n2, n4, n6, n8, n10, n12, n14, n16, n18, n20, n22, n24, n26, n28, n30, n32] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let n = t.lowerBound(8).node; // n8 - root of the tree
             should.equal(8, n.key); // matches a node with the same value
             n = t.lowerBound(22).node; // node with no children
@@ -1113,7 +1113,7 @@ if (process.env.DEV_TEST) {
 
         it('upperBound', function(done) {
             let [t, n2, n4, n6, n8, n10, n12, n14, n16, n18, n20, n22, n24, n26, n28, n30, n32] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let n = t.upperBound(7).node; // n8 - root of the tree
             should.equal(8, n.key); // matches a node with a larger value
             n = t.upperBound(20).node; // n22 - node with no children
@@ -1142,7 +1142,7 @@ if (process.env.DEV_TEST) {
 
         it('find', function(done) {
             let [t, n2, n4, n6, n8, n10, n12, n14, n16, n18, n20, n22, n24, n26, n28, n30, n32] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let it = t.find(8); // n8 - root of the tree
             should.equal(8, it.key); // matches a node with the same value
             it = t.find(22); // n22 - node with no children
@@ -1169,7 +1169,7 @@ if (process.env.DEV_TEST) {
 
         it('next', function(done) {
             let [t, ...ignore] =
-            buildTree(32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2);
+                buildTree(32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2);
             let n = t.head.leftmost;
             for (let i = 1; i < 17; ++i) {
                 should.equal(2 * i, n.key);
@@ -1182,7 +1182,7 @@ if (process.env.DEV_TEST) {
 
         it('prev', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let n = t.head.rightmost;
             for (let i = 16; i > 0; --i) {
                 should.equal(2 * i, n.key);
@@ -1195,7 +1195,7 @@ if (process.env.DEV_TEST) {
 
         it('for-of-loop', function(done) {
             let [t, ...ignore] =
-            buildTree(32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2);
+                buildTree(32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2);
             let actual = [];
             for (let v of t) {
                 actual.push(v);
@@ -1220,7 +1220,7 @@ if (process.env.DEV_TEST) {
 
         it('spread operator', function(done) {
             let [t, n2, n4, n6, n8, n10, n12, n14, n16, n18, n20, n22, n24, n26, n28, n30, n32] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [...t];
             let expected = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32];
             should.deepEqual(expected, actual);
@@ -1230,7 +1230,7 @@ if (process.env.DEV_TEST) {
 
         it('backward', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             for (let v of t.backward()) {
                 actual.push(v);
@@ -1306,7 +1306,7 @@ if (process.env.DEV_TEST) {
 
         it('forward stl-like iterator', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             for (let it = t.begin(); !it.equals(t.end()); it.next()) {
                 actual.push(it.node.key);
@@ -1331,7 +1331,7 @@ if (process.env.DEV_TEST) {
 
         it('backward stl-like iterator', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             for (let it = t.rbegin(); !it.equals(t.rend()); it.next()) {
                 actual.push(it.node.key);
@@ -1514,7 +1514,7 @@ if (process.env.DEV_TEST) {
 
         it('lowerBound/upperBound range; regular iteration with forward iterator', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             let from = t.lowerBound(0);
             let to = t.upperBound(50);
@@ -1531,7 +1531,7 @@ if (process.env.DEV_TEST) {
 
         it('lowerBound/upperBound range; opposite iteration with forward iterator', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             let from = t.lowerBound(0);
             let to = t.upperBound(50);
@@ -1548,7 +1548,7 @@ if (process.env.DEV_TEST) {
 
         it('lowerBound/upperBound range; regular iteration with backward iterator', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             let from = new ReverseIterator(t.upperBound(50));
             let to = new ReverseIterator(t.lowerBound(0));
@@ -1565,7 +1565,7 @@ if (process.env.DEV_TEST) {
 
         it('lowerBound/upperBound range; opposite iteration with backward iterator', function(done) {
             let [t, ...ignore] =
-            buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+                buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
             let actual = [];
             let from = new ReverseIterator(t.upperBound(50));
             let to = new ReverseIterator(t.lowerBound(0));
@@ -1613,8 +1613,8 @@ if (process.env.DEV_TEST) {
         });
 
         it('tree with custom comparison function', function(done) {
-        /* Test ability to compare alphanumeric structures like ['A',123]
-           First string portion is compared. If string portions of two objects are equal then numeric portions are compared */
+            /* Test ability to compare alphanumeric structures like ['A',123]
+               First string portion is compared. If string portions of two objects are equal then numeric portions are compared */
             class Id {
                 constructor(a, n) {
                     this.alpha = a;
@@ -1681,8 +1681,7 @@ if (process.env.DEV_TEST) {
         });
 
         it('toString; keys and values', function(done) {
-            let [t, ...ignore] =
-            buildTree(2, 4, 6);
+            let [t, ...ignore] = buildTree(2, 4, 6);
             let expected = '{2,4,6}';
             let actual = t.toString();
             should.strictEqual(expected, actual);
