@@ -44,13 +44,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMultiSet} from &apos;<span><a href="file/src/public/tree-multiset.js.html#lineNumber39">jstreemap/src/public/tree-multiset.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMultiSet} from &apos;<span><a href="file/src/public/tree-multiset.js.html#lineNumber41">jstreemap/src/public/tree-multiset.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/public/tree-multiset.js.html#lineNumber39">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/public/tree-multiset.js.html#lineNumber41">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -76,15 +76,13 @@ and where multiple elements can have equivalent values.</p>
 (the value is itself the key). The value of the elements in a multiset
 cannot be modified once in the container (the elements are always immutable),
 but they can be inserted or removed from the container.</p>
-<h2 id="container-properties">Container properties</h2><ul>
-<li><strong>Associative</strong> - Elements in associative containers are referenced
-by their key and not by their absolute position in the container.</li>
-<li><strong>Ordered</strong> - The elements in the container follow a strict order
-at all times. All inserted elements are given a position in this order.</li>
-<li><strong>Set</strong> - The value of an element is also the key used to identify it.</li>
-<li><strong>Multiple equivalent keys</strong> - Multiple elements in the container
-can have equivalent keys.</li>
-</ul>
+<h2 id="container-properties">Container properties</h2><p><strong>Associative</strong> - Elements in associative containers are referenced
+by their key and not by their absolute position in the container.
+<strong>Ordered</strong> - The elements in the container follow a strict order
+at all times. All inserted elements are given a position in this order.
+<strong>Set</strong> - The value of an element is also the key used to identify it.
+<strong>Multiple equivalent keys</strong> - Multiple elements in the container
+can have equivalent keys.</p>
 </div>
   
 
@@ -132,7 +130,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#static-get-[Symbol.species]">[Symbol.species]</a></span></span><span class="code" data-ice="signature">: <span>*</span>: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#static-get-[Symbol.species]">[Symbol.species]</a></span></span><span class="code" data-ice="signature">: <span>any</span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -205,7 +203,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -263,7 +261,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-get-size">size</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-get-size">size</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -328,7 +326,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-add">add</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-add">add</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -444,7 +442,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-delete">delete</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-delete">delete</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -560,7 +558,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -589,13 +587,14 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-first">first</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-first">first</a></span></span><span class="code" data-ice="signature">(): <span>any</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns first element of the container, or undefined if container is empty</p>
+</div>
       </div>
     </td>
     <td>
@@ -617,7 +616,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-forEach">forEach</a></span></span><span class="code" data-ice="signature">(callback: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-forEach">forEach</a></span></span><span class="code" data-ice="signature">(callback: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -646,7 +645,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-has">has</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-has">has</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -675,7 +674,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-insertMulti">insertMulti</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-insertMulti">insertMulti</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -704,7 +703,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -733,7 +732,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -791,13 +790,14 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-last">last</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-last">last</a></span></span><span class="code" data-ice="signature">(): <span>any</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns last element of the container, or undefined if container is empty</p>
+</div>
       </div>
     </td>
     <td>
@@ -819,7 +819,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-lowerBound">lowerBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-lowerBound">lowerBound</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -854,7 +854,7 @@ for (let key of set) {
       <div>
         
         
-        <div data-ice="description"><p>Reverse iterator to the last element.</p>
+        <div data-ice="description"><p>Returns iterator to the first element for reverse iterator</p>
 </div>
       </div>
     </td>
@@ -883,7 +883,7 @@ for (let key of set) {
       <div>
         
         
-        <div data-ice="description"><p>Reverse iterator pointing to before the first element.</p>
+        <div data-ice="description"><p>Returns <code>end</code> iterator for reverse iteration, e.g.</p>
 </div>
       </div>
     </td>
@@ -906,7 +906,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -935,7 +935,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-upperBound">upperBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-upperBound">upperBound</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -964,7 +964,7 @@ for (let key of set) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-values">values</a></span></span><span class="code" data-ice="signature">(): <span>JsITerator</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html#instance-method-values">values</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
         </p>
       </div>
       <div>
@@ -995,11 +995,11 @@ for (let key of set) {
     
     
     
-    <span class="code" data-ice="name">[Symbol.species]</span><span class="code" data-ice="signature">: <span>*</span>: <span>*</span></span>
+    <span class="code" data-ice="name">[Symbol.species]</span><span class="code" data-ice="signature">: <span>any</span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -1019,7 +1019,7 @@ for (let key of set) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span>any</span></td>
           <td class="return-desc" data-ice="returnDescription"><p>constructor object for this class.</p>
 </td>
         </tr>
@@ -1069,7 +1069,7 @@ let set2 = new constrFunc();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber53">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
@@ -1139,11 +1139,11 @@ let set2 = new TreeMultiSet([1, 2, 3]);</code></pre>
     
     
     
-    <span class="code" data-ice="name">[Symbol.toStringTag]</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">[Symbol.toStringTag]</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber77">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
@@ -1163,8 +1163,9 @@ let set2 = new TreeMultiSet([1, 2, 3]);</code></pre>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>class name</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1206,7 +1207,7 @@ let set2 = new TreeMultiSet([1, 2, 3]);</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber269">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber272">source</a></span></span>
     </span>
   </h3>
 
@@ -1250,11 +1251,11 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     
     
     
-    <span class="code" data-ice="name">size</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>: <span>*</span></span>
+    <span class="code" data-ice="name">size</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber210">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber213">source</a></span></span>
     </span>
   </h3>
 
@@ -1274,8 +1275,9 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>count of elements in the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1313,7 +1315,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber242">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber245">source</a></span></span>
     </span>
   </h3>
 
@@ -1334,7 +1336,8 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all elements</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1375,11 +1378,11 @@ for (let key of set) {
     
     
     
-    <span class="code" data-ice="name">add</span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+    <span class="code" data-ice="name">add</span><span class="code" data-ice="signature">(key: <span>any</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber200">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber203">source</a></span></span>
     </span>
   </h3>
 
@@ -1401,9 +1404,10 @@ for (let key of set) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>New key to be added</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1453,7 +1457,7 @@ for (let key of set) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber258">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber261">source</a></span></span>
     </span>
   </h3>
 
@@ -1474,7 +1478,8 @@ for (let key of set) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>reverse iterator for all elements</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1519,7 +1524,7 @@ for (let key of set.backwards()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber288">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber291">source</a></span></span>
     </span>
   </h3>
 
@@ -1540,7 +1545,8 @@ for (let key of set.backwards()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator pointing to the first node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1586,7 +1592,7 @@ for (let it = set.begin(); !it.equals(set.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber100">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber102">source</a></span></span>
     </span>
   </h3>
 
@@ -1635,11 +1641,11 @@ console.log(set.size); // 0</code></pre>
     
     
     
-    <span class="code" data-ice="name">delete</span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+    <span class="code" data-ice="name">delete</span><span class="code" data-ice="signature">(key: <span>any</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber113">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber116">source</a></span></span>
     </span>
   </h3>
 
@@ -1661,9 +1667,10 @@ console.log(set.size); // 0</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to be removed</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1710,7 +1717,7 @@ console.log(set.toString()); // {1,3}</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber302">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber305">source</a></span></span>
     </span>
   </h3>
 
@@ -1731,7 +1738,8 @@ console.log(set.toString()); // {1,3}</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator pointing to the node after the last element</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1777,7 +1785,7 @@ for (let it = set.begin(); !it.equals(set.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber129">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber132">source</a></span></span>
     </span>
   </h3>
 
@@ -1798,7 +1806,8 @@ for (let it = set.begin(); !it.equals(set.end()); it.next()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all elements</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1843,7 +1852,7 @@ for (let key of set.entries()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber383">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber386">source</a></span></span>
     </span>
   </h3>
 
@@ -1867,7 +1876,8 @@ for (let key of set.entries()) {
       <td data-ice="name" class="code" data-depth="0">iterator</td>
       <td data-ice="type" class="code"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Iterator pointing at the node to be removed</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1910,11 +1920,11 @@ console.log(set.toString()); // {2,3}</code></pre>
     
     
     
-    <span class="code" data-ice="name">find</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+    <span class="code" data-ice="name">find</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber318">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber321">source</a></span></span>
     </span>
   </h3>
 
@@ -1936,9 +1946,10 @@ console.log(set.toString()); // {2,3}</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to search for</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1951,7 +1962,8 @@ console.log(set.toString()); // {2,3}</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to found node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1994,18 +2006,19 @@ if (!it.equals(set.end())) {
     
     
     
-    <span class="code" data-ice="name">first</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">first</span><span class="code" data-ice="signature">(): <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber483">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber487">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns first element of the container, or undefined if container is empty</p>
+</div>
 
   
 
@@ -2017,7 +2030,7 @@ if (!it.equals(set.end())) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span>any</span></td>
           <td class="return-desc" data-ice="returnDescription"><p>first element of the container, or undefined if container is empty</p>
 </td>
         </tr>
@@ -2058,11 +2071,11 @@ let first = set.first(); // 1</code></pre>
     
     
     
-    <span class="code" data-ice="name">forEach</span><span class="code" data-ice="signature">(callback: <span>*</span>)</span>
+    <span class="code" data-ice="name">forEach</span><span class="code" data-ice="signature">(callback: <span>any</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber143">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber147">source</a></span></span>
     </span>
   </h3>
 
@@ -2085,9 +2098,10 @@ Note that ES6 specifies the order of key parameters in the callback differently 
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">callback</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The same type of callback as used in <code>forEach</code> of standard JS maps</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2130,11 +2144,11 @@ set.forEach(function(value, key, container) {
     
     
     
-    <span class="code" data-ice="name">has</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
+    <span class="code" data-ice="name">has</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber158">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber162">source</a></span></span>
     </span>
   </h3>
 
@@ -2156,7 +2170,7 @@ set.forEach(function(value, key, container) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>a value of any type that can be compared with a key</p>
 </td>
@@ -2171,8 +2185,9 @@ set.forEach(function(value, key, container) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p><code>true</code> when key exists in the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2212,11 +2227,11 @@ b = set.get(4); // false</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertMulti</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="code" data-ice="name">insertMulti</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber367">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber370">source</a></span></span>
     </span>
   </h3>
 
@@ -2238,9 +2253,10 @@ b = set.get(4); // false</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to be added</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2296,11 +2312,11 @@ let size = set.size; // 2</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber350">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber353">source</a></span></span>
     </span>
   </h3>
 
@@ -2322,9 +2338,10 @@ let size = set.size; // 2</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to be added</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2380,11 +2397,11 @@ let size = set.size; // 1</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber333">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber336">source</a></span></span>
     </span>
   </h3>
 
@@ -2406,9 +2423,10 @@ let size = set.size; // 1</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to be added</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2468,7 +2486,7 @@ let size = set.size; // 1</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber183">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber186">source</a></span></span>
     </span>
   </h3>
 
@@ -2489,7 +2507,8 @@ let size = set.size; // 1</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all keys</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2536,18 +2555,19 @@ for (let k of set.keys().backward()) {
     
     
     
-    <span class="code" data-ice="name">last</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">last</span><span class="code" data-ice="signature">(): <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber493">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber498">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns last element of the container, or undefined if container is empty</p>
+</div>
 
   
 
@@ -2559,7 +2579,7 @@ for (let k of set.keys().backward()) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span>any</span></td>
           <td class="return-desc" data-ice="returnDescription"><p>last element of the container, or undefined if container is empty</p>
 </td>
         </tr>
@@ -2600,11 +2620,11 @@ let last = set.last(); // 3</code></pre>
     
     
     
-    <span class="code" data-ice="name">lowerBound</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+    <span class="code" data-ice="name">lowerBound</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber414">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber417">source</a></span></span>
     </span>
   </h3>
 
@@ -2626,9 +2646,10 @@ let last = set.last(); // 3</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to search for</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2641,7 +2662,8 @@ let last = set.last(); // 3</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing at found node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2703,14 +2725,14 @@ while (!it.equals(to)) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber428">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber431">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Reverse iterator to the last element.</p>
+  <div data-ice="description"><p>Returns iterator to the first element for reverse iterator</p>
 </div>
 
   
@@ -2724,7 +2746,8 @@ while (!it.equals(to)) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to the node with the highest key</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2770,14 +2793,14 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber442">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber445">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Reverse iterator pointing to before the first element.</p>
+  <div data-ice="description"><p>Returns <code>end</code> iterator for reverse iteration, e.g. pointing to a position after the last element</p>
 </div>
 
   
@@ -2791,7 +2814,8 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to the node preceding the node with the lowest key</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2833,11 +2857,11 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     
     
     
-    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber501">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber506">source</a></span></span>
     </span>
   </h3>
 
@@ -2857,8 +2881,9 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>serialized contents of the tree</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2889,11 +2914,11 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     
     
     
-    <span class="code" data-ice="name">upperBound</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+    <span class="code" data-ice="name">upperBound</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber473">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber476">source</a></span></span>
     </span>
   </h3>
 
@@ -2915,9 +2940,10 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to search for</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2930,7 +2956,8 @@ for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing at the found node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2988,11 +3015,11 @@ while (!it.equals(to)) {
     
     
     
-    <span class="code" data-ice="name">values</span><span class="code" data-ice="signature">(): <span>JsITerator</span></span>
+    <span class="code" data-ice="name">values</span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber229">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-multiset.js.html#lineNumber232">source</a></span></span>
     </span>
   </h3>
 
@@ -3012,8 +3039,9 @@ while (!it.equals(to)) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>JsITerator</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all values</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3056,7 +3084,7 @@ for (let v of set.values().backward()) {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

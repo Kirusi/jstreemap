@@ -44,13 +44,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {JsIterator} from &apos;<span><a href="file/src/public/js-iterators.js.html#lineNumber23">jstreemap/src/public/js-iterators.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {JsIterator} from &apos;<span><a href="file/src/public/js-iterators.js.html#lineNumber22">jstreemap/src/public/js-iterators.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/public/js-iterators.js.html#lineNumber23">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/public/js-iterators.js.html#lineNumber22">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -118,13 +118,14 @@ for (let value of m.values()) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(container: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(container: <span>*</span>, valuePolicy: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructor for JSIterator</p>
+</div>
       </div>
     </td>
     <td>
@@ -212,7 +213,7 @@ for (let value of m.values()) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html#instance-method-next">next</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html#instance-method-next">next</a></span></span><span class="code" data-ice="signature">(): <span>any</span></span>
         </p>
       </div>
       <div>
@@ -245,18 +246,19 @@ for (let value of m.values()) {
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(container: <span>*</span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(container: <span>*</span>, valuePolicy: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructor for JSIterator</p>
+</div>
 
   
 
@@ -272,7 +274,15 @@ for (let value of m.values()) {
       <td data-ice="name" class="code" data-depth="0">container</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Container to be traversed</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">valuePolicy</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>policy object that specifies whether nodes have just keys or keys &amp; values</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -312,7 +322,7 @@ for (let value of m.values()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber75">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
@@ -333,7 +343,8 @@ for (let value of m.values()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator to traverse all elements in forward order</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -368,7 +379,7 @@ for (let value of m.values()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber90">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -389,7 +400,8 @@ for (let value of m.values()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator to traverse all elements in reverse order</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -432,11 +444,11 @@ for (let [key, value] of m.backwards()) {
     
     
     
-    <span class="code" data-ice="name">next</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">next</span><span class="code" data-ice="signature">(): <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber61">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/js-iterators.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
@@ -457,8 +469,9 @@ Iterators are documented here: <a href="https://developer.mozilla.org/en-US/docs
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span>any</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>returns object that specifies an indicator whether the node was fetched and node itself</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -501,7 +514,7 @@ while (true) {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>
