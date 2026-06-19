@@ -44,13 +44,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMap} from &apos;<span><a href="file/src/public/tree-map.js.html#lineNumber37">jstreemap/src/public/tree-map.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TreeMap} from &apos;<span><a href="file/src/public/tree-map.js.html#lineNumber39">jstreemap/src/public/tree-map.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/public/tree-map.js.html#lineNumber37">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/public/tree-map.js.html#lineNumber39">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -75,15 +75,13 @@ by a combination of a key value and a mapped value, following a specific order.<
 <p>In a TreeMap, the key values are generally used to sort and uniquely identify
 the elements, while the mapped values store the content associated to this key.
 The types of key and mapped value may differ.</p>
-<h2 id="container-properties">Container properties</h2><ul>
-<li><strong>Associative</strong> - Elements in associative containers are referenced by their key
-and not by their absolute position in the container.</li>
-<li><strong>Ordered</strong> - The elements in the container follow a strict order at all times.
-All inserted elements are given a position in this order.</li>
-<li><strong>Map</strong> - Each element associates a key to a mapped value. Keys are meant
-to identify the elements whose main content is the mapped value.</li>
-<li><strong>Unique keys</strong> - No two elements in the container can have equivalent keys.</li>
-</ul>
+<h2 id="container-properties">Container properties</h2><p><strong>Associative</strong> - Elements in associative containers are referenced by their key
+and not by their absolute position in the container.
+<strong>Ordered</strong> - The elements in the container follow a strict order at all times.
+All inserted elements are given a position in this order.
+<strong>Map</strong> - Each element associates a key to a mapped value. Keys are meant
+to identify the elements whose main content is the mapped value.
+<strong>Unique keys</strong> - No two elements in the container can have equivalent keys.</p>
 </div>
   
 
@@ -130,7 +128,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#static-get-[Symbol.species]">[Symbol.species]</a></span></span><span class="code" data-ice="signature">: <span>*</span>: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#static-get-[Symbol.species]">[Symbol.species]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -203,13 +201,13 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-get-[Symbol.toStringTag]">[Symbol.toStringTag]</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>String tag of this class</p>
+        <div data-ice="description"><p>Returns class name of this object</p>
 </div>
       </div>
     </td>
@@ -261,7 +259,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-get-size">size</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-get-size">size</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -413,7 +411,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-delete">delete</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-delete">delete</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -529,7 +527,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-find">find</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -558,13 +556,14 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-first">first</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-first">first</a></span></span><span class="code" data-ice="signature">(): <span>[any, any]</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns first key/value pair of the container, or undefined if container is empty</p>
+</div>
       </div>
     </td>
     <td>
@@ -586,7 +585,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-forEach">forEach</a></span></span><span class="code" data-ice="signature">(callback: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-forEach">forEach</a></span></span><span class="code" data-ice="signature">(callback: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -615,7 +614,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-get">get</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-get">get</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span>any</span></span>
         </p>
       </div>
       <div>
@@ -644,7 +643,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-has">has</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-has">has</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -673,7 +672,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-insertOrReplace">insertOrReplace</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>, value: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -702,7 +701,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-insertUnique">insertUnique</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
         </p>
       </div>
       <div>
@@ -760,13 +759,14 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-last">last</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-last">last</a></span></span><span class="code" data-ice="signature">(): <span>[any, any]</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns last key/value pair of the container, or undefined if container is empty</p>
+</div>
       </div>
     </td>
     <td>
@@ -788,7 +788,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-lowerBound">lowerBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-lowerBound">lowerBound</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -823,7 +823,7 @@ for (let [key, value] of map) {
       <div>
         
         
-        <div data-ice="description"><p>Reverse iterator to the last element.</p>
+        <div data-ice="description"><p>Returns iterator to the first element for reverse iterator</p>
 </div>
       </div>
     </td>
@@ -852,7 +852,7 @@ for (let [key, value] of map) {
       <div>
         
         
-        <div data-ice="description"><p>Reverse iterator pointing to before the first element.</p>
+        <div data-ice="description"><p>Returns <code>end</code> iterator for reverse iteration, e.g.</p>
 </div>
       </div>
     </td>
@@ -875,7 +875,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-set">set</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-set">set</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>, value: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -904,7 +904,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -933,7 +933,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-upperBound">upperBound</a></span></span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-upperBound">upperBound</a></span></span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
         </p>
       </div>
       <div>
@@ -962,7 +962,7 @@ for (let [key, value] of map) {
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-values">values</a></span></span><span class="code" data-ice="signature">(): <span>JsITerator</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html#instance-method-values">values</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
         </p>
       </div>
       <div>
@@ -993,7 +993,7 @@ for (let [key, value] of map) {
     
     
     
-    <span class="code" data-ice="name">[Symbol.species]</span><span class="code" data-ice="signature">: <span>*</span>: <span>*</span></span>
+    <span class="code" data-ice="name">[Symbol.species]</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
@@ -1017,7 +1017,7 @@ for (let [key, value] of map) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>constructor object for this class.</p>
 </td>
         </tr>
@@ -1067,7 +1067,7 @@ let map2 = new constrFunc();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber53">source</a></span></span>
     </span>
   </h3>
 
@@ -1137,7 +1137,7 @@ let map2 = new TreeMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos
     
     
     
-    <span class="code" data-ice="name">[Symbol.toStringTag]</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">[Symbol.toStringTag]</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
@@ -1148,7 +1148,7 @@ let map2 = new TreeMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos
   
   
   
-  <div data-ice="description"><p>String tag of this class</p>
+  <div data-ice="description"><p>Returns class name of this object</p>
 </div>
 
   
@@ -1161,8 +1161,9 @@ let map2 = new TreeMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>class name</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1213,9 +1214,9 @@ let map2 = new TreeMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos
   
   <div data-ice="description"><p>Sets custom comparison function if key values are not of primitive types.
 Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is expected to return
-     +1 if the value of rhs is greater than lhs
-     -1 if the value of rhs is less than lhs
-      0 if values are the same</p>
+   +1 if the value of rhs is greater than lhs
+   -1 if the value of rhs is less than lhs
+    0 if values are the same</p>
 </div>
 
   
@@ -1248,7 +1249,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     
     
     
-    <span class="code" data-ice="name">size</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>: <span>*</span></span>
+    <span class="code" data-ice="name">size</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
@@ -1272,8 +1273,9 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>number of elements in the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1332,7 +1334,8 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all elements of the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1398,7 +1401,8 @@ for (let [key,value] of map) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>reverse iterator for all elements in the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1464,7 +1468,8 @@ for (let [key,value] of map.backwards()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator pointing at the first node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1559,11 +1564,11 @@ console.log(map.size); // 0</code></pre>
     
     
     
-    <span class="code" data-ice="name">delete</span><span class="code" data-ice="signature">(key: <span>*</span>)</span>
+    <span class="code" data-ice="name">delete</span><span class="code" data-ice="signature">(key: <span>any</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber109">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber110">source</a></span></span>
     </span>
   </h3>
 
@@ -1585,9 +1590,10 @@ console.log(map.size); // 0</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Node&apos;s key</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1653,7 +1659,8 @@ console.log(map.toString()); // {1:A,3:C}</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator to the node after the last element</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1699,7 +1706,7 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber125">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber126">source</a></span></span>
     </span>
   </h3>
 
@@ -1720,7 +1727,8 @@ for (let it = m.begin(); !it.equals(m.end()); it.next()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all nodes in the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1789,7 +1797,8 @@ for (let [key,value] of map.entries()) {
       <td data-ice="name" class="code" data-depth="0">iterator</td>
       <td data-ice="type" class="code"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>iterator pointing to the node to be removed</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1832,7 +1841,7 @@ console.log(map.toString()); // {2:B,3:C}</code></pre>
     
     
     
-    <span class="code" data-ice="name">find</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+    <span class="code" data-ice="name">find</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
     <span class="right-info">
       
       
@@ -1858,9 +1867,10 @@ console.log(map.toString()); // {2:B,3:C}</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>to check</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1873,7 +1883,8 @@ console.log(map.toString()); // {2:B,3:C}</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator to the node with the specified key</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -1916,18 +1927,19 @@ if (!it.equals(m.end())) {
     
     
     
-    <span class="code" data-ice="name">first</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">first</span><span class="code" data-ice="signature">(): <span>[any, any]</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber491">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber492">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns first key/value pair of the container, or undefined if container is empty</p>
+</div>
 
   
 
@@ -1939,7 +1951,7 @@ if (!it.equals(m.end())) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span>[any, any]</span></td>
           <td class="return-desc" data-ice="returnDescription"><p>first key/value pair of the container, or undefined if container is empty</p>
 </td>
         </tr>
@@ -1984,11 +1996,11 @@ if (first) {
     
     
     
-    <span class="code" data-ice="name">forEach</span><span class="code" data-ice="signature">(callback: <span>*</span>)</span>
+    <span class="code" data-ice="name">forEach</span><span class="code" data-ice="signature">(callback: <span>any</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber138">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber140">source</a></span></span>
     </span>
   </h3>
 
@@ -2011,9 +2023,10 @@ Note that ES6 specifies the order of key value parameters in the callback differ
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">callback</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>similar to forEach callbacks for standard JS maps</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2055,11 +2068,11 @@ map.forEach(function(value, key, container) {
     
     
     
-    <span class="code" data-ice="name">get</span><span class="code" data-ice="signature">(key: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">get</span><span class="code" data-ice="signature">(key: <span>any</span>): <span>any</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber153">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber155">source</a></span></span>
     </span>
   </h3>
 
@@ -2081,7 +2094,7 @@ map.forEach(function(value, key, container) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>a value of any type that can be compared with a key</p>
 </td>
@@ -2096,8 +2109,9 @@ map.forEach(function(value, key, container) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span>any</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the value associated with the given key</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2120,7 +2134,7 @@ map.forEach(function(value, key, container) {
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">let map = new TreeMap([[1, &apos;A&apos;], [2, &apos;B&apos;], [3, &apos;C&apos;]]);
 let v = map.get(3); // &apos;C&apos;
-* let v = map.get(4); // returns undefined</code></pre>
+let v = map.get(4); // returns undefined</code></pre>
     </div>
 </div>
 
@@ -2137,11 +2151,11 @@ let v = map.get(3); // &apos;C&apos;
     
     
     
-    <span class="code" data-ice="name">has</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
+    <span class="code" data-ice="name">has</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber171">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber172">source</a></span></span>
     </span>
   </h3>
 
@@ -2178,8 +2192,9 @@ let v = map.get(3); // &apos;C&apos;
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>returns <code>true</code> if given key exists in the container</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2218,7 +2233,7 @@ let b = map.get(3); // true</code></pre>
     
     
     
-    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="code" data-ice="name">insertOrReplace</span><span class="code" data-ice="signature">(key: <span>any</span>, value: <span>any</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
@@ -2244,15 +2259,17 @@ let b = map.get(3); // true</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>key to be added / replaced</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>new value</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2312,7 +2329,7 @@ if (res.wasInserted) {
     
     
     
-    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
+    <span class="code" data-ice="name">insertUnique</span><span class="code" data-ice="signature">(key: <span>any</span>, value: <span>*</span>): <span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span>
     <span class="right-info">
       
       
@@ -2338,15 +2355,17 @@ if (res.wasInserted) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>key value to insert</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>value to be associated with the key</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2431,7 +2450,8 @@ if (res.wasInserted) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2478,18 +2498,19 @@ for (let k of map.keys().backward()) {
     
     
     
-    <span class="code" data-ice="name">last</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">last</span><span class="code" data-ice="signature">(): <span>[any, any]</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber505">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber507">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns last key/value pair of the container, or undefined if container is empty</p>
+</div>
 
   
 
@@ -2501,7 +2522,7 @@ for (let k of map.keys().backward()) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span>[any, any]</span></td>
           <td class="return-desc" data-ice="returnDescription"><p>last key/value pair of the container, or undefined if container is empty</p>
 </td>
         </tr>
@@ -2546,7 +2567,7 @@ if (last) {
     
     
     
-    <span class="code" data-ice="name">lowerBound</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+    <span class="code" data-ice="name">lowerBound</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
     <span class="right-info">
       
       
@@ -2572,9 +2593,10 @@ if (last) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>key to search for</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2587,7 +2609,8 @@ if (last) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to the found node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2656,7 +2679,7 @@ while (!it.equals(to)) {
   
   
   
-  <div data-ice="description"><p>Reverse iterator to the last element.</p>
+  <div data-ice="description"><p>Returns iterator to the first element for reverse iterator</p>
 </div>
 
   
@@ -2670,7 +2693,8 @@ while (!it.equals(to)) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to the node with the highest key</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2723,7 +2747,7 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
   
   
   
-  <div data-ice="description"><p>Reverse iterator pointing to before the first element.</p>
+  <div data-ice="description"><p>Returns <code>end</code> iterator for reverse iteration, e.g. pointing to a position after the last element</p>
 </div>
 
   
@@ -2737,7 +2761,8 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to the node preceding the node with the lowest key</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2779,7 +2804,7 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
     
     
     
-    <span class="code" data-ice="name">set</span><span class="code" data-ice="signature">(key: <span>*</span>, value: <span>*</span>)</span>
+    <span class="code" data-ice="name">set</span><span class="code" data-ice="signature">(key: <span>any</span>, value: <span>any</span>)</span>
     <span class="right-info">
       
       
@@ -2805,15 +2830,17 @@ for (let it = m.rbegin(); !it.equals(m.rend()); it.next()) {
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key for the node to be added/updated</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>New value</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2853,11 +2880,11 @@ map.set(1, &apos;A&apos;);</code></pre>
     
     
     
-    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber513">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/public/tree-map.js.html#lineNumber515">source</a></span></span>
     </span>
   </h3>
 
@@ -2877,8 +2904,9 @@ map.set(1, &apos;A&apos;);</code></pre>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>serialized representation of the tree</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2909,7 +2937,7 @@ map.set(1, &apos;A&apos;);</code></pre>
     
     
     
-    <span class="code" data-ice="name">upperBound</span><span class="code" data-ice="signature">(key: <span>*</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
+    <span class="code" data-ice="name">upperBound</span><span class="code" data-ice="signature">(key: <span>any</span>): <span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span>
     <span class="right-info">
       
       
@@ -2935,9 +2963,10 @@ map.set(1, &apos;A&apos;);</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">key</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>any</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Key to search</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2950,7 +2979,8 @@ map.set(1, &apos;A&apos;);</code></pre>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>iterator pointing to the found node</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3008,7 +3038,7 @@ while (!it.equals(to)) {
     
     
     
-    <span class="code" data-ice="name">values</span><span class="code" data-ice="signature">(): <span>JsITerator</span></span>
+    <span class="code" data-ice="name">values</span><span class="code" data-ice="signature">(): <span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span>
     <span class="right-info">
       
       
@@ -3032,8 +3062,9 @@ while (!it.equals(to)) {
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>JsITerator</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>forward iterator for all values</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3076,7 +3107,7 @@ for (let v of map.values().backward()) {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -6,5 +6,6 @@ module.exports = {
         filename: 'jstreemap.js',
         path: path.resolve(__dirname, '../'),
         libraryTarget: 'umd'
-    }
+    },
+    mode: 'production',
 };

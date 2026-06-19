@@ -1,0 +1,20 @@
+---
+# Define global settings and file exclusions
+config:
+  languages:
+    javascript:
+      extensions:
+        - ".js"
+        - ".jsx"
+        - ".mjs"
+    typescript:
+      extensions:
+        - ".ts"
+        - ".tsx"
+exclude_paths:
+  - "jstreemap.js"
+  - "build/**"
+  - "coverage/**"
+  - "dist/**"
+  - "docs/**"
+  - "node_modules/**"

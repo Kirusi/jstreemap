@@ -7,90 +7,90 @@
    prev(node) - returns the previous node
    valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */
 /**
-  * ES6-style forward iterator.
-  *
-  * @example
-  * let m = new TreeMap();
-  * ...
-  * for (let [key, value] of m) {
-  *   console.log(`key: ${key}, value: ${value}`);
-  * }
-  * // iterate values
-  * for (let value of m.values()) {
-  *   console.log(`value: ${value}`);
-  * }
-  */
+ * ES6-style forward iterator.
+ * @example
+ * let m = new TreeMap();
+ * ...
+ * for (let [key, value] of m) {
+ *   console.log(`key: ${key}, value: ${value}`);
+ * }
+ * // iterate values
+ * for (let value of m.values()) {
+ *   console.log(`value: ${value}`);
+ * }
+ */
 class JsIterator {
+  /**
+   * Constructor for JSIterator
+   * @param {*} container - Container to be traversed
+   * @param {*} valuePolicy - policy object that specifies whether nodes have just keys or keys & values
+   */
+  constructor(container, valuePolicy = container.valuePolicy) {
     /**
-     * @param {*} container
+     * @private
+     * Internal reference to a container
      */
-    constructor(container, valuePolicy = container.valuePolicy) {
-        /**
-         * @private
-         * Internal reference to a container
-         */
-        this.container = container;
-        /**
-         * @private
-         * valuePolicy implements what members of the node will be returned: key, value, or key and value
-         */
-        this.valuePolicy = valuePolicy;
-        /**
-         * @private
-         * current node
-         */
-        this.node = container.jsBegin();
-    }
-
+    this.container = container;
     /**
-     * As documented in ES6 iteration protocol. It can be used for manual iteration.
-     * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
-     *
-     * @example
-     * let m = new TreeMap();
-     * ...
-     * let jsIt = m.entries();
-     * while (true) {
-     *   let res = it.next();
-     *   if (res.done) {
-     *     break;
-     *   }
-     *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
-     * }
+     * @private
+     * valuePolicy implements what members of the node will be returned: key, value, or key and value
      */
-    next() {
-        let res = {};
-        res.done = (this.node === this.container.jsEnd());
-        if (!res.done) {
-            res.value = this.valuePolicy.fetch(this.node);
-            this.node = this.container.next(this.node);
-        }
-        return res;
-    }
-
+    this.valuePolicy = valuePolicy;
     /**
-     * Support for ES6 for-of loops.
-     * @returns {JsIterator}
+     * @private
+     * current node
      */
-    [Symbol.iterator]() {
-        return this;
-    }
+    this.node = container.jsBegin();
+  }
 
-    /**
-     * A reverse iterator for the same container.
-     * @returns {JsReverseIterator}
-     * @example
-     * let m = new TreeMap();
-     * ...
-     * // iterate all key-value pairs in reverse order
-     * for (let [key, value] of m.backwards()) {
-     *   console.log(`key: ${key}, value: ${value}`);
-     * }
-    */
-    backwards() {
-        // eslint-disable-next-line no-use-before-define
-        return new JsReverseIterator(this.container, this.valuePolicy);
+  /**
+   * As documented in ES6 iteration protocol. It can be used for manual iteration.
+   * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+   * @returns {any} returns object that specifies an indicator whether the node was fetched and node itself
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * let jsIt = m.entries();
+   * while (true) {
+   *   let res = it.next();
+   *   if (res.done) {
+   *     break;
+   *   }
+   *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
+   * }
+   */
+  next() {
+    let res = {};
+    res.done = this.node === this.container.jsEnd();
+    if (!res.done) {
+      res.value = this.valuePolicy.fetch(this.node);
+      this.node = this.container.next(this.node);
     }
+    return res;
+  }
+
+  /**
+   * Support for ES6 for-of loops.
+   * @returns {JsIterator} iterator to traverse all elements in forward order
+   */
+  [Symbol.iterator]() {
+    return this;
+  }
+
+  /**
+   * A reverse iterator for the same container.
+   * @returns {JsReverseIterator} iterator to traverse all elements in reverse order
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * // iterate all key-value pairs in reverse order
+   * for (let [key, value] of m.backwards()) {
+   *   console.log(`key: ${key}, value: ${value}`);
+   * }
+   */
+  backwards() {
+    return new JsReverseIterator(this.container, this.valuePolicy);
+  }
 }
 
 /* Containers are expected to support the following methods:
@@ -100,91 +100,93 @@ class JsIterator {
    prev(node) - returns the previous node
    valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */
 /**
-  * ES6-style backward iterator
-  * @example
-  * let m = new TreeMap();
-  * ...
-  * // iterate all key-value pairs in reverse order
-  * for (let [key, value] of m.backwards()) {
-  *   console.log(`key: ${key}, value: ${value}`);
-  * }
-  * // iterate keys in reverse order
-  * for (let key of m.keys().backwards()) {
-  *   console.log(`key: ${key}`);
-  * }
+ * ES6-style backward iterator
+ * @example
+ * let m = new TreeMap();
+ * ...
+ * // iterate all key-value pairs in reverse order
+ * for (let [key, value] of m.backwards()) {
+ *   console.log(`key: ${key}, value: ${value}`);
+ * }
+ * // iterate keys in reverse order
+ * for (let key of m.keys().backwards()) {
+ *   console.log(`key: ${key}`);
+ * }
  */
 class JsReverseIterator {
+  /**
+   * Constructor for reverse iterator
+   * @param {*} container - Container reference
+   * @param {*} valuePolicy - policy object that specifies whether nodes contain just keys or keys & values
+   */
+  constructor(container, valuePolicy = container.valuePolicy) {
     /**
-     * @param {*} container
+     * @private
+     * Internal reference to a container
      */
-    constructor(container, valuePolicy = container.valuePolicy) {
-        /**
-         * @private
-         * Internal reference to a container
-         */
-        this.container = container;
-        /**
-         * @private
-         * valuePolicy implements what members of the node will be returned: key, value, or key and value
-         */
-        this.valuePolicy = valuePolicy;
-        /**
-         * @private
-         * current node
-         */
-        this.node = container.jsRbegin();
-    }
+    this.container = container;
+    /**
+     * @private
+     * valuePolicy implements what members of the node will be returned: key, value, or key and value
+     */
+    this.valuePolicy = valuePolicy;
+    /**
+     * @private
+     * current node
+     */
+    this.node = container.jsRbegin();
+  }
 
-    /**
-     * As documented in ES6 iteration protocol. It can be used for manual iteration.
-     * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
-     *
-     * @example
-     * let m = new TreeMap();
-     * ...
-     * let jsIt = m.entries().backwards();
-     * while (true) {
-     *   let res = it.next();
-     *   if (res.done) {
-     *     break;
-     *   }
-     *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
-     * }
-     */
-    next() {
-        let res = {};
-        res.done = (this.node === this.container.jsRend());
-        if (!res.done) {
-            res.value = this.valuePolicy.fetch(this.node);
-            this.node = this.container.prev(this.node);
-        }
-        return res;
+  /**
+   * As documented in ES6 iteration protocol. It can be used for manual iteration.
+   * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+   * @returns {any} returns object that specifies an indicator whether the node was fetched and node itself
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * let jsIt = m.entries().backwards();
+   * while (true) {
+   *   let res = it.next();
+   *   if (res.done) {
+   *     break;
+   *   }
+   *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
+   * }
+   */
+  next() {
+    let res = {};
+    res.done = this.node === this.container.jsRend();
+    if (!res.done) {
+      res.value = this.valuePolicy.fetch(this.node);
+      this.node = this.container.prev(this.node);
     }
+    return res;
+  }
 
-    /**
-     * Support for ES6 for-of loops.
-     * @returns {JsReverseIterator}
-     */
-    [Symbol.iterator]() {
-        return this;
-    }
+  /**
+   * Support for ES6 for-of loops.
+   * @returns {JsReverseIterator} iterator to traverse all elements in reverse order
+   */
+  [Symbol.iterator]() {
+    return this;
+  }
 
-    /**
-     * A forward iterator for the same container
-     * @returns {JsIterator}
-     * @example
-     * let m = new TreeMap();
-     * ...
-     * // iterate all key-value pairs in direct order
-     * for (let [key, value] of m.backwards().backwards()) {
-     *   console.log(`key: ${key}, value: ${value}`);
-     */
-    backwards() {
-        return new JsIterator(this.container, this.valuePolicy);
-    }
+  /**
+   * A forward iterator for the same container
+   * @returns {JsIterator} iterator to traverse all elements in forward order
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * // iterate all key-value pairs in direct order
+   * for (let [key, value] of m.backwards().backwards()) {
+   *   console.log(`key: ${key}, value: ${value}`);
+   */
+  backwards() {
+    return new JsIterator(this.container, this.valuePolicy);
+  }
 }
 
 module.exports = {
-    JsIterator: JsIterator,
-    JsReverseIterator: JsReverseIterator
+  JsIterator: JsIterator,
+  JsReverseIterator: JsReverseIterator,
 };
