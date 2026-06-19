@@ -4,7 +4,6 @@
 const jsImport = require('eslint-plugin-import');
 const jsDoc = require('eslint-plugin-jsdoc');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-// eslint-disable-next-line import/no-unresolved
 const tseslint = require('typescript-eslint');
 
 const allFiles = {

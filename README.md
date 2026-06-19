@@ -1,9 +1,8 @@
 # jstreemap
 [![Travis build status badge](https://api.travis-ci.org/Kirusi/jstreemap.svg?branch=master)](https://travis-ci.org/Kirusi/jstreemap)
 [![Code coverage status badge](https://coveralls.io/repos/github/Kirusi/jstreemap/badge.svg)](https://coveralls.io/github/Kirusi/jstreemap)
-[![ESDoc coverage badge](https://doc.esdoc.org/github.com/Kirusi/jstreemap/badge.svg)](https://doc.esdoc.org/github.com/Kirusi/jstreemap/)
 [![Number of tests](https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true)](https://travis-ci.org/Kirusi/jstreemap)
-[![Codacy code quality badge](https://api.codacy.com/project/badge/Grade/9f1cd5c4a06b46379f3123be48c65abe)](https://www.codacy.com/app/Kirusi/jstreemap?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Kirusi/jstreemap&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d1833bbc5ae34166ae41f4432697d7a4)](https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:
 * [**TreeSet**](https://kirusi.github.io/jstreemap/class/src/public/tree-set.js~TreeSet.html) - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.

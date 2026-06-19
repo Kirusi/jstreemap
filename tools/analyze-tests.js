@@ -17,18 +17,17 @@ let passed = tests - failed;
 const bf = new BadgeFactory();
 let color = failed === 0 ? 'brightgreen' : 'red';
 const format = {
-    text: ['tests', `${passed} passed, ${failed} failed`],
-    color: color,
-    template: 'flat',
-    format: 'svg'
+  text: ['tests', `${passed} passed, ${failed} failed`],
+  color: color,
+  template: 'flat',
+  format: 'svg',
 };
 
 const svg = bf.create(format);
 let svgFile = path.join(__dirname, 'test-badge.svg');
 let stream = fs.createWriteStream(svgFile);
 try {
-    stream.write(svg);
-}
-finally {
-    stream.end();
+  stream.write(svg);
+} finally {
+  stream.end();
 }
