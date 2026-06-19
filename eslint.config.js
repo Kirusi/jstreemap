@@ -558,8 +558,7 @@ const localJsDocRules = {
 const localImportRules = {
   ...allFiles,
   plugins: {
-    // eslint-disable-next-line prettier/prettier
-    'import': jsImport,
+    import: jsImport,
   },
   rules: {
     // turn on errors for missing imports
