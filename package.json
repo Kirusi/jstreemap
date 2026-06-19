@@ -1,7 +1,7 @@
 {
   "name": "jstreemap",
   "type": "commonjs",
-  "version": "1.29.1",
+  "version": "1.29.2",
   "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
   "main": "jstreemap.js",
   "files": [
