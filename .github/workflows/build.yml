@@ -1,4 +1,4 @@
-name: Multiversion Node.JS build
+name: CI build
 
 on:
   push:
