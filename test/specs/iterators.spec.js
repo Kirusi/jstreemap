@@ -227,15 +227,29 @@ describe('BaseIterator tests', function () {
       it1.equals(it2);
     } catch (err) {
       let msg = err.message;
-      should.ok(msg.includes('instance of r'), msg);
-      should.ok(msg.includes('instance of i'), msg);
+      should.ok(
+        msg.includes('instance of r') || msg.includes('instance of Iterator'),
+        msg
+      );
+      should.ok(
+        msg.includes('instance of i') ||
+          msg.includes('instance of ReverseIterator'),
+        msg
+      );
     }
     try {
       it2.equals(it1);
     } catch (err) {
       let msg = err.message;
-      should.ok(msg.includes('instance of r'), msg);
-      should.ok(msg.includes('instance of i'), msg);
+      should.ok(
+        msg.includes('instance of r') || msg.includes('instance of Iterator'),
+        msg
+      );
+      should.ok(
+        msg.includes('instance of i') ||
+          msg.includes('instance of ReverseIterator'),
+        msg
+      );
     }
 
     done();
@@ -248,7 +262,10 @@ describe('BaseIterator tests', function () {
       it.equals('test');
     } catch (err) {
       let msg = err.message;
-      should.ok(msg.includes('instance of r'), msg);
+      should.ok(
+        msg.includes('instance of r') || msg.includes('instance of Iterator'),
+        msg
+      );
       should.ok(msg.includes('String'), msg);
     }
 
