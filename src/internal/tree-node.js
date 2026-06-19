@@ -32,7 +32,7 @@ class TreeNode {
 
   /**
    * Returns parent of parent node
-   * @returns {any} parent of parent
+   * @returns {any} parent node of parent node
    */
   grandparent() {
     let p = this.parent;

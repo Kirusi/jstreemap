@@ -14,7 +14,7 @@
     "eslint-fix": "eslint --config=./eslint.config.js --fix src/**/*.js test/**/*.js gulpfile.js",
     "eslint": "eslint --config=./eslint.config.js src/**/*.js test/**/*.js tools/analyze-tests.js gulpfile.js eslint.config.js",
     "test-watch": "cross-env DEV_TEST=true mocha --reporter spec -w --recursive test/specs/*.spec.js",
-    "dev-test": "cross-env DEV_TEST=true nyc --reporter=html --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter mocha-multi-reporters --reporter-options configFile=./config/mocha-reporters.json test/specs/*.spec.js",
+    "dev-test": "cross-env DEV_TEST=true nyc --reporter=html --reporter=lcov --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter mocha-multi-reporters --reporter-options configFile=./config/mocha-reporters.json test/specs/*.spec.js",
     "prod-test": "mocha --reporter spec test/specs/*.spec.js",
     "web-test": "mocha --reporter spec test/browser/*.spec.js",
     "webpack": "webpack --config ./config/webpack.config.js"
