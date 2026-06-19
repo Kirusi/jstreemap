@@ -1,6 +1,6 @@
 # jstreemap
 [![CI build status badge](https://github.com/Kirusi/jstreemap/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Kirusi/jstreemap/actions/workflows/build.yml)
-[![Code coverage status badge](https://coveralls.io/repos/github/Kirusi/jstreemap/badge.svg)](https://coveralls.io/github/Kirusi/jstreemap)
+[![Test Coverage](https://app.codacy.com/project/badge/Coverage/d1833bbc5ae34166ae41f4432697d7a4)](https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 [![Number of tests](https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true)](https://travis-ci.org/Kirusi/jstreemap)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d1833bbc5ae34166ae41f4432697d7a4)](https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
