@@ -1,4 +1,4 @@
-'use strict';
+import { TreeNode } from './tree-node.js'
 
 /* Containers are expected to support the following methods:
    jsBegin() - returns the very first node
@@ -19,13 +19,17 @@
  *   console.log(`value: ${value}`);
  * }
  */
-class JsIterator {
+export class JsIterator<T> implements IterableIterator<T> {
+  public container: any;
+  public valuePolicy: any;
+  public node: TreeNode<any, any>;
+
   /**
    * Constructor for JSIterator
    * @param {*} container - Container to be traversed
    * @param {*} valuePolicy - policy object that specifies whether nodes have just keys or keys & values
    */
-  constructor(container, valuePolicy = container.valuePolicy) {
+  constructor(container: any, valuePolicy = container.valuePolicy) {
     /**
      * @private
      * Internal reference to a container
@@ -42,25 +46,27 @@ class JsIterator {
      */
     this.node = container.jsBegin();
   }
-
   /**
-   * As documented in ES6 iteration protocol. It can be used for manual iteration.
-   * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
-   * @returns {any} returns object that specifies an indicator whether the node was fetched and node itself
-   * @example
-   * let m = new TreeMap();
-   * ...
-   * let jsIt = m.entries();
-   * while (true) {
-   *   let res = it.next();
-   *   if (res.done) {
-   *     break;
-   *   }
-   *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
-   * }
-   */
-  next() {
-    let res = {};
+  * As documented in ES6 iteration protocol. It can be used for manual iteration.
+  * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+  * @returns {any} returns object that specifies an indicator whether the node was fetched and node itself
+  * @example
+  * let m = new TreeMap();
+  * ...
+  * let jsIt = m.entries();
+  * while (true) {
+  *   let res = it.next();
+  *   if (res.done) {
+  *     break;
+  *   }
+  *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
+  * }
+  */
+  next(): IteratorResult<T> {
+    const res = {
+      done: true,
+      value: undefined as T
+    };
     res.done = this.node === this.container.jsEnd();
     if (!res.done) {
       res.value = this.valuePolicy.fetch(this.node);
@@ -73,7 +79,7 @@ class JsIterator {
    * Support for ES6 for-of loops.
    * @returns {JsIterator} iterator to traverse all elements in forward order
    */
-  [Symbol.iterator]() {
+  [Symbol.iterator](): IterableIterator<T> {
     return this;
   }
 
@@ -88,7 +94,7 @@ class JsIterator {
    *   console.log(`key: ${key}, value: ${value}`);
    * }
    */
-  backwards() {
+  backwards(): JsReverseIterator<T> {
     return new JsReverseIterator(this.container, this.valuePolicy);
   }
 }
@@ -113,13 +119,16 @@ class JsIterator {
  *   console.log(`key: ${key}`);
  * }
  */
-class JsReverseIterator {
+export class JsReverseIterator<T> {
+  public container: any;
+  public valuePolicy: any;
+  public node: TreeNode<any, any>;
   /**
    * Constructor for reverse iterator
    * @param {*} container - Container reference
    * @param {*} valuePolicy - policy object that specifies whether nodes contain just keys or keys & values
    */
-  constructor(container, valuePolicy = container.valuePolicy) {
+  constructor(container: any, valuePolicy = container.valuePolicy) {
     /**
      * @private
      * Internal reference to a container
@@ -153,8 +162,8 @@ class JsReverseIterator {
    *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
    * }
    */
-  next() {
-    let res = {};
+  next(): IteratorResult<T> {
+    const res = { done: false, value: undefined as T };
     res.done = this.node === this.container.jsRend();
     if (!res.done) {
       res.value = this.valuePolicy.fetch(this.node);
@@ -167,7 +176,7 @@ class JsReverseIterator {
    * Support for ES6 for-of loops.
    * @returns {JsReverseIterator} iterator to traverse all elements in reverse order
    */
-  [Symbol.iterator]() {
+  [Symbol.iterator](): JsReverseIterator<T> {
     return this;
   }
 
@@ -181,12 +190,7 @@ class JsReverseIterator {
    * for (let [key, value] of m.backwards().backwards()) {
    *   console.log(`key: ${key}, value: ${value}`);
    */
-  backwards() {
+  backwards(): JsIterator<T> {
     return new JsIterator(this.container, this.valuePolicy);
   }
 }
-
-module.exports = {
-  JsIterator: JsIterator,
-  JsReverseIterator: JsReverseIterator,
-};

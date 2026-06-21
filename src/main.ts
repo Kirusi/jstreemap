@@ -1,20 +1,20 @@
 /* This is an entry point to the library.
    It collects all public classes and re-exports them */
 /**@private */
-const { TreeMap } = require('./tree-map');
+import { TreeMap } from './tree-map.js';
 /**@private */
-const { TreeMultiMap } = require('./tree-multimap');
+import { TreeMultiMap } from './tree-multimap.js';
 /**@private */
-const { TreeSet } = require('./tree-set');
+import { TreeSet } from './tree-set.js';
 /**@private */
-const { TreeMultiSet } = require('./tree-multiset');
+import { TreeMultiSet } from './tree-multiset.js';
 /**@private */
-const { Iterator, ReverseIterator } = require('./iterators');
+import { TreeIterator, ReverseIterator } from './iterators.js';
 /**@private */
-const { JsIterator, JsReverseIterator } = require('./js-iterators');
+import { JsIterator, JsReverseIterator } from './js-iterators.js';
 
-module.exports = {
-  Iterator: Iterator,
+export default {
+  TreeIterator: TreeIterator,
   ReverseIterator: ReverseIterator,
   JsIterator: JsIterator,
   JsReverseIterator: JsReverseIterator,

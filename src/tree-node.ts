@@ -3,17 +3,24 @@
 /**
  * @private
  */
-const RED = 1;
+export const RED = 1;
 /**
  * @private
  */
-const BLACK = 2;
+export const BLACK = 2;
 
+export type SomeNode<K, V> = TreeNode<K, V> | Head<K, V> | null;
 /**
  * @private
  * A node for a red-black tree
  */
-class TreeNode {
+export class TreeNode<K, V> {
+  public left: SomeNode<K, V>;
+  public right: SomeNode<K, V>;
+  public parent: SomeNode<K, V>;
+  public key?: K;
+  public value?: V;
+  public color: number;
   /**
    * Default constructor
    */
@@ -25,7 +32,9 @@ class TreeNode {
     /** parent node */
     this.parent = null;
     /** key object (additional 'value' data member is added in map-like classes) */
-    this.key = null;
+    this.key = undefined;
+    /** value associated with the key */
+    this.value = undefined;
     /** by default new node is red */
     this.color = RED;
   }
@@ -35,7 +44,7 @@ class TreeNode {
    * @returns {any} parent node of parent node
    */
   grandparent() {
-    let p = this.parent;
+    const p = this.parent as TreeNode<K, V>;
     if (p === null) {
       return null;
     } // No parent means no grandparent
@@ -47,7 +56,7 @@ class TreeNode {
    * @returns {any} the other child of the same parent
    */
   sibling() {
-    let p = this.parent;
+    const p = this.parent as TreeNode<K, V>;
     if (p === null) {
       return null;
     } // No parent means no sibling
@@ -63,11 +72,11 @@ class TreeNode {
    * @returns {any} another child of the grandparent
    */
   uncle() {
-    let p = this.parent;
+    const p = this.parent as TreeNode<K, V>;
     if (p === null) {
       return null;
     } // No parent means no uncle
-    let g = p.parent;
+    let g = p.parent as TreeNode<K, V>;
     if (g === null) {
       return null;
     } // No grandparent means no uncle
@@ -75,8 +84,28 @@ class TreeNode {
   }
 }
 
-module.exports = {
-  TreeNode: TreeNode,
-  BLACK: BLACK,
-  RED: RED,
-};
+/**
+ * @private
+ * Special node in a tree is created for performance reasons
+ */
+export class Head<K, V> {
+  public leftmost: SomeNode<K, V>;
+  public rightmost: SomeNode<K, V>;
+  public root: SomeNode<K, V>;
+  public size: number;
+  public id: string;
+
+  /** default constructor */
+  constructor() {
+    /** node with the smallest key */
+    this.leftmost = this;
+    /** node with the largest key */
+    this.rightmost = this;
+    /** root node of the tree */
+    this.root = this;
+    /** number of nodes in the tree */
+    this.size = 0;
+    /** extra tag used in debuggin of unit tests */
+    this.id = 'HEAD';
+  }
+}

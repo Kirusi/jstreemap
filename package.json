@@ -1,7 +1,7 @@
 {
   "name": "jstreemap",
-  "type": "commonjs",
-  "version": "1.29.3",
+  "type": "module",
+  "version": "2.0.0",
   "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
   "main": "jstreemap.js",
   "files": [
@@ -15,6 +15,7 @@
     "eslint": "eslint --config=./eslint.config.js src/**/*.js test/**/*.js tools/analyze-tests.js gulpfile.js eslint.config.js",
     "test-watch": "cross-env DEV_TEST=true mocha --reporter spec -w --recursive test/specs/*.spec.js",
     "dev-test": "cross-env DEV_TEST=true nyc --reporter=html --reporter=lcov --reporter=text --report-dir=./build/coverage --check-coverage --lines 100 --functions 100 --branches 100 mocha --reporter mocha-multi-reporters --reporter-options configFile=./config/mocha-reporters.json test/specs/*.spec.js",
+    "vt": "cross-env DEV_TEST=true vitest run test/specs/*.test.ts",
     "prod-test": "mocha --reporter spec test/specs/*.spec.js",
     "web-test": "mocha --reporter spec test/browser/*.spec.js",
     "webpack": "webpack --config ./config/webpack.config.js"
@@ -63,6 +64,8 @@
   },
   "homepage": "https://github.com/kirusi/jstreemap#readme",
   "devDependencies": {
+    "@types/node": "^26.0.0",
+    "@types/should": "^11.2.0",
     "cross-env": "^10.1.0",
     "del": "^8.0.1",
     "esdoc": "^1.1.0",
@@ -83,9 +86,10 @@
     "plugin-error": "^1.0.1",
     "selenium-webdriver": "^4.44.0",
     "should": "^13.2.3",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",
+    "vitest": "^4.1.9",
     "webpack": "^5.107.2",
     "webpack-cli": "^7.0.3"
-  },
-  "dependencies": {}
+  }
 }

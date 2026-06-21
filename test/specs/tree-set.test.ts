@@ -1,5 +1,11 @@
+import { describe, it } from 'vitest'
+import should from 'should';
+import assert from 'node:assert/strict';
+import { TreeSet } from '../../src/tree-set.js';
+
 /*global should TreeSet*/
 // When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+/*
 if (process) {
   // Running inside NodeJS
   let lib;
@@ -14,18 +20,17 @@ if (process) {
   TreeSet = lib.TreeSet;
   require('should');
 }
+*/
 
 describe('TreeSet tests', function () {
-  it('constructor;', function (done) {
+  it('constructor;', function () {
     let set = new TreeSet();
-    should.equal(0, set.size);
-
-    done();
+    should.equal(set.size, 0);
   });
 
-  it('constructor; array literal', function (done) {
+  it('constructor; array literal', function () {
     let set = new TreeSet([1, 2, 3]);
-    should.equal(3, set.size);
+    should.equal(set.size, 3);
 
     let actual = [];
     for (let k of set) {
@@ -34,14 +39,12 @@ describe('TreeSet tests', function () {
 
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('constructor; ES6 set', function (done) {
+  it('constructor; ES6 set', function () {
     let jsSet = new Set([2, 1, 3]);
     let set = new TreeSet(jsSet);
-    should.equal(3, set.size);
+    should.equal(set.size, 3);
 
     let actual = [];
     for (let k of set) {
@@ -50,18 +53,16 @@ describe('TreeSet tests', function () {
 
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('constructor; generator function', function (done) {
+  it('constructor; generator function', function () {
     let gen = function* () {
       for (let i = 1; i < 4; ++i) {
         yield i;
       }
     };
     let set = new TreeSet(gen());
-    should.equal(3, set.size);
+    should.equal(set.size, 3);
 
     let actual = [];
     for (let k of set) {
@@ -70,21 +71,21 @@ describe('TreeSet tests', function () {
 
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('compareFunc', function (done) {
+  it('compareFunc', function () {
     /* Test ability to compare alphanumeric structures like ['A',123]
            First string portion is compared. If string portions of two objects are equal then numeric portions are compared */
     class Id {
-      constructor(a, n) {
+      public alpha: string;
+      public num: number;
+      constructor(a: string, n: number) {
         this.alpha = a;
         this.num = n;
       }
     }
 
-    function compareIds(idLhs, idRhs) {
+    function compareIds(idLhs: Id, idRhs: Id) {
       if (idLhs.alpha < idRhs.alpha) {
         return -1;
       } else if (idLhs.alpha > idRhs.alpha) {
@@ -100,7 +101,7 @@ describe('TreeSet tests', function () {
       }
     }
 
-    let set = new TreeSet();
+    let set = new TreeSet<Id>();
     set.compareFunc = compareIds;
     set.add(new Id('B', 8));
     set.add(new Id('A', 340));
@@ -118,102 +119,81 @@ describe('TreeSet tests', function () {
       ['B', 8],
     ];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('constructor; invalid literal', function (done) {
+  it('constructor; invalid literal', function () {
     try {
-      let set = new TreeSet(35);
-      should.fail('The error was not detected');
+      new TreeSet<number>(35 as unknown as number[]);
+      assert(false, 'The error was not detected');
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('iterable objects'), msg);
     }
-    done();
   });
 
-  it('constructor; null', function (done) {
-    let set = new TreeSet(null);
-    should.equal(0, set.size);
-
-    done();
+  it('constructor; null', function () {
+    let set = new TreeSet(null as unknown as number[]);
+    should.equal(set.size, 0);
   });
 
-  it('constructor; null', function (done) {
+  it('constructor; null', function () {
     let set = new TreeSet(undefined);
-    should.equal(0, set.size);
-
-    done();
+    should.equal(set.size, 0);
   });
 
-  it('toStringTag', function (done) {
+  it('toStringTag', function () {
     let expected = '[object TreeSet]';
     let actual = Object.prototype.toString.call(new TreeSet());
     should.strictEqual(expected, actual);
-
-    done();
   });
 
-  it('species; on object', function (done) {
+  it('species; on object', function () {
     let set = new TreeSet();
     let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];
     let set2 = new constrFunc();
     should.ok(set2 instanceof TreeSet);
-
-    done();
   });
 
-  it('species; on class', function (done) {
+  it('species; on class', function () {
     let ctr = TreeSet[Symbol.species];
     let actual = new ctr();
     should.ok(actual instanceof TreeSet);
-
-    done();
   });
 
-  it('clear', function (done) {
+  it('clear', function () {
     let set = new TreeSet([1, 2, 3]);
     set.clear();
-    should.equal(0, set.size);
-
-    done();
+    should.equal(set.size, 0);
   });
 
-  it('delete', function (done) {
+  it('delete', function () {
     let set = new TreeSet([1, 2, 3]);
     set.delete(2);
     let expected = '{1,3}';
-    should.equal(expected, set.toString());
+    should.equal(set.toString(), expected);
     set.delete(4);
-    should.equal(expected, set.toString());
-
-    done();
+    should.equal(set.toString(), expected);
   });
 
-  it('delete; rightmost and root', function (done) {
+  it('delete; rightmost and root', function () {
     let set = new TreeSet([1, 5, 3]);
     set.delete(5);
     set.delete(3);
     set.add(4);
     let expected = '{1,4}';
-    should.equal(expected, set.toString());
-
-    done();
+    should.equal(set.toString(), expected);
   });
 
-  it('delete; leftmost and root', function (done) {
+  it('delete; leftmost and root', function () {
     let set = new TreeSet([1, 5, 3]);
     set.delete(1);
     set.delete(3);
     set.add(2);
     let expected = '{2,5}';
-    should.equal(expected, set.toString());
-
-    done();
+    should.equal(set.toString(), expected);
   });
 
-  it('entries', function (done) {
+  it('entries', function () {
     let set = new TreeSet([1, 2, 3]);
     let actual = [];
     for (let key of set.entries()) {
@@ -221,14 +201,12 @@ describe('TreeSet tests', function () {
     }
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('forEach', function (done) {
-    let set = new TreeSet([1, 2, 3]);
-    let actual = [];
-    set.forEach(function (value, key, container) {
+  it('forEach', function () {
+    let set = new TreeSet<number>([1, 2, 3]);
+    let actual: number[][] = [];
+    set.forEach(function (value: number, key: number, _container: any) {
       actual.push([key, value]);
     });
     let expected = [
@@ -237,19 +215,15 @@ describe('TreeSet tests', function () {
       [3, 3],
     ];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('has', function (done) {
+  it('has', function () {
     let set = new TreeSet([1, 2, 3]);
-    should.equal(true, set.has(1));
-    should.equal(false, set.has(4));
-
-    done();
+    should.equal(set.has(1), true);
+    should.equal(set.has(4), false);
   });
 
-  it('keys', function (done) {
+  it('keys', function () {
     let set = new TreeSet([1, 2, 3]);
     let actual = [];
     for (let key of set.keys()) {
@@ -257,11 +231,9 @@ describe('TreeSet tests', function () {
     }
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('values', function (done) {
+  it('values', function () {
     let set = new TreeSet([1, 2, 3]);
     let actual = [];
     for (let value of set.values()) {
@@ -269,11 +241,9 @@ describe('TreeSet tests', function () {
     }
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('backward', function (done) {
+  it('backward', function () {
     let set = new TreeSet([1, 2, 3]);
     let actual = [];
     for (let key of set.backward()) {
@@ -281,11 +251,9 @@ describe('TreeSet tests', function () {
     }
     let expected = [3, 2, 1];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('begin/end', function (done) {
+  it('begin/end', function () {
     let set = new TreeSet([1, 2, 3]);
     let actual = [];
     for (let it = set.begin(); !it.equals(set.end()); it.next()) {
@@ -293,11 +261,9 @@ describe('TreeSet tests', function () {
     }
     let expected = [1, 2, 3];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('rbegin/rend', function (done) {
+  it('rbegin/rend', function () {
     let set = new TreeSet([1, 2, 3]);
     let actual = [];
     for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
@@ -305,25 +271,21 @@ describe('TreeSet tests', function () {
     }
     let expected = [3, 2, 1];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('find', function (done) {
+  it('find', function () {
     let set = new TreeSet([1, 2, 3]);
     let it = set.find(2);
-    should.equal(2, it.key);
+    should.equal(it.key, 2);
 
     it = set.find(4);
     should.ok(it.equals(set.end()));
-
-    done();
   });
 
-  it('lowerBound / upperBound', function (done) {
-    let set = new TreeSet();
+  it('lowerBound / upperBound', function () {
+    let set = new TreeSet<number>();
     for (let i = 1; i <= 16; ++i) {
-      set.add(i * 2, `N${i}`);
+      set.add(i * 2);
     }
     let actual = [];
     let from = set.lowerBound(0);
@@ -335,73 +297,61 @@ describe('TreeSet tests', function () {
     }
     let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('insertUnique', function (done) {
+  it('insertUnique', function () {
     let set = new TreeSet();
     for (let i = 1; i < 4; ++i) {
       let res = set.insertUnique(1);
       if (i === 1) {
         should.ok(res.wasAdded);
         should.ok(!res.wasReplaced);
-        should.strictEqual(1, res.iterator.key);
+        should.strictEqual(1, res.iterator!.key);
       } else {
         should.ok(!res.wasAdded);
         should.ok(!res.wasReplaced);
       }
     }
-    should.equal(1, set.size);
-
-    done();
+    should.equal(set.size, 1);
   });
 
-  it('insertOrUpdate', function (done) {
+  it('insertOrUpdate', function () {
     let set = new TreeSet();
     for (let i = 1; i < 4; ++i) {
       let res = set.insertOrReplace(1);
       if (i === 1) {
         should.ok(res.wasAdded);
         should.ok(!res.wasReplaced);
-        should.strictEqual(1, res.iterator.key);
+        should.strictEqual(1, res.iterator!.key);
       } else {
         should.ok(!res.wasAdded);
         should.ok(res.wasReplaced);
-        should.strictEqual(1, res.iterator.key);
+        should.strictEqual(1, res.iterator!.key);
       }
     }
-    should.equal(1, set.size);
-
-    done();
+    should.equal(set.size, 1);
   });
 
-  it('erase', function (done) {
+  it('erase', function () {
     let map = new TreeSet([1, 2, 3]);
     let it = map.find(2);
     it.prev();
     map.erase(it);
     let expected = '{2,3}';
-    should.equal(expected, map.toString());
+    should.equal(map.toString(), expected);
     map.delete(4);
-    should.equal(expected, map.toString());
-
-    done();
+    should.equal(map.toString(), expected);
   });
 
-  it('first / last', function (done) {
+  it('first / last', function () {
     let set = new TreeSet([1, 2, 3]);
     should.strictEqual(1, set.first());
     should.strictEqual(3, set.last());
-
-    done();
   });
 
-  it('first / last; empty set', function (done) {
+  it('first / last; empty set', function () {
     let set = new TreeSet([]);
     should.strictEqual(undefined, set.first());
     should.strictEqual(undefined, set.last());
-
-    done();
   });
 });

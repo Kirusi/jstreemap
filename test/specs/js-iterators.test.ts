@@ -1,5 +1,10 @@
-/*global should JsIterator JsReverseIterator*/
+import { describe, it } from 'vitest'
+import should from 'should';
+import { JsIterator, JsReverseIterator } from '../../src/js-iterators.js';
+import { TreeNode } from '../../src/tree-node.js';
+
 // When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+/*
 if (process) {
   // Running inside NodeJS
   let lib;
@@ -16,24 +21,26 @@ if (process) {
   JsReverseIterator = lib.JsReverseIterator;
   require('should');
 }
+*/
 
-class NodeIsValuePolicy {
-  fetch(n) {
+class NodeIsValuePolicy<K, V> {
+  fetch(n: TreeNode<K, V>) {
     return n;
   }
 }
 
 // Nodes are replaced with integers
 class ContainerStubJsIterTest {
+  public valuePolicy: any;
   constructor() {
     this.valuePolicy = new NodeIsValuePolicy();
   }
 
-  prev(n) {
+  prev(n: any) {
     return n - 1;
   }
 
-  next(n) {
+  next(n: any) {
     return n + 1;
   }
 
@@ -56,7 +63,7 @@ class ContainerStubJsIterTest {
 }
 
 describe('JsIterator tests', function () {
-  it('forward iteration', function (done) {
+  it('forward iteration', function () {
     let c = new ContainerStubJsIterTest();
     let it = new JsIterator(c);
     let actual = [];
@@ -69,11 +76,9 @@ describe('JsIterator tests', function () {
     }
     let expected = [0, 1, 2, 3, 4];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('backward iteration', function (done) {
+  it('backward iteration', function () {
     let c = new ContainerStubJsIterTest();
     let it = new JsReverseIterator(c);
     let actual = [];
@@ -86,11 +91,9 @@ describe('JsIterator tests', function () {
     }
     let expected = [4, 3, 2, 1, 0];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('backward iteration using forward iterator', function (done) {
+  it('backward iteration using forward iterator', function () {
     let c = new ContainerStubJsIterTest();
     let it = new JsIterator(c);
     let actual = [];
@@ -99,11 +102,9 @@ describe('JsIterator tests', function () {
     }
     let expected = [4, 3, 2, 1, 0];
     should.deepEqual(expected, actual);
-
-    done();
   });
 
-  it('forward iteration using backward iterator', function (done) {
+  it('forward iteration using backward iterator', function () {
     let c = new ContainerStubJsIterTest();
     let it = new JsReverseIterator(c);
     let actual = [];
@@ -112,7 +113,5 @@ describe('JsIterator tests', function () {
     }
     let expected = [0, 1, 2, 3, 4];
     should.deepEqual(expected, actual);
-
-    done();
   });
 });

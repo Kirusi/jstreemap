@@ -1,19 +1,19 @@
 'use strict';
 
 /** @ignore */
-const { TreeNode, RED, BLACK } = require('./tree-node');
+import { Head, TreeNode, SomeNode, RED, BLACK } from './tree-node.js';
 /** @ignore */
-const { JsIterator, JsReverseIterator } = require('../public/js-iterators');
+//@ts-ignore: TS7016
+import { JsIterator, JsReverseIterator } from './js-iterators.js';
 /** @ignore */
-const { Iterator, ReverseIterator } = require('../public/iterators');
+import { TreeIterator, ReverseIterator, IterableContainer } from './iterators.js';
 /** @ignore */
-const {
+import {
   KeyOnlyPolicy,
   ValueOnlyPolicy,
-  KeyValuePolicy,
-} = require('./policies');
+} from './policies.js';
 /** @ignore */
-const { InsertionResult } = require('../public/insertion-result');
+import { InsertionResult } from './insertion-result.js';
 
 /** insertion mode of a multimap, nodes with the same keys can be added */
 const INSERT_MULTI = 1;
@@ -21,26 +21,6 @@ const INSERT_MULTI = 1;
 const INSERT_UNIQUE = 2;
 /** if a node with the same key already exists then it's value is replaced on subsequent attempts */
 const INSERT_REPLACE = 3;
-
-/**
- * @private
- * Special node in a tree is created for performance reasons
- */
-class Head {
-  /** default constructor */
-  constructor() {
-    /** node with the smallest key */
-    this.leftmost = this;
-    /** node with the largest key */
-    this.rightmost = this;
-    /** root node of the tree */
-    this.root = this;
-    /** number of nodes in the tree */
-    this.size = 0;
-    /** extra tag used in debuggin of unit tests */
-    this.id = 'HEAD';
-  }
-}
 
 /**
  * @param lhs
@@ -51,7 +31,7 @@ class Head {
  *          -1 if the value of rhs is less than lhs
  *           0 if values are the same
  */
-function compare(lhs, rhs) {
+export function compare(lhs: any, rhs: any) {
   if (lhs < rhs) {
     return -1;
   } else if (lhs === rhs) {
@@ -65,7 +45,10 @@ function compare(lhs, rhs) {
  * Red-black tree
  * @access private
  */
-class Tree {
+export class Tree<K, V, C extends IterableContainer = IterableContainer> implements IterableContainer {
+  public head: Head<K, V>;
+  public compare: any;
+  public valuePolicy: any;
   /** default constructor of an empty tree */
   constructor() {
     /** head */
@@ -97,7 +80,7 @@ class Tree {
    * @param {*} lhs
    * @param {*} rhs
    */
-  compareNodes(lhs, rhs) {
+  compareNodes(lhs: TreeNode<K, V>, rhs: TreeNode<K, V>) {
     return this.compare(lhs.key, rhs.key);
   }
 
@@ -107,22 +90,22 @@ class Tree {
    * @private
    * used by rotation operations
    */
-  replaceNode(oldNode, newNode) {
+  replaceNode(oldNode: TreeNode<K, V>, newNode: TreeNode<K, V> | null) {
     if (oldNode === newNode) {
       return;
     }
     if (oldNode.parent === null) {
       this.head.root = newNode;
     } else {
-      if (oldNode === oldNode.parent.left) {
-        oldNode.parent.left = newNode;
+      if (oldNode === (oldNode.parent as TreeNode<K, V>).left) {
+        (oldNode.parent as TreeNode<K, V>).left = newNode;
       } else {
-        oldNode.parent.right = newNode;
+        (oldNode.parent as TreeNode<K, V>).right = newNode;
       }
     }
 
     if (!this.isLeaf(newNode)) {
-      newNode.parent = oldNode.parent;
+      (newNode as TreeNode<K, V>).parent = oldNode.parent;
     }
   }
 
@@ -137,8 +120,8 @@ class Tree {
    * @param node
    * @private
    */
-  rotateLeft(node) {
-    let right = node.right;
+  rotateLeft(node: TreeNode<K, V>) {
+    let right = node.right as TreeNode<K, V>;
     if (this.isLeaf(right)) {
       throw new Error("rotateLeft can't be performed. The tree is corrupted");
     }
@@ -146,7 +129,7 @@ class Tree {
 
     node.right = right.left;
     if (right.left !== null) {
-      right.left.parent = node;
+      (right.left as TreeNode<K, V>).parent = node;
     }
 
     right.left = node;
@@ -157,8 +140,8 @@ class Tree {
    * Rebalances tree as described in rotateLeft
    * @param {*} node - parent node
    */
-  rotateRight(node) {
-    let left = node.left;
+  rotateRight(node: TreeNode<K, V>) {
+    let left = node.left as TreeNode<K, V>;
     if (this.isLeaf(left)) {
       throw new Error("rotateRight can't be performed. The tree is corrupted");
     }
@@ -166,7 +149,7 @@ class Tree {
 
     node.left = left.right;
     if (left.right !== null) {
-      left.right.parent = node;
+      (left.right as TreeNode<K, V>).parent = node;
     }
 
     left.right = node;
@@ -178,7 +161,7 @@ class Tree {
    * @param {*} node - node to inspect
    * @returns {boolean} true - for null pointers and head node; false - for all other nodes
    */
-  isLeaf(node) {
+  isLeaf(node: SomeNode<K, V>) {
     if (node === null || node === this.head) {
       return true;
     }
@@ -190,7 +173,7 @@ class Tree {
    * @param {*} node - node to inspect
    * @returns {*} node color
    */
-  fetchColor(node) {
+  fetchColor(node: TreeNode<K, V>) {
     if (this.isLeaf(node)) {
       return BLACK;
     } else {
@@ -203,7 +186,7 @@ class Tree {
    * @param {*} node - node to inspect
    * @returns {boolean} - true when node color is BLACK
    */
-  isBlack(node) {
+  isBlack(node: TreeNode<K, V>) {
     return this.fetchColor(node) === BLACK;
   }
 
@@ -212,7 +195,7 @@ class Tree {
    * @param {*} node - node to inspect
    * @returns {boolean} - true when node color is RED
    */
-  isRed(node) {
+  isRed(node: TreeNode<K, V>) {
     return this.fetchColor(node) === RED;
   }
 
@@ -224,7 +207,7 @@ class Tree {
    * @param {*} node - node to use
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertMulti(node) {
+  insertMulti(node: TreeNode<K, V>): InsertionResult<TreeIterator<K, V>> {
     return this.insertNode(node, INSERT_MULTI);
   }
 
@@ -233,7 +216,7 @@ class Tree {
    * @param {*} node - node to use
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertUnique(node) {
+  insertUnique(node: TreeNode<K, V>): InsertionResult<TreeIterator<K, V>> {
     return this.insertNode(node, INSERT_UNIQUE);
   }
 
@@ -242,7 +225,7 @@ class Tree {
    * @param {*} node - node to use
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertOrReplace(node) {
+  insertOrReplace(node: TreeNode<K, V>): InsertionResult<TreeIterator<K, V>> {
     return this.insertNode(node, INSERT_REPLACE);
   }
 
@@ -253,8 +236,8 @@ class Tree {
    * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertNode(n, mode = INSERT_MULTI) {
-    let res = this.insertNodeInternal(this.head.root, n, mode);
+  insertNode(n: TreeNode<K, V>, mode = INSERT_MULTI): InsertionResult<TreeIterator<K, V>> {
+    let res = this.insertNodeInternal(this.head.root as TreeNode<K, V>, n, mode);
     if (res.wasAdded) {
       if (this.head.size === 0) {
         this.head.root = n;
@@ -263,10 +246,10 @@ class Tree {
 
         n.left = this.head;
         n.right = this.head;
-      } else if (this.head.leftmost.left === n) {
+      } else if ((this.head.leftmost as TreeNode<K, V>).left === n) {
         this.head.leftmost = n;
         n.left = this.head;
-      } else if (this.head.rightmost.right === n) {
+      } else if ((this.head.rightmost as TreeNode<K, V>).right === n) {
         this.head.rightmost = n;
         n.right = this.head;
       }
@@ -284,7 +267,7 @@ class Tree {
    * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertNodeInternal(root, n, mode) {
+  insertNodeInternal(root: TreeNode<K, V>, n: TreeNode<K, V>, mode: number): InsertionResult<TreeIterator<K, V>> {
     // recursively descend the tree until a leaf is found
     let x = root;
     let y = null;
@@ -294,21 +277,21 @@ class Tree {
       y = x;
       rc = this.compareNodes(n, y);
       if (rc < 0) {
-        x = y.left;
+        x = y.left as TreeNode<K, V>;
       } else if (rc > 0) {
-        x = y.right;
+        x = y.right as TreeNode<K, V>;
       } else {
         // node with the same key value
         switch (mode) {
           case INSERT_UNIQUE:
             // it's a duplicate
-            return new InsertionResult(false, false, undefined);
+            return new InsertionResult<TreeIterator<K, V>>(false, false, undefined);
           case INSERT_REPLACE:
             this.valuePolicy.copy(y, n);
-            return new InsertionResult(false, true, new Iterator(y, this));
+            return new InsertionResult(false, true, new TreeIterator(y, this));
           default:
             // INSERT_MULTI
-            x = y.right;
+            x = y.right as TreeNode<K, V>;
         }
       }
     }
@@ -319,12 +302,12 @@ class Tree {
     } else {
       n.parent = y;
       if (rc < 0) {
-        y.left = n;
+        (y as TreeNode<K, V>).left = n;
       } else {
-        y.right = n;
+        (y as TreeNode<K, V>).right = n;
       }
     }
-    return new InsertionResult(true, false, new Iterator(n, this));
+    return new InsertionResult(true, false, new TreeIterator<K, V, C>(n, this));
   }
 
   /**
@@ -332,13 +315,13 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  insertRepairTree(n) {
+  insertRepairTree(n: TreeNode<K, V>) {
     if (n.parent === null) {
       this.repairCase1(n);
-    } else if (this.isBlack(n.parent)) {
+    } else if (this.isBlack(n.parent as TreeNode<K, V>)) {
       /* insert_case2(n);
            // do nothing */
-    } else if (this.isRed(n.uncle())) {
+    } else if (this.isRed(n.uncle() as TreeNode<K, V>)) {
       this.repairCase3(n);
     } else {
       this.repairCase4(n);
@@ -350,7 +333,7 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  repairCase1(n) {
+  repairCase1(n: TreeNode<K, V>) {
     n.color = BLACK;
   }
 
@@ -359,11 +342,11 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  repairCase3(n) {
-    n.parent.color = BLACK;
-    n.uncle().color = BLACK;
-    n.grandparent().color = RED;
-    this.insertRepairTree(n.grandparent());
+  repairCase3(n: TreeNode<K, V>) {
+    (n.parent as TreeNode<K, V>).color = BLACK;
+    (n.uncle() as TreeNode<K, V>).color = BLACK;
+    (n.grandparent() as TreeNode<K, V>).color = RED;
+    this.insertRepairTree(n.grandparent() as TreeNode<K, V>);
   }
 
   /**
@@ -371,21 +354,20 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  repairCase4(n) {
-    let p = n.parent;
-    let g = n.grandparent();
+  repairCase4(n: TreeNode<K, V>) {
+    let p = n.parent as TreeNode<K, V>;
+    let g = n.grandparent() as TreeNode<K, V>;
 
-    let nr = null;
-    if (g.left !== null && n === g.left.right) {
+    if (g.left !== null && n === (g.left as TreeNode<K, V>).right) {
       this.rotateLeft(p);
-      n = n.left;
-    } else if (g.right !== null && n === g.right.left) {
+      n = n.left as TreeNode<K, V>;
+    } else if (g.right !== null && n === (g.right as TreeNode<K, V>).left) {
       this.rotateRight(p);
-      n = n.right;
+      n = n.right as TreeNode<K, V>;
     }
 
-    p = n.parent;
-    g = n.grandparent();
+    p = n.parent as TreeNode<K, V>;
+    g = n.grandparent() as TreeNode<K, V>;
     if (n === p.left) {
       this.rotateRight(g);
     } else {
@@ -401,9 +383,9 @@ class Tree {
    * @param {*} node - root node of the subtree to be evaluated
    * @returns {TreeNode} the node with the highest key for the subtree of the specified root node
    */
-  fetchMaximum(node) {
+  fetchMaximum(node: TreeNode<K, V>) {
     while (!this.isLeaf(node.right)) {
-      node = node.right;
+      node = node.right as TreeNode<K, V>;
     }
 
     return node;
@@ -414,9 +396,9 @@ class Tree {
    * @param {*} node - root node of the subtree to be evaluated
    * @returns {TreeNode} the node with the lowest key for the subtree of the specified root node
    */
-  fetchMinimum(node) {
+  fetchMinimum(node: TreeNode<K, V>) {
     while (!this.isLeaf(node.left)) {
-      node = node.left;
+      node = node.left as TreeNode<K, V>;
     }
 
     return node;
@@ -429,7 +411,7 @@ class Tree {
    * Removes node from the tree
    * @param {*} node - node to be removed
    */
-  erase(node) {
+  erase(node: TreeNode<K, V>) {
     if (this.isLeaf(node)) {
       return;
     }
@@ -444,15 +426,15 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node - node
    */
-  eraseInternal(node) {
+  eraseInternal(node: TreeNode<K, V>) {
     if (!this.isLeaf(node.left) && !this.isLeaf(node.right)) {
-      let pred = this.fetchMaximum(node.left);
+      let pred = this.fetchMaximum(node.left as TreeNode<K, V>);
 
       this.valuePolicy.copy(node, pred);
       node = pred;
     }
 
-    let child = this.isLeaf(node.right) ? node.left : node.right;
+    const child = (this.isLeaf(node.right) ? node.left : node.right) as TreeNode<K, V>;
 
     if (this.isBlack(node)) {
       this.eraseCase1(node);
@@ -465,12 +447,12 @@ class Tree {
       }
     }
 
-    let h = this.head;
+    const h = this.head;
     if (this.isLeaf(child)) {
       /* The node didn't have children and it was removed
                the head needs to update leftmost, rightmost pointers */
       if (h.leftmost === node) {
-        let p = node.parent;
+        const p = node.parent as TreeNode<K, V>;
         if (p !== null) {
           h.leftmost = p;
           p.left = h;
@@ -479,7 +461,7 @@ class Tree {
         }
       }
       if (h.rightmost === node) {
-        let p = node.parent;
+        const p = node.parent as TreeNode<K, V>;
         if (p !== null) {
           h.rightmost = p;
           p.right = h;
@@ -505,7 +487,7 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase1(node) {
+  eraseCase1(node: TreeNode<K, V>) {
     if (node.parent === null) {
       return;
     } else {
@@ -518,17 +500,17 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase2(node) {
-    let s = node.sibling();
+  eraseCase2(node: TreeNode<K, V>) {
+    let s = node.sibling() as TreeNode<K, V>;
 
     if (this.isRed(s)) {
-      node.parent.color = RED;
+      (node.parent as TreeNode<K, V>).color = RED;
       s.color = BLACK;
 
-      if (node === node.parent.left) {
-        this.rotateLeft(node.parent);
+      if (node === (node.parent as TreeNode<K, V>).left) {
+        this.rotateLeft(node.parent as TreeNode<K, V>);
       } else {
-        this.rotateRight(node.parent);
+        this.rotateRight(node.parent as TreeNode<K, V>);
       }
     }
     this.eraseCase3(node);
@@ -539,14 +521,14 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase3(node) {
-    let s = node.sibling();
-    let p = node.parent;
+  eraseCase3(node: TreeNode<K, V>) {
+    let s = node.sibling() as TreeNode<K, V>;
+    let p = node.parent as TreeNode<K, V>;
     if (
       this.isBlack(p) &&
       this.isBlack(s) &&
-      this.isBlack(s.left) &&
-      this.isBlack(s.right)
+      this.isBlack(s.left as TreeNode<K, V>) &&
+      this.isBlack(s.right as TreeNode<K, V>)
     ) {
       s.color = RED;
       this.eraseCase1(p);
@@ -560,14 +542,14 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase4(node) {
-    let s = node.sibling();
-    let p = node.parent;
+  eraseCase4(node: TreeNode<K, V>) {
+    let s = node.sibling() as TreeNode<K, V>;
+    let p = node.parent as TreeNode<K, V>;
     if (
       this.isRed(p) &&
       this.isBlack(s) &&
-      this.isBlack(s.left) &&
-      this.isBlack(s.right)
+      this.isBlack(s.left as TreeNode<K, V>) &&
+      this.isBlack(s.right as TreeNode<K, V>)
     ) {
       s.color = RED;
       p.color = BLACK;
@@ -581,9 +563,9 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase5(node) {
-    let s = node.sibling();
-    let p = node.parent;
+  eraseCase5(node: TreeNode<K, V>) {
+    let s = node.sibling() as TreeNode<K, V>;
+    let p = node.parent as TreeNode<K, V>;
     /* The check below is unnecessary
            due to case 2 (even though case 2 changed the sibling to a sibling's child,
            the sibling's child can't be red, since no red parent can have a red child). */
@@ -592,17 +574,17 @@ class Tree {
 
     /* the following statements just force the red to be on the left of the left of the parent,
            or right of the right, so case six will rotate correctly. */
-    if (node === p.left && this.isRed(s.left) && this.isBlack(s.right)) {
+    if (node === p.left && this.isRed(s.left as TreeNode<K, V>) && this.isBlack(s.right as TreeNode<K, V>)) {
       s.color = RED;
-      s.left.color = BLACK;
+      (s.left as TreeNode<K, V>).color = BLACK;
       this.rotateRight(s);
     } else if (
       node === p.right &&
-      this.isBlack(s.left) &&
-      this.isRed(s.right)
+      this.isBlack(s.left as TreeNode<K, V>) &&
+      this.isRed(s.right as TreeNode<K, V>)
     ) {
       s.color = RED;
-      s.right.color = BLACK;
+      (s.right as TreeNode<K, V>).color = BLACK;
       this.rotateLeft(s);
     }
     //}
@@ -614,17 +596,17 @@ class Tree {
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase6(node) {
-    let s = node.sibling();
-    let p = node.parent;
+  eraseCase6(node: TreeNode<K, V>) {
+    let s = node.sibling() as TreeNode<K, V>;
+    let p = node.parent as TreeNode<K, V>;
     s.color = this.fetchColor(p);
     p.color = BLACK;
 
     if (node === p.left) {
-      s.right.color = BLACK;
+      (s.right as TreeNode<K, V>).color = BLACK;
       this.rotateLeft(p);
     } else {
-      s.left.color = BLACK;
+      (s.left as TreeNode<K, V>).color = BLACK;
       this.rotateRight(p);
     }
   }
@@ -637,8 +619,8 @@ class Tree {
    * @param {*} k - key value
    * @returns {Iterator} an iterator pointing to a node with matching key value. If node is not found then end() iterator is returned.
    */
-  find(k) {
-    let y = this.head;
+  find(k: K): TreeIterator<K, V, C> {
+    let y: any = this.head;
     let x = y.root;
     while (!this.isLeaf(x)) {
       let rc = this.compare(x.key, k);
@@ -649,10 +631,10 @@ class Tree {
         y = x;
         x = x.right;
       } else {
-        return new Iterator(x, this);
+        return new TreeIterator<K, V, C>(x, this);
       }
     }
-    return new Iterator(this.head, this);
+    return new TreeIterator<K, V, C>(this.head, this);
   }
 
   /**
@@ -661,19 +643,19 @@ class Tree {
    * @returns {Iterator} an iterator pointing to the first node in the tree that is not less than
    * (i.e. greater or equal to) the specified key value, or end() if no such node is found.
    */
-  lowerBound(k) {
-    let y = this.head;
-    let x = y.root;
+  lowerBound(k: K): TreeIterator<K, V, C> {
+    let y: any = this.head;
+    let x = y.root as TreeNode<K, V>;
     while (!this.isLeaf(x)) {
       let rc = this.compare(x.key, k);
       if (rc >= 0) {
         y = x;
-        x = x.left;
+        x = x.left as TreeNode<K, V>;
       } else {
-        x = x.right;
+        x = x.right as TreeNode<K, V>;
       }
     }
-    return new Iterator(y, this);
+    return new TreeIterator<K, V, C>(y, this);
   }
 
   /**
@@ -682,8 +664,8 @@ class Tree {
    * @returns {Iterator} an iterator pointing to the first node in the tree that is greater than
    * the specified key value, or end() if no such node is found.
    */
-  upperBound(k) {
-    let y = this.head;
+  upperBound(k: K): TreeIterator<K, V, C> {
+    let y: any = this.head;
     let x = y.root;
     while (!this.isLeaf(x)) {
       let rc = this.compare(x.key, k);
@@ -694,7 +676,7 @@ class Tree {
         x = x.right;
       }
     }
-    return new Iterator(y, this);
+    return new TreeIterator<K, V, C>(y, this);
   }
 
   /* ===========================
@@ -705,23 +687,23 @@ class Tree {
    * Returns iterator to the first element or END
    * @returns {Iterator} iterator pointing to the node with the lowest key
    */
-  begin() {
-    return new Iterator(this.head.leftmost, this);
+  begin(): TreeIterator<K, V, C> {
+    return new TreeIterator(this.head.leftmost, this);
   }
 
   /**
    * Returns iterator to a position after the last element
    * @returns {Iterator} iterator pointing to the node following the node with the highest key
    */
-  end() {
-    return new Iterator(this.head, this);
+  end(): TreeIterator<K, V, C> {
+    return new TreeIterator(this.head, this);
   }
 
   /**
    * Returns iterator to the first element for reverse iterator
    * @returns {ReverseIterator} iterator pointing to the node with the highest key
    */
-  rbegin() {
+  rbegin(): ReverseIterator<K, V, C> {
     return new ReverseIterator(this.head.rightmost, this);
   }
 
@@ -729,7 +711,7 @@ class Tree {
    * Returns `end` iterator for reverse iteration, e.g. pointing to a position after the last element
    * @returns {ReverseIterator} iterator pointing to the node preceding the node with the lowest key
    */
-  rend() {
+  rend(): ReverseIterator<K, V, C> {
     return new ReverseIterator(this.head, this);
   }
 
@@ -770,21 +752,21 @@ class Tree {
    * @param {*} n - node
    * @returns {TreeNode} node following the specified node in ascending order of their keys
    */
-  next(n) {
-    if (n === this.head) {
-      return this.head.leftmost;
+  next(n: TreeNode<K, V>): TreeNode<K, V> {
+    if (n === this.head as unknown as TreeNode<K, V>) {
+      return this.head.leftmost as TreeNode<K, V>;
     }
     if (n.right === this.head) {
-      return this.head;
+      return this.head as unknown as TreeNode<K, V>;
     }
     if (n.right !== null) {
-      let res = this.fetchMinimum(n.right);
+      let res = this.fetchMinimum(n.right as TreeNode<K, V>);
       return res;
     } else {
-      while (n.parent.left !== n) {
-        n = n.parent;
+      while ((n.parent as TreeNode<K, V>).left !== n) {
+        n = n.parent as TreeNode<K, V>;
       }
-      return n.parent;
+      return n.parent as TreeNode<K, V>;
     }
   }
 
@@ -793,7 +775,7 @@ class Tree {
    * @param {*} n - node
    * @returns {TreeNode} node preceding the specified node in ascending order of their keys
    */
-  prev(n) {
+  prev(n: any) {
     if (n === this.head) {
       return this.head.rightmost;
     }
@@ -815,7 +797,7 @@ class Tree {
    * ES6 forward iteration
    * @returns {JsIterator} returns forward iterator for all elements in the tree
    */
-  [Symbol.iterator]() {
+  [Symbol.iterator](): JsIterator<[K, V]> {
     return new JsIterator(this);
   }
 
@@ -823,7 +805,7 @@ class Tree {
    * ES6 reverse iteration
    * @returns {JsIterator} returns reverse iterator for all elements in the tree
    */
-  backward() {
+  backward(): JsReverseIterator<[K, V]> {
     return new JsReverseIterator(this);
   }
 
@@ -831,7 +813,7 @@ class Tree {
    * Method mirrors behaviour of standard maps in JS
    * @returns {JsIterator} a new iterator that contains the [key, value] pairs for each element in the order of the keys
    */
-  entries() {
+  entries(): JsIterator<[K, V]> {
     return new JsIterator(this);
   }
 
@@ -839,7 +821,7 @@ class Tree {
    * Method mirrors behaviour of standard maps in JS
    * @returns {JsIterator} a new iterator that contains the keys for each element in the order of the keys
    */
-  keys() {
+  keys(): JsIterator<K> {
     return new JsIterator(this, new KeyOnlyPolicy());
   }
 
@@ -847,7 +829,7 @@ class Tree {
    * Method mirrors behaviour of standard maps in JS
    * @returns {JsIterator} a new iterator that contains the values for each element in the order of the keys.
    */
-  values() {
+  values(): JsIterator<V> {
     return new JsIterator(this, new ValueOnlyPolicy());
   }
 
@@ -855,7 +837,7 @@ class Tree {
    * First element
    * @returns {any} first element of the container, or undefined if container is empty
    */
-  first() {
+  first(): [K, V] | undefined {
     if (this.size() === 0) {
       return undefined;
     } else {
@@ -868,7 +850,7 @@ class Tree {
    * Last element
    * @returns {any} }ast element of the container, or undefined if container is empty
    */
-  last() {
+  last(): [K, V] | undefined {
     if (this.size() === 0) {
       return undefined;
     } else {
@@ -881,7 +863,7 @@ class Tree {
    * String representation of the container
    * @returns {string} container's contents converted to text
    */
-  toString() {
+  toString(): string {
     let parts = [];
     for (let it = this.begin(); !it.equals(this.end()); it.next()) {
       // convert each key-value pair
@@ -906,8 +888,3 @@ class Tree {
     return Tree;
   }
 }
-
-module.exports = {
-  Tree: Tree,
-  compare: compare,
-};

@@ -1,15 +1,42 @@
-'use strict';
+import { TreeNode } from './tree-node.js';
+
+export interface IterableContainer {
+  next(node: any): TreeNode<unknown, unknown>;
+  prev(node: any): TreeNode<unknown, unknown>;
+}
+
+export interface SetIterator<K, C extends IterableContainer = IterableContainer> {
+  equals(rhs: any): boolean;
+  get node(): TreeNode<K, any>;
+  get key(): K;
+  get container(): C;
+  next(): void;
+  prev(): void;
+}
+
+export interface MapIterator<K, V, C extends IterableContainer = IterableContainer> {
+  equals(rhs: any): boolean;
+  get node(): TreeNode<K, V>;
+  get key(): K;
+  get value(): V;
+  get container(): C;
+  next(): void;
+  prev(): void;
+}
+
 /**
  * Base class for STL-like iterators. It references a node (or index) and a container.
  * Navigation is achieved by calling container's prev() and next() methods.
  */
-class BaseIterator {
+abstract class BaseIterator<K, V, C extends IterableContainer> implements SetIterator<K, C>, MapIterator<K, V, C> {
+  public __n: TreeNode<K, V>;
+  public __c: C;
   /**
    * Constructor to create iterator
    * @param {TreeNode} node - start node
    * @param {*} container - container to traverse
    */
-  constructor(node, container) {
+  constructor(node: TreeNode<K, V>, container: C) {
     /**
      * @private
      * __n - internal node reference
@@ -21,14 +48,15 @@ class BaseIterator {
      */
     this.__c = container;
   }
+  abstract next(): void;
+  abstract prev(): void;
 
   /**
    * Two iterators are considered to be equal if they point to the same node of the same container
    * @param {BaseIterator} rhs - object on the 'right-hand side' of .eq. operator
    * @returns {boolean} `true` when both iterators point to the same node of the same container
-   * #FIXME: check that both iterators are instances of the same class
    */
-  equals(rhs) {
+  equals(rhs: SetIterator<K, C> | MapIterator<K, V, C>): boolean {
     let lhsClass = this.constructor.name;
     let rhsClass = rhs.constructor.name;
     if (lhsClass !== rhsClass) {
@@ -36,17 +64,17 @@ class BaseIterator {
         `Can't compare an instance of ${lhsClass} with an instance of ${rhsClass}`
       );
     }
-    if (this.__c !== rhs.__c) {
+    if (this.__c !== rhs.container) {
       throw new Error('Iterators belong to different containers');
     }
-    return this.__n === rhs.__n;
+    return this.__n === rhs.node;
   }
 
   /**
    * @returns current node
    * @private
    */
-  get node() {
+  get node(): TreeNode<K, V> {
     return this.__n;
   }
 
@@ -54,23 +82,23 @@ class BaseIterator {
    * @returns key of the current node
    * @private
    */
-  get key() {
-    return this.__n.key;
+  get key(): K {
+    return this.__n.key as K;
   }
 
   /**
    * @returns value of the current node
    * @private
    */
-  get value() {
-    return this.__n.value;
+  get value(): V {
+    return this.__n.value as V;
   }
 
   /**
    * @returns container that holds current node
    * @private
    */
-  get container() {
+  get container(): C {
     return this.__c;
   }
 }
@@ -84,7 +112,7 @@ class BaseIterator {
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
-class Iterator extends BaseIterator {
+export class TreeIterator<K, V, C extends IterableContainer = IterableContainer> extends BaseIterator<K, V, C> {
   /**
    * There are 3 ways to construct an iterator:
    *
@@ -104,14 +132,14 @@ class Iterator extends BaseIterator {
    * let it1 = new ReverseIterator(node, container);
    * let it2 = new Iterator(it1);
    */
-  constructor(...args) {
+  constructor(...args: any[]) {
     if (args.length === 2) {
       let [node, container] = args;
       super(node, container);
     } else if (args.length === 1) {
       let [obj] = args;
       let className = obj.constructor.name;
-      if (className === Iterator.name) {
+      if (className === TreeIterator.name) {
         super(obj.__n, obj.__c);
       } else if (className === ReverseIterator.name) {
         let c = obj.__c;
@@ -142,7 +170,7 @@ class Iterator extends BaseIterator {
     /**
      * __n and __c are defined in the base class
      */
-    this.__n = this.__c.next(this.__n);
+    this.__n = this.__c.next(this.__n) as TreeNode<K, V>;
   }
 
   /**
@@ -160,7 +188,7 @@ class Iterator extends BaseIterator {
    * }
    */
   prev() {
-    this.__n = this.__c.prev(this.__n);
+    this.__n = this.__c.prev(this.__n) as TreeNode<K, V>;
   }
 }
 
@@ -174,7 +202,7 @@ class Iterator extends BaseIterator {
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
-class ReverseIterator extends BaseIterator {
+export class ReverseIterator<K, V, C extends IterableContainer> extends BaseIterator<K, V, C> {
   /**
    * There are 3 ways to construct a reverse iterator:
    *
@@ -194,7 +222,7 @@ class ReverseIterator extends BaseIterator {
    * let it1 = new Iterator(node, container);
    * let it2 = new ReverseIterator(it1);
    */
-  constructor(...args) {
+  constructor(...args: any[]) {
     if (args.length === 2) {
       let [node, container] = args;
       super(node, container);
@@ -203,7 +231,7 @@ class ReverseIterator extends BaseIterator {
       let className = obj.constructor.name;
       if (className === ReverseIterator.name) {
         super(obj.__n, obj.__c);
-      } else if (className === Iterator.name) {
+      } else if (className === TreeIterator.name) {
         let c = obj.__c;
         super(c.prev(obj.__n), c);
       } else {
@@ -234,7 +262,7 @@ class ReverseIterator extends BaseIterator {
     /**
      * __n and __c are defined in the base class
      */
-    this.__n = this.__c.prev(this.__n);
+    this.__n = this.__c.prev(this.__n) as TreeNode<K, V>;
   }
 
   /**
@@ -252,11 +280,6 @@ class ReverseIterator extends BaseIterator {
    * }
    */
   prev() {
-    this.__n = this.__c.next(this.__n);
+    this.__n = this.__c.next(this.__n) as TreeNode<K, V>;
   }
 }
-
-module.exports = {
-  Iterator: Iterator,
-  ReverseIterator: ReverseIterator,
-};

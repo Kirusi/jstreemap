@@ -1,41 +1,41 @@
 /** An implementation of red-black tree */
-const { Tree } = require('../internal/tree');
+import { Tree } from './tree.js';
 /** Classes that regulate whether tree nodes hold keys only, or key-value pairs */
-const { KeyOnlyPolicy } = require('../internal/policies');
+import { KeyOnlyPolicy } from './policies.js';
 /** Node for a red-black tree */
-const { TreeNode } = require('../internal/tree-node');
+import { TreeNode } from './tree-node.js';
+import { SetIterator } from './iterators.js';
+import { InsertionResult } from './insertion-result.js';
 
 /**
- * TreeMultiSet is a container that stores elements following a specific order,
- * and where multiple elements can have equivalent values.
+ * TreeSet is a container that stores unique elements following a specific order.
  *
- * In a TreeMultiSet, the value of an element also identifies it
- * (the value is itself the key). The value of the elements in a multiset
- * cannot be modified once in the container (the elements are always immutable),
- * but they can be inserted or removed from the container.
+ * In a TreeSet, the value of an element also identifies it (the value is itself the key),
+ * and each value must be unique. The value of the elements in a TreeSet cannot be modified
+ * once in the container (the elements are immutable), but they can be inserted or removed
+ * from the container.
  *
  * ## Container properties
- * **Associative** - Elements in associative containers are referenced
- * by their key and not by their absolute position in the container.
- * **Ordered** - The elements in the container follow a strict order
- * at all times. All inserted elements are given a position in this order.
- * **Set** - The value of an element is also the key used to identify it.
- * **Multiple equivalent keys** - Multiple elements in the container
- * can have equivalent keys.
+ * **Associative** - Elements in associative containers are referenced by their key and
+ * not by their absolute position in the container.</li>
+ * **Ordered** - The elements in the container follow a strict order at all times.
+ * All inserted elements are given a position in this order.</li>
+ * **Set** - The value of an element is also the key used to identify it.</li>
+ * **Unique keys** - No two elements in the container can have equivalent keys.</li>
  * @example
- * let set = new TreeMultiSet();
+ * let set = new TreeSet();
  * // add few values
  * set.add(1);
- * set.add(2);
  * set.add(2);
  * // check whether key exists
  * let flag = set.has(1); // << true
  * // print all keys
  * for (let key of set) {
- *   console.log(`key: ${key}`); // 1, 2, 2
+ *   console.log(`key: ${key}`);
  * }
  */
-class TreeMultiSet {
+export class TreeSet<K> {
+  public __t: Tree<K, K>;
   /*======================================================
    * Methods of ES6 Set
    *======================================================*/
@@ -45,13 +45,13 @@ class TreeMultiSet {
    * @param {*} [iterable] - Another iterable object whose values are added into the newly created set.
    * @example
    * // Create an empty set
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * // Create and initialize set
-   * let set2 = new TreeMultiSet([1, 2, 3]);
+   * let set2 = new TreeSet([1, 2, 3]);
    */
-  constructor(iterable) {
+  constructor(iterable?: Iterable<K>) {
     /** Internal tree */
-    this.__t = new Tree();
+    this.__t = new Tree<K, K>();
     this.__t.valuePolicy = new KeyOnlyPolicy();
     if (iterable !== undefined && iterable !== null) {
       if (iterable[Symbol.iterator] !== undefined) {
@@ -60,9 +60,7 @@ class TreeMultiSet {
           this.add(k);
         }
       } else {
-        throw new Error(
-          'TreeMultiSet constructor accepts only iterable objects'
-        );
+        throw new Error('TreeSet constructor accepts only iterable objects');
       }
     }
   }
@@ -71,28 +69,28 @@ class TreeMultiSet {
    * String tag of this class
    * @returns {string} class name
    * @example
-   * Object.prototype.toString.call(new TreeMultiSet()); // "[object TreeMultiSet]"
+   * Object.prototype.toString.call(new TreeSet()); // "[object TreeSet]"
    */
-  get [Symbol.toStringTag]() {
-    return 'TreeMultiSet';
+  get [Symbol.toStringTag](): string {
+    return 'TreeSet';
   }
 
   /**
    * Allows to create programmatically an instance of the same class
    * @returns {any} constructor object for this class.
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * let constrFunc = Object.getPrototypeOf(set).constructor[Symbol.species];
    * let set2 = new constrFunc();
    */
-  static get [Symbol.species]() {
-    return TreeMultiSet;
+  static get [Symbol.species](): any {
+    return TreeSet;
   }
 
   /**
    * Removes all key-value pairs.
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * set.clear();
    * console.log(set.size); // 0
    */
@@ -102,15 +100,13 @@ class TreeMultiSet {
 
   /**
    * Removes key-value pair with the specified key if such entry exists. Does nothing otherwise.
-   * @param {any} key - Key to be removed
+   * @param {any} key - Key to be deleted
    * @example
-   * let set = new TreeMultiSet([1, 2, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * set.delete(2);
-   * console.log(set.toString()); // {1,2,3}
-   * set.delete(2); / remove the second copy of the key
    * console.log(set.toString()); // {1,3}
    */
-  delete(key) {
+  delete(key: K) {
     let it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       this.__t.erase(it.node);
@@ -121,27 +117,27 @@ class TreeMultiSet {
    * Forward ES6 iterator for all values in ascending order.
    * @returns {JsIterator} forward iterator for all elements
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let key of set.entries()) {
    *   console.log(`key: ${key}`);
    * }
    */
-  entries() {
-    return this.__t.entries();
+  entries(): IterableIterator<K> {
+    return this.__t.entries() as IterableIterator<K>;
   }
 
   /**
    * Iterates all values using a callback in ascending order.
    * Note that ES6 specifies the order of key parameters in the callback differently from for-of loop.
-   * @param {any} callback - The same type of callback as used in `forEach` of standard JS maps
+   * @param {any} callback - The same type of callback as used in `forEach` for regular JS maps
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * set.forEach(function(value, key, container) {
    *   // value is the same as key
    *   console.log(`key: ${key}, value: ${value}`);
    * });
    */
-  forEach(callback) {
+  forEach(callback: any) {
     for (let k of this.__t) {
       callback(k, k, this);
     }
@@ -150,13 +146,13 @@ class TreeMultiSet {
   /**
    * A boolean indicator whether set contains the specified key.
    * @param {any} key - a value of any type that can be compared with a key
-   * @returns {boolean} `true` when key exists in the container
+   * @returns {boolean} `true` if key exists in the container
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * let b = set.get(3); // true
    * b = set.get(4); // false
    */
-  has(key) {
+  has(key: K): boolean {
     let it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       return true;
@@ -170,44 +166,38 @@ class TreeMultiSet {
    * @returns {JsIterator} forward iterator for all keys
    * @example
    * // iterate all keys
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let k of set.keys()) {
    *   console.log(k); // 1, 2, 3
    * }
    * // iterate all keys in reverse order
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let k of set.keys().backward()) {
    *   console.log(k); // 3, 2, 1
    * }
    */
-  keys() {
+  keys(): IterableIterator<K> {
     return this.__t.keys();
   }
 
   /**
-   * Adds a key to the set. If the key already exists then another entry with the same value is added.
-   * @param {any} key - New key to be added
+   * Adds a key to the set, unless the key already exists.
+   * @param {any} key - Key to be added
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * set.add(1);
-   * set.add(1);
-   * set.add(2);
-   * // print all keys
-   * for (let key of set) {
-   *   console.log(`key: ${key}`); // 1, 1, 2
-   * }
    */
-  add(key) {
-    let n = new TreeNode();
+  add(key: K) {
+    let n = new TreeNode<K, K>();
     n.key = key;
-    this.__t.insertMulti(n);
+    this.__t.insertUnique(n);
   }
 
   /**
    * Number of keys in the set.
    * @returns {number} count of elements in the container
    */
-  get size() {
+  get size(): number {
     return this.__t.size();
   }
 
@@ -216,17 +206,17 @@ class TreeMultiSet {
    * @returns {JsIterator} forward iterator for all values
    * @example
    * // iterate all values
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let v of set.values()) {
    *   console.log(v); // '1', '2', '3'
    * }
    * // iterate all values in reverse order
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let v of set.values().backward()) {
    *   console.log(v); // '3', '2', '1'
    * }
    */
-  values() {
+  values(): IterableIterator<K> {
     return this.__t.keys();
   }
 
@@ -234,13 +224,13 @@ class TreeMultiSet {
    * Forward ES6 iterator for all keys in ascending order. The same as entries() method
    * @returns {JsIterator} forward iterator for all elements
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let key of set) {
-   *   console.log(`key: ${key}, value: ${value}`);
+   *   console.log(`key: ${key}`);
    * }
    */
-  [Symbol.iterator]() {
-    return this.__t[Symbol.iterator]();
+  [Symbol.iterator](): IterableIterator<K> {
+    return this.__t[Symbol.iterator]() as IterableIterator<K>;
   }
 
   /*======================================================
@@ -250,13 +240,13 @@ class TreeMultiSet {
    * ES6 reverse iterator for all keys in descending order.
    * @returns {JsReverseIterator} reverse iterator for all elements
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * for (let key of set.backwards()) {
    *   console.log(`key: ${key}`);
    * }
    */
-  backward() {
-    return this.__t.backward();
+  backward(): IterableIterator<K> {
+    return this.__t.backward() as IterableIterator<K>;
   }
 
   /**
@@ -266,7 +256,7 @@ class TreeMultiSet {
    *      -1 if the value of rhs is less than lhs
    *       0 if values are the same
    */
-  set compareFunc(func) {
+  set compareFunc(func: any) {
     this.clear();
     this.__t.compare = func;
   }
@@ -277,119 +267,110 @@ class TreeMultiSet {
 
   /**
    * Forward iterator to the first element
-   * @returns {Iterator} forward iterator pointing to the first node
+   * @returns {Iterator} iterator pointing at element with the smallest key
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ...
    * for (let it = set.begin(); !it.equals(set.end()); it.next()) {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  begin() {
+  begin(): SetIterator<K> {
     return this.__t.begin();
   }
 
   /**
    * Forward iterator to the element following the last element
-   * @returns {Iterator} forward iterator pointing to the node after the last element
+   * @returns {Iterator} iterator pointing at the node after the element with the largest key
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ...
    * for (let it = set.begin(); !it.equals(set.end()); it.next()) {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  end() {
+  end(): SetIterator<K> {
     return this.__t.end();
   }
 
   /**
    * Finds an element with key equivalent to the specified one. If such key does not exist end() iterator is returned.
    * @param {any} key - Key to search for
-   * @returns {Iterator} iterator pointing to found node
+   * @returns {Iterator} iterator pointing at the found node
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * ...
    * let it = set.find(1);
    * if (!it.equals(set.end())) {
    *   console.log(`Found key: ${it.key}`); // 1
    * }
    */
-  find(key) {
+  find(key: K): SetIterator<K> {
     return this.__t.find(key);
   }
 
   /**
-   * Adds key if such key does not exist in the set.
-   * @param {any} key - Key to be added
+   * Adds a key if it doesn't exist
+   * @param {any} key - Key to add
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    * @example
-   * let set = new TreeMultiSet();
-   * set.insertUnique(1);
-   * set.insertUnique(1); // this step has no effect on the set
-   * let flag = set.has(1); // true
-   * let size = set.size; // 1
+   * let set = new TreeSet();
+   * let res = set.insertUnique(1);
+   * if (res.wasInserted) {
+   *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+   * }
+   * res = set.insertUnique(1); // this step has no effect on the set
+   * if (res.wasInserted) {
+   *   console.log(`Inserted ${res.iterator.key}`); // not executed
+   * }
    */
-  insertUnique(key) {
-    let n = new TreeNode();
+  insertUnique(key: K): InsertionResult<SetIterator<K>> {
+    let n = new TreeNode<K, K>();
     n.key = key;
     return this.__t.insertUnique(n);
   }
 
   /**
-   * Adds key if such key does not exist in the set. Same as insertUnique()
-   * @param {any} key - Key to be added
+   * Adds key-value pair if such key does not exist in the map. Replaces value if such key exists
+   * @param {*} key - key value
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    * @example
-   * let set = new TreeMultiSet();
-   * set.insertOrReplace(1);
-   * set.insertOrReplace(1); // this step has no effect on the set
-   * let flag = set.has(1); // true
-   * let size = set.size; // 1
+   * let set = new TreeSet();
+   * let res = set.insertOrReplace(1);
+   * if (res.wasInserted) {
+   *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+   * }
+   * res = set.insertOrReplace(1) // returns iterator to the previously added node
+   * if (res.wasInserted) {
+   *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+   * }
    */
-  insertOrReplace(key) {
-    let n = new TreeNode();
+  insertOrReplace(key: K): InsertionResult<SetIterator<K>> {
+    let n = new TreeNode<K, K>();
     n.key = key;
     return this.__t.insertOrReplace(n);
   }
 
   /**
-   * Adds key whether it exists or not in the set.
-   * @param {any} key - Key to be added
-   * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
-   * @example
-   * let set = new TreeMultiSet();
-   * set.insertMulti(1);
-   * set.insertMulti(1); // this step has no effect on the map
-   * let flag = set.has(1); // true
-   * let size = set.size; // 2
-   */
-  insertMulti(key) {
-    let n = new TreeNode();
-    n.key = key;
-    return this.__t.insertMulti(n);
-  }
-
-  /**
    * Removes value for the specified iterator.
-   * @param {Iterator} iterator - Iterator pointing at the node to be removed
+   * @param {Iterator} iterator - pointing to the node to be removed
    * @example
-   * let set = new TreeMultiSet([1,2,3]);
+   * let set = new TreeSet([1,2,3]);
    * let it = set.find(2);
    * it.prev();
    * set.erase(it); // removes a node with key 1
    * console.log(set.toString()); // {2,3}
    */
-  erase(iterator) {
+  erase(iterator: SetIterator<K>) {
     this.__t.erase(iterator.node);
   }
 
   /**
    * Iterator pointing to the first element that is not less than specified key. If no such element is found, see end() iterator is returned.
    * @param {any} key - Key to search for
-   * @returns {Iterator} - iterator pointing at found node
+   * @returns {Iterator} iterator pointing at found node
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ... // add key-value pairs., using numbers as keys
    * // iterate through all key-value pairs with keys between 0 and 50 inclusive
    * let from = set.lowerBound(0);
@@ -400,7 +381,7 @@ class TreeMultiSet {
    *   it.next();
    * }
    *
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ... // add key-value pairs., using numbers as keys
    * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
    * let from = new ReverseIterator(set.upperBound(50));
@@ -411,7 +392,7 @@ class TreeMultiSet {
    *   it.next();
    * }
    */
-  lowerBound(key) {
+  lowerBound(key: K): SetIterator<K> {
     return this.__t.lowerBound(key);
   }
 
@@ -419,13 +400,13 @@ class TreeMultiSet {
    * Returns iterator to the first element for reverse iterator
    * @returns {ReverseIterator} iterator pointing to the node with the highest key
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ...
    * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  rbegin() {
+  rbegin(): SetIterator<K> {
     return this.__t.rbegin();
   }
 
@@ -433,22 +414,22 @@ class TreeMultiSet {
    * Returns `end` iterator for reverse iteration, e.g. pointing to a position after the last element
    * @returns {ReverseIterator} iterator pointing to the node preceding the node with the lowest key
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ...
    * for (let it = set.rbegin(); !it.equals(set.rend()); it.next()) {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  rend() {
+  rend(): SetIterator<K> {
     return this.__t.rend();
   }
 
   /**
    * Iterator pointing to the first element that is greater than key. If no such element is found end() iterator is returned.
    * @param {any} key - Key to search for
-   * @returns {Iterator} iterator pointing at the found node
+   * @returns {Iterator} iterator pointing at found node
    * @example
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ... // add key-value pairs., using numbers as keys
    * // iterate through all key-value pairs with keys between 0 and 50 inclusive
    * let from = set.lowerBound(0);
@@ -459,7 +440,7 @@ class TreeMultiSet {
    *   it.next();
    * }
    *
-   * let set = new TreeMultiSet();
+   * let set = new TreeSet();
    * ... // add key-value pairs., using numbers as keys
    * // iterate through all key-value pairs with keys between 0 and 50 inclusive in reverse order
    * let from = new ReverseIterator(set.upperBound(50));
@@ -470,7 +451,7 @@ class TreeMultiSet {
    *   it.next();
    * }
    */
-  upperBound(key) {
+  upperBound(key: K): SetIterator<K> {
     return this.__t.upperBound(key);
   }
 
@@ -478,33 +459,29 @@ class TreeMultiSet {
    * Returns first element of the container, or undefined if container is empty
    * @returns {any} first element of the container, or undefined if container is empty
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * let first = set.first(); // 1
    */
-  first() {
-    return this.__t.first();
+  first(): K | undefined {
+    return this.__t.first() as K;
   }
 
   /**
    * Returns last element of the container, or undefined if container is empty
    * @returns {any} last element of the container, or undefined if container is empty
    * @example
-   * let set = new TreeMultiSet([1, 2, 3]);
+   * let set = new TreeSet([1, 2, 3]);
    * let last = set.last(); // 3
    */
-  last() {
-    return this.__t.last();
+  last(): K | undefined {
+    return this.__t.last() as K
   }
 
   /**
    * Serializes contents of the set in the form {key1,key2,...}
-   * @returns {string} serialized contents of the tree
+   * @returns {string} - string representation of the set
    */
-  toString() {
+  toString(): string {
     return this.__t.toString();
   }
 }
-
-module.exports = {
-  TreeMultiSet: TreeMultiSet,
-};

@@ -1,8 +1,14 @@
+import { describe, it } from 'vitest'
+import should from 'should';
+import { TreeIterator, ReverseIterator } from '../../src/iterators.js';
+
 /*global should Iterator ReverseIterator*/
 // When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
+// @ts-ignore: TS2591
 if (process) {
   // Running inside NodeJS
-  let lib;
+  // let lib;
+  /*
   if (process.env.DEV_TEST) {
     // Use source code
     lib = require('../../src/public/iterators');
@@ -12,263 +18,233 @@ if (process) {
   }
 
   Iterator = lib.Iterator;
-
   ReverseIterator = lib.ReverseIterator;
-  require('should');
+  */
 }
 
 // Nodes are replaced with integers
 class ContainerStubIterTest {
-  prev(n) {
+  prev(n: any) {
     return n - 1;
   }
 
-  next(n) {
+  next(n: any) {
     return n + 1;
   }
 }
 
 describe('Iterator tests', function () {
-  it('constructor; node and container', function (done) {
+  it('constructor; node and container', function () {
     let c = new ContainerStubIterTest();
-    let it = new Iterator(5, c);
+    let it = new TreeIterator(5, c);
     should.strictEqual(5, it.node);
     should.strictEqual(c, it.container);
-
-    done();
   });
 
-  it('constructor; copy of an Iterator', function (done) {
+  it('constructor; copy of an Iterator', function () {
     let c = new ContainerStubIterTest();
-    let it = new Iterator(5, c);
-    let it1 = new Iterator(it);
+    let it = new TreeIterator(5, c);
+    let it1 = new TreeIterator(it);
     should.strictEqual(5, it1.node);
     should.strictEqual(c, it1.container);
-
-    done();
   });
 
-  it('constructor; copy of a ReverseIterator', function (done) {
+  it('constructor; copy of a ReverseIterator', function () {
     let c = new ContainerStubIterTest();
     let it = new ReverseIterator(5, c);
-    let it1 = new Iterator(it);
+    let it1 = new TreeIterator(it);
     should.strictEqual(6, it1.node);
     should.strictEqual(c, it1.container);
-
-    done();
   });
 
-  it('constructor; too many paramaters', function (done) {
+  it('constructor; too many paramaters', function () {
     try {
-      let it = new Iterator('test', 'test', 'test');
+      new TreeIterator('test', 'test', 'test');
+      // @ts-expect-error: TS2554
       should.fail('Constructor should have failed');
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('provided parameters'), msg);
     }
-    done();
   });
 
-  it('constructor; invalid copy request', function (done) {
+  it('constructor; invalid copy request', function () {
     try {
-      let it = new Iterator('test');
+      new TreeIterator('test');
+      // @ts-expect-error: TS2554
       should.fail('Constructor should have failed');
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('Iterator'), msg);
       should.ok(msg.includes('String'), msg);
     }
-    done();
   });
 
-  it('next', function (done) {
+  it('next', function () {
     let c = new ContainerStubIterTest();
-    let it = new Iterator(5, c);
+    let it = new TreeIterator(5, c);
     it.next();
     should.strictEqual(6, it.node);
     should.strictEqual(c, it.container);
-
-    done();
   });
 
-  it('prev', function (done) {
+  it('prev', function () {
     let c = new ContainerStubIterTest();
-    let it = new Iterator(5, c);
+    let it = new TreeIterator(5, c);
     it.prev();
     should.strictEqual(4, it.node);
     should.strictEqual(c, it.container);
-
-    done();
   });
 });
 
 describe('ReverseIterator tests', function () {
-  it('constructor; node and container', function (done) {
+  it('constructor; node and container', function () {
     let c = new ContainerStubIterTest();
     let it = new ReverseIterator(5, c);
     should.strictEqual(5, it.node);
     should.strictEqual(c, it.container);
-
-    done();
   });
 
-  it('constructor; copy of an ReverseIterator', function (done) {
+  it('constructor; copy of an ReverseIterator', function () {
     let c = new ContainerStubIterTest();
     let it = new ReverseIterator(5, c);
     let it1 = new ReverseIterator(it);
     should.strictEqual(5, it1.node);
     should.strictEqual(c, it1.container);
-
-    done();
   });
 
-  it('constructor; copy of a Iterator', function (done) {
+  it('constructor; copy of a Iterator', function () {
     let c = new ContainerStubIterTest();
-    let it = new Iterator(5, c);
+    let it = new TreeIterator(5, c);
     let it1 = new ReverseIterator(it);
     should.strictEqual(4, it1.node);
     should.strictEqual(c, it1.container);
-
-    done();
   });
 
-  it('constructor; too many paramaters', function (done) {
+  it('constructor; too many paramaters', function () {
     try {
-      let it = new ReverseIterator('test', 'test', 'test');
+      new ReverseIterator('test', 'test', 'test');
+      // @ts-expect-error: TS2554
       should.fail('Constructor should have failed');
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('provided parameters'), msg);
     }
-    done();
   });
 
-  it('constructor; invalid copy request', function (done) {
+  it('constructor; invalid copy request', function () {
     try {
-      let it = new ReverseIterator('test');
+      new ReverseIterator('test');
+      // @ts-expect-error: TS2554
       should.fail('Constructor should have failed');
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('ReverseIterator'), msg);
       should.ok(msg.includes('String'), msg);
     }
-    done();
   });
 
-  it('next', function (done) {
+  it('next', function () {
     let c = new ContainerStubIterTest();
     let it = new ReverseIterator(5, c);
     it.next();
     should.strictEqual(4, it.node);
     should.strictEqual(c, it.container);
-
-    done();
   });
 
-  it('prev', function (done) {
+  it('prev', function () {
     let c = new ContainerStubIterTest();
     let it = new ReverseIterator(5, c);
     it.prev();
     should.strictEqual(6, it.node);
     should.strictEqual(c, it.container);
-
-    done();
   });
 });
 
 describe('BaseIterator tests', function () {
-  it('equals; same node', function (done) {
+  it('equals; same node', function () {
     let c = new ContainerStubIterTest();
-    let it1 = new Iterator(5, c);
-    let it2 = new Iterator(5, c);
+    let it1 = new TreeIterator(5, c);
+    let it2 = new TreeIterator(5, c);
     should.ok(it1.equals(it2));
     should.ok(it2.equals(it1));
-
-    done();
   });
 
-  it('equals; different nodes', function (done) {
+  it('equals; different nodes', function () {
     let c = new ContainerStubIterTest();
-    let it1 = new Iterator(4, c);
-    let it2 = new Iterator(5, c);
+    let it1 = new TreeIterator(4, c);
+    let it2 = new TreeIterator(5, c);
     should.ok(!it1.equals(it2));
     should.ok(!it2.equals(it1));
-
-    done();
   });
 
-  it('equals; different containers', function (done) {
+  it('equals; different containers', function () {
     let c1 = new ContainerStubIterTest();
     let c2 = new ContainerStubIterTest();
-    let it1 = new Iterator(4, c1);
-    let it2 = new Iterator(5, c2);
+    let it1 = new TreeIterator(4, c1);
+    let it2 = new TreeIterator(5, c2);
     try {
       it1.equals(it2);
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('different containers'), msg);
     }
     try {
       it2.equals(it1);
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(msg.includes('different containers'), msg);
     }
-
-    done();
   });
 
-  it('equals; different types of iterators', function (done) {
+  it('equals; different types of iterators', function () {
     let c1 = new ContainerStubIterTest();
     let c2 = new ContainerStubIterTest();
-    let it1 = new Iterator(4, c1);
+    let it1 = new TreeIterator(4, c1);
     let it2 = new ReverseIterator(5, c2);
     try {
       it1.equals(it2);
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(
-        msg.includes('instance of r') || msg.includes('instance of Iterator'),
+        msg.includes('instance of r') || msg.includes('instance of TreeIterator'),
         msg
       );
       should.ok(
         msg.includes('instance of i') ||
-          msg.includes('instance of ReverseIterator'),
+        msg.includes('instance of ReverseIterator'),
         msg
       );
     }
     try {
       it2.equals(it1);
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(
-        msg.includes('instance of r') || msg.includes('instance of Iterator'),
+        msg.includes('instance of r') || msg.includes('instance of TreeIterator'),
         msg
       );
       should.ok(
         msg.includes('instance of i') ||
-          msg.includes('instance of ReverseIterator'),
+        msg.includes('instance of ReverseIterator'),
         msg
       );
     }
-
-    done();
   });
 
-  it('equals; comparison to non-iterator object', function (done) {
+  it('equals; comparison to non-iterator object', function () {
     let c = new ContainerStubIterTest();
-    let it = new Iterator(4, c);
+    let it = new TreeIterator(4, c);
     try {
+      // @ts-expect-error: TS2345
       it.equals('test');
     } catch (err) {
-      let msg = err.message;
+      const msg = (err as Error).message;
       should.ok(
-        msg.includes('instance of r') || msg.includes('instance of Iterator'),
+        msg.includes('instance of r') || msg.includes('instance of TreeIterator'),
         msg
       );
       should.ok(msg.includes('String'), msg);
     }
-
-    done();
   });
 });

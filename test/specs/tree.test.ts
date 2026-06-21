@@ -1,31 +1,54 @@
+import { describe, it } from 'vitest'
+import should from 'should';
+// ts-expect-error: TS2591
+import assert from 'node:assert/strict';
+
+import { TreeNode, Head, RED, BLACK } from '../../src/tree-node.js';
+import { Tree, compare } from '../../src/tree.js';
+import { ReverseIterator } from '../../src/iterators.js';
+import {
+  KeyValuePolicy,
+} from '../../src/policies.js';
+
+
+// ts-expect-error: TS2591
 if (process.env.DEV_TEST) {
-  const { TreeNode, RED, BLACK } = require('../../src/internal/tree-node');
-  const { Tree, compare } = require('../../src/internal/tree');
-  const { Iterator, ReverseIterator } = require('../../src/public/iterators');
-  const {
-    KeyOnlyPolicy,
-    KeyValuePolicy,
-  } = require('../../src/internal/policies');
+  /*
+    const { TreeNode, RED, BLACK } = require('../../src/internal/tree-node');
+    const { Tree, compare } = require('../../src/internal/tree');
+    const { Iterator, ReverseIterator } = require('../../src/public/iterators');
+    const {
+      KeyOnlyPolicy,
+      KeyValuePolicy,
+    } = require('../../src/internal/policies');
+  
+    const should = require('should');
+    const assert = require('assert');
+  */
+  class TestNode extends TreeNode<number, any> {
+    public id: string;
 
-  const should = require('should');
-  const assert = require('assert');
+    constructor(id: string) {
+      super();
+      this.id = id;
+    }
+  }
 
-  function createNode(id) {
-    let n = new TreeNode();
-    n.id = id;
+  function createNode(id: string) {
+    const n = new TestNode(id);
     return n;
   }
 
-  function setPointers(node, p, l, r, c) {
+  function setPointers(node: TestNode, p: TestNode | null, l: TestNode | null, r: TestNode | null, c?: number) {
     node.parent = p;
     node.left = l;
     node.right = r;
     if (c !== undefined) {
-      node.color = c;
+      node.color = c as number;
     }
   }
 
-  function createErrorMsg(node, label, expected, actual) {
+  function createErrorMsg(node: TestNode | Head<number, any>, label: string, expected: TestNode, actual: TestNode) {
     let expectedLabel = expected === null ? 'null' : expected.id;
     let actualLabel = actual === null ? 'null' : actual.id;
     let nodeId = node.id || 'head';
@@ -33,13 +56,13 @@ if (process.env.DEV_TEST) {
     return msg;
   }
 
-  function validatePointers(node, p, l, r, k, c) {
+  function validatePointers(node: TestNode, p: TestNode | null, l: TestNode | null, r: TestNode | null, k?: any, c?: number) {
     should.ok(
       node.parent === p,
-      createErrorMsg(node, 'parent', p, node.parent)
+      createErrorMsg(node, 'parent', p as TestNode, node.parent as TestNode)
     );
-    should.ok(node.left === l, createErrorMsg(node, 'left', l, node.left));
-    should.ok(node.right === r, createErrorMsg(node, 'right', r, node.right));
+    should.ok(node.left === l, createErrorMsg(node, 'left', l as TestNode, node.left as TestNode));
+    should.ok(node.right === r, createErrorMsg(node, 'right', r as TestNode, node.right as TestNode));
     if (k !== undefined) {
       should.ok(
         node.key === k,
@@ -54,18 +77,18 @@ if (process.env.DEV_TEST) {
     }
   }
 
-  function validateHead(head, root, l, r, s) {
+  function validateHead(head: Head<number, any>, root: TestNode, l: TestNode, r: TestNode, s: number) {
     should.ok(
       head.root === root,
-      createErrorMsg(head, 'root', root, head.root)
+      createErrorMsg(head, 'root', root, head.root as TestNode)
     );
     should.ok(
       head.leftmost === l,
-      createErrorMsg(head, 'leftmost', l, head.leftmost)
+      createErrorMsg(head, 'leftmost', l, head.leftmost as TestNode)
     );
     should.ok(
       head.rightmost === r,
-      createErrorMsg(head, 'rightmost', r, head.rightmost)
+      createErrorMsg(head, 'rightmost', r, head.rightmost as TestNode)
     );
     should.ok(
       head.size === s,
@@ -73,7 +96,7 @@ if (process.env.DEV_TEST) {
     );
   }
 
-  function addNodes(t, ...keys) {
+  function addNodes(t: any, ...keys: any[]): TestNode[] {
     let nodes = [];
     for (let k of keys) {
       let n = createNode(k);
@@ -84,63 +107,54 @@ if (process.env.DEV_TEST) {
     return nodes;
   }
 
-  function buildTree(...keys) {
+  function buildTree(...keys: any[]): any[] {
     let t = new Tree();
     let nodes = addNodes(t, ...keys);
     return [t, ...nodes];
   }
 
   describe('Compare tests', function () {
-    it('numbers', function (done) {
-      should.equal(-1, compare(5, 6));
-      should.equal(0, compare(-2, -2));
-      should.equal(1, compare(6, -5));
-
-      done();
+    it('numbers', function () {
+      should.equal(compare(5, 6), -1);
+      should.equal(compare(-2, -2), 0);
+      should.equal(compare(6, -5), 1);
     });
 
-    it('strings', function (done) {
-      should.equal(-1, compare('A', 'a'));
-      should.equal(0, compare('abc', 'abc'));
-      should.equal(1, compare('Abcd', 'Abc'));
-
-      done();
+    it('strings', function () {
+      should.equal(compare('A', 'a'), -1);
+      should.equal(compare('abc', 'abc'), 0);
+      should.equal(compare('Abcd', 'Abc'), 1);
     });
   });
 
   describe('Tree tests', function () {
-    it('constructor', function (done) {
+    it('constructor', function () {
       let t = new Tree();
+      // @ts-expect-error: TS2345
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('size', function (done) {
+    it('size', function () {
       let t = new Tree();
       t.head.size = 5;
-      should.equal(5, t.size());
-
-      done();
+      should.equal(t.size(), 5);
     });
 
-    it('replaceNode; root', function (done) {
-      let p = new TreeNode();
-      let n = new TreeNode();
-      let t = new Tree();
+    it('replaceNode; root', function () {
+      let p = new TestNode("1");
+      let n = new TestNode("2");
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = p;
       t.head.rightmost = p;
       t.head.size = 1;
       t.replaceNode(p, n);
       validateHead(t.head, n, p, p, 1);
-      validatePointers(p, null, null, null);
-      validatePointers(n, null, null, null);
-
-      done();
+      validatePointers(p, null, null, null, undefined);
+      validatePointers(n, null, null, null, undefined);
     });
 
-    it('replaceNode; left child', function (done) {
+    it('replaceNode; left child', function () {
       let p = createNode('p');
       let l = createNode('l');
       let r = createNode('r');
@@ -148,7 +162,7 @@ if (process.env.DEV_TEST) {
       setPointers(p, null, l, r);
       setPointers(l, p, null, null);
       setPointers(r, p, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = l;
       t.head.rightmost = r;
@@ -159,11 +173,9 @@ if (process.env.DEV_TEST) {
       validatePointers(l, p, null, null);
       validatePointers(r, p, null, null);
       validatePointers(n, p, null, null);
-
-      done();
     });
 
-    it('replaceNode; right child', function (done) {
+    it('replaceNode; right child', function () {
       let p = createNode('p');
       let l = createNode('l');
       let r = createNode('r');
@@ -171,7 +183,7 @@ if (process.env.DEV_TEST) {
       setPointers(p, null, l, r);
       setPointers(l, p, null, null);
       setPointers(r, p, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = l;
       t.head.rightmost = r;
@@ -182,18 +194,16 @@ if (process.env.DEV_TEST) {
       validatePointers(l, p, null, null);
       validatePointers(r, p, null, null);
       validatePointers(n, p, null, null);
-
-      done();
     });
 
-    it('replaceNode; itself', function (done) {
+    it('replaceNode; itself', function () {
       let p = createNode('p');
       let l = createNode('l');
       let r = createNode('r');
       setPointers(p, null, l, r);
       setPointers(l, p, null, null);
       setPointers(r, p, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = l;
       t.head.rightmost = r;
@@ -203,18 +213,16 @@ if (process.env.DEV_TEST) {
       validatePointers(p, null, l, r);
       validatePointers(l, p, null, null);
       validatePointers(r, p, null, null);
-
-      done();
     });
 
-    it('replaceNode; null', function (done) {
+    it('replaceNode; null', function () {
       let p = createNode('p');
       let l = createNode('l');
       let r = createNode('r');
       setPointers(p, null, l, r);
       setPointers(l, p, null, null);
       setPointers(r, p, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = l;
       t.head.rightmost = r;
@@ -224,11 +232,9 @@ if (process.env.DEV_TEST) {
       validatePointers(p, null, l, null);
       validatePointers(l, p, null, null);
       validatePointers(r, p, null, null);
-
-      done();
     });
 
-    it('rotateLeft; all nodes', function (done) {
+    it('rotateLeft; all nodes', function () {
       let p = createNode('p');
       let n = createNode('n');
       let X = createNode('X');
@@ -243,7 +249,7 @@ if (process.env.DEV_TEST) {
       setPointers(a, Y, null, null);
       setPointers(b, X, null, null);
       setPointers(c, X, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = a;
       t.head.rightmost = n;
@@ -257,11 +263,9 @@ if (process.env.DEV_TEST) {
       validatePointers(a, Y, null, null);
       validatePointers(b, Y, null, null);
       validatePointers(c, X, null, null);
-
-      done();
     });
 
-    it('rotateLeft; all nodes', function (done) {
+    it('rotateLeft; all nodes', function () {
       let p = createNode('p');
       let n = createNode('n');
       let X = createNode('X');
@@ -276,7 +280,7 @@ if (process.env.DEV_TEST) {
       setPointers(a, Y, null, null);
       setPointers(b, X, null, null);
       setPointers(c, X, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = n;
       t.head.rightmost = c;
@@ -290,16 +294,14 @@ if (process.env.DEV_TEST) {
       validatePointers(a, Y, null, null);
       validatePointers(b, Y, null, null);
       validatePointers(c, X, null, null);
-
-      done();
     });
 
-    it('rotateLeft; 2 nodes', function (done) {
+    it('rotateLeft; 2 nodes', function () {
       let X = createNode('X');
       let Y = createNode('Y');
       setPointers(X, Y, null, null);
       setPointers(Y, null, null, X);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = Y;
       t.head.leftmost = Y;
       t.head.rightmost = X;
@@ -308,14 +310,12 @@ if (process.env.DEV_TEST) {
       validateHead(t.head, X, Y, X, 2);
       validatePointers(X, null, Y, null);
       validatePointers(Y, X, null, null);
-
-      done();
     });
 
-    it('rotateLeft; single node', function (done) {
+    it('rotateLeft; single node', function () {
       let X = createNode('X');
       setPointers(X, null, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = X;
       t.head.leftmost = X;
       t.head.rightmost = X;
@@ -324,15 +324,13 @@ if (process.env.DEV_TEST) {
         t.rotateLeft(X);
         assert(false, 'The error was not detected');
       } catch (err) {
-        let msg = err.message;
+        const msg = (err as Error).message;
         should.ok(msg.includes('rotateLeft'));
         should.ok(msg.includes('corrupted'));
       }
-
-      done();
     });
 
-    it('rotateRight; all nodes', function (done) {
+    it('rotateRight; all nodes', function () {
       let p = createNode('p');
       let n = createNode('n');
       let X = createNode('X');
@@ -347,7 +345,7 @@ if (process.env.DEV_TEST) {
       setPointers(a, Y, null, null);
       setPointers(b, Y, null, null);
       setPointers(c, X, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = a;
       t.head.rightmost = n;
@@ -361,11 +359,9 @@ if (process.env.DEV_TEST) {
       validatePointers(a, Y, null, null);
       validatePointers(b, X, null, null);
       validatePointers(c, X, null, null);
-
-      done();
     });
 
-    it('rotateRight; all nodes', function (done) {
+    it('rotateRight; all nodes', function () {
       let p = createNode('p');
       let n = createNode('n');
       let X = createNode('X');
@@ -380,7 +376,7 @@ if (process.env.DEV_TEST) {
       setPointers(a, Y, null, null);
       setPointers(b, Y, null, null);
       setPointers(c, X, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = p;
       t.head.leftmost = n;
       t.head.rightmost = c;
@@ -394,16 +390,14 @@ if (process.env.DEV_TEST) {
       validatePointers(a, Y, null, null);
       validatePointers(b, X, null, null);
       validatePointers(c, X, null, null);
-
-      done();
     });
 
-    it('rotateRight; 2 nodes', function (done) {
+    it('rotateRight; 2 nodes', function () {
       let X = createNode('X');
       let Y = createNode('Y');
       setPointers(X, null, Y, null);
       setPointers(Y, X, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = X;
       t.head.leftmost = Y;
       t.head.rightmost = X;
@@ -412,14 +406,12 @@ if (process.env.DEV_TEST) {
       validateHead(t.head, Y, Y, X, 2);
       validatePointers(X, Y, null, null);
       validatePointers(Y, null, null, X);
-
-      done();
     });
 
-    it('rotateRight; single node', function (done) {
+    it('rotateRight; single node', function () {
       let X = createNode('X');
       setPointers(X, null, null, null);
-      let t = new Tree();
+      let t = new Tree<number, any>();
       t.head.root = X;
       t.head.leftmost = X;
       t.head.rightmost = X;
@@ -428,15 +420,13 @@ if (process.env.DEV_TEST) {
         t.rotateRight(X);
         assert(false, 'The error was not detected');
       } catch (err) {
-        let msg = err.message;
+        const msg = (err as Error).message;
         should.ok(msg.includes('rotateRight'), msg);
         should.ok(msg.includes('corrupted'), msg);
       }
-
-      done();
     });
 
-    it('isLeaf', function (done) {
+    it('isLeaf', function () {
       let X = createNode('X');
       setPointers(X, null, null, null, BLACK);
       let t = new Tree();
@@ -447,11 +437,9 @@ if (process.env.DEV_TEST) {
       should.ok(!t.isLeaf(X));
       should.ok(t.isLeaf(t.head));
       should.ok(t.isLeaf(null));
-
-      done();
     });
 
-    it('fetchColor', function (done) {
+    it('fetchColor', function () {
       let X = createNode('X');
       let Y = createNode('Y');
       setPointers(X, null, Y, null, BLACK);
@@ -461,46 +449,38 @@ if (process.env.DEV_TEST) {
       t.head.leftmost = Y;
       t.head.rightmost = X;
       t.head.size = 2;
-      should.equal(BLACK, t.fetchColor(X));
-      should.equal(BLACK, t.fetchColor(t.head));
-      should.equal(BLACK, t.fetchColor(null));
-      should.equal(RED, t.fetchColor(Y));
+      should.equal(t.fetchColor(X), BLACK);
+      should.equal(t.fetchColor(t.head as unknown as TreeNode<number, any>), BLACK);
+      should.equal(t.fetchColor(null as unknown as TreeNode<number, any>), BLACK);
+      should.equal(t.fetchColor(Y), RED);
       should.ok(t.isBlack(X));
       should.ok(t.isRed(Y));
-
-      done();
     });
 
-    it('insertNode; root; case 1', function (done) {
+    it('insertNode; root; case 1', function () {
       let [t, n] = buildTree(2);
 
       validateHead(t.head, n, n, n, 1);
       validatePointers(n, null, t.head, t.head, 2, BLACK);
-
-      done();
     });
 
-    it('insertNode; root & left child; case 2', function (done) {
+    it('insertNode; root & left child; case 2', function () {
       let [t, n2, n1] = buildTree(2, 1);
 
       validateHead(t.head, n2, n1, n2, 2);
       validatePointers(n2, null, n1, t.head, 2, BLACK);
       validatePointers(n1, n2, t.head, null, 1, RED);
-
-      done();
     });
 
-    it('insertNode; root & right child; case 2', function (done) {
+    it('insertNode; root & right child; case 2', function () {
       let [t, n2, n3] = buildTree(2, 3);
 
       validateHead(t.head, n2, n2, n3, 2);
       validatePointers(n2, null, t.head, n3, 2, BLACK);
       validatePointers(n3, n2, null, t.head, 3, RED);
-
-      done();
     });
 
-    it('insertNode; 2,3,1,4; case 3', function (done) {
+    it('insertNode; 2,3,1,4; case 3', function () {
       let [t, n2, n3, n1, n4] = buildTree(2, 3, 1, 4);
 
       validateHead(t.head, n2, n1, n4, 4);
@@ -508,22 +488,18 @@ if (process.env.DEV_TEST) {
       validatePointers(n3, n2, null, n4, 3, BLACK);
       validatePointers(n1, n2, t.head, null, 1, BLACK);
       validatePointers(n4, n3, null, t.head, 4, RED);
-
-      done();
     });
 
-    it('insertNode; 1,2,3; case 4', function (done) {
+    it('insertNode; 1,2,3; case 4', function () {
       let [t, n1, n2, n3] = buildTree(1, 2, 3);
 
       validateHead(t.head, n2, n1, n3, 3);
       validatePointers(n1, n2, t.head, null, 1, RED);
       validatePointers(n2, null, n1, n3, 2, BLACK);
       validatePointers(n3, n2, null, t.head, 3, RED);
-
-      done();
     });
 
-    it('insertNode; 1,3,2; case 4', function (done) {
+    it('insertNode; 1,3,2; case 4', function () {
       let [t, n1, n3, n2] = buildTree(1, 3, 2);
 
       validateHead(t.head, n2, n1, n3, 3);
@@ -531,21 +507,18 @@ if (process.env.DEV_TEST) {
       validatePointers(n2, null, n1, n3, 2, BLACK);
       validatePointers(n3, n2, null, t.head, 3, RED);
 
-      done();
     });
 
-    it('insertNode; 6,4,5; case 4', function (done) {
+    it('insertNode; 6,4,5; case 4', function () {
       let [t, n6, n4, n5] = buildTree(6, 4, 5);
 
       validateHead(t.head, n5, n4, n6, 3);
       validatePointers(n4, n5, t.head, null, 4, RED);
       validatePointers(n5, null, n4, n6, 5, BLACK);
       validatePointers(n6, n5, null, t.head, 6, RED);
-
-      done();
     });
 
-    it('insertNode; 1,2,3,4; case 4', function (done) {
+    it('insertNode; 1,2,3,4; case 4', function () {
       let [t, n1, n2, n3, n4] = buildTree(1, 2, 3, 4);
 
       validateHead(t.head, n2, n1, n4, 4);
@@ -553,11 +526,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n2, null, n1, n3, 2, BLACK);
       validatePointers(n3, n2, null, n4, 3, BLACK);
       validatePointers(n4, n3, null, t.head, 4, RED);
-
-      done();
     });
 
-    it('insertNode; 1,2,3,4,5; case 4', function (done) {
+    it('insertNode; 1,2,3,4,5; case 4', function () {
       let [t, n1, n2, n3, n4, n5] = buildTree(1, 2, 3, 4, 5);
 
       validateHead(t.head, n2, n1, n5, 5);
@@ -566,11 +537,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n3, n4, null, null, 3, RED);
       validatePointers(n4, n2, n3, n5, 4, BLACK);
       validatePointers(n5, n4, null, t.head, 5, RED);
-
-      done();
     });
 
-    it('insertNode; 1,2,3,4,5,6; case 4', function (done) {
+    it('insertNode; 1,2,3,4,5,6; case 4', function () {
       let [t, n1, n2, n3, n4, n5, n6] = buildTree(1, 2, 3, 4, 5, 6);
 
       validateHead(t.head, n2, n1, n6, 6);
@@ -580,11 +549,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n4, n2, n3, n5, 4, RED);
       validatePointers(n5, n4, null, n6, 5, BLACK);
       validatePointers(n6, n5, null, t.head, 6, RED);
-
-      done();
     });
 
-    it('insertNode; 6,5,4,3,2,1; case 4', function (done) {
+    it('insertNode; 6,5,4,3,2,1; case 4', function () {
       let [t, n6, n5, n4, n3, n2, n1] = buildTree(6, 5, 4, 3, 2, 1);
 
       validateHead(t.head, n5, n1, n6, 6);
@@ -594,21 +561,17 @@ if (process.env.DEV_TEST) {
       validatePointers(n3, n5, n2, n4, 3, RED);
       validatePointers(n2, n3, n1, null, 2, BLACK);
       validatePointers(n1, n2, t.head, null, 1, RED);
-
-      done();
     });
 
-    it('fetchMaximum', function (done) {
-      let [t, n20, n10, n30, n15, n40, n17] = buildTree(20, 10, 30, 15, 40, 17);
+    it('fetchMaximum', function () {
+      let [t, n20, _n10, _n30, n15, n40, n17] = buildTree(20, 10, 30, 15, 40, 17);
 
-      should.equal(n40, t.fetchMaximum(n20));
-      should.equal(n17, t.fetchMaximum(n15));
-
-      done();
+      should.equal(t.fetchMaximum(n20), n40);
+      should.equal(t.fetchMaximum(n15), n17);
     });
 
-    it('fetchMinimum', function (done) {
-      let [t, n20, n10, n30, n5, n15, n25, n35, n27] = buildTree(
+    it('fetchMinimum', function () {
+      let [t, n20, _n10, n30, n5, _n15, n25, _n35, _n27] = buildTree(
         20,
         10,
         30,
@@ -619,65 +582,51 @@ if (process.env.DEV_TEST) {
         27
       );
 
-      should.equal(n5, t.fetchMinimum(n20));
-      should.equal(n25, t.fetchMinimum(n30));
-
-      done();
+      should.equal(t.fetchMinimum(n20), n5);
+      should.equal(t.fetchMinimum(n30), n25);
     });
 
-    it('clear', function (done) {
+    it('clear', function () {
       let [t] = buildTree(1, 2, 3);
       t.clear();
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('erase; null', function (done) {
-      let t = new Tree();
-      t.erase(null);
-      validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
+    it('erase; null', function () {
+      let t = new Tree<number, any>();
+      t.erase(null as unknown as TreeNode<number, any>);
+      validateHead(t.head, t.head as unknown as TestNode, t.head as unknown as TestNode, t.head as unknown as TestNode, 0);
     });
 
-    it('erase; head', function (done) {
-      let t = new Tree();
-      t.erase(t.head);
-      validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
+    it('erase; head', function () {
+      let t = new Tree<number, any>();
+      t.erase(t.head as unknown as TestNode);
+      validateHead(t.head, t.head as unknown as TestNode, t.head as unknown as TestNode, t.head as unknown as TestNode, 0);
     });
 
-    it('erase; case 1', function (done) {
+    it('erase; case 1', function () {
       let [t, n2] = buildTree(2);
       t.erase(n2);
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('erase; replaced by leftmost child', function (done) {
-      let [t, n2, n1, n3] = buildTree(2, 1, 3);
+    it('erase; replaced by leftmost child', function () {
+      let [t, n2, _n1, n3] = buildTree(2, 1, 3);
       t.erase(n2);
       validateHead(t.head, n2, n2, n3, 2);
       validatePointers(n2, null, t.head, n3, 1, BLACK);
       validatePointers(n3, n2, null, t.head, 3, RED);
-
-      done();
     });
 
-    it('erase; delete leftmost child', function (done) {
+    it('erase; delete leftmost child', function () {
       let [t, n2, n1, n3] = buildTree(2, 1, 3);
       t.erase(n1);
       validateHead(t.head, n2, n2, n3, 2);
       validatePointers(n2, null, t.head, n3, 2, BLACK);
       validatePointers(n3, n2, null, t.head, 3, RED);
-
-      done();
     });
 
-    it('erase; delete leftmost child 2', function (done) {
+    it('erase; delete leftmost child 2', function () {
       let [t, n10, n8, n12, n6, n14] = buildTree(10, 8, 12, 6, 14);
       t.erase(n6);
       validateHead(t.head, n10, n8, n14, 4);
@@ -685,11 +634,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n10, null, n8, n12, 10, BLACK);
       validatePointers(n12, n10, null, n14, 12, BLACK);
       validatePointers(n14, n12, null, t.head, 14, RED);
-
-      done();
     });
 
-    it('erase; delete leftmost and root, then root again', function (done) {
+    it('erase; delete leftmost and root, then root again', function () {
       let [t, n2, n1, n3] = buildTree(2, 1, 3);
       t.erase(n1);
       t.erase(n2);
@@ -697,39 +644,31 @@ if (process.env.DEV_TEST) {
       validatePointers(n3, null, t.head, t.head, 3, BLACK);
       t.erase(n3);
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('erase; delete 2 nodes, order 1', function (done) {
+    it('erase; delete 2 nodes, order 1', function () {
       let [t, n1, n3] = buildTree(1, 3);
       t.erase(n1);
       t.erase(n3);
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('erase; delete 2 nodes, order 2', function (done) {
+    it('erase; delete 2 nodes, order 2', function () {
       let [t, n1, n3] = buildTree(1, 3);
       t.erase(n3);
       t.erase(n1);
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('erase; delete rightmost child', function (done) {
+    it('erase; delete rightmost child', function () {
       let [t, n2, n1, n3] = buildTree(2, 1, 3);
       t.erase(n3);
       validateHead(t.head, n2, n1, n2, 2);
       validatePointers(n1, n2, t.head, null, 1, RED);
       validatePointers(n2, null, n1, t.head, 2, BLACK);
-
-      done();
     });
 
-    it('erase; delete rightmost child 2', function (done) {
+    it('erase; delete rightmost child 2', function () {
       let [t, n10, n8, n12, n6, n14] = buildTree(10, 8, 12, 6, 14);
       t.erase(n14);
       validateHead(t.head, n10, n6, n12, 4);
@@ -737,11 +676,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n8, n10, n6, null, 8, BLACK);
       validatePointers(n10, null, n8, n12, 10, BLACK);
       validatePointers(n12, n10, null, t.head, 12, BLACK);
-
-      done();
     });
 
-    it('erase; delete rightmost and root', function (done) {
+    it('erase; delete rightmost and root', function () {
       let [t, n2, n1, n3] = buildTree(2, 1, 3);
       t.erase(n3);
       t.erase(n2);
@@ -749,11 +686,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n1, null, t.head, t.head, 1, BLACK);
       t.erase(n1);
       validateHead(t.head, t.head, t.head, t.head, 0);
-
-      done();
     });
 
-    it('erase; delete node with a single left child', function (done) {
+    it('erase; delete node with a single left child', function () {
       let [t, n20, n10, n30, n25, n35, n22] = buildTree(20, 10, 30, 25, 35, 22);
       t.erase(n25);
       validateHead(t.head, n20, n10, n35, 5);
@@ -762,10 +697,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n22, n30, null, null, 22, RED);
       validatePointers(n30, n20, n22, n35, 30, BLACK);
       validatePointers(n35, n30, null, t.head, 35, RED);
-      done();
     });
 
-    it('erase; delete node with a single right child', function (done) {
+    it('erase; delete node with a single right child', function () {
       let [t, n20, n10, n30, n25, n35, n27] = buildTree(20, 10, 30, 25, 35, 27);
       t.erase(n25);
       validateHead(t.head, n20, n10, n35, 5);
@@ -774,11 +708,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n27, n30, null, null, 27, RED);
       validatePointers(n30, n20, n27, n35, 30, BLACK);
       validatePointers(n35, n30, null, t.head, 35, RED);
-
-      done();
     });
 
-    it('erase; cases 2, 4; left child', function (done) {
+    it('erase; cases 2, 4; left child', function () {
       let [t, n20, n10, n30, n5, n25, n35, n40] = buildTree(
         20,
         10,
@@ -805,11 +737,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n25, n20, null, null, 25, RED);
       validatePointers(n30, null, n20, n35, 30, BLACK);
       validatePointers(n35, n30, null, t.head, 35, BLACK);
-
-      done();
     });
 
-    it('erase; cases 2, 4; right child', function (done) {
+    it('erase; cases 2, 4; right child', function () {
       let [t, n20, n10, n30, n5, n15, n18] = buildTree(20, 10, 30, 5, 15, 18);
       t.erase(n18);
       // validate initial state
@@ -827,11 +757,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n10, null, n5, n20, 10, BLACK);
       validatePointers(n15, n20, null, null, 15, RED);
       validatePointers(n20, n10, n15, t.head, 20, BLACK);
-
-      done();
     });
 
-    it('erase; cases 3, 5, 6; left child', function (done) {
+    it('erase; cases 3, 5, 6; left child', function () {
       let [t, n20, n10, n30, n5, n15, n25, n35, n40] = buildTree(
         20,
         10,
@@ -870,11 +798,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n20, n15, n17, n30, 20, BLACK);
       validatePointers(n30, n20, null, n35, 30, BLACK);
       validatePointers(n35, n30, null, t.head, 35, RED);
-
-      done();
     });
 
-    it('erase; cases 3, 5, 6; right child', function (done) {
+    it('erase; cases 3, 5, 6; right child', function () {
       let [t, n20, n10, n30, n5, n15, n25, n35, n40] = buildTree(
         20,
         10,
@@ -913,11 +839,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n20, n15, n17, n30, 20, BLACK);
       validatePointers(n25, n30, null, null, 25, RED);
       validatePointers(n30, n20, n25, t.head, 30, BLACK);
-
-      done();
     });
 
-    it('erase; cases 5, 6; left child is red', function (done) {
+    it('erase; cases 5, 6; left child is red', function () {
       let [t, n20, n10, n30, n5, n15, n25, n35, n40] = buildTree(
         20,
         10,
@@ -954,11 +878,9 @@ if (process.env.DEV_TEST) {
       validatePointers(n20, n25, null, null, 20, BLACK);
       validatePointers(n25, n15, n20, n30, 25, BLACK);
       validatePointers(n30, n25, null, t.head, 30, BLACK);
-
-      done();
     });
 
-    it('erase; cases 5, 6; left child is red 2', function (done) {
+    it('erase; cases 5, 6; left child is red 2', function () {
       let [t, n20, n10, n30, n5, n15, n25, n35, n40] = buildTree(
         20,
         10,
@@ -995,16 +917,19 @@ if (process.env.DEV_TEST) {
       validatePointers(n16, n17, null, null, 16, BLACK);
       validatePointers(n17, n15, n16, n20, 17, BLACK);
       validatePointers(n20, n17, null, t.head, 20, BLACK);
-
-      done();
     });
 
-    it('insert / erase; add and remove many random nodes', function (done) {
+    it('insert / erase; add and remove many random nodes', function () {
       const MAX_KEY_VALUE = 1000;
       const MAX_SIZE = 10; //100;
       const MAX_ITERATIONS = 10; //1000;
 
       class ValidationResult {
+        public isValid: boolean;
+        public height: number;
+        public size: number;
+        public errorMessage: String;
+
         constructor() {
           this.isValid = true;
           this.height = 0;
@@ -1013,27 +938,27 @@ if (process.env.DEV_TEST) {
         }
       }
 
-      function isValidSubtree(t, n, res) {
+      function isValidSubtree(t: any, n: TreeNode<number, any>, res: any) {
         if (t.isLeaf(n)) {
           return;
         }
         /* parent consistency checked by caller
                check n.left consistency */
-        if (!t.isLeaf(n.left) && n.left.parent !== n) {
-          let l = n.left;
+        if (!t.isLeaf(n.left) && (n.left as TestNode).parent !== n) {
+          let l = n.left as TestNode;
           res.isValid = false;
           res.errorMessage = `Invalid left child node ${l.key}. It must point to parent ${n.key}.`;
         }
         // check n.right consistency
-        if (!t.isLeaf(n.right) && n.right.parent !== n) {
-          let r = n.right;
+        if (!t.isLeaf(n.right) && (n.right as TestNode).parent !== n) {
+          let r = n.right as TestNode;
           res.isValid = false;
           res.errorMessage = `Invalid right child node ${r.key}. It must point to parent ${n.key}.`;
           return;
         }
         // check n.left != n.right unless both are null
         if (n.left === n.right && !t.isLeaf(n.left)) {
-          let r = n.right;
+          let r = n.right as TestNode;
           res.isValid = false;
           res.errorMessage = `Invalid node ${n.key}. Both children are ${r.key}.`;
           return;
@@ -1042,17 +967,17 @@ if (process.env.DEV_TEST) {
         if (t.isRed(n)) {
           if (!t.isBlack(n.left)) {
             res.isValid = false;
-            res.errorMessage = `Node ${n.left.key} must be black, because it's parent ${n.key} is red.`;
+            res.errorMessage = `Node ${(n.left as TestNode).key} must be black, because it's parent ${n.key} is red.`;
             return;
           }
           if (!t.isBlack(n.right)) {
             res.isValid = false;
-            res.errorMessage = `Node ${n.right.key} must be black, because it's parent ${n.key} is red.`;
+            res.errorMessage = `Node ${(n.right as TestNode).key} must be black, because it's parent ${n.key} is red.`;
             return;
           }
         }
         let resLeft = new ValidationResult();
-        isValidSubtree(t, n.left, resLeft);
+        isValidSubtree(t, n.left as TreeNode<number, any>, resLeft);
         if (!resLeft.isValid) {
           // invalid left subtree
           res.isValid = false;
@@ -1060,7 +985,7 @@ if (process.env.DEV_TEST) {
           return;
         }
         let resRight = new ValidationResult();
-        isValidSubtree(t, n.right, resRight);
+        isValidSubtree(t, n.right as TreeNode<number, any>, resRight);
         if (!resRight.isValid) {
           // invalid right subtree
           res.isValid = false;
@@ -1080,7 +1005,7 @@ if (process.env.DEV_TEST) {
         res.size = resLeft.size + resRight.size + 1;
       }
 
-      function isValidTree(t) {
+      function isValidTree(t: any) {
         let res = new ValidationResult();
         let h = t.head;
         if (h.root === null) {
@@ -1122,18 +1047,18 @@ if (process.env.DEV_TEST) {
         return res;
       }
 
-      function randomInt(min, max) {
+      function randomInt(min: number, max: number) {
         return Math.floor(Math.random() * (max - min)) + min;
       }
 
       let t = new Tree();
-      let keys = [];
+      let keys: any[] = [];
       for (let j = 0; j < MAX_SIZE; ++j) {
         let k = randomInt(0, MAX_KEY_VALUE);
         keys.push(k);
         addNodes(t, k);
         let res = isValidTree(t);
-        should.ok(res.isValid, res.errorMessage);
+        should.ok(res.isValid, res.errorMessage as string);
       }
 
       for (let j = 0; j < MAX_ITERATIONS; ++j) {
@@ -1143,156 +1068,106 @@ if (process.env.DEV_TEST) {
         let it = t.find(k);
         t.erase(it.node);
         let res = isValidTree(t);
-        should.ok(res.isValid, res.errorMessage);
+        should.ok(res.isValid, res.errorMessage as string);
         // insert
         k = randomInt(0, MAX_KEY_VALUE);
         keys[i] = k;
         addNodes(t, k);
         res = isValidTree(t);
-        should.ok(res.isValid, res.errorMessage);
+        should.ok(res.isValid, res.errorMessage as string);
       }
-
-      done();
     });
 
-    it('lowerBound', function (done) {
+    it('lowerBound', function () {
       let [
         t,
-        n2,
-        n4,
-        n6,
-        n8,
-        n10,
-        n12,
-        n14,
-        n16,
-        n18,
-        n20,
-        n22,
-        n24,
-        n26,
-        n28,
-        n30,
-        n32,
+        _n2,
+        _n4,
+        _n6,
+        _n8,
+        _n10,
+        _n12,
+        _n14,
+        _n16,
+        _n18,
+        _n20,
+        _n22,
+        _n24,
+        _n26,
+        _n28,
+        _n30,
+        _n32,
       ] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
       let n = t.lowerBound(8).node; // n8 - root of the tree
-      should.equal(8, n.key); // matches a node with the same value
+      should.equal(n.key, 8); // matches a node with the same value
       n = t.lowerBound(22).node; // node with no children
-      should.equal(22, n.key); // matches a node with the same value
+      should.equal(n.key, 22); // matches a node with the same value
       n = t.lowerBound(12).node; // node with children
-      should.equal(12, n.key); // matches a node with the same value
+      should.equal(n.key, 12); // matches a node with the same value
       n = t.lowerBound(21).node;
-      should.equal(22, n.key); // matches the nearest larger value
+      should.equal(n.key, 22); // matches the nearest larger value
       n = t.lowerBound(2).node; // the smallest value
-      should.equal(2, n.key); // matches the smallest value
+      should.equal(n.key, 2); // matches the smallest value
       n = t.lowerBound(-1).node; // less than the smallest value
-      should.equal(2, n.key); // matches the smallest value
+      should.equal(n.key, 2); // matches the smallest value
       n = t.lowerBound(100).node; // larger than the largest value
-      should.equal(t.head, n); // matches the head
-
-      done();
+      should.equal(n, t.head); // matches the head
     });
 
-    it('lowerBound; empty tree', function (done) {
+    it('lowerBound; empty tree', function () {
       let t = new Tree();
       let n = t.lowerBound(22).node;
-      should.equal(t.head, n); // matches the head
-
-      done();
+      should.equal(n, t.head); // matches the head
     });
 
-    it('upperBound', function (done) {
-      let [
-        t,
-        n2,
-        n4,
-        n6,
-        n8,
-        n10,
-        n12,
-        n14,
-        n16,
-        n18,
-        n20,
-        n22,
-        n24,
-        n26,
-        n28,
-        n30,
-        n32,
-      ] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+    it('upperBound', function () {
+      let [t, ..._ignore] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
       let n = t.upperBound(7).node; // n8 - root of the tree
-      should.equal(8, n.key); // matches a node with a larger value
+      should.equal(n.key, 8); // matches a node with a larger value
       n = t.upperBound(20).node; // n22 - node with no children
-      should.equal(22, n.key); // matches a node with a larger value
+      should.equal(n.key, 22); // matches a node with a larger value
       n = t.upperBound(10).node; // n12 - node with children
-      should.equal(12, n.key); // matches a node with a larger value
+      should.equal(n.key, 12); // matches a node with a larger value
       n = t.upperBound(21).node;
-      should.equal(22, n.key); // matches the nearest larger value
+      should.equal(n.key, 22); // matches the nearest larger value
       n = t.upperBound(-1).node; // less than the smallest value
-      should.equal(2, n.key); // matches the first node
+      should.equal(n.key, 2); // matches the first node
       n = t.upperBound(32).node; // the largest value
-      should.equal(t.head, n); // matches the head
+      should.equal(n, t.head); // matches the head
       n = t.upperBound(100).node; // larger than the largest value
-      should.equal(t.head, n); // matches the head
-
-      done();
+      should.equal(n, t.head); // matches the head
     });
 
-    it('upperBound; empty tree', function (done) {
+    it('upperBound; empty tree', function () {
       let t = new Tree();
       let n = t.upperBound(22).node;
-      should.equal(t.head, n); // matches the head
-
-      done();
+      should.equal(n, t.head); // matches the head
     });
 
-    it('find', function (done) {
-      let [
-        t,
-        n2,
-        n4,
-        n6,
-        n8,
-        n10,
-        n12,
-        n14,
-        n16,
-        n18,
-        n20,
-        n22,
-        n24,
-        n26,
-        n28,
-        n30,
-        n32,
-      ] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+    it('find', function () {
+      let [t, ..._ignore] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
       let it = t.find(8); // n8 - root of the tree
-      should.equal(8, it.key); // matches a node with the same value
+      should.equal(it.key, 8); // matches a node with the same value
       it = t.find(22); // n22 - node with no children
-      should.equal(22, it.key); // matches a node with the same value
+      should.equal(it.key, 22); // matches a node with the same value
       it = t.find(12); // n12 - node with children
-      should.equal(12, it.key); // matches a node with the same value
+      should.equal(it.key, 12); // matches a node with the same value
       it = t.find(23);
       should.equal(t.head, it.node); // matches the head
       it = t.find(-1); // less than the smallest value
       should.equal(t.head, it.node); // matches the head
       it = t.find(100); // larger than the largest value
       should.equal(t.head, it.node); // matches the head
-
-      done();
     });
 
-    it('find; empty tree', function (done) {
+    it('find; empty tree', function () {
       let t = new Tree();
       let it = t.find(22);
-      should.equal(t.head, it.node); // matches the head
-
-      done();
+      should.equal(it.node, t.head); // matches the head
     });
 
-    it('next', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('next', function () {
+      let [t, ..._ignore] = buildTree(
         32,
         30,
         28,
@@ -1312,16 +1187,14 @@ if (process.env.DEV_TEST) {
       );
       let n = t.head.leftmost;
       for (let i = 1; i < 17; ++i) {
-        should.equal(2 * i, n.key);
+        should.equal(n.key, 2 * i);
         n = t.next(n);
       }
-      should.equal(t.head, n);
-
-      done();
+      should.equal(n, t.head);
     });
 
-    it('prev', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('prev', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1341,16 +1214,14 @@ if (process.env.DEV_TEST) {
       );
       let n = t.head.rightmost;
       for (let i = 16; i > 0; --i) {
-        should.equal(2 * i, n.key);
+        should.equal(n.key, 2 * i);
         n = t.prev(n);
       }
-      should.equal(t.head, n);
-
-      done();
+      should.equal(n, t.head);
     });
 
-    it('for-of-loop', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('for-of-loop', function () {
+      let [t, ..._ignore] = buildTree(
         32,
         30,
         28,
@@ -1376,53 +1247,29 @@ if (process.env.DEV_TEST) {
         2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('for-of-loop; empty tree', function (done) {
+    it('for-of-loop; empty tree', function () {
       let t = new Tree();
       let actual = [];
       for (let v of t) {
         actual.push(v);
       }
-      let expected = [];
+      let expected: any[] = [];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('spread operator', function (done) {
-      let [
-        t,
-        n2,
-        n4,
-        n6,
-        n8,
-        n10,
-        n12,
-        n14,
-        n16,
-        n18,
-        n20,
-        n22,
-        n24,
-        n26,
-        n28,
-        n30,
-        n32,
-      ] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
+    it('spread operator', function () {
+      let [t, ..._ignore] = buildTree(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32);
       let actual = [...t];
       let expected = [
         2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('backward', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('backward', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1448,11 +1295,9 @@ if (process.env.DEV_TEST) {
         32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('keys', function (done) {
+    it('keys', function () {
       let t = new Tree();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
@@ -1469,11 +1314,9 @@ if (process.env.DEV_TEST) {
       }
       let expected = [2, 4, 6, 8, 10];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('values', function (done) {
+    it('values', function () {
       let t = new Tree();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
@@ -1490,15 +1333,13 @@ if (process.env.DEV_TEST) {
       }
       let expected = ['N1', 'N2', 'N3', 'N4', 'N5'];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('entries', function (done) {
-      let t = new Tree();
-      t.valuePolicy = new KeyValuePolicy();
+    it('entries', function () {
+      let t = new Tree<number, string>();
+      t.valuePolicy = new KeyValuePolicy<number, string>();
       for (let i = 1; i < 6; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = i * 2;
         n.value = `N${i}`;
         t.insertUnique(n);
@@ -1506,6 +1347,7 @@ if (process.env.DEV_TEST) {
 
       let actual = [];
 
+      // @ts-ignore: TS2488
       for (let [k, v] of t.entries()) {
         actual.push([k, v]);
       }
@@ -1517,12 +1359,10 @@ if (process.env.DEV_TEST) {
         [10, 'N5'],
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('forward stl-like iterator', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('forward stl-like iterator', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1548,24 +1388,20 @@ if (process.env.DEV_TEST) {
         2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('forward stl-like iterator; empty tree', function (done) {
-      let t = new Tree();
+    it('forward stl-like iterator; empty tree', function () {
+      let t = new Tree<number, string>();
       let actual = [];
       for (let it = t.begin(); !it.equals(t.end()); it.next()) {
         actual.push(it.node.key);
       }
-      let expected = [];
+      let expected: any[] = [];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('backward stl-like iterator', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('backward stl-like iterator', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1591,33 +1427,30 @@ if (process.env.DEV_TEST) {
         32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('backward stl-like iterator; empty tree', function (done) {
-      let t = new Tree();
+    it('backward stl-like iterator; empty tree', function () {
+      let t = new Tree<number, string>();
       let actual = [];
       for (let it = t.rbegin(); !it.equals(t.rend()); it.next()) {
         actual.push(it.node.key);
       }
-      let expected = [];
+      let expected: any[] = [];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('tree with keys and values', function (done) {
-      let t = new Tree();
+    it('tree with keys and values', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = i * 2;
         n.value = `N${i}`;
         t.insertUnique(n);
       }
 
       let actual = [];
+      // @ts-ignore: TS2488
       for (let [k, v] of t) {
         actual.push([k, v]);
       }
@@ -1629,81 +1462,73 @@ if (process.env.DEV_TEST) {
         [10, 'N5'],
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('insertUnique', function (done) {
-      let t = new Tree();
+    it('insertUnique', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 4; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = 1;
         n.value = `N${i}`;
         let res = t.insertUnique(n);
         if (i === 1) {
           should.ok(res.wasAdded);
           should.ok(!res.wasReplaced);
-          should.strictEqual(1, res.iterator.key);
-          should.strictEqual('N1', res.iterator.value);
+          should.strictEqual(1, res.iterator!.key);
+          should.strictEqual('N1', res.iterator!.value);
         } else {
           should.ok(!res.wasAdded);
           should.ok(!res.wasReplaced);
         }
       }
-      should.equal(1, t.size());
-
-      done();
+      should.equal(t.size(), 1);
     });
 
-    it('insertOrUpdate', function (done) {
-      let t = new Tree();
+    it('insertOrUpdate', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 4; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = 1;
         n.value = `N${i}`;
         let res = t.insertOrReplace(n);
         if (i === 1) {
           should.ok(res.wasAdded);
           should.ok(!res.wasReplaced);
-          should.strictEqual(1, res.iterator.key);
-          should.strictEqual(`N${i}`, res.iterator.value);
+          should.strictEqual(1, res.iterator!.key);
+          should.strictEqual(`N${i}`, res.iterator!.value);
         } else {
           should.ok(!res.wasAdded);
           should.ok(res.wasReplaced);
-          should.strictEqual(1, res.iterator.key);
-          should.strictEqual(`N${i}`, res.iterator.value);
+          should.strictEqual(1, res.iterator!.key);
+          should.strictEqual(`N${i}`, res.iterator!.value);
         }
       }
-      should.equal(1, t.size());
-
-      done();
+      should.equal(t.size(), 1);
     });
 
-    it('insertMulti', function (done) {
-      let t = new Tree();
+    it('insertMulti', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 4; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = 1;
         n.value = `N${i}`;
         let res = t.insertMulti(n);
         should.ok(res.wasAdded);
         should.ok(!res.wasReplaced);
-        should.strictEqual(1, res.iterator.key);
-        should.strictEqual(`N${i}`, res.iterator.value);
+        should.strictEqual(1, res.iterator!.key);
+        should.strictEqual(`N${i}`, res.iterator!.value);
       }
-      should.equal(3, t.size());
-
-      done();
+      should.equal(t.size(), 3);
     });
 
-    it('insertMulti; lowerBound/upperBound range; same values', function (done) {
-      let t = new Tree();
+    it('insertMulti; lowerBound/upperBound range; same values', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = 12;
         n.value = `N${i}`;
         t.insertMulti(n);
@@ -1717,15 +1542,13 @@ if (process.env.DEV_TEST) {
       }
       let expected = ['N1', 'N2', 'N3', 'N4', 'N5'];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('insertMulti; lowerBound/upperBound range; same values', function (done) {
-      let t = new Tree();
+    it('insertMulti; lowerBound/upperBound range; same values', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = 12;
         n.value = `N${i}`;
         t.insertUnique(n);
@@ -1740,16 +1563,14 @@ if (process.env.DEV_TEST) {
       }
       let expected = ['N1'];
       should.deepEqual(expected, actual);
-      should.equal(1, t.size());
-
-      done();
+      should.equal(t.size(), 1);
     });
 
-    it('insertOrReplace; lowerBound/upperBound range; same values', function (done) {
-      let t = new Tree();
+    it('insertOrReplace; lowerBound/upperBound range; same values', function () {
+      let t = new Tree<number, string>();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
-        let n = new TreeNode();
+        let n = new TreeNode<number, string>();
         n.key = 12;
         n.value = `N${i}`;
         t.insertOrReplace(n);
@@ -1764,13 +1585,11 @@ if (process.env.DEV_TEST) {
       }
       let expected = ['N5'];
       should.deepEqual(expected, actual);
-      should.equal(1, t.size());
-
-      done();
+      should.equal(t.size(), 1);
     });
 
-    it('lowerBound/upperBound range; regular iteration with forward iterator', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('lowerBound/upperBound range; regular iteration with forward iterator', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1800,12 +1619,10 @@ if (process.env.DEV_TEST) {
         2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('lowerBound/upperBound range; opposite iteration with forward iterator', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('lowerBound/upperBound range; opposite iteration with forward iterator', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1835,12 +1652,10 @@ if (process.env.DEV_TEST) {
         32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('lowerBound/upperBound range; regular iteration with backward iterator', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('lowerBound/upperBound range; regular iteration with backward iterator', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1870,12 +1685,10 @@ if (process.env.DEV_TEST) {
         32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('lowerBound/upperBound range; opposite iteration with backward iterator', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('lowerBound/upperBound range; opposite iteration with backward iterator', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1905,12 +1718,10 @@ if (process.env.DEV_TEST) {
         2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('first', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('first', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1930,20 +1741,16 @@ if (process.env.DEV_TEST) {
       );
       let actual = t.first();
       should.strictEqual(2, actual);
-
-      done();
     });
 
-    it('first; empty tree', function (done) {
-      let [t, ...ignore] = buildTree();
+    it('first; empty tree', function () {
+      let [t, ..._ignore] = buildTree();
       let actual = t.first();
       should.strictEqual(undefined, actual);
-
-      done();
     });
 
-    it('last', function (done) {
-      let [t, ...ignore] = buildTree(
+    it('last', function () {
+      let [t, ..._ignore] = buildTree(
         2,
         4,
         6,
@@ -1963,29 +1770,27 @@ if (process.env.DEV_TEST) {
       );
       let actual = t.last();
       should.strictEqual(32, actual);
-
-      done();
     });
 
-    it('last; empty tree', function (done) {
-      let [t, ...ignore] = buildTree();
+    it('last; empty tree', function () {
+      let [t, ..._ignore] = buildTree();
       let actual = t.last();
       should.strictEqual(undefined, actual);
-
-      done();
     });
 
-    it('tree with custom comparison function', function (done) {
+    it('tree with custom comparison function', function () {
       /* Test ability to compare alphanumeric structures like ['A',123]
            First string portion is compared. If string portions of two objects are equal then numeric portions are compared */
       class Id {
-        constructor(a, n) {
+        public alpha: string;
+        public num: number;
+        constructor(a: string, n: number) {
           this.alpha = a;
           this.num = n;
         }
       }
 
-      function compareIds(idLhs, idRhs) {
+      function compareIds(idLhs: Id, idRhs: Id) {
         if (idLhs.alpha < idRhs.alpha) {
           return -1;
         } else if (idLhs.alpha > idRhs.alpha) {
@@ -2013,7 +1818,7 @@ if (process.env.DEV_TEST) {
 
       let actual = [];
       for (let k of t) {
-        actual.push([k.alpha, k.num]);
+        actual.push([(k as unknown as Id).alpha, (k as unknown as Id).num]);
       }
       let expected = [
         ['A', 12],
@@ -2022,19 +1827,15 @@ if (process.env.DEV_TEST) {
         ['B', 8],
       ];
       should.deepEqual(expected, actual);
-
-      done();
     });
 
-    it('toStringTag; keys only', function (done) {
+    it('toStringTag; keys only', function () {
       let expected = '[object Tree]';
       let actual = Object.prototype.toString.call(new Tree());
       should.strictEqual(expected, actual);
-
-      done();
     });
 
-    it('toString; keys only', function (done) {
+    it('toString; keys only', function () {
       let t = new Tree();
       t.valuePolicy = new KeyValuePolicy();
       for (let i = 1; i < 6; ++i) {
@@ -2046,34 +1847,26 @@ if (process.env.DEV_TEST) {
       let expected = '{2:N1,4:N2,6:N3,8:N4,10:N5}';
       let actual = t.toString();
       should.strictEqual(expected, actual);
-
-      done();
     });
 
-    it('toString; keys and values', function (done) {
-      let [t, ...ignore] = buildTree(2, 4, 6);
+    it('toString; keys and values', function () {
+      let [t, ..._ignore] = buildTree(2, 4, 6);
       let expected = '{2,4,6}';
       let actual = t.toString();
       should.strictEqual(expected, actual);
-
-      done();
     });
 
-    it('species; on object', function (done) {
+    it('species; on object', function () {
       let t = new Tree();
       let ctr = Object.getPrototypeOf(t).constructor[Symbol.species];
       let actual = new ctr();
       should.ok(actual instanceof Tree);
-
-      done();
     });
 
-    it('species; on class', function (done) {
+    it('species; on class', function () {
       let ctr = Tree[Symbol.species];
       let actual = new ctr();
       should.ok(actual instanceof Tree);
-
-      done();
     });
   });
 }

@@ -30,12 +30,12 @@ for (let browser of BrowserList.allBrowsers) {
       let numPasses = await driver
         .findElement(webdriver.By.css('li.passes em'))
         .getText();
-      should.equal(141, numPasses);
+      should.equal(numPasses, 141);
 
       let numFails = await driver
         .findElement(webdriver.By.css('li.failures em'))
         .getText();
-      should.equal(0, numFails);
+      should.equal(numFails, 0);
     });
   });
 }

@@ -264,8 +264,7 @@ const localTsRules = {
       projectService: {
         allowDefaultProject: ['eslint.config.js', 'vite.config.ts'],
       },
-      //FIXME: VK uncomennt the next line when TS is enabled
-      // tsconfigRootDir: import.meta.dirname,
+      tsconfigRootDir: import.meta.dirname,
     },
   },
   rules: {
@@ -592,8 +591,8 @@ module.exports = tseslint.config(
   // jsImport.flatConfigs.typescript,
   localImportRules,
   localJsRules,
-  // tseslint.configs.recommended,
-  // localTsRules,
+  tseslint.configs.recommended,
+  localTsRules,
   eslintPluginPrettierRecommended,
   localPrettierRules,
   localJsDocRules
