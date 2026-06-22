@@ -1,11 +1,8 @@
-/** An implementation of red-black tree */
-import { Tree } from './tree.js';
-/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */
-import { KeyOnlyPolicy } from './policies.js';
-/** Node for a red-black tree */
-import { TreeNode } from './tree-node.js';
-import { SetIterator } from './iterators.js';
 import { InsertionResult } from './insertion-result.js';
+import { SetIterator } from './iterators.js';
+import { KeyOnlyPolicy } from './policies.js';
+import { TreeNode } from './tree-node.js';
+import { Tree } from './tree.js';
 
 /**
  * TreeSet is a container that stores unique elements following a specific order.
@@ -22,6 +19,7 @@ import { InsertionResult } from './insertion-result.js';
  * All inserted elements are given a position in this order.</li>
  * **Set** - The value of an element is also the key used to identify it.</li>
  * **Unique keys** - No two elements in the container can have equivalent keys.</li>
+ * @template K - key type
  * @example
  * let set = new TreeSet();
  * // add few values
@@ -54,13 +52,12 @@ export class TreeSet<K> {
     this.__t = new Tree<K, K>();
     this.__t.valuePolicy = new KeyOnlyPolicy();
     if (iterable !== undefined && iterable !== null) {
-      if (iterable[Symbol.iterator] !== undefined) {
-        // copy contents
-        for (let k of iterable) {
-          this.add(k);
-        }
-      } else {
+      if (iterable[Symbol.iterator] === undefined) {
         throw new Error('TreeSet constructor accepts only iterable objects');
+      }
+      // copy contents
+      for (const k of iterable) {
+        this.add(k);
       }
     }
   }
@@ -71,6 +68,7 @@ export class TreeSet<K> {
    * @example
    * Object.prototype.toString.call(new TreeSet()); // "[object TreeSet]"
    */
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get [Symbol.toStringTag](): string {
     return 'TreeSet';
   }
@@ -94,7 +92,7 @@ export class TreeSet<K> {
    * set.clear();
    * console.log(set.size); // 0
    */
-  clear() {
+  clear(): void {
     this.__t.clear();
   }
 
@@ -106,8 +104,8 @@ export class TreeSet<K> {
    * set.delete(2);
    * console.log(set.toString()); // {1,3}
    */
-  delete(key: K) {
-    let it = this.__t.find(key);
+  delete(key: K): void {
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       this.__t.erase(it.node);
     }
@@ -137,8 +135,8 @@ export class TreeSet<K> {
    *   console.log(`key: ${key}, value: ${value}`);
    * });
    */
-  forEach(callback: any) {
-    for (let k of this.__t) {
+  forEach(callback: any): void {
+    for (const k of this.__t) {
       callback(k, k, this);
     }
   }
@@ -153,12 +151,11 @@ export class TreeSet<K> {
    * b = set.get(4); // false
    */
   has(key: K): boolean {
-    let it = this.__t.find(key);
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   /**
@@ -187,8 +184,8 @@ export class TreeSet<K> {
    * let set = new TreeSet();
    * set.add(1);
    */
-  add(key: K) {
-    let n = new TreeNode<K, K>();
+  add(key: K): void {
+    const n: TreeNode<K, K> = new TreeNode();
     n.key = key;
     this.__t.insertUnique(n);
   }
@@ -325,7 +322,7 @@ export class TreeSet<K> {
    * }
    */
   insertUnique(key: K): InsertionResult<SetIterator<K>> {
-    let n = new TreeNode<K, K>();
+    const n: TreeNode<K, K> = new TreeNode();
     n.key = key;
     return this.__t.insertUnique(n);
   }
@@ -346,7 +343,7 @@ export class TreeSet<K> {
    * }
    */
   insertOrReplace(key: K): InsertionResult<SetIterator<K>> {
-    let n = new TreeNode<K, K>();
+    const n: TreeNode<K, K> = new TreeNode();
     n.key = key;
     return this.__t.insertOrReplace(n);
   }
@@ -361,7 +358,7 @@ export class TreeSet<K> {
    * set.erase(it); // removes a node with key 1
    * console.log(set.toString()); // {2,3}
    */
-  erase(iterator: SetIterator<K>) {
+  erase(iterator: SetIterator<K>): void {
     this.__t.erase(iterator.node);
   }
 
@@ -474,7 +471,7 @@ export class TreeSet<K> {
    * let last = set.last(); // 3
    */
   last(): K | undefined {
-    return this.__t.last() as K
+    return this.__t.last() as K;
   }
 
   /**

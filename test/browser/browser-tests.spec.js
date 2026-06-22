@@ -1,12 +1,11 @@
-'use strict';
-
-const BrowserList = require('./browser-list');
+const path = require('node:path');
 
 const webdriver = require('selenium-webdriver');
 const should = require('should');
-const path = require('path');
 
-for (let browser of BrowserList.allBrowsers) {
+const BrowserList = require('./browser-list');
+
+for (const browser of BrowserList.allBrowsers) {
   let driver;
 
   describe(`Test in ${browser.name} browser`, function () {
@@ -24,15 +23,15 @@ for (let browser of BrowserList.allBrowsers) {
     it('Validate number of passed and failed tests', async function () {
       this.timeout(5000);
       // Go to URL
-      let htmlPath = path.join(__dirname, 'html', 'index.html');
+      const htmlPath = path.join(__dirname, 'html', 'index.html');
       await driver.get(`file:///${htmlPath}`);
 
-      let numPasses = await driver
+      const numPasses = await driver
         .findElement(webdriver.By.css('li.passes em'))
         .getText();
       should.equal(numPasses, 141);
 
-      let numFails = await driver
+      const numFails = await driver
         .findElement(webdriver.By.css('li.failures em'))
         .getText();
       should.equal(numFails, 0);

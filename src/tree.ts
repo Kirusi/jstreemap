@@ -1,19 +1,12 @@
-'use strict';
-
-/** @ignore */
-import { Head, TreeNode, SomeNode, RED, BLACK } from './tree-node.js';
-/** @ignore */
-//@ts-ignore: TS7016
-import { JsIterator, JsReverseIterator } from './js-iterators.js';
-/** @ignore */
-import { TreeIterator, ReverseIterator, IterableContainer } from './iterators.js';
-/** @ignore */
-import {
-  KeyOnlyPolicy,
-  ValueOnlyPolicy,
-} from './policies.js';
-/** @ignore */
 import { InsertionResult } from './insertion-result.js';
+import {
+  IterableContainer,
+  ReverseIterator,
+  TreeIterator,
+} from './iterators.js';
+import { JsIterator, JsReverseIterator } from './js-iterators.js';
+import { KeyOnlyPolicy, ValueOnlyPolicy } from './policies.js';
+import { BLACK, Head, RED, SomeNode, TreeNode } from './tree-node.js';
 
 /** insertion mode of a multimap, nodes with the same keys can be added */
 const INSERT_MULTI = 1;
@@ -31,21 +24,24 @@ const INSERT_REPLACE = 3;
  *          -1 if the value of rhs is less than lhs
  *           0 if values are the same
  */
-export function compare(lhs: any, rhs: any) {
+export function compare(lhs: any, rhs: any): number {
   if (lhs < rhs) {
     return -1;
   } else if (lhs === rhs) {
     return 0;
-  } else {
-    return 1;
   }
+  return 1;
 }
 
 /**
  * Red-black tree
  * @access private
  */
-export class Tree<K, V, C extends IterableContainer = IterableContainer> implements IterableContainer {
+export class Tree<
+  K,
+  V,
+  C extends IterableContainer = IterableContainer,
+> implements IterableContainer {
   public head: Head<K, V>;
   public compare: any;
   public valuePolicy: any;
@@ -62,7 +58,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
   /**
    * Deletes all nodes in the tree
    */
-  clear() {
+  clear(): void {
     this.head = new Head();
   }
 
@@ -70,7 +66,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * Returns tree size
    * @returns {number} number of nodes in the tree
    */
-  size() {
+  size(): number {
     return this.head.size;
   }
 
@@ -80,7 +76,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} lhs
    * @param {*} rhs
    */
-  compareNodes(lhs: TreeNode<K, V>, rhs: TreeNode<K, V>) {
+  compareNodes(lhs: TreeNode<K, V>, rhs: TreeNode<K, V>): number {
     return this.compare(lhs.key, rhs.key);
   }
 
@@ -90,22 +86,20 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @private
    * used by rotation operations
    */
-  replaceNode(oldNode: TreeNode<K, V>, newNode: TreeNode<K, V> | null) {
+  replaceNode(oldNode: TreeNode<K, V>, newNode: TreeNode<K, V> | null): void {
     if (oldNode === newNode) {
       return;
     }
     if (oldNode.parent === null) {
       this.head.root = newNode;
+    } else if (oldNode === (oldNode.parent as TreeNode<K, V>).left) {
+      (oldNode.parent as TreeNode<K, V>).left = newNode;
     } else {
-      if (oldNode === (oldNode.parent as TreeNode<K, V>).left) {
-        (oldNode.parent as TreeNode<K, V>).left = newNode;
-      } else {
-        (oldNode.parent as TreeNode<K, V>).right = newNode;
-      }
+      (oldNode.parent as TreeNode<K, V>).right = newNode;
     }
 
     if (!this.isLeaf(newNode)) {
-      (newNode as TreeNode<K, V>).parent = oldNode.parent;
+      newNode!.parent = oldNode.parent;
     }
   }
 
@@ -120,8 +114,8 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param node
    * @private
    */
-  rotateLeft(node: TreeNode<K, V>) {
-    let right = node.right as TreeNode<K, V>;
+  rotateLeft(node: TreeNode<K, V>): void {
+    const right = node.right as TreeNode<K, V>;
     if (this.isLeaf(right)) {
       throw new Error("rotateLeft can't be performed. The tree is corrupted");
     }
@@ -140,8 +134,8 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * Rebalances tree as described in rotateLeft
    * @param {*} node - parent node
    */
-  rotateRight(node: TreeNode<K, V>) {
-    let left = node.left as TreeNode<K, V>;
+  rotateRight(node: TreeNode<K, V>): void {
+    const left = node.left as TreeNode<K, V>;
     if (this.isLeaf(left)) {
       throw new Error("rotateRight can't be performed. The tree is corrupted");
     }
@@ -161,7 +155,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} node - node to inspect
    * @returns {boolean} true - for null pointers and head node; false - for all other nodes
    */
-  isLeaf(node: SomeNode<K, V>) {
+  isLeaf(node: SomeNode<K, V>): boolean {
     if (node === null || node === this.head) {
       return true;
     }
@@ -173,12 +167,11 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} node - node to inspect
    * @returns {*} node color
    */
-  fetchColor(node: TreeNode<K, V>) {
+  fetchColor(node: TreeNode<K, V>): number {
     if (this.isLeaf(node)) {
       return BLACK;
-    } else {
-      return node.color;
     }
+    return node.color;
   }
 
   /**
@@ -186,7 +179,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} node - node to inspect
    * @returns {boolean} - true when node color is BLACK
    */
-  isBlack(node: TreeNode<K, V>) {
+  isBlack(node: TreeNode<K, V>): boolean {
     return this.fetchColor(node) === BLACK;
   }
 
@@ -195,7 +188,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} node - node to inspect
    * @returns {boolean} - true when node color is RED
    */
-  isRed(node: TreeNode<K, V>) {
+  isRed(node: TreeNode<K, V>): boolean {
     return this.fetchColor(node) === RED;
   }
 
@@ -236,8 +229,15 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertNode(n: TreeNode<K, V>, mode = INSERT_MULTI): InsertionResult<TreeIterator<K, V>> {
-    let res = this.insertNodeInternal(this.head.root as TreeNode<K, V>, n, mode);
+  insertNode(
+    n: TreeNode<K, V>,
+    mode = INSERT_MULTI
+  ): InsertionResult<TreeIterator<K, V>> {
+    const res = this.insertNodeInternal(
+      this.head.root as TreeNode<K, V>,
+      n,
+      mode
+    );
     if (res.wasAdded) {
       if (this.head.size === 0) {
         this.head.root = n;
@@ -254,7 +254,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
         n.right = this.head;
       }
       this.insertRepairTree(n);
-      this.head.size = this.head.size + 1;
+      this.head.size += 1;
     }
     return res;
   }
@@ -267,7 +267,11 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
-  insertNodeInternal(root: TreeNode<K, V>, n: TreeNode<K, V>, mode: number): InsertionResult<TreeIterator<K, V>> {
+  insertNodeInternal(
+    root: TreeNode<K, V>,
+    n: TreeNode<K, V>,
+    mode: number
+  ): InsertionResult<TreeIterator<K, V>> {
     // recursively descend the tree until a leaf is found
     let x = root;
     let y = null;
@@ -285,7 +289,11 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
         switch (mode) {
           case INSERT_UNIQUE:
             // it's a duplicate
-            return new InsertionResult<TreeIterator<K, V>>(false, false, undefined);
+            return new InsertionResult<TreeIterator<K, V>>(
+              false,
+              false,
+              undefined
+            );
           case INSERT_REPLACE:
             this.valuePolicy.copy(y, n);
             return new InsertionResult(false, true, new TreeIterator(y, this));
@@ -302,9 +310,11 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
     } else {
       n.parent = y;
       if (rc < 0) {
-        (y as TreeNode<K, V>).left = n;
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+        y!.left = n;
       } else {
-        (y as TreeNode<K, V>).right = n;
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+        y!.right = n;
       }
     }
     return new InsertionResult(true, false, new TreeIterator<K, V, C>(n, this));
@@ -315,13 +325,13 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  insertRepairTree(n: TreeNode<K, V>) {
+  insertRepairTree(n: TreeNode<K, V>): void {
     if (n.parent === null) {
       this.repairCase1(n);
     } else if (this.isBlack(n.parent as TreeNode<K, V>)) {
       /* insert_case2(n);
            // do nothing */
-    } else if (this.isRed(n.uncle() as TreeNode<K, V>)) {
+    } else if (this.isRed(n.uncle()!)) {
       this.repairCase3(n);
     } else {
       this.repairCase4(n);
@@ -333,7 +343,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  repairCase1(n: TreeNode<K, V>) {
+  repairCase1(n: TreeNode<K, V>): void {
     n.color = BLACK;
   }
 
@@ -342,11 +352,11 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  repairCase3(n: TreeNode<K, V>) {
+  repairCase3(n: TreeNode<K, V>): void {
     (n.parent as TreeNode<K, V>).color = BLACK;
-    (n.uncle() as TreeNode<K, V>).color = BLACK;
-    (n.grandparent() as TreeNode<K, V>).color = RED;
-    this.insertRepairTree(n.grandparent() as TreeNode<K, V>);
+    n.uncle()!.color = BLACK;
+    n.grandparent()!.color = RED;
+    this.insertRepairTree(n.grandparent()!);
   }
 
   /**
@@ -354,9 +364,10 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {*} n - node
    */
-  repairCase4(n: TreeNode<K, V>) {
+  repairCase4(node: TreeNode<K, V>): void {
+    let n = node;
     let p = n.parent as TreeNode<K, V>;
-    let g = n.grandparent() as TreeNode<K, V>;
+    let g = n.grandparent()!;
 
     if (g.left !== null && n === (g.left as TreeNode<K, V>).right) {
       this.rotateLeft(p);
@@ -367,7 +378,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
     }
 
     p = n.parent as TreeNode<K, V>;
-    g = n.grandparent() as TreeNode<K, V>;
+    g = n.grandparent()!;
     if (n === p.left) {
       this.rotateRight(g);
     } else {
@@ -383,12 +394,13 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} node - root node of the subtree to be evaluated
    * @returns {TreeNode} the node with the highest key for the subtree of the specified root node
    */
-  fetchMaximum(node: TreeNode<K, V>) {
-    while (!this.isLeaf(node.right)) {
-      node = node.right as TreeNode<K, V>;
+  fetchMaximum(node: TreeNode<K, V>): TreeNode<K, V> {
+    let res = node;
+    while (!this.isLeaf(res.right)) {
+      res = res.right as TreeNode<K, V>;
     }
 
-    return node;
+    return res;
   }
 
   /**
@@ -396,12 +408,13 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @param {*} node - root node of the subtree to be evaluated
    * @returns {TreeNode} the node with the lowest key for the subtree of the specified root node
    */
-  fetchMinimum(node: TreeNode<K, V>) {
-    while (!this.isLeaf(node.left)) {
-      node = node.left as TreeNode<K, V>;
+  fetchMinimum(node: TreeNode<K, V>): TreeNode<K, V> {
+    let res = node;
+    while (!this.isLeaf(res.left)) {
+      res = res.left as TreeNode<K, V>;
     }
 
-    return node;
+    return res;
   }
 
   /* ===========================
@@ -411,14 +424,14 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * Removes node from the tree
    * @param {*} node - node to be removed
    */
-  erase(node: TreeNode<K, V>) {
+  erase(node: TreeNode<K, V>): void {
     if (this.isLeaf(node)) {
       return;
     }
 
     this.eraseInternal(node);
-    let h = this.head;
-    h.size = h.size - 1;
+    const h = this.head;
+    h.size -= 1;
   }
 
   /**
@@ -426,15 +439,18 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node - node
    */
-  eraseInternal(node: TreeNode<K, V>) {
+  eraseInternal(nodeParam: TreeNode<K, V>): void {
+    let node = nodeParam;
     if (!this.isLeaf(node.left) && !this.isLeaf(node.right)) {
-      let pred = this.fetchMaximum(node.left as TreeNode<K, V>);
+      const pred = this.fetchMaximum(node.left as TreeNode<K, V>);
 
       this.valuePolicy.copy(node, pred);
       node = pred;
     }
 
-    const child = (this.isLeaf(node.right) ? node.left : node.right) as TreeNode<K, V>;
+    const child = (
+      this.isLeaf(node.right) ? node.left : node.right
+    ) as TreeNode<K, V>;
 
     if (this.isBlack(node)) {
       this.eraseCase1(node);
@@ -453,20 +469,20 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
                the head needs to update leftmost, rightmost pointers */
       if (h.leftmost === node) {
         const p = node.parent as TreeNode<K, V>;
-        if (p !== null) {
+        if (p === null) {
+          h.leftmost = h;
+        } else {
           h.leftmost = p;
           p.left = h;
-        } else {
-          h.leftmost = h;
         }
       }
       if (h.rightmost === node) {
         const p = node.parent as TreeNode<K, V>;
-        if (p !== null) {
+        if (p === null) {
+          h.rightmost = h;
+        } else {
           h.rightmost = p;
           p.right = h;
-        } else {
-          h.rightmost = h;
         }
       }
     } else {
@@ -487,10 +503,8 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase1(node: TreeNode<K, V>) {
-    if (node.parent === null) {
-      return;
-    } else {
+  eraseCase1(node: TreeNode<K, V>): void {
+    if (node.parent !== null) {
       this.eraseCase2(node);
     }
   }
@@ -500,8 +514,8 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase2(node: TreeNode<K, V>) {
-    let s = node.sibling() as TreeNode<K, V>;
+  eraseCase2(node: TreeNode<K, V>): void {
+    const s = node.sibling()!;
 
     if (this.isRed(s)) {
       (node.parent as TreeNode<K, V>).color = RED;
@@ -521,9 +535,9 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase3(node: TreeNode<K, V>) {
-    let s = node.sibling() as TreeNode<K, V>;
-    let p = node.parent as TreeNode<K, V>;
+  eraseCase3(node: TreeNode<K, V>): void {
+    const s = node.sibling()!;
+    const p = node.parent as TreeNode<K, V>;
     if (
       this.isBlack(p) &&
       this.isBlack(s) &&
@@ -542,9 +556,9 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase4(node: TreeNode<K, V>) {
-    let s = node.sibling() as TreeNode<K, V>;
-    let p = node.parent as TreeNode<K, V>;
+  eraseCase4(node: TreeNode<K, V>): void {
+    const s = node.sibling()!;
+    const p = node.parent as TreeNode<K, V>;
     if (
       this.isRed(p) &&
       this.isBlack(s) &&
@@ -563,9 +577,9 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase5(node: TreeNode<K, V>) {
-    let s = node.sibling() as TreeNode<K, V>;
-    let p = node.parent as TreeNode<K, V>;
+  eraseCase5(node: TreeNode<K, V>): void {
+    const s = node.sibling()!;
+    const p = node.parent as TreeNode<K, V>;
     /* The check below is unnecessary
            due to case 2 (even though case 2 changed the sibling to a sibling's child,
            the sibling's child can't be red, since no red parent can have a red child). */
@@ -574,7 +588,11 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
 
     /* the following statements just force the red to be on the left of the left of the parent,
            or right of the right, so case six will rotate correctly. */
-    if (node === p.left && this.isRed(s.left as TreeNode<K, V>) && this.isBlack(s.right as TreeNode<K, V>)) {
+    if (
+      node === p.left &&
+      this.isRed(s.left as TreeNode<K, V>) &&
+      this.isBlack(s.right as TreeNode<K, V>)
+    ) {
       s.color = RED;
       (s.left as TreeNode<K, V>).color = BLACK;
       this.rotateRight(s);
@@ -596,9 +614,9 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
-  eraseCase6(node: TreeNode<K, V>) {
-    let s = node.sibling() as TreeNode<K, V>;
-    let p = node.parent as TreeNode<K, V>;
+  eraseCase6(node: TreeNode<K, V>): void {
+    const s = node.sibling()!;
+    const p = node.parent as TreeNode<K, V>;
     s.color = this.fetchColor(p);
     p.color = BLACK;
 
@@ -620,16 +638,13 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @returns {Iterator} an iterator pointing to a node with matching key value. If node is not found then end() iterator is returned.
    */
   find(k: K): TreeIterator<K, V, C> {
-    let y: any = this.head;
-    let x = y.root;
+    let x = this.head.root as TreeNode<K, V>;
     while (!this.isLeaf(x)) {
-      let rc = this.compare(x.key, k);
+      const rc = this.compare(x.key, k);
       if (rc > 0) {
-        y = x;
-        x = x.left;
+        x = x.left as TreeNode<K, V>;
       } else if (rc < 0) {
-        y = x;
-        x = x.right;
+        x = x.right as TreeNode<K, V>;
       } else {
         return new TreeIterator<K, V, C>(x, this);
       }
@@ -647,7 +662,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
     let y: any = this.head;
     let x = y.root as TreeNode<K, V>;
     while (!this.isLeaf(x)) {
-      let rc = this.compare(x.key, k);
+      const rc = this.compare(x.key, k);
       if (rc >= 0) {
         y = x;
         x = x.left as TreeNode<K, V>;
@@ -668,7 +683,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
     let y: any = this.head;
     let x = y.root;
     while (!this.isLeaf(x)) {
-      let rc = this.compare(x.key, k);
+      const rc = this.compare(x.key, k);
       if (rc > 0) {
         y = x;
         x = x.left;
@@ -719,78 +734,78 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @private
    * provides support for ES6 forward iteration
    */
-  jsBegin() {
-    return this.head.leftmost;
+  jsBegin(): TreeNode<K, V> {
+    return this.head.leftmost as TreeNode<K, V>;
   }
 
   /**
    * @private
    * provides support for ES6 forward iteration
    */
-  jsEnd() {
-    return this.head;
+  jsEnd(): TreeNode<K, V> {
+    return this.head as unknown as TreeNode<K, V>;
   }
 
   /**
    * @private
    * provides support for ES6 reverse iteration
    */
-  jsRbegin() {
-    return this.head.rightmost;
+  jsRbegin(): TreeNode<K, V> {
+    return this.head.rightmost as TreeNode<K, V>;
   }
 
   /**
    * @private
    * provides support for ES6 forward iteration
    */
-  jsRend() {
-    return this.head;
+  jsRend(): TreeNode<K, V> {
+    return this.head as unknown as TreeNode<K, V>;
   }
 
   /**
    * Returns the next node with the larger key value
-   * @param {*} n - node
+   * @param {TreeNode} node - node to iterate from
    * @returns {TreeNode} node following the specified node in ascending order of their keys
    */
-  next(n: TreeNode<K, V>): TreeNode<K, V> {
-    if (n === this.head as unknown as TreeNode<K, V>) {
+  next(node: TreeNode<K, V>): TreeNode<K, V> {
+    let n = node;
+    if (n === (this.head as unknown as TreeNode<K, V>)) {
       return this.head.leftmost as TreeNode<K, V>;
     }
     if (n.right === this.head) {
       return this.head as unknown as TreeNode<K, V>;
     }
     if (n.right !== null) {
-      let res = this.fetchMinimum(n.right as TreeNode<K, V>);
+      const res = this.fetchMinimum(n.right as TreeNode<K, V>);
       return res;
-    } else {
-      while ((n.parent as TreeNode<K, V>).left !== n) {
-        n = n.parent as TreeNode<K, V>;
-      }
-      return n.parent as TreeNode<K, V>;
     }
+    while ((n.parent as TreeNode<K, V>).left !== n) {
+      n = n.parent as TreeNode<K, V>;
+    }
+    return n.parent as TreeNode<K, V>;
   }
 
   /**
    * Returns previous node
-   * @param {*} n - node
+   * @param {TreeNode} node - node to iterate from
    * @returns {TreeNode} node preceding the specified node in ascending order of their keys
    */
-  prev(n: any) {
-    if (n === this.head) {
-      return this.head.rightmost;
+  prev(node: TreeNode<K, V>): TreeNode<K, V> {
+    let n = node;
+    if (n === (this.head as unknown as TreeNode<K, V>)) {
+      return this.head.rightmost as TreeNode<K, V>;
     }
     if (n.left === this.head) {
-      return this.head;
+      return this.head as unknown as TreeNode<K, V>;
     }
     if (n.left !== null) {
-      let res = this.fetchMaximum(n.left);
+      const res = this.fetchMaximum(n.left as TreeNode<K, V>);
       return res;
-    } else {
-      while (n.parent.right !== n) {
-        n = n.parent;
-      }
-      return n.parent;
     }
+    while ((n.parent! as TreeNode<K, V>).right !== n) {
+      n = n.parent as TreeNode<K, V>;
+    }
+    return n.parent as TreeNode<K, V>;
   }
 
   /**
@@ -840,10 +855,9 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
   first(): [K, V] | undefined {
     if (this.size() === 0) {
       return undefined;
-    } else {
-      let it = this.begin();
-      return this.valuePolicy.fetch(it.node);
     }
+    const it = this.begin();
+    return this.valuePolicy.fetch(it.node);
   }
 
   /**
@@ -853,10 +867,9 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
   last(): [K, V] | undefined {
     if (this.size() === 0) {
       return undefined;
-    } else {
-      let it = this.rbegin();
-      return this.valuePolicy.fetch(it.node);
     }
+    const it = this.rbegin();
+    return this.valuePolicy.fetch(it.node);
   }
 
   /**
@@ -864,19 +877,20 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * @returns {string} container's contents converted to text
    */
   toString(): string {
-    let parts = [];
+    const parts = [];
     for (let it = this.begin(); !it.equals(this.end()); it.next()) {
       // convert each key-value pair
       parts.push(this.valuePolicy.toString(it.node));
     }
-    return '{' + parts.join(',') + '}';
+    return `{${parts.join(',')}}`;
   }
 
   /**
    * Tag of object's class
    * @returns {string} String tag of this class
    */
-  get [Symbol.toStringTag]() {
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get [Symbol.toStringTag](): string {
     return 'Tree';
   }
 
@@ -884,7 +898,7 @@ export class Tree<K, V, C extends IterableContainer = IterableContainer> impleme
    * Returns class/constructor to create a new instance
    * @returns {any} constructor object for this class
    */
-  static get [Symbol.species]() {
+  static get [Symbol.species](): any {
     return Tree;
   }
 }

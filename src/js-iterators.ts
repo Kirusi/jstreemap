@@ -1,4 +1,4 @@
-import { TreeNode } from './tree-node.js'
+import { TreeNode } from './tree-node.js';
 
 /* Containers are expected to support the following methods:
    jsBegin() - returns the very first node
@@ -8,6 +8,7 @@ import { TreeNode } from './tree-node.js'
    valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */
 /**
  * ES6-style forward iterator.
+ * @template T - iterator's value type
  * @example
  * let m = new TreeMap();
  * ...
@@ -47,25 +48,25 @@ export class JsIterator<T> implements IterableIterator<T> {
     this.node = container.jsBegin();
   }
   /**
-  * As documented in ES6 iteration protocol. It can be used for manual iteration.
-  * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
-  * @returns {any} returns object that specifies an indicator whether the node was fetched and node itself
-  * @example
-  * let m = new TreeMap();
-  * ...
-  * let jsIt = m.entries();
-  * while (true) {
-  *   let res = it.next();
-  *   if (res.done) {
-  *     break;
-  *   }
-  *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
-  * }
-  */
+   * As documented in ES6 iteration protocol. It can be used for manual iteration.
+   * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+   * @returns {any} returns object that specifies an indicator whether the node was fetched and node itself
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * let jsIt = m.entries();
+   * while (true) {
+   *   let res = it.next();
+   *   if (res.done) {
+   *     break;
+   *   }
+   *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
+   * }
+   */
   next(): IteratorResult<T> {
     const res = {
       done: true,
-      value: undefined as T
+      value: undefined as T,
     };
     res.done = this.node === this.container.jsEnd();
     if (!res.done) {
@@ -95,6 +96,7 @@ export class JsIterator<T> implements IterableIterator<T> {
    * }
    */
   backwards(): JsReverseIterator<T> {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     return new JsReverseIterator(this.container, this.valuePolicy);
   }
 }
@@ -107,6 +109,7 @@ export class JsIterator<T> implements IterableIterator<T> {
    valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */
 /**
  * ES6-style backward iterator
+ * @template T - iterator's value type
  * @example
  * let m = new TreeMap();
  * ...
@@ -176,7 +179,7 @@ export class JsReverseIterator<T> {
    * Support for ES6 for-of loops.
    * @returns {JsReverseIterator} iterator to traverse all elements in reverse order
    */
-  [Symbol.iterator](): JsReverseIterator<T> {
+  [Symbol.iterator](): this {
     return this;
   }
 

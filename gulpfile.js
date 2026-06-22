@@ -1,9 +1,9 @@
 // grab our gulp packages
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
 
-const del = require('del');
-const gulp = require('gulp');
-const PluginError = require('plugin-error');
+import { deleteSync } from 'del';
+import gulp from 'gulp';
+import PluginError from 'plugin-error';
 
 function runCmd(taskName, cmd) {
   try {
@@ -17,7 +17,7 @@ function runCmd(taskName, cmd) {
 }
 
 gulp.task('clean', function cleanTask(done) {
-  del.sync(['./build', './docs']);
+  deleteSync(['./build', './docs']);
   done();
 });
 

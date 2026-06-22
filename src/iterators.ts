@@ -5,7 +5,10 @@ export interface IterableContainer {
   prev(node: any): TreeNode<unknown, unknown>;
 }
 
-export interface SetIterator<K, C extends IterableContainer = IterableContainer> {
+export interface SetIterator<
+  K,
+  C extends IterableContainer = IterableContainer,
+> {
   equals(rhs: any): boolean;
   get node(): TreeNode<K, any>;
   get key(): K;
@@ -14,7 +17,11 @@ export interface SetIterator<K, C extends IterableContainer = IterableContainer>
   prev(): void;
 }
 
-export interface MapIterator<K, V, C extends IterableContainer = IterableContainer> {
+export interface MapIterator<
+  K,
+  V,
+  C extends IterableContainer = IterableContainer,
+> {
   equals(rhs: any): boolean;
   get node(): TreeNode<K, V>;
   get key(): K;
@@ -27,8 +34,13 @@ export interface MapIterator<K, V, C extends IterableContainer = IterableContain
 /**
  * Base class for STL-like iterators. It references a node (or index) and a container.
  * Navigation is achieved by calling container's prev() and next() methods.
+ * @template K - key type
+ * @template V - value type
+ * @template C - container type
  */
-abstract class BaseIterator<K, V, C extends IterableContainer> implements SetIterator<K, C>, MapIterator<K, V, C> {
+abstract class BaseIterator<K, V, C extends IterableContainer>
+  implements SetIterator<K, C>, MapIterator<K, V, C>
+{
   public __n: TreeNode<K, V>;
   public __c: C;
   /**
@@ -56,9 +68,9 @@ abstract class BaseIterator<K, V, C extends IterableContainer> implements SetIte
    * @param {BaseIterator} rhs - object on the 'right-hand side' of .eq. operator
    * @returns {boolean} `true` when both iterators point to the same node of the same container
    */
-  equals(rhs: SetIterator<K, C> | MapIterator<K, V, C>): boolean {
-    let lhsClass = this.constructor.name;
-    let rhsClass = rhs.constructor.name;
+  equals(rhs: MapIterator<K, V, C> | SetIterator<K, C>): boolean {
+    const lhsClass = this.constructor.name;
+    const rhsClass = rhs.constructor.name;
     if (lhsClass !== rhsClass) {
       throw new Error(
         `Can't compare an instance of ${lhsClass} with an instance of ${rhsClass}`
@@ -105,6 +117,9 @@ abstract class BaseIterator<K, V, C extends IterableContainer> implements SetIte
 
 /**
  * STL-like forward iterator. It's more verbose than ES6 iterators, but allows iteration over any part of the container
+ * @template K - key type
+ * @template V - value type
+ * @template C - container type
  * @example
  * let m = new TreeMap();
  * ...
@@ -112,7 +127,11 @@ abstract class BaseIterator<K, V, C extends IterableContainer> implements SetIte
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
-export class TreeIterator<K, V, C extends IterableContainer = IterableContainer> extends BaseIterator<K, V, C> {
+export class TreeIterator<
+  K,
+  V,
+  C extends IterableContainer = IterableContainer,
+> extends BaseIterator<K, V, C> {
   /**
    * There are 3 ways to construct an iterator:
    *
@@ -134,15 +153,16 @@ export class TreeIterator<K, V, C extends IterableContainer = IterableContainer>
    */
   constructor(...args: any[]) {
     if (args.length === 2) {
-      let [node, container] = args;
+      const [node, container] = args;
       super(node, container);
     } else if (args.length === 1) {
-      let [obj] = args;
-      let className = obj.constructor.name;
+      const [obj] = args;
+      const className = obj.constructor.name;
       if (className === TreeIterator.name) {
         super(obj.__n, obj.__c);
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
       } else if (className === ReverseIterator.name) {
-        let c = obj.__c;
+        const c = obj.__c;
         super(c.next(obj.__n), c);
       } else {
         throw new Error(`Can't create an Iterator from ${className}`);
@@ -166,7 +186,7 @@ export class TreeIterator<K, V, C extends IterableContainer = IterableContainer>
    *   it.next();
    * }
    */
-  next() {
+  next(): void {
     /**
      * __n and __c are defined in the base class
      */
@@ -187,7 +207,7 @@ export class TreeIterator<K, V, C extends IterableContainer = IterableContainer>
    *   console.log(it.key);
    * }
    */
-  prev() {
+  prev(): void {
     this.__n = this.__c.prev(this.__n) as TreeNode<K, V>;
   }
 }
@@ -195,6 +215,9 @@ export class TreeIterator<K, V, C extends IterableContainer = IterableContainer>
 /**
  * STL-like backward iterator. Can be used to traverse container or a range in the reverse order.
  * It's more verbose than ES6 iterators, but allows iteration over any part of the container
+ * @template K - key type
+ * @template V - value type
+ * @template C - container type
  * @example
  * let m = new TreeMap();
  * ...
@@ -202,7 +225,11 @@ export class TreeIterator<K, V, C extends IterableContainer = IterableContainer>
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
-export class ReverseIterator<K, V, C extends IterableContainer> extends BaseIterator<K, V, C> {
+export class ReverseIterator<
+  K,
+  V,
+  C extends IterableContainer,
+> extends BaseIterator<K, V, C> {
   /**
    * There are 3 ways to construct a reverse iterator:
    *
@@ -224,15 +251,15 @@ export class ReverseIterator<K, V, C extends IterableContainer> extends BaseIter
    */
   constructor(...args: any[]) {
     if (args.length === 2) {
-      let [node, container] = args;
+      const [node, container] = args;
       super(node, container);
     } else if (args.length === 1) {
-      let [obj] = args;
-      let className = obj.constructor.name;
+      const [obj] = args;
+      const className = obj.constructor.name;
       if (className === ReverseIterator.name) {
         super(obj.__n, obj.__c);
       } else if (className === TreeIterator.name) {
-        let c = obj.__c;
+        const c = obj.__c;
         super(c.prev(obj.__n), c);
       } else {
         throw new Error(`Can't create an ReverseIterator from ${className}`);
@@ -258,7 +285,7 @@ export class ReverseIterator<K, V, C extends IterableContainer> extends BaseIter
    *   it.next();
    * }
    */
-  next() {
+  next(): void {
     /**
      * __n and __c are defined in the base class
      */
@@ -279,7 +306,7 @@ export class ReverseIterator<K, V, C extends IterableContainer> extends BaseIter
    *   console.log(it.key);
    * }
    */
-  prev() {
+  prev(): void {
     this.__n = this.__c.next(this.__n) as TreeNode<K, V>;
   }
 }

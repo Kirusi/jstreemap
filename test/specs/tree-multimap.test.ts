@@ -1,6 +1,8 @@
-import { describe, it } from 'vitest'
-import should from 'should';
 import assert from 'node:assert/strict';
+
+import should from 'should';
+import { describe, it } from 'vitest';
+
 import { TreeMultiMap } from '../../src/tree-multimap.js';
 
 // When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
@@ -23,24 +25,24 @@ if (process) {
 
 describe('TreeMultiMap tests', function () {
   it('constructor;', function () {
-    let m = new TreeMultiMap();
+    const m = new TreeMultiMap();
     should.equal(m.size, 0);
   });
 
   it('constructor; array literal', function () {
-    let m = new TreeMultiMap([
+    const m = new TreeMultiMap([
       [2, 'B'],
       [2, 'A'],
       [3, 'C'],
     ]);
     should.equal(m.size, 3);
 
-    let actual = [];
-    for (let [k, v] of m) {
+    const actual = [];
+    for (const [k, v] of m) {
       actual.push([k, v]);
     }
 
-    let expected = [
+    const expected = [
       [2, 'B'],
       [2, 'A'],
       [3, 'C'],
@@ -49,20 +51,20 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('constructor; ES6 map', function () {
-    let jsMap = new Map([
+    const jsMap = new Map([
       [2, 'B'],
       [1, 'A'],
       [3, 'C'],
     ]);
-    let m = new TreeMultiMap(jsMap);
+    const m = new TreeMultiMap(jsMap);
     should.equal(m.size, 3);
 
-    let actual = [];
-    for (let [k, v] of m) {
+    const actual = [];
+    for (const [k, v] of m) {
       actual.push([k, v]);
     }
 
-    let expected = [
+    const expected = [
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -75,16 +77,16 @@ describe('TreeMultiMap tests', function () {
       for (let i = 1; i < 4; ++i) {
         yield [i, `N${i * 2}`];
       }
-    };
-    let m = new TreeMultiMap(gen());
+    }
+    const m = new TreeMultiMap(gen());
     should.equal(m.size, 3);
 
-    let actual = [];
-    for (let [k, v] of m) {
+    const actual = [];
+    for (const [k, v] of m) {
       actual.push([k, v]);
     }
 
-    let expected = [
+    const expected = [
       [1, 'N2'],
       [2, 'N4'],
       [3, 'N6'],
@@ -105,7 +107,7 @@ describe('TreeMultiMap tests', function () {
       }
     }
 
-    function compareIds(idLhs: Id, idRhs: Id) {
+    function compareIds(idLhs: Id, idRhs: Id): number {
       if (idLhs.alpha < idRhs.alpha) {
         return -1;
       } else if (idLhs.alpha > idRhs.alpha) {
@@ -121,7 +123,7 @@ describe('TreeMultiMap tests', function () {
       }
     }
 
-    let m = new TreeMultiMap<Id, string>();
+    const m: TreeMultiMap<Id, string> = new TreeMultiMap();
     m.compareFunc = compareIds;
     m.set(new Id('B', 8), 'Book with id B8');
     m.set(new Id('A', 340), 'Book with id A340');
@@ -129,11 +131,11 @@ describe('TreeMultiMap tests', function () {
     m.set(new Id('A', 12), 'Another book with id A12');
     m.set({ alpha: 'AA', num: 147 }, 'Book with id AA147'); // create an ad-hoc object
 
-    let actual: [string, number, string][] = [];
-    for (let [k, v] of m) {
+    const actual: [string, number, string][] = [];
+    for (const [k, v] of m) {
       actual.push([k.alpha, k.num, v]);
     }
-    let expected = [
+    const expected = [
       ['A', 12, 'Book with id A12'],
       ['A', 12, 'Another book with id A12'],
       ['A', 340, 'Book with id A340'],
@@ -154,36 +156,36 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('constructor; null', function () {
-    let m = new TreeMultiMap(null as unknown as Iterable<[number, string]>);
+    const m = new TreeMultiMap(null as unknown as Iterable<[number, string]>);
     should.equal(m.size, 0);
   });
 
   it('constructor; null', function () {
-    let m = new TreeMultiMap(undefined);
+    const m = new TreeMultiMap(undefined);
     should.equal(m.size, 0);
   });
 
   it('toStringTag', function () {
-    let expected = '[object TreeMultiMap]';
-    let actual = Object.prototype.toString.call(new TreeMultiMap());
+    const expected = '[object TreeMultiMap]';
+    const actual = Object.prototype.toString.call(new TreeMultiMap());
     should.strictEqual(expected, actual);
   });
 
   it('species; on object', function () {
-    let map = new TreeMultiMap();
-    let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
-    let map2 = new constrFunc();
+    const map = new TreeMultiMap();
+    const constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
+    const map2 = new constrFunc();
     should.ok(map2 instanceof TreeMultiMap);
   });
 
   it('species; on class', function () {
-    let ctr = TreeMultiMap[Symbol.species];
-    let actual = new ctr();
+    const ctr = TreeMultiMap[Symbol.species];
+    const actual = new ctr();
     should.ok(actual instanceof TreeMultiMap);
   });
 
   it('clear', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -193,7 +195,7 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('delete', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [2, 'C'],
@@ -210,16 +212,16 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('entries', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual = [];
-    for (let [key, value] of map.entries()) {
+    const actual = [];
+    for (const [key, value] of map.entries()) {
       actual.push([key, value]);
     }
-    let expected = [
+    const expected = [
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -228,16 +230,16 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('forEach', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual: [number, string][] = [];
+    const actual: [number, string][] = [];
     map.forEach(function (value: string, key: number, _container: any) {
       actual.push([key, value]);
     });
-    let expected = [
+    const expected = [
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -246,7 +248,7 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('get', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -256,7 +258,7 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('has', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -266,44 +268,44 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('keys', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual = [];
-    for (let key of map.keys()) {
+    const actual = [];
+    for (const key of map.keys()) {
       actual.push(key);
     }
-    let expected = [1, 2, 3];
+    const expected = [1, 2, 3];
     should.deepEqual(expected, actual);
   });
 
   it('values', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual = [];
-    for (let value of map.values()) {
+    const actual = [];
+    for (const value of map.values()) {
       actual.push(value);
     }
-    let expected = ['A', 'B', 'C'];
+    const expected = ['A', 'B', 'C'];
     should.deepEqual(expected, actual);
   });
 
   it('backward', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual = [];
-    for (let [key, value] of map.backward()) {
+    const actual = [];
+    for (const [key, value] of map.backward()) {
       actual.push([key, value]);
     }
-    let expected = [
+    const expected = [
       [3, 'C'],
       [2, 'B'],
       [1, 'A'],
@@ -312,16 +314,16 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('begin/end', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual = [];
-    for (let it = map.begin(); !it.equals(map.end()); it.next()) {
-      actual.push([it.key, it.value]);
+    const actual = [];
+    for (let iter = map.begin(); !iter.equals(map.end()); iter.next()) {
+      actual.push([iter.key, iter.value]);
     }
-    let expected = [
+    const expected = [
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
@@ -330,16 +332,16 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('rbegin/rend', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let actual = [];
-    for (let it = map.rbegin(); !it.equals(map.rend()); it.next()) {
-      actual.push([it.key, it.value]);
+    const actual = [];
+    for (let iter = map.rbegin(); !iter.equals(map.rend()); iter.next()) {
+      actual.push([iter.key, iter.value]);
     }
-    let expected = [
+    const expected = [
       [3, 'C'],
       [2, 'B'],
       [1, 'A'],
@@ -348,40 +350,42 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('find', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let it = map.find(2);
-    should.equal(it.key, 2);
-    should.equal(it.value, 'B');
+    let iter = map.find(2);
+    should.equal(iter.key, 2);
+    should.equal(iter.value, 'B');
 
-    it = map.find(4);
-    should.ok(it.equals(map.end()));
+    iter = map.find(4);
+    should.ok(iter.equals(map.end()));
   });
 
   it('lowerBound / upperBound', function () {
-    let map = new TreeMultiMap();
+    const map = new TreeMultiMap();
     for (let i = 1; i <= 16; ++i) {
       map.set(i * 2, `N${i}`);
     }
-    let actual = [];
-    let from = map.lowerBound(0);
-    let to = map.upperBound(50);
-    let it = to;
-    while (!it.equals(from)) {
-      it.prev();
-      actual.push(it.key);
+    const actual = [];
+    const from = map.lowerBound(0);
+    const to = map.upperBound(50);
+    const iter = to;
+    while (!iter.equals(from)) {
+      iter.prev();
+      actual.push(iter.key);
     }
-    let expected = [32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2];
+    const expected = [
+      32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2,
+    ];
     should.deepEqual(expected, actual);
   });
 
   it('insertUnique', function () {
-    let m = new TreeMultiMap();
+    const m = new TreeMultiMap();
     for (let i = 1; i < 4; ++i) {
-      let res = m.insertUnique(1, `N${i}`);
+      const res = m.insertUnique(1, `N${i}`);
       if (i === 1) {
         should.ok(res.wasAdded);
         should.ok(!res.wasReplaced);
@@ -396,9 +400,9 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('insertOrUpdate', function () {
-    let m = new TreeMultiMap();
+    const m = new TreeMultiMap();
     for (let i = 1; i < 4; ++i) {
-      let res = m.insertOrReplace(1, `N${i}`);
+      const res = m.insertOrReplace(1, `N${i}`);
       if (i === 1) {
         should.ok(res.wasAdded);
         should.ok(!res.wasReplaced);
@@ -415,9 +419,9 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('insertMulti', function () {
-    let m = new TreeMultiMap();
+    const m = new TreeMultiMap();
     for (let i = 1; i < 4; ++i) {
-      let res = m.insertMulti(1, `N${i}`);
+      const res = m.insertMulti(1, `N${i}`);
       should.ok(res.wasAdded);
       should.ok(!res.wasReplaced);
       should.strictEqual(1, res.iterator!.key);
@@ -427,22 +431,22 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('erase', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [2, 'B'],
       [3, 'C'],
     ]);
-    let it = map.find(2);
-    it.prev();
-    map.erase(it);
-    let expected = '{2:B,3:C}';
+    const iter = map.find(2);
+    iter.prev();
+    map.erase(iter);
+    const expected = '{2:B,3:C}';
     should.equal(map.toString(), expected);
     map.delete(4);
     should.equal(map.toString(), expected);
   });
 
   it('first / last', function () {
-    let map = new TreeMultiMap([
+    const map = new TreeMultiMap([
       [1, 'A'],
       [1, 'B'],
       [1, 'C'],
@@ -452,7 +456,7 @@ describe('TreeMultiMap tests', function () {
   });
 
   it('first / last; empty map', function () {
-    let map = new TreeMultiMap([]);
+    const map = new TreeMultiMap([]);
     should.strictEqual(undefined, map.first());
     should.strictEqual(undefined, map.last());
   });

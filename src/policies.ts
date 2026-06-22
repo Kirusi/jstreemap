@@ -9,8 +9,8 @@ export class KeyOnlyPolicy<K, V> {
    * @param {TreeNode} n - Node to inspect
    * @returns {any} node's key
    */
-  fetch(n: TreeNode<K, V>) {
-    return n.key;
+  fetch(n: TreeNode<K, V>): K {
+    return n.key as K;
   }
 
   /**
@@ -18,7 +18,7 @@ export class KeyOnlyPolicy<K, V> {
    * @param {TreeNode} dst - Destination node
    * @param {TreeNode} src - Source node
    */
-  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>) {
+  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>): void {
     dst.key = src.key;
   }
 
@@ -27,7 +27,7 @@ export class KeyOnlyPolicy<K, V> {
    * @param {TreeNode} node - Node to serialize
    * @returns {string} string representation of the key
    */
-  toString(node: TreeNode<K, V>) {
+  toString(node: TreeNode<K, V>): string {
     return String(node.key);
   }
 }
@@ -51,7 +51,7 @@ export class KeyValuePolicy<K, V> {
    * @param {TreeNode} dst - Destination node
    * @param {TreeNode} src - Source node
    */
-  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>) {
+  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>): void {
     dst.key = src.key;
     dst.value = src.value;
   }
@@ -61,8 +61,9 @@ export class KeyValuePolicy<K, V> {
    * @param {TreeNode} node - Node to serialize
    * @returns {string} string representation of key-value pair
    */
-  toString(node: TreeNode<K, V>) {
-    return String(node.key) + ':' + String(node.value);
+  toString(node: TreeNode<K, V>): string {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    return `${node.key}:${node.value}`;
   }
 }
 
@@ -76,8 +77,8 @@ export class ValueOnlyPolicy<K, V> {
    * @param {any} n - Node to inspect
    * @returns {any} node value
    */
-  fetch(n: TreeNode<K, V>) {
-    return n.value;
+  fetch(n: TreeNode<K, V>): V {
+    return n.value as V;
   }
 
   /**
@@ -85,7 +86,7 @@ export class ValueOnlyPolicy<K, V> {
    * @param {TreeNode} dst - Destination node
    * @param {TreeNode} src - Source node
    */
-  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>) {
+  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>): void {
     dst.value = src.value;
   }
 
@@ -94,7 +95,7 @@ export class ValueOnlyPolicy<K, V> {
    * @param {TreeNode} node - Node to serialize
    * @returns {string} string representation of node's value
    */
-  toString(node: TreeNode<K, V>) {
+  toString(node: TreeNode<K, V>): string {
     return String(node.value);
   }
 }

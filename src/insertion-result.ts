@@ -1,6 +1,7 @@
 /**
  * An instance of this class reports whether insert operation was successful.
  * if a node was added, or an existing one replaced then an iterator is provided. Otherwise the value of iterator is undefined
+ * @template I - iterator type
  */
 export class InsertionResult<I> {
   public wasAdded: boolean;

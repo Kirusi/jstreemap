@@ -1,5 +1,6 @@
-import { describe, it } from 'vitest'
 import should from 'should';
+import { describe, it } from 'vitest';
+
 import { JsIterator, JsReverseIterator } from '../../src/js-iterators.js';
 import { TreeNode } from '../../src/tree-node.js';
 
@@ -24,7 +25,7 @@ if (process) {
 */
 
 class NodeIsValuePolicy<K, V> {
-  fetch(n: TreeNode<K, V>) {
+  fetch(n: TreeNode<K, V>): TreeNode<K, V> {
     return n;
   }
 }
@@ -36,82 +37,82 @@ class ContainerStubJsIterTest {
     this.valuePolicy = new NodeIsValuePolicy();
   }
 
-  prev(n: any) {
+  prev(n: any): any {
     return n - 1;
   }
 
-  next(n: any) {
+  next(n: any): any {
     return n + 1;
   }
 
   // Allowed range is 0..4
-  jsBegin() {
+  jsBegin(): number {
     return 0;
   }
 
-  jsEnd() {
+  jsEnd(): number {
     return 5; // one more than the last allowed value
   }
 
-  jsRbegin() {
+  jsRbegin(): number {
     return 4;
   }
 
-  jsRend() {
+  jsRend(): number {
     return -1; // one less than the first allowed value
   }
 }
 
 describe('JsIterator tests', function () {
   it('forward iteration', function () {
-    let c = new ContainerStubJsIterTest();
-    let it = new JsIterator(c);
-    let actual = [];
+    const c = new ContainerStubJsIterTest();
+    const iter = new JsIterator(c);
+    const actual = [];
     while (true) {
-      let res = it.next();
+      const res = iter.next();
       if (res.done) {
         break;
       }
       actual.push(res.value);
     }
-    let expected = [0, 1, 2, 3, 4];
+    const expected = [0, 1, 2, 3, 4];
     should.deepEqual(expected, actual);
   });
 
   it('backward iteration', function () {
-    let c = new ContainerStubJsIterTest();
-    let it = new JsReverseIterator(c);
-    let actual = [];
+    const c = new ContainerStubJsIterTest();
+    const iter = new JsReverseIterator(c);
+    const actual = [];
     while (true) {
-      let res = it.next();
+      const res = iter.next();
       if (res.done) {
         break;
       }
       actual.push(res.value);
     }
-    let expected = [4, 3, 2, 1, 0];
+    const expected = [4, 3, 2, 1, 0];
     should.deepEqual(expected, actual);
   });
 
   it('backward iteration using forward iterator', function () {
-    let c = new ContainerStubJsIterTest();
-    let it = new JsIterator(c);
-    let actual = [];
-    for (let v of it.backwards()) {
+    const c = new ContainerStubJsIterTest();
+    const iter = new JsIterator(c);
+    const actual = [];
+    for (const v of iter.backwards()) {
       actual.push(v);
     }
-    let expected = [4, 3, 2, 1, 0];
+    const expected = [4, 3, 2, 1, 0];
     should.deepEqual(expected, actual);
   });
 
   it('forward iteration using backward iterator', function () {
-    let c = new ContainerStubJsIterTest();
-    let it = new JsReverseIterator(c);
-    let actual = [];
-    for (let v of it.backwards()) {
+    const c = new ContainerStubJsIterTest();
+    const iter = new JsReverseIterator(c);
+    const actual = [];
+    for (const v of iter.backwards()) {
       actual.push(v);
     }
-    let expected = [0, 1, 2, 3, 4];
+    const expected = [0, 1, 2, 3, 4];
     should.deepEqual(expected, actual);
   });
 });

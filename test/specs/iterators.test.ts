@@ -1,14 +1,12 @@
-import { describe, it } from 'vitest'
 import should from 'should';
+import { describe, it } from 'vitest';
+
 import { TreeIterator, ReverseIterator } from '../../src/iterators.js';
 
-/*global should Iterator ReverseIterator*/
-// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
-// @ts-ignore: TS2591
+/*
 if (process) {
   // Running inside NodeJS
-  // let lib;
-  /*
+  let lib;
   if (process.env.DEV_TEST) {
     // Use source code
     lib = require('../../src/public/iterators');
@@ -19,42 +17,42 @@ if (process) {
 
   Iterator = lib.Iterator;
   ReverseIterator = lib.ReverseIterator;
-  */
 }
+*/
 
 // Nodes are replaced with integers
 class ContainerStubIterTest {
-  prev(n: any) {
+  prev(n: any): any {
     return n - 1;
   }
 
-  next(n: any) {
+  next(n: any): any {
     return n + 1;
   }
 }
 
 describe('Iterator tests', function () {
   it('constructor; node and container', function () {
-    let c = new ContainerStubIterTest();
-    let it = new TreeIterator(5, c);
-    should.strictEqual(5, it.node);
-    should.strictEqual(c, it.container);
+    const c = new ContainerStubIterTest();
+    const iter = new TreeIterator(5, c);
+    should.strictEqual(5, iter.node);
+    should.strictEqual(c, iter.container);
   });
 
   it('constructor; copy of an Iterator', function () {
-    let c = new ContainerStubIterTest();
-    let it = new TreeIterator(5, c);
-    let it1 = new TreeIterator(it);
-    should.strictEqual(5, it1.node);
-    should.strictEqual(c, it1.container);
+    const c = new ContainerStubIterTest();
+    const iter = new TreeIterator(5, c);
+    const iter1 = new TreeIterator(iter);
+    should.strictEqual(5, iter1.node);
+    should.strictEqual(c, iter1.container);
   });
 
   it('constructor; copy of a ReverseIterator', function () {
-    let c = new ContainerStubIterTest();
-    let it = new ReverseIterator(5, c);
-    let it1 = new TreeIterator(it);
-    should.strictEqual(6, it1.node);
-    should.strictEqual(c, it1.container);
+    const c = new ContainerStubIterTest();
+    const iter = new ReverseIterator(5, c);
+    const iter1 = new TreeIterator(iter);
+    should.strictEqual(6, iter1.node);
+    should.strictEqual(c, iter1.container);
   });
 
   it('constructor; too many paramaters', function () {
@@ -81,44 +79,44 @@ describe('Iterator tests', function () {
   });
 
   it('next', function () {
-    let c = new ContainerStubIterTest();
-    let it = new TreeIterator(5, c);
-    it.next();
-    should.strictEqual(6, it.node);
-    should.strictEqual(c, it.container);
+    const c = new ContainerStubIterTest();
+    const iter = new TreeIterator(5, c);
+    iter.next();
+    should.strictEqual(6, iter.node);
+    should.strictEqual(c, iter.container);
   });
 
   it('prev', function () {
-    let c = new ContainerStubIterTest();
-    let it = new TreeIterator(5, c);
-    it.prev();
-    should.strictEqual(4, it.node);
-    should.strictEqual(c, it.container);
+    const c = new ContainerStubIterTest();
+    const iter = new TreeIterator(5, c);
+    iter.prev();
+    should.strictEqual(4, iter.node);
+    should.strictEqual(c, iter.container);
   });
 });
 
 describe('ReverseIterator tests', function () {
   it('constructor; node and container', function () {
-    let c = new ContainerStubIterTest();
-    let it = new ReverseIterator(5, c);
-    should.strictEqual(5, it.node);
-    should.strictEqual(c, it.container);
+    const c = new ContainerStubIterTest();
+    const iter = new ReverseIterator(5, c);
+    should.strictEqual(5, iter.node);
+    should.strictEqual(c, iter.container);
   });
 
   it('constructor; copy of an ReverseIterator', function () {
-    let c = new ContainerStubIterTest();
-    let it = new ReverseIterator(5, c);
-    let it1 = new ReverseIterator(it);
-    should.strictEqual(5, it1.node);
-    should.strictEqual(c, it1.container);
+    const c = new ContainerStubIterTest();
+    const iter = new ReverseIterator(5, c);
+    const iter1 = new ReverseIterator(iter);
+    should.strictEqual(5, iter1.node);
+    should.strictEqual(c, iter1.container);
   });
 
   it('constructor; copy of a Iterator', function () {
-    let c = new ContainerStubIterTest();
-    let it = new TreeIterator(5, c);
-    let it1 = new ReverseIterator(it);
-    should.strictEqual(4, it1.node);
-    should.strictEqual(c, it1.container);
+    const c = new ContainerStubIterTest();
+    const iter = new TreeIterator(5, c);
+    const iter1 = new ReverseIterator(iter);
+    should.strictEqual(4, iter1.node);
+    should.strictEqual(c, iter1.container);
   });
 
   it('constructor; too many paramaters', function () {
@@ -145,44 +143,44 @@ describe('ReverseIterator tests', function () {
   });
 
   it('next', function () {
-    let c = new ContainerStubIterTest();
-    let it = new ReverseIterator(5, c);
-    it.next();
-    should.strictEqual(4, it.node);
-    should.strictEqual(c, it.container);
+    const c = new ContainerStubIterTest();
+    const iter = new ReverseIterator(5, c);
+    iter.next();
+    should.strictEqual(4, iter.node);
+    should.strictEqual(c, iter.container);
   });
 
   it('prev', function () {
-    let c = new ContainerStubIterTest();
-    let it = new ReverseIterator(5, c);
-    it.prev();
-    should.strictEqual(6, it.node);
-    should.strictEqual(c, it.container);
+    const c = new ContainerStubIterTest();
+    const iter = new ReverseIterator(5, c);
+    iter.prev();
+    should.strictEqual(6, iter.node);
+    should.strictEqual(c, iter.container);
   });
 });
 
 describe('BaseIterator tests', function () {
   it('equals; same node', function () {
-    let c = new ContainerStubIterTest();
-    let it1 = new TreeIterator(5, c);
-    let it2 = new TreeIterator(5, c);
+    const c = new ContainerStubIterTest();
+    const it1 = new TreeIterator(5, c);
+    const it2 = new TreeIterator(5, c);
     should.ok(it1.equals(it2));
     should.ok(it2.equals(it1));
   });
 
   it('equals; different nodes', function () {
-    let c = new ContainerStubIterTest();
-    let it1 = new TreeIterator(4, c);
-    let it2 = new TreeIterator(5, c);
+    const c = new ContainerStubIterTest();
+    const it1 = new TreeIterator(4, c);
+    const it2 = new TreeIterator(5, c);
     should.ok(!it1.equals(it2));
     should.ok(!it2.equals(it1));
   });
 
   it('equals; different containers', function () {
-    let c1 = new ContainerStubIterTest();
-    let c2 = new ContainerStubIterTest();
-    let it1 = new TreeIterator(4, c1);
-    let it2 = new TreeIterator(5, c2);
+    const c1 = new ContainerStubIterTest();
+    const c2 = new ContainerStubIterTest();
+    const it1 = new TreeIterator(4, c1);
+    const it2 = new TreeIterator(5, c2);
     try {
       it1.equals(it2);
     } catch (err) {
@@ -198,21 +196,22 @@ describe('BaseIterator tests', function () {
   });
 
   it('equals; different types of iterators', function () {
-    let c1 = new ContainerStubIterTest();
-    let c2 = new ContainerStubIterTest();
-    let it1 = new TreeIterator(4, c1);
-    let it2 = new ReverseIterator(5, c2);
+    const c1 = new ContainerStubIterTest();
+    const c2 = new ContainerStubIterTest();
+    const it1 = new TreeIterator(4, c1);
+    const it2 = new ReverseIterator(5, c2);
     try {
       it1.equals(it2);
     } catch (err) {
       const msg = (err as Error).message;
       should.ok(
-        msg.includes('instance of r') || msg.includes('instance of TreeIterator'),
+        msg.includes('instance of r') ||
+          msg.includes('instance of TreeIterator'),
         msg
       );
       should.ok(
         msg.includes('instance of i') ||
-        msg.includes('instance of ReverseIterator'),
+          msg.includes('instance of ReverseIterator'),
         msg
       );
     }
@@ -221,27 +220,29 @@ describe('BaseIterator tests', function () {
     } catch (err) {
       const msg = (err as Error).message;
       should.ok(
-        msg.includes('instance of r') || msg.includes('instance of TreeIterator'),
+        msg.includes('instance of r') ||
+          msg.includes('instance of TreeIterator'),
         msg
       );
       should.ok(
         msg.includes('instance of i') ||
-        msg.includes('instance of ReverseIterator'),
+          msg.includes('instance of ReverseIterator'),
         msg
       );
     }
   });
 
   it('equals; comparison to non-iterator object', function () {
-    let c = new ContainerStubIterTest();
-    let it = new TreeIterator(4, c);
+    const c = new ContainerStubIterTest();
+    const iter = new TreeIterator(4, c);
     try {
       // @ts-expect-error: TS2345
-      it.equals('test');
+      iter.equals('test');
     } catch (err) {
       const msg = (err as Error).message;
       should.ok(
-        msg.includes('instance of r') || msg.includes('instance of TreeIterator'),
+        msg.includes('instance of r') ||
+          msg.includes('instance of TreeIterator'),
         msg
       );
       should.ok(msg.includes('String'), msg);

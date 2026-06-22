@@ -10,8 +10,13 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "stopOnEntry": false,
-            "args": ["--no-timeouts", "${relativeFile}"],
-            "env": { "DEV_TEST": "true"},
+            "args": [
+                "--no-timeouts",
+                "${relativeFile}"
+            ],
+            "env": {
+                "DEV_TEST": "true"
+            },
             "cwd": "${workspaceRoot}"
         },
         {
@@ -20,9 +25,36 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "stopOnEntry": false,
-            "args": ["--no-timeouts", "${relativeFile}"],
+            "args": [
+                "--no-timeouts",
+                "${relativeFile}"
+            ],
             "cwd": "${workspaceRoot}"
+        },
+        {
+            "name": "Launch Current TS File",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "tsx"
+            ],
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Launch Current JS File",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "node",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
-
     ]
 }

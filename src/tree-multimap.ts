@@ -1,12 +1,8 @@
-/** An implementation of red-black tree */
-import { Tree } from './tree.js';
-/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */
-import { KeyValuePolicy } from './policies.js';
-/** Node for a red-black tree */
-import { TreeNode } from './tree-node.js';
-import { MapIterator } from './iterators.js';
 import { InsertionResult } from './insertion-result.js';
-
+import { MapIterator } from './iterators.js';
+import { KeyValuePolicy } from './policies.js';
+import { TreeNode } from './tree-node.js';
+import { Tree } from './tree.js';
 
 /**
  * TreeMultiMap is an associative container that stores elements formed by
@@ -26,6 +22,8 @@ import { InsertionResult } from './insertion-result.js';
  * to identify the elements whose main content is the mapped value.
  * **Multiple equivalent keys** - Multiple elements in the container
  * can have equivalent keys.
+ * @template K - key type
+ * @template V - value type
  * @example
  * let map = new TreeMultiMap();
  * // add few values
@@ -64,15 +62,14 @@ export class TreeMultiMap<K, V> {
     this.__t = new Tree();
     this.__t.valuePolicy = new KeyValuePolicy();
     if (iterable !== undefined && iterable !== null) {
-      if (iterable[Symbol.iterator] !== undefined) {
-        // copy contents
-        for (let [k, v] of iterable) {
-          this.set(k, v);
-        }
-      } else {
+      if (iterable[Symbol.iterator] === undefined) {
         throw new Error(
           'TreeMultiMap constructor accepts only iterable objects'
         );
+      }
+      // copy contents
+      for (const [k, v] of iterable) {
+        this.set(k, v);
       }
     }
   }
@@ -83,6 +80,7 @@ export class TreeMultiMap<K, V> {
    * @example
    * Object.prototype.toString.call(new TreeMultiMap()); // "[object TreeMultiMap]"
    */
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get [Symbol.toStringTag](): string {
     return 'TreeMultiMap';
   }
@@ -106,7 +104,7 @@ export class TreeMultiMap<K, V> {
    * map.clear();
    * console.log(map.size); // 0
    */
-  clear() {
+  clear(): void {
     this.__t.clear();
   }
 
@@ -118,8 +116,8 @@ export class TreeMultiMap<K, V> {
    * map.delete(2);
    * console.log(map.toString()); // {1:A,3:C}
    */
-  delete(key: K) {
-    let it = this.__t.find(key);
+  delete(key: K): void {
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       this.__t.erase(it.node);
     }
@@ -148,8 +146,8 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${key}, value: ${value}`);
    * });
    */
-  forEach(callback: any) {
-    for (let [k, v] of this.__t) {
+  forEach(callback: any): void {
+    for (const [k, v] of this.__t) {
       callback(v, k, this);
     }
   }
@@ -164,12 +162,11 @@ export class TreeMultiMap<K, V> {
    * let v = map.get(4); // returns undefined
    */
   get(key: K): V | undefined {
-    let it = this.__t.find(key);
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       return it.value;
-    } else {
-      return undefined;
     }
+    return undefined;
   }
 
   /**
@@ -181,12 +178,11 @@ export class TreeMultiMap<K, V> {
    * let b = map.get(3); // true
    */
   has(key: K): boolean {
-    let it = this.__t.find(key);
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   /**
@@ -221,8 +217,8 @@ export class TreeMultiMap<K, V> {
    *   console.log(k); // A, B, C
    * }
    */
-  set(key: K, value: V) {
-    let n = new TreeNode<K, V>();
+  set(key: K, value: V): void {
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     this.__t.insertMulti(n);
@@ -361,7 +357,7 @@ export class TreeMultiMap<K, V> {
    * }
    */
   insertUnique(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    let n = new TreeNode<K, V>();
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertUnique(n);
@@ -384,7 +380,7 @@ export class TreeMultiMap<K, V> {
    * }
    */
   insertOrReplace(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    let n = new TreeNode<K, V>();
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertOrReplace(n);
@@ -409,7 +405,7 @@ export class TreeMultiMap<K, V> {
    * }
    */
   insertMulti(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    let n = new TreeNode<K, V>();
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertMulti(n);
@@ -425,7 +421,7 @@ export class TreeMultiMap<K, V> {
    * map.erase(it); // removes a node with key 1
    * console.log(map.toString()); // {2:B,3:C}
    */
-  erase(iterator: MapIterator<K, V>) {
+  erase(iterator: MapIterator<K, V>): void {
     this.__t.erase(iterator.node);
   }
 

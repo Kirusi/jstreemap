@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @private
  */
@@ -9,7 +7,7 @@ export const RED = 1;
  */
 export const BLACK = 2;
 
-export type SomeNode<K, V> = TreeNode<K, V> | Head<K, V> | null;
+export type SomeNode<K, V> = Head<K, V> | TreeNode<K, V> | null;
 /**
  * @private
  * A node for a red-black tree
@@ -41,42 +39,41 @@ export class TreeNode<K, V> {
 
   /**
    * Returns parent of parent node
-   * @returns {any} parent node of parent node
+   * @returns {TreeNode<K, V>} parent node of parent node
    */
-  grandparent() {
+  grandparent(): TreeNode<K, V> | null {
     const p = this.parent as TreeNode<K, V>;
     if (p === null) {
       return null;
     } // No parent means no grandparent
-    return p.parent;
+    return p.parent as TreeNode<K, V>;
   }
 
   /**
    * Returns next sibling in the forward iteration order or `undefined`
-   * @returns {any} the other child of the same parent
+   * @returns {TreeNode<K, V>} the other child of the same parent
    */
-  sibling() {
+  sibling(): TreeNode<K, V> | null {
     const p = this.parent as TreeNode<K, V>;
     if (p === null) {
       return null;
     } // No parent means no sibling
     if (this === p.left) {
-      return p.right;
-    } else {
-      return p.left;
+      return p.right as TreeNode<K, V>;
     }
+    return p.left as TreeNode<K, V>;
   }
 
   /**
    * Returns parent's sibling (in the forward iteration order)
    * @returns {any} another child of the grandparent
    */
-  uncle() {
+  uncle(): TreeNode<K, V> | null {
     const p = this.parent as TreeNode<K, V>;
     if (p === null) {
       return null;
     } // No parent means no uncle
-    let g = p.parent as TreeNode<K, V>;
+    const g = p.parent as TreeNode<K, V>;
     if (g === null) {
       return null;
     } // No grandparent means no uncle

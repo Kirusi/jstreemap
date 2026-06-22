@@ -1,11 +1,8 @@
-/** An implementation of red-black tree */
-import { Tree } from './tree.js';
-/** Classes that regulate whether tree nodes hold keys only, or key-value pairs */
-import { KeyValuePolicy } from './policies.js';
-import { MapIterator } from './iterators.js';
-/** Node for a red-black tree */
-import { TreeNode } from './tree-node.js';
 import { InsertionResult } from './insertion-result.js';
+import { MapIterator } from './iterators.js';
+import { KeyValuePolicy } from './policies.js';
+import { TreeNode } from './tree-node.js';
+import { Tree } from './tree.js';
 
 /**
  * TreeMap is an associative container that stores elements formed
@@ -23,6 +20,8 @@ import { InsertionResult } from './insertion-result.js';
  * **Map** - Each element associates a key to a mapped value. Keys are meant
  * to identify the elements whose main content is the mapped value.
  * **Unique keys** - No two elements in the container can have equivalent keys.
+ * @template K - key type
+ * @template V - value type
  * @example
  * let map = new TreeMap();
  * // add few values
@@ -55,13 +54,12 @@ export class TreeMap<K, V> {
     this.__t = new Tree();
     this.__t.valuePolicy = new KeyValuePolicy();
     if (iterable !== undefined && iterable !== null) {
-      if (iterable[Symbol.iterator] !== undefined) {
-        // copy contents
-        for (let [k, v] of iterable) {
-          this.set(k, v);
-        }
-      } else {
+      if (iterable[Symbol.iterator] === undefined) {
         throw new Error('TreeMap constructor accepts only iterable objects');
+      }
+      // copy contents
+      for (const [k, v] of iterable) {
+        this.set(k, v);
       }
     }
   }
@@ -72,7 +70,8 @@ export class TreeMap<K, V> {
    * @example
    * Object.prototype.toString.call(new TreeMap()); // "[object TreeMap]"
    */
-  get [Symbol.toStringTag]() {
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get [Symbol.toStringTag](): string {
     return 'TreeMap';
   }
 
@@ -84,7 +83,7 @@ export class TreeMap<K, V> {
    * let constrFunc = Object.getPrototypeOf(map).constructor[Symbol.species];
    * let map2 = new constrFunc();
    */
-  static get [Symbol.species]() {
+  static get [Symbol.species](): any {
     return TreeMap;
   }
 
@@ -95,7 +94,7 @@ export class TreeMap<K, V> {
    * map.clear();
    * console.log(map.size); // 0
    */
-  clear() {
+  clear(): void {
     this.__t.clear();
   }
 
@@ -107,8 +106,8 @@ export class TreeMap<K, V> {
    * map.delete(2);
    * console.log(map.toString()); // {1:A,3:C}
    */
-  delete(key: K) {
-    let it = this.__t.find(key);
+  delete(key: K): void {
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       this.__t.erase(it.node);
     }
@@ -137,8 +136,8 @@ export class TreeMap<K, V> {
    *   console.log(`key: ${key}, value: ${value}`);
    * });
    */
-  forEach(callback: any) {
-    for (let [k, v] of this.__t) {
+  forEach(callback: any): void {
+    for (const [k, v] of this.__t) {
       callback(v, k, this);
     }
   }
@@ -153,12 +152,11 @@ export class TreeMap<K, V> {
    * let v = map.get(4); // returns undefined
    */
   get(key: K): V | undefined {
-    let it = this.__t.find(key);
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       return it.value;
-    } else {
-      return undefined;
     }
+    return undefined;
   }
 
   /**
@@ -170,12 +168,11 @@ export class TreeMap<K, V> {
    * let b = map.get(3); // true
    */
   has(key: K): boolean {
-    let it = this.__t.find(key);
+    const it = this.__t.find(key);
     if (!it.equals(this.__t.end())) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   /**
@@ -205,8 +202,8 @@ export class TreeMap<K, V> {
    * let map = new TreeMap();
    * map.set(1, 'A');
    */
-  set(key: K, value: V) {
-    let n = new TreeNode<K, V>();
+  set(key: K, value: V): void {
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     this.__t.insertOrReplace(n);
@@ -345,7 +342,7 @@ export class TreeMap<K, V> {
    * }
    */
   insertUnique(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    let n = new TreeNode<K, V>();
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertUnique(n);
@@ -368,7 +365,7 @@ export class TreeMap<K, V> {
    * }
    */
   insertOrReplace(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    let n = new TreeNode<K, V>();
+    const n: TreeNode<K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertOrReplace(n);
@@ -384,7 +381,7 @@ export class TreeMap<K, V> {
    * map.erase(it); // removes a node with key 1
    * console.log(map.toString()); // {2:B,3:C}
    */
-  erase(iterator: MapIterator<K, V>) {
+  erase(iterator: MapIterator<K, V>): void {
     this.__t.erase(iterator.node);
   }
 
