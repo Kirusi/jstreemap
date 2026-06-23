@@ -1,4 +1,91 @@
-import { InsertionResult } from './insertion-result.js';
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> tree-set.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="InsertionResult.html">InsertionResult</a></li><li><a href="JsIterator.html">JsIterator</a></li><li><a href="JsReverseIterator.html">JsReverseIterator</a></li><li><a href="ReverseIterator.html">ReverseIterator</a></li><li><a href="TreeIterator.html">TreeIterator</a></li><li><a href="TreeMap.html">TreeMap</a></li><li><a href="TreeMultiMap.html">TreeMultiMap</a></li><li><a href="TreeMultiSet.html">TreeMultiSet</a></li><li><a href="TreeSet.html">TreeSet</a></li></ul><h3>Interfaces</h3><ul><li><a href="MapIterator.html">MapIterator</a></li><li><a href="SetIterator.html">SetIterator</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>tree-set.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { InsertionResult } from './insertion-result.js';
 import { SetIterator } from './iterators.js';
 import { KeyOnlyPolicy } from './policies.js';
 import { TreeNode } from './tree-node.js';
@@ -14,11 +101,11 @@ import { Tree } from './tree.js';
  *
  * ## Container properties
  * **Associative** - Elements in associative containers are referenced by their key and
- * not by their absolute position in the container.</li>
+ * not by their absolute position in the container.&lt;/li>
  * **Ordered** - The elements in the container follow a strict order at all times.
- * All inserted elements are given a position in this order.</li>
- * **Set** - The value of an element is also the key used to identify it.</li>
- * **Unique keys** - No two elements in the container can have equivalent keys.</li>
+ * All inserted elements are given a position in this order.&lt;/li>
+ * **Set** - The value of an element is also the key used to identify it.&lt;/li>
+ * **Unique keys** - No two elements in the container can have equivalent keys.&lt;/li>
  * @template K - key type
  * @example
  * let set = new TreeSet();
@@ -26,14 +113,14 @@ import { Tree } from './tree.js';
  * set.add(1);
  * set.add(2);
  * // check whether key exists
- * let flag = set.has(1); // << true
+ * let flag = set.has(1); // &lt;&lt; true
  * // print all keys
  * for (let key of set) {
  *   console.log(`key: ${key}`);
  * }
  */
-export class TreeSet<K> {
-  private readonly __t: Tree<K, K>;
+export class TreeSet&lt;K> {
+  private readonly __t: Tree&lt;K, K>;
   /*======================================================
    * Methods of ES6 Set
    *======================================================*/
@@ -48,11 +135,11 @@ export class TreeSet<K> {
    * let set2 = new TreeSet([1, 2, 3]);
    * @private
    */
-  constructor(iterable?: Iterable<K>) {
+  constructor(iterable?: Iterable&lt;K>) {
     /** Internal tree */
-    this.__t = new Tree<K, K>();
+    this.__t = new Tree&lt;K, K>();
     this.__t.valuePolicy = new KeyOnlyPolicy();
-    if (iterable !== undefined && iterable !== null) {
+    if (iterable !== undefined &amp;&amp; iterable !== null) {
       if (iterable[Symbol.iterator] === undefined) {
         throw new Error('TreeSet constructor accepts only iterable objects');
       }
@@ -121,8 +208,8 @@ export class TreeSet<K> {
    *   console.log(`key: ${key}`);
    * }
    */
-  entries(): IterableIterator<K> {
-    return this.__t.entries() as IterableIterator<K>;
+  entries(): IterableIterator&lt;K> {
+    return this.__t.entries() as IterableIterator&lt;K>;
   }
 
   /**
@@ -174,7 +261,7 @@ export class TreeSet<K> {
    *   console.log(k); // 3, 2, 1
    * }
    */
-  keys(): IterableIterator<K> {
+  keys(): IterableIterator&lt;K> {
     return this.__t.keys();
   }
 
@@ -186,7 +273,7 @@ export class TreeSet<K> {
    * set.add(1);
    */
   add(key: K): void {
-    const n: TreeNode<K, K> = new TreeNode();
+    const n: TreeNode&lt;K, K> = new TreeNode();
     n.key = key;
     this.__t.insertUnique(n);
   }
@@ -214,7 +301,7 @@ export class TreeSet<K> {
    *   console.log(v); // '3', '2', '1'
    * }
    */
-  values(): IterableIterator<K> {
+  values(): IterableIterator&lt;K> {
     return this.__t.keys();
   }
 
@@ -227,8 +314,8 @@ export class TreeSet<K> {
    *   console.log(`key: ${key}`);
    * }
    */
-  [Symbol.iterator](): IterableIterator<K> {
-    return this.__t[Symbol.iterator]() as IterableIterator<K>;
+  [Symbol.iterator](): IterableIterator&lt;K> {
+    return this.__t[Symbol.iterator]() as IterableIterator&lt;K>;
   }
 
   /*======================================================
@@ -243,8 +330,8 @@ export class TreeSet<K> {
    *   console.log(`key: ${key}`);
    * }
    */
-  backward(): IterableIterator<K> {
-    return this.__t.backward() as IterableIterator<K>;
+  backward(): IterableIterator&lt;K> {
+    return this.__t.backward() as IterableIterator&lt;K>;
   }
 
   /**
@@ -273,7 +360,7 @@ export class TreeSet<K> {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  begin(): SetIterator<K> {
+  begin(): SetIterator&lt;K> {
     return this.__t.begin();
   }
 
@@ -287,7 +374,7 @@ export class TreeSet<K> {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  end(): SetIterator<K> {
+  end(): SetIterator&lt;K> {
     return this.__t.end();
   }
 
@@ -303,7 +390,7 @@ export class TreeSet<K> {
    *   console.log(`Found key: ${it.key}`); // 1
    * }
    */
-  find(key: K): SetIterator<K> {
+  find(key: K): SetIterator&lt;K> {
     return this.__t.find(key);
   }
 
@@ -322,8 +409,8 @@ export class TreeSet<K> {
    *   console.log(`Inserted ${res.iterator.key}`); // not executed
    * }
    */
-  insertUnique(key: K): InsertionResult<SetIterator<K>> {
-    const n: TreeNode<K, K> = new TreeNode();
+  insertUnique(key: K): InsertionResult&lt;SetIterator&lt;K>> {
+    const n: TreeNode&lt;K, K> = new TreeNode();
     n.key = key;
     return this.__t.insertUnique(n);
   }
@@ -343,8 +430,8 @@ export class TreeSet<K> {
    *   console.log(`Inserted ${res.iterator.key}`); // prints 1
    * }
    */
-  insertOrReplace(key: K): InsertionResult<SetIterator<K>> {
-    const n: TreeNode<K, K> = new TreeNode();
+  insertOrReplace(key: K): InsertionResult&lt;SetIterator&lt;K>> {
+    const n: TreeNode&lt;K, K> = new TreeNode();
     n.key = key;
     return this.__t.insertOrReplace(n);
   }
@@ -359,7 +446,7 @@ export class TreeSet<K> {
    * set.erase(it); // removes a node with key 1
    * console.log(set.toString()); // {2,3}
    */
-  erase(iterator: SetIterator<K>): void {
+  erase(iterator: SetIterator&lt;K>): void {
     this.__t.erase(iterator.node);
   }
 
@@ -390,7 +477,7 @@ export class TreeSet<K> {
    *   it.next();
    * }
    */
-  lowerBound(key: K): SetIterator<K> {
+  lowerBound(key: K): SetIterator&lt;K> {
     return this.__t.lowerBound(key);
   }
 
@@ -404,7 +491,7 @@ export class TreeSet<K> {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  rbegin(): SetIterator<K> {
+  rbegin(): SetIterator&lt;K> {
     return this.__t.rbegin();
   }
 
@@ -418,7 +505,7 @@ export class TreeSet<K> {
    *   console.log(`key: ${it.key}`);
    * }
    */
-  rend(): SetIterator<K> {
+  rend(): SetIterator&lt;K> {
     return this.__t.rend();
   }
 
@@ -449,7 +536,7 @@ export class TreeSet<K> {
    *   it.next();
    * }
    */
-  upperBound(key: K): SetIterator<K> {
+  upperBound(key: K): SetIterator&lt;K> {
     return this.__t.upperBound(key);
   }
 
@@ -483,3 +570,33 @@ export class TreeSet<K> {
     return this.__t.toString();
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

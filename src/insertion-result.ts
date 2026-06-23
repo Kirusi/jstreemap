@@ -12,6 +12,7 @@ export class InsertionResult<I> {
    * @param {boolean} wasAdded - the field is set to true when a new value was added to a container
    * @param {boolean} wasReplaced - the field is set to true when a new value replaced an existing value in the container
    * @param {Iterator} iterator - only provided if the node was added, or replaced
+   * @private
    */
   constructor(wasAdded: boolean, wasReplaced: boolean, iterator?: I) {
     /**

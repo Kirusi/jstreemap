@@ -1,4 +1,91 @@
-import { InsertionResult } from './insertion-result.js';
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> tree-multimap.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="InsertionResult.html">InsertionResult</a></li><li><a href="JsIterator.html">JsIterator</a></li><li><a href="JsReverseIterator.html">JsReverseIterator</a></li><li><a href="ReverseIterator.html">ReverseIterator</a></li><li><a href="TreeIterator.html">TreeIterator</a></li><li><a href="TreeMap.html">TreeMap</a></li><li><a href="TreeMultiMap.html">TreeMultiMap</a></li><li><a href="TreeMultiSet.html">TreeMultiSet</a></li><li><a href="TreeSet.html">TreeSet</a></li></ul><h3>Interfaces</h3><ul><li><a href="MapIterator.html">MapIterator</a></li><li><a href="SetIterator.html">SetIterator</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>tree-multimap.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { InsertionResult } from './insertion-result.js';
 import { MapIterator } from './iterators.js';
 import { KeyValuePolicy } from './policies.js';
 import { TreeNode } from './tree-node.js';
@@ -31,7 +118,7 @@ import { Tree } from './tree.js';
  * map.set(2, 'b');
  * map.set(2, 'c');
  * // find a value by key
- * let v = map.get(1); // << 'a'
+ * let v = map.get(1); // &lt;&lt; 'a'
  * find all values for a given key
  * // print all key-value pairs
  * let from = map.lowerBound(2);
@@ -42,11 +129,11 @@ import { Tree } from './tree.js';
  *   it.next();
  * }
  */
-export class TreeMultiMap<K, V> {
+export class TreeMultiMap&lt;K, V> {
   /**
    * @ignore
    */
-  private readonly __t: Tree<K, V>;
+  private readonly __t: Tree&lt;K, V>;
   /*======================================================
    * Methods of ES6 Map
    *======================================================*/
@@ -61,10 +148,10 @@ export class TreeMultiMap<K, V> {
    * let map2 = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
    * @ignore
    */
-  constructor(iterable?: Iterable<[K, V]>) {
+  constructor(iterable?: Iterable&lt;[K, V]>) {
     this.__t = new Tree();
     this.__t.valuePolicy = new KeyValuePolicy();
-    if (iterable !== undefined && iterable !== null) {
+    if (iterable !== undefined &amp;&amp; iterable !== null) {
       if (iterable[Symbol.iterator] === undefined) {
         throw new Error(
           'TreeMultiMap constructor accepts only iterable objects'
@@ -135,7 +222,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${key}, value: ${value}`);
    * }
    */
-  entries(): IterableIterator<[K, V]> {
+  entries(): IterableIterator&lt;[K, V]> {
     return this.__t.entries();
   }
 
@@ -203,7 +290,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(k); // 3, 2, 1
    * }
    */
-  keys(): IterableIterator<K> {
+  keys(): IterableIterator&lt;K> {
     return this.__t.keys();
   }
 
@@ -221,7 +308,7 @@ export class TreeMultiMap<K, V> {
    * }
    */
   set(key: K, value: V): void {
-    const n: TreeNode<K, V> = new TreeNode();
+    const n: TreeNode&lt;K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     this.__t.insertMulti(n);
@@ -250,7 +337,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(v); // 'C', 'B', 'A'
    * }
    */
-  values(): IterableIterator<V> {
+  values(): IterableIterator&lt;V> {
     return this.__t.values();
   }
 
@@ -263,7 +350,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${key}, value: ${value}`);
    * }
    */
-  [Symbol.iterator](): IterableIterator<[K, V]> {
+  [Symbol.iterator](): IterableIterator&lt;[K, V]> {
     return this.__t[Symbol.iterator]();
   }
 
@@ -279,7 +366,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${key}, value: ${value}`);
    * }
    */
-  backward(): IterableIterator<[K, V]> {
+  backward(): IterableIterator&lt;[K, V]> {
     return this.__t.backward();
   }
 
@@ -309,7 +396,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${it.key}, value: ${it.value}`);
    * }
    */
-  begin(): MapIterator<K, V> {
+  begin(): MapIterator&lt;K, V> {
     return this.__t.begin();
   }
 
@@ -323,7 +410,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${it.key}, value: ${it.value}`);
    * }
    */
-  end(): MapIterator<K, V> {
+  end(): MapIterator&lt;K, V> {
     return this.__t.end();
   }
 
@@ -339,7 +426,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${it.key}, value: ${it.value}`); // 1, 'A'
    * }
    */
-  find(key: K): MapIterator<K, V> {
+  find(key: K): MapIterator&lt;K, V> {
     return this.__t.find(key);
   }
 
@@ -359,8 +446,8 @@ export class TreeMultiMap<K, V> {
    *   console.log(`Inserted ${res.iterator.key}`); // not executed
    * }
    */
-  insertUnique(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    const n: TreeNode<K, V> = new TreeNode();
+  insertUnique(key: K, value: V): InsertionResult&lt;MapIterator&lt;K, V>> {
+    const n: TreeNode&lt;K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertUnique(n);
@@ -382,8 +469,8 @@ export class TreeMultiMap<K, V> {
    *   console.log(`Inserted ${res.iterator.key}`); // prints B
    * }
    */
-  insertOrReplace(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    const n: TreeNode<K, V> = new TreeNode();
+  insertOrReplace(key: K, value: V): InsertionResult&lt;MapIterator&lt;K, V>> {
+    const n: TreeNode&lt;K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertOrReplace(n);
@@ -407,8 +494,8 @@ export class TreeMultiMap<K, V> {
    *   console.log(`Previously inserted ${res.iterator.value}`); // prints A
    * }
    */
-  insertMulti(key: K, value: V): InsertionResult<MapIterator<K, V>> {
-    const n: TreeNode<K, V> = new TreeNode();
+  insertMulti(key: K, value: V): InsertionResult&lt;MapIterator&lt;K, V>> {
+    const n: TreeNode&lt;K, V> = new TreeNode();
     n.key = key;
     n.value = value;
     return this.__t.insertMulti(n);
@@ -424,7 +511,7 @@ export class TreeMultiMap<K, V> {
    * map.erase(it); // removes a node with key 1
    * console.log(map.toString()); // {2:B,3:C}
    */
-  erase(iterator: MapIterator<K, V>): void {
+  erase(iterator: MapIterator&lt;K, V>): void {
     this.__t.erase(iterator.node);
   }
 
@@ -455,7 +542,7 @@ export class TreeMultiMap<K, V> {
    *   it.next();
    * }
    */
-  lowerBound(key: K): MapIterator<K, V> {
+  lowerBound(key: K): MapIterator&lt;K, V> {
     return this.__t.lowerBound(key);
   }
 
@@ -469,7 +556,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${it.key}, value: ${it.value}`);
    * }
    */
-  rbegin(): MapIterator<K, V> {
+  rbegin(): MapIterator&lt;K, V> {
     return this.__t.rbegin();
   }
 
@@ -483,7 +570,7 @@ export class TreeMultiMap<K, V> {
    *   console.log(`key: ${it.key}, value: ${it.value}`);
    * }
    */
-  rend(): MapIterator<K, V> {
+  rend(): MapIterator&lt;K, V> {
     return this.__t.rend();
   }
 
@@ -514,7 +601,7 @@ export class TreeMultiMap<K, V> {
    *   it.next();
    * }
    */
-  upperBound(key: K): MapIterator<K, V> {
+  upperBound(key: K): MapIterator&lt;K, V> {
     return this.__t.upperBound(key);
   }
 
@@ -556,3 +643,33 @@ export class TreeMultiMap<K, V> {
     return this.__t.toString();
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

@@ -6,11 +6,13 @@ export const RED = 1;
  * @private
  */
 export const BLACK = 2;
-
-export type SomeNode<K, V> = Head<K, V> | TreeNode<K, V> | null;
 /**
  * @private
+ */
+export type SomeNode<K, V> = Head<K, V> | TreeNode<K, V> | null;
+/**
  * A node for a red-black tree
+ * @private
  */
 export class TreeNode<K, V> {
   public left: SomeNode<K, V>;
@@ -21,6 +23,7 @@ export class TreeNode<K, V> {
   public color: number;
   /**
    * Default constructor
+   * @private
    */
   constructor() {
     /** left child */
@@ -39,7 +42,7 @@ export class TreeNode<K, V> {
 
   /**
    * Returns parent of parent node
-   * @returns {TreeNode<K, V>} parent node of parent node
+   * @returns {TreeNode} parent node of parent node
    */
   grandparent(): TreeNode<K, V> | null {
     const p = this.parent as TreeNode<K, V>;
@@ -51,7 +54,7 @@ export class TreeNode<K, V> {
 
   /**
    * Returns next sibling in the forward iteration order or `undefined`
-   * @returns {TreeNode<K, V>} the other child of the same parent
+   * @returns {TreeNode} the other child of the same parent
    */
   sibling(): TreeNode<K, V> | null {
     const p = this.parent as TreeNode<K, V>;
@@ -66,7 +69,7 @@ export class TreeNode<K, V> {
 
   /**
    * Returns parent's sibling (in the forward iteration order)
-   * @returns {any} another child of the grandparent
+   * @returns {TreeNode} another child of the grandparent
    */
   uncle(): TreeNode<K, V> | null {
     const p = this.parent as TreeNode<K, V>;
@@ -82,8 +85,8 @@ export class TreeNode<K, V> {
 }
 
 /**
- * @private
  * Special node in a tree is created for performance reasons
+ * @private
  */
 export class Head<K, V> {
   public leftmost: SomeNode<K, V>;
@@ -92,7 +95,10 @@ export class Head<K, V> {
   public size: number;
   public id: string;
 
-  /** default constructor */
+  /**
+   * default constructor
+   * @ignore
+   */
   constructor() {
     /** node with the smallest key */
     this.leftmost = this;

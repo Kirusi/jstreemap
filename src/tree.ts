@@ -42,16 +42,16 @@ export class Tree<
   V,
   C extends IterableContainer = IterableContainer,
 > implements IterableContainer {
+  /** Special head node */
   public head: Head<K, V>;
+  /** 3-way comparison function */
   public compare: any;
+  /** must be an instance of KeyOnlyPolicy for sets, or KeyValuePolicy for maps */
   public valuePolicy: any;
   /** default constructor of an empty tree */
   constructor() {
-    /** head */
     this.head = new Head();
-    /** 3-way comparison function */
     this.compare = compare;
-    /** must be an instance of KeyOnlyPolicy for sets, or KeyValuePolicy for maps */
     this.valuePolicy = new KeyOnlyPolicy();
   }
 
@@ -132,7 +132,7 @@ export class Tree<
 
   /**
    * Rebalances tree as described in rotateLeft
-   * @param {*} node - parent node
+   * @param {TreeNode} node - parent node
    */
   rotateRight(node: TreeNode<K, V>): void {
     const left = node.left as TreeNode<K, V>;
@@ -152,7 +152,7 @@ export class Tree<
 
   /**
    * Returns a boolean indicating whether the given node should not be traversed (head or null)
-   * @param {*} node - node to inspect
+   * @param {TreeNode} node - node to inspect
    * @returns {boolean} true - for null pointers and head node; false - for all other nodes
    */
   isLeaf(node: SomeNode<K, V>): boolean {
@@ -164,8 +164,8 @@ export class Tree<
 
   /**
    * Leaf nodes are considered 'black'. All real nodes contain 'color' data member
-   * @param {*} node - node to inspect
-   * @returns {*} node color
+   * @param {TreeNode} node - node to inspect
+   * @returns {number} node color
    */
   fetchColor(node: TreeNode<K, V>): number {
     if (this.isLeaf(node)) {
@@ -176,7 +176,7 @@ export class Tree<
 
   /**
    * Tests a node for 'blackness'.
-   * @param {*} node - node to inspect
+   * @param {TreeNode} node - node to inspect
    * @returns {boolean} - true when node color is BLACK
    */
   isBlack(node: TreeNode<K, V>): boolean {
@@ -185,7 +185,7 @@ export class Tree<
 
   /**
    * Tests node for 'redness'.
-   * @param {*} node - node to inspect
+   * @param {TreeNode} node - node to inspect
    * @returns {boolean} - true when node color is RED
    */
   isRed(node: TreeNode<K, V>): boolean {
@@ -197,8 +197,8 @@ export class Tree<
        =========================== */
   /**
    * A node will be inserted into the tree even if nodes with the same key already exist
-   * @param {*} node - node to use
-   * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
+   * @param {TreeNode} node - node to use
+   * @returns {InsertionResult} indicates whether a node was added and provides iterator to it.
    */
   insertMulti(node: TreeNode<K, V>): InsertionResult<TreeIterator<K, V>> {
     return this.insertNode(node, INSERT_MULTI);
@@ -206,8 +206,8 @@ export class Tree<
 
   /**
    * The node is inserted into the tree only if nodes with the same key do not exist there
-   * @param {*} node - node to use
-   * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
+   * @param {TreeNode} node - node to use
+   * @returns {InsertionResult} indicates whether a node was added and provides iterator to it.
    */
   insertUnique(node: TreeNode<K, V>): InsertionResult<TreeIterator<K, V>> {
     return this.insertNode(node, INSERT_UNIQUE);
@@ -215,8 +215,8 @@ export class Tree<
 
   /**
    * The node is inserted. If a node with the same key exists it's value will be replaced by the value of the new node
-   * @param {*} node - node to use
-   * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
+   * @param {TreeNode} node - node to use
+   * @returns {InsertionResult} indicates whether a node was added and provides iterator to it.
    */
   insertOrReplace(node: TreeNode<K, V>): InsertionResult<TreeIterator<K, V>> {
     return this.insertNode(node, INSERT_REPLACE);
@@ -225,8 +225,8 @@ export class Tree<
   /**
    * @private
    * Inserts node. Updates head node. Rebalances tree.
-   * @param {*} n - node
-   * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
+   * @param {TreeNode} n - node
+   * @param {number} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
   insertNode(
@@ -262,9 +262,9 @@ export class Tree<
   /**
    * @private
    * Inserts node according to the mode
-   * @param {*} root - root node of the tree
-   * @param {*} n - node to be inserted
-   * @param {*} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
+   * @param {TreeNode} root - root node of the tree
+   * @param {TreeNode} n - node to be inserted
+   * @param {number} mode - one of INSERT_MULTI, INSERT_UNIQUE, INSERT_REPLACE
    * @returns {InsertionResult} - indicates whether a node was added and provides iterator to it.
    */
   insertNodeInternal(
@@ -323,7 +323,7 @@ export class Tree<
   /**
    * @private
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
-   * @param {*} n - node
+   * @param {TreeNode} n - node
    */
   insertRepairTree(n: TreeNode<K, V>): void {
     if (n.parent === null) {
@@ -341,7 +341,7 @@ export class Tree<
   /**
    * @private
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
-   * @param {*} n - node
+   * @param {TreeNode} n - node
    */
   repairCase1(n: TreeNode<K, V>): void {
     n.color = BLACK;
@@ -350,7 +350,7 @@ export class Tree<
   /**
    * @private
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
-   * @param {*} n - node
+   * @param {TreeNode} n - node
    */
   repairCase3(n: TreeNode<K, V>): void {
     (n.parent as TreeNode<K, V>).color = BLACK;
@@ -362,7 +362,7 @@ export class Tree<
   /**
    * @private
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
-   * @param {*} n - node
+   * @param {TreeNode} n - node
    */
   repairCase4(node: TreeNode<K, V>): void {
     let n = node;
@@ -391,7 +391,7 @@ export class Tree<
 
   /**
    * Fetch a node with the largest key value, i.e. right-most
-   * @param {*} node - root node of the subtree to be evaluated
+   * @param {TreeNode} node - root node of the subtree to be evaluated
    * @returns {TreeNode} the node with the highest key for the subtree of the specified root node
    */
   fetchMaximum(node: TreeNode<K, V>): TreeNode<K, V> {
@@ -405,7 +405,7 @@ export class Tree<
 
   /**
    * Returns node with the lowest key value, i.e. left-most
-   * @param {*} node - root node of the subtree to be evaluated
+   * @param {TreeNode} node - root node of the subtree to be evaluated
    * @returns {TreeNode} the node with the lowest key for the subtree of the specified root node
    */
   fetchMinimum(node: TreeNode<K, V>): TreeNode<K, V> {
@@ -422,7 +422,7 @@ export class Tree<
        =========================== */
   /**
    * Removes node from the tree
-   * @param {*} node - node to be removed
+   * @param {TreeNode} node - node to be removed
    */
   erase(node: TreeNode<K, V>): void {
     if (this.isLeaf(node)) {
@@ -437,7 +437,7 @@ export class Tree<
   /**
    * @private
    * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
-   * @param {*} node - node
+   * @param {TreeNode} node - node
    */
   eraseInternal(nodeParam: TreeNode<K, V>): void {
     let node = nodeParam;
@@ -634,8 +634,8 @@ export class Tree<
        =========================== */
   /**
    * Returns an itertor for a given key
-   * @param {*} k - key value
-   * @returns {Iterator} an iterator pointing to a node with matching key value. If node is not found then end() iterator is returned.
+   * @param {K} k - key value
+   * @returns {TreeIterator} an iterator pointing to a node with matching key value. If node is not found then end() iterator is returned.
    */
   find(k: K): TreeIterator<K, V, C> {
     let x = this.head.root as TreeNode<K, V>;
@@ -654,8 +654,8 @@ export class Tree<
 
   /**
    * Returns an iterator for a node that has a key of equal or less value
-   * @param {*} k - key value
-   * @returns {Iterator} an iterator pointing to the first node in the tree that is not less than
+   * @param {K} k - key value
+   * @returns {TreeIterator} an iterator pointing to the first node in the tree that is not less than
    * (i.e. greater or equal to) the specified key value, or end() if no such node is found.
    */
   lowerBound(k: K): TreeIterator<K, V, C> {
@@ -675,8 +675,8 @@ export class Tree<
 
   /**
    * Returns an iterator for a node of a value greater than provided key
-   * @param {*} k - key value
-   * @returns {Iterator} an iterator pointing to the first node in the tree that is greater than
+   * @param {K} k - key value
+   * @returns {TreeIterator} an iterator pointing to the first node in the tree that is greater than
    * the specified key value, or end() if no such node is found.
    */
   upperBound(k: K): TreeIterator<K, V, C> {
@@ -700,7 +700,7 @@ export class Tree<
 
   /**
    * Returns iterator to the first element or END
-   * @returns {Iterator} iterator pointing to the node with the lowest key
+   * @returns {TreeIterator} iterator pointing to the node with the lowest key
    */
   begin(): TreeIterator<K, V, C> {
     return new TreeIterator(this.head.leftmost, this);
@@ -708,7 +708,7 @@ export class Tree<
 
   /**
    * Returns iterator to a position after the last element
-   * @returns {Iterator} iterator pointing to the node following the node with the highest key
+   * @returns {TreeIterator} iterator pointing to the node following the node with the highest key
    */
   end(): TreeIterator<K, V, C> {
     return new TreeIterator(this.head, this);
@@ -818,7 +818,7 @@ export class Tree<
 
   /**
    * ES6 reverse iteration
-   * @returns {JsIterator} returns reverse iterator for all elements in the tree
+   * @returns {JsReverseIterator} returns reverse iterator for all elements in the tree
    */
   backward(): JsReverseIterator<[K, V]> {
     return new JsReverseIterator(this);
@@ -850,7 +850,7 @@ export class Tree<
 
   /**
    * First element
-   * @returns {any} first element of the container, or undefined if container is empty
+   * @returns {[K, V] | undefined} first element of the container, or undefined if container is empty
    */
   first(): [K, V] | undefined {
     if (this.size() === 0) {
@@ -862,7 +862,7 @@ export class Tree<
 
   /**
    * Last element
-   * @returns {any} }ast element of the container, or undefined if container is empty
+   * @returns {[K, V] | undefined} last element of the container, or undefined if container is empty
    */
   last(): [K, V] | undefined {
     if (this.size() === 0) {
@@ -896,7 +896,7 @@ export class Tree<
 
   /**
    * Returns class/constructor to create a new instance
-   * @returns {any} constructor object for this class
+   * @returns {*} constructor object for this class
    */
   static get [Symbol.species](): any {
     return Tree;

@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> policies.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="InsertionResult.html">InsertionResult</a></li><li><a href="JsIterator.html">JsIterator</a></li><li><a href="JsReverseIterator.html">JsReverseIterator</a></li><li><a href="ReverseIterator.html">ReverseIterator</a></li><li><a href="TreeIterator.html">TreeIterator</a></li><li><a href="TreeMap.html">TreeMap</a></li><li><a href="TreeMultiMap.html">TreeMultiMap</a></li><li><a href="TreeMultiSet.html">TreeMultiSet</a></li><li><a href="TreeSet.html">TreeSet</a></li></ul><h3>Interfaces</h3><ul><li><a href="MapIterator.html">MapIterator</a></li><li><a href="SetIterator.html">SetIterator</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>policies.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { TreeNode } from './tree-node.js';
+/**
+ * Used by sets
+ * @private
+ */
+export class KeyOnlyPolicy&lt;K, V> {
+  /**
+   * Returns key data from the specified node
+   * @param {TreeNode} n - Node to inspect
+   * @returns {K} node's key
+   */
+  fetch(n: TreeNode&lt;K, V>): K {
+    return n.key as K;
+  }
+
+  /**
+   * Copies key data from one node to another
+   * @param {TreeNode} dst - Destination node
+   * @param {TreeNode} src - Source node
+   */
+  copy(dst: TreeNode&lt;K, V>, src: TreeNode&lt;K, V>): void {
+    dst.key = src.key;
+  }
+
+  /**
+   * Returns tring representation of the provided node
+   * @param {TreeNode} node - Node to serialize
+   * @returns {string} representation of the key
+   */
+  toString(node: TreeNode&lt;K, V>): string {
+    return String(node.key);
+  }
+}
+
+/**
+ * Used by maps
+ * @private
+ */
+export class KeyValuePolicy&lt;K, V> {
+  /**
+   * Returns key-value data from the specified node
+   * @param {TreeNode} n - Node to inspect
+   * @returns {[K, V]} tuple of key and value
+   */
+  fetch(n: TreeNode&lt;K, V>): [K, V] {
+    return [n.key as K, n.value as V];
+  }
+
+  /**
+   * Copies key-value data from one node to another
+   * @param {TreeNode} dst - Destination node
+   * @param {TreeNode} src - Source node
+   */
+  copy(dst: TreeNode&lt;K, V>, src: TreeNode&lt;K, V>): void {
+    dst.key = src.key;
+    dst.value = src.value;
+  }
+
+  /**
+   * Generates string representation of the node
+   * @param {TreeNode} node - Node to serialize
+   * @returns {string} representation of key-value pair
+   */
+  toString(node: TreeNode&lt;K, V>): string {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    return `${node.key}:${node.value}`;
+  }
+}
+
+/**
+ * Used for iteration through values of a map
+ * @private
+ */
+export class ValueOnlyPolicy&lt;K, V> {
+  /**
+   * Returns data from the specified node
+   * @param {TreeNode} n - Node to inspect
+   * @returns {V} node value
+   */
+  fetch(n: TreeNode&lt;K, V>): V {
+    return n.value as V;
+  }
+
+  /**
+   * Copies value data from one node to another
+   * @param {TreeNode} dst - Destination node
+   * @param {TreeNode} src - Source node
+   */
+  copy(dst: TreeNode&lt;K, V>, src: TreeNode&lt;K, V>): void {
+    dst.value = src.value;
+  }
+
+  /**
+   * Returns string representation of the node
+   * @param {TreeNode} node - Node to serialize
+   * @returns {string} representation of node's value
+   */
+  toString(node: TreeNode&lt;K, V>): string {
+    return String(node.value);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

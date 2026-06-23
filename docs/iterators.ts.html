@@ -1,8 +1,95 @@
-import { TreeNode } from './tree-node.js';
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> iterators.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="InsertionResult.html">InsertionResult</a></li><li><a href="JsIterator.html">JsIterator</a></li><li><a href="JsReverseIterator.html">JsReverseIterator</a></li><li><a href="ReverseIterator.html">ReverseIterator</a></li><li><a href="TreeIterator.html">TreeIterator</a></li><li><a href="TreeMap.html">TreeMap</a></li><li><a href="TreeMultiMap.html">TreeMultiMap</a></li><li><a href="TreeMultiSet.html">TreeMultiSet</a></li><li><a href="TreeSet.html">TreeSet</a></li></ul><h3>Interfaces</h3><ul><li><a href="MapIterator.html">MapIterator</a></li><li><a href="SetIterator.html">SetIterator</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>iterators.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { TreeNode } from './tree-node.js';
 
 export interface IterableContainer {
-  next(node: any): TreeNode<unknown, unknown>;
-  prev(node: any): TreeNode<unknown, unknown>;
+  next(node: any): TreeNode&lt;unknown, unknown>;
+  prev(node: any): TreeNode&lt;unknown, unknown>;
 }
 
 /**
@@ -12,7 +99,7 @@ export interface IterableContainer {
  * @template K - Key type
  * @template C - Container
  */
-export interface SetIterator<
+export interface SetIterator&lt;
   K,
   C extends IterableContainer = IterableContainer,
 > {
@@ -26,7 +113,7 @@ export interface SetIterator<
    * Current node
    * @private
    */
-  get node(): TreeNode<K, any>;
+  get node(): TreeNode&lt;K, any>;
   /**
    * Key of current node
    */
@@ -76,7 +163,7 @@ export interface SetIterator<
  * @template V - Value type
  * @template C - Container
  */
-export interface MapIterator<
+export interface MapIterator&lt;
   K,
   V,
   C extends IterableContainer = IterableContainer,
@@ -85,7 +172,7 @@ export interface MapIterator<
   /**
    * @private
    */
-  get node(): TreeNode<K, V>;
+  get node(): TreeNode&lt;K, V>;
   /**
    * Current node's key
    * @type {K}
@@ -139,11 +226,11 @@ export interface MapIterator<
  * @template V - value type
  * @template C - container type
  */
-abstract class BaseIterator<K, V, C extends IterableContainer>
-  implements SetIterator<K, C>, MapIterator<K, V, C>
+abstract class BaseIterator&lt;K, V, C extends IterableContainer>
+  implements SetIterator&lt;K, C>, MapIterator&lt;K, V, C>
 {
   /** @private */
-  public __n: TreeNode<K, V>;
+  public __n: TreeNode&lt;K, V>;
   /** @private */
   public __c: C;
   /**
@@ -152,7 +239,7 @@ abstract class BaseIterator<K, V, C extends IterableContainer>
    * @param {*} container - container to traverse
    * @private
    */
-  constructor(node: TreeNode<K, V>, container: C) {
+  constructor(node: TreeNode&lt;K, V>, container: C) {
     this.__n = node;
     this.__c = container;
   }
@@ -164,7 +251,7 @@ abstract class BaseIterator<K, V, C extends IterableContainer>
    * @param {MapIterator} rhs - object on the 'right-hand side' of .eq. operator
    * @returns {boolean} `true` when both iterators point to the same node of the same container
    */
-  equals(rhs: MapIterator<K, V, C> | SetIterator<K, C>): boolean {
+  equals(rhs: MapIterator&lt;K, V, C> | SetIterator&lt;K, C>): boolean {
     const lhsClass = this.constructor.name;
     const rhsClass = rhs.constructor.name;
     if (lhsClass !== rhsClass) {
@@ -182,7 +269,7 @@ abstract class BaseIterator<K, V, C extends IterableContainer>
    * Current node
    * @private
    */
-  get node(): TreeNode<K, V> {
+  get node(): TreeNode&lt;K, V> {
     return this.__n;
   }
 
@@ -223,11 +310,11 @@ abstract class BaseIterator<K, V, C extends IterableContainer>
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
-export class TreeIterator<
+export class TreeIterator&lt;
   K,
   V,
   C extends IterableContainer = IterableContainer,
-> extends BaseIterator<K, V, C> {
+> extends BaseIterator&lt;K, V, C> {
   /**
    * There are 3 ways to construct an iterator:
    *
@@ -287,7 +374,7 @@ export class TreeIterator<
     /**
      * __n and __c are defined in the base class
      */
-    this.__n = this.__c.next(this.__n) as TreeNode<K, V>;
+    this.__n = this.__c.next(this.__n) as TreeNode&lt;K, V>;
   }
 
   /**
@@ -305,7 +392,7 @@ export class TreeIterator<
    * }
    */
   prev(): void {
-    this.__n = this.__c.prev(this.__n) as TreeNode<K, V>;
+    this.__n = this.__c.prev(this.__n) as TreeNode&lt;K, V>;
   }
 }
 
@@ -322,11 +409,11 @@ export class TreeIterator<
  *   console.log(`key: ${it.key}, value: ${it.value}`);
  * }
  */
-export class ReverseIterator<
+export class ReverseIterator&lt;
   K,
   V,
   C extends IterableContainer,
-> extends BaseIterator<K, V, C> {
+> extends BaseIterator&lt;K, V, C> {
   /**
    * There are 3 ways to construct a reverse iterator:
    *
@@ -387,7 +474,7 @@ export class ReverseIterator<
     /**
      * __n and __c are defined in the base class
      */
-    this.__n = this.__c.prev(this.__n) as TreeNode<K, V>;
+    this.__n = this.__c.prev(this.__n) as TreeNode&lt;K, V>;
   }
 
   /**
@@ -405,6 +492,36 @@ export class ReverseIterator<
    * }
    */
   prev(): void {
-    this.__n = this.__c.next(this.__n) as TreeNode<K, V>;
+    this.__n = this.__c.next(this.__n) as TreeNode&lt;K, V>;
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
