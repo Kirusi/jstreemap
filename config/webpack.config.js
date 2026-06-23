@@ -15,8 +15,8 @@ const baseConfig = {
 export default [
   merge(baseConfig, {
     output: {
-      filename: 'jstreemap.umd.js',
-      sourceMapFilename: 'jstreemap.umd.map',
+      filename: 'dist/umd/jstreemap.js',
+      sourceMapFilename: 'dist/umd/jstreemap.map',
       path: distPath,
       library: {
         type: 'umd',
@@ -28,8 +28,8 @@ export default [
       outputModule: true,
     },
     output: {
-      filename: 'jstreemap.esm.js',
-      sourceMapFilename: 'jstreemap.esm.map',
+      filename: 'dist/esm/jstreemap.js',
+      sourceMapFilename: 'dist/esm/jstreemap.map',
       path: distPath,
       module: true,
       library: {
