@@ -22,7 +22,7 @@
     "target": "ES6",
     "types": [
       "node"
-    ],
+    ]
   },
   "include": [
     "src/**/*",
