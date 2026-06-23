@@ -14,7 +14,7 @@
     "eslint-fix": "eslint --config=./eslint.config.js --fix",
     "eslint": "eslint --config=./eslint.config.js",
     "dev-test": "cross-env DEV_TEST=true vitest -c vitest.config.ts run test/specs/*.test.ts",
-    "prod-test": "mocha --reporter spec test/specs/*.spec.js",
+    "prod-test": "vitest -c vitest.config.ts run test/specs/*.test.ts",
     "web-test": "mocha --reporter spec test/browser/*.spec.js",
     "webpack": "webpack --config ./config/webpack.config.js"
   },
