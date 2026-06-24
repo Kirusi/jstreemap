@@ -7,7 +7,7 @@ import { describe, it } from 'vitest';
 import { ReverseIterator } from '../../src/iterators.js';
 import { KeyValuePolicy } from '../../src/policies.js';
 import { TreeNode, Head, NodeColors } from '../../src/tree-node.js';
-import { Tree, compare } from '../../src/tree.js';
+import { Tree } from '../../src/tree.js';
 
 class TestNode extends TreeNode<number, any> {
   public id: string;
@@ -129,15 +129,15 @@ function buildTree(...keys: any[]): any[] {
 
 describe('Compare tests', function () {
   it('numbers', function () {
-    should.equal(compare(5, 6), -1);
-    should.equal(compare(-2, -2), 0);
-    should.equal(compare(6, -5), 1);
+    should.equal(Tree.compare(5, 6), -1);
+    should.equal(Tree.compare(-2, -2), 0);
+    should.equal(Tree.compare(6, -5), 1);
   });
 
   it('strings', function () {
-    should.equal(compare('A', 'a'), -1);
-    should.equal(compare('abc', 'abc'), 0);
-    should.equal(compare('Abcd', 'Abc'), 1);
+    should.equal(Tree.compare('A', 'a'), -1);
+    should.equal(Tree.compare('abc', 'abc'), 0);
+    should.equal(Tree.compare('Abcd', 'Abc'), 1);
   });
 });
 

@@ -8,10 +8,9 @@ import { TreeMultiMap } from './tree-multimap.js';
 import { TreeMultiSet } from './tree-multiset.js';
 import { NodeColors, TreeNode } from './tree-node.js';
 import { TreeSet } from './tree-set.js';
-import { compare, Tree } from './tree.js';
+import { Tree } from './tree.js';
 
 export default {
-  compare,
   TreeIterator,
   ReverseIterator,
   JsIterator,
