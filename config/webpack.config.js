@@ -1,5 +1,6 @@
 import path from 'path';
 import { merge } from 'webpack-merge';
+import NpmDtsPlugin from 'npm-dts-webpack-plugin';
 
 const distPath = path.resolve(import.meta.dirname, '../');
 
@@ -37,5 +38,11 @@ export default [
         type: 'module',
       },
     },
+    plugins: [
+      new NpmDtsPlugin({
+        entry: '../src/main.esm.ts',
+        output: path.resolve(import.meta.dirname, '../dist/esm/jstreemap.d.ts'),
+      }),
+    ],
   }),
 ];

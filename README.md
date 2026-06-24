@@ -1,10 +1,11 @@
 # jstreemap
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](https://www.typescriptlang.org/)
 [![CI build status badge](https://github.com/Kirusi/jstreemap/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Kirusi/jstreemap/actions/workflows/build.yml)
 [![Test Coverage](https://app.codacy.com/project/badge/Coverage/d1833bbc5ae34166ae41f4432697d7a4)](https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 [![Number of tests](https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true)](https://travis-ci.org/Kirusi/jstreemap)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d1833bbc5ae34166ae41f4432697d7a4)](https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:
+A TypeScript / ES6 library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:
 * [**TreeSet**](https://kirusi.github.io/jstreemap/TreeSet.html) - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.
 * [**TreeMap**](https://kirusi.github.io/jstreemap/TreeMap.html) - is an associative container that stores elements formed
 by a combination of a key value and a mapped value, following a specific order.
