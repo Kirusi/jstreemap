@@ -1,30 +1,30 @@
 /**
  * @file ESLint config with very aggressive rules.
  */
-const jsImport = require('eslint-plugin-import');
-const jsDoc = require('eslint-plugin-jsdoc');
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-const tseslint = require('typescript-eslint');
+import { defineConfig } from 'eslint/config';
+import jsImport from 'eslint-plugin-import';
+import jsDoc from 'eslint-plugin-jsdoc';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import tseslint from 'typescript-eslint';
 
-const allFiles = {
-  files: [
-    './*.ts',
-    './*.js',
-    './src/*.ts',
-    './src/*.js',
-    './tests/**/*.ts',
-    './tests/**/*.js',
-  ],
-  ignores: ['dist/**', 'node_modules/**'],
+const allJsFiles = {
+  files: ['**/*.js'],
 };
 
-const srcFiles = {
-  files: ['./src/**/*.ts', './src/**/*.js', './src/*.ts', './src/*.js'],
-  ignores: ['dist/**', 'node_modules/**'],
+const allTsFiles = {
+  files: ['**/*.ts'],
+};
+
+const allSrcFiles = {
+  files: ['./src/**/*.js', './test/**/*.js', './src/**/*.ts', './test/**/*.ts'],
+};
+
+const srcOnlyFiles = {
+  files: ['./src/**/*.js', './src/**/*.ts'],
 };
 
 const localJsRules = {
-  ...allFiles,
+  ...allJsFiles,
   rules: {
     // Options that are listed along with recommended ones, but not enabled by default.
     ...{
@@ -257,15 +257,20 @@ const localJsRules = {
   },
 };
 
-// eslint-disable-next-line no-unused-vars
 const localTsRules = {
+  ...allTsFiles,
+
+  plugins: {
+    '@typescript-eslint': tseslint.plugin,
+  },
+
   languageOptions: {
+    parser: tseslint.parser,
     parserOptions: {
       projectService: {
-        allowDefaultProject: ['eslint.config.js', 'vite.config.ts'],
+        allowDefaultProject: [],
       },
-      //FIXME: VK uncomennt the next line when TS is enabled
-      // tsconfigRootDir: import.meta.dirname,
+      tsconfigRootDir: import.meta.dirname,
     },
   },
   rules: {
@@ -468,7 +473,7 @@ const localPrettierRules = {
 };
 
 const localJsDocRules = {
-  ...srcFiles,
+  ...srcOnlyFiles,
   plugins: {
     jsdoc: jsDoc,
   },
@@ -556,13 +561,13 @@ const localJsDocRules = {
 };
 
 const localImportRules = {
-  ...allFiles,
+  ...allSrcFiles,
   plugins: {
     import: jsImport,
   },
   rules: {
     // turn on errors for missing imports
-    'import/no-unresolved': 'error',
+    // 'import/no-unresolved': 'error',
     // 'import/no-named-as-default-member': 'off',
     'import/order': [
       'error',
@@ -588,13 +593,16 @@ const localImportRules = {
 };
 
 // export default
-module.exports = tseslint.config(
+export default defineConfig(
   // jsImport.flatConfigs.typescript,
   localImportRules,
   localJsRules,
-  // tseslint.configs.recommended,
-  // localTsRules,
+
+  localTsRules,
   eslintPluginPrettierRecommended,
   localPrettierRules,
-  localJsDocRules
+  localJsDocRules,
+  {
+    ignores: ['build', 'dist', 'docs', 'node-modules'],
+  }
 );

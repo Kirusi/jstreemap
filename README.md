@@ -125,6 +125,6 @@ Ordered associative containers are not provided by default with JavaScript. This
 
 Unlike standard sets and maps in ES6, this library provides  ordered containers. Iteration through container contents will be done in sorted order without any additional performance overhead.
 
-[Container API](https://kirusi.github.io/jstreemap) implements features of default ES6 maps and sets as well as parts of STL (C++ library) interface.
+[Container API](https://kirusi.github.io/jstreemap) implements features of default ES6 maps and sets as well as parts of STL (C++ library) interface
 
 The library showcases 100% test coverage and 100% documentation coverage.

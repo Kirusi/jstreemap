@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Mocha Tests</title>
-    <link rel="stylesheet" href="../../../node_modules/mocha/mocha.css">
-  </head>
-  <body>
-    <div id="mocha"></div>
-    <script src="../../../node_modules/mocha/mocha.js"></script>
-    <script src="../../../node_modules/should/should.js"></script>
 
-    <script>mocha.setup('bdd')</script>
+<head>
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="../../../node_modules/mocha/mocha.css">
+</head>
 
-    <!-- Load library packaged by webpack -->
-    <script src="../../../jstreemap.js"></script>
+<body>
+  <div id="mocha"></div>
+  <script src="../../../node_modules/mocha/mocha.js"></script>
+  <script src="../../../node_modules/should/should.js"></script>
 
-    <!-- Load public test specs -->
-    <script>
-      let process; // stub for NodeJS module
-    </script>
-    <script src="../../specs/iterators.spec.js"></script>
-    <script src="../../specs/js-iterators.spec.js"></script>
-    <script src="../../specs/tree-map.spec.js"></script>
-    <script src="../../specs/tree-multimap.spec.js"></script>
-    <script src="../../specs/tree-multiset.spec.js"></script>
-    <script src="../../specs/tree-set.spec.js"></script>
+  <script>mocha.setup('bdd')</script>
 
-    <script>
-      mocha.run();
-    </script>
-  </body>
+  <!-- Load library packaged by webpack -->
+  <script src="../../../dist/umd/jstreemap.js"></script>
+
+  <!-- Load public test specs -->
+  <script>
+    let process; // stub for NodeJS module
+  </script>
+  <script src="../../../build/generated-tests/browser-tests/iterators.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/js-iterators.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/policies.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/tree-map.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/tree-multimap.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/tree-multiset.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/tree-node.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/tree-set.test.js"></script>
+  <script src="../../../build/generated-tests/browser-tests/tree.test.js"></script>
+
+  <script>
+    mocha.run();
+  </script>
+</body>
+
 </html>

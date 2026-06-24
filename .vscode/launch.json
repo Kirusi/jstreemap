@@ -5,24 +5,65 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug current DEV_TEST with Mocha",
+            "name": "vitest Current",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-            "stopOnEntry": false,
-            "args": ["--no-timeouts", "${relativeFile}"],
-            "env": { "DEV_TEST": "true"},
-            "cwd": "${workspaceRoot}"
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "vitest",
+                "run"
+            ],
+            "program": "${relativeFile}",
+            "env": {
+                "DEV_TEST": "true"
+            },
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         },
         {
-            "name": "Debug current PROD_TEST with Mocha",
+            "name": "Launch Current TS",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-            "stopOnEntry": false,
-            "args": ["--no-timeouts", "${relativeFile}"],
-            "cwd": "${workspaceRoot}"
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "tsx"
+            ],
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Launch Current JS",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "node",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Generate Tests",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "tsx"
+            ],
+            "program": "tools/generate-tests.ts",
+            "args": [
+                "../build/compiled/test/specs",
+                "../build/generated-tests/"
+            ],
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
-
     ]
 }

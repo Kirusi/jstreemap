@@ -1,9 +1,9 @@
 // grab our gulp packages
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
 
-const del = require('del');
-const gulp = require('gulp');
-const PluginError = require('plugin-error');
+import { deleteSync } from 'del';
+import gulp from 'gulp';
+import PluginError from 'plugin-error';
 
 function runCmd(taskName, cmd) {
   try {
@@ -17,81 +17,27 @@ function runCmd(taskName, cmd) {
 }
 
 gulp.task('clean', function cleanTask(done) {
-  del.sync(['./build', './docs']);
+  deleteSync(['./build', './dist', './docs']);
   done();
 });
 
-gulp.task('eslint', function eslintTask(done) {
+gulp.task('build', function buildTask(done) {
   runCmd('eslint', 'npm run eslint-fix');
-  done();
-});
-
-gulp.task(
-  'dev-test',
-  gulp.series('eslint', function devTestTask(done) {
-    runCmd('dev-test', 'npm run dev-test');
-    done();
-  })
-);
-
-gulp.task(
-  'analyze-tests',
-  gulp.series('dev-test', function devTestTask(done) {
-    runCmd('analyze-tests', 'npm run analyze-tests');
-    done();
-  })
-);
-
-gulp.task(
-  'esdoc',
-  gulp.series('analyze-tests', function esdocTask(done) {
-    runCmd('esdoc', 'npm run esdoc');
-    done();
-  })
-);
-
-gulp.task(
-  'webpack',
-  gulp.series('esdoc', function webpackTask(done) {
-    runCmd('webpack', 'npm run webpack');
-    done();
-  })
-);
-
-gulp.task(
-  'prod-test',
-  gulp.series('webpack', function prodTestTask(done) {
-    runCmd('prod-test', 'npm run prod-test');
-    done();
-  })
-);
-
-gulp.task(
-  'web-test',
-  gulp.series('prod-test', function prodTestTask(done) {
-    runCmd('web-test', 'npm run web-test');
-    done();
-  })
-);
-
-gulp.task(
-  'build',
-  gulp.series('web-test', function buildTask(done) {
-    done();
-  })
-);
-
-gulp.task('watch', function watchTask(done) {
-  gulp.watch(
-    ['src/**/*.js', 'test/**/*.js', 'gulpfile.js', 'package.json'],
-    gulp.series('build')
-  );
+  runCmd('dev-test', 'npm run dev-test');
+  runCmd('analyze-tests', 'npm run analyze-tests');
+  runCmd('jsdoc', 'npm run jsdoc');
+  runCmd('compile', 'npm run compile');
+  runCmd('webpack', 'npm run webpack');
+  runCmd('generate-tests', 'npm run generate-tests');
+  runCmd('preprod-esm-tests', 'npm run preprod-esm-tests');
+  runCmd('preprod-umd-tests', 'npm run preprod-umd-tests');
+  runCmd('web-test', 'npm run web-test');
   done();
 });
 
 gulp.task(
   'default',
-  gulp.series('build', 'watch', function defaultTask(done) {
+  gulp.series('build', function defaultTask(done) {
     done();
   })
 );

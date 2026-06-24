@@ -1,53 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | jstreemap Library</title>
-  <link type="text/css" rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
-  <script src="script/prettify/prettify.js"></script>
-  <script src="script/manual.js"></script>
-<meta name="description" content="Associative containers (sets, maps) library for JavaScript, using red-black trees."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="jstreemap Library"><meta property="twitter:description" content="Associative containers (sets, maps) library for JavaScript, using red-black trees."></head>
-<body class="layout-container" data-ice="rootContainer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Home</title>
 
-<header>
-  <a href="./">Home</a>
-  
-  <a href="identifiers.html">Reference</a>
-  <a href="source.html">Source</a>
-  
-  <div class="search-box">
-  <span>
-    <img src="./image/search.png">
-    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
-  </span>
-    <ul class="search-result"></ul>
-  </div>
-<a style="position:relative; top:3px;" href="https://github.com/Kirusi/jstreemap"><img width="20px" src="./image/github.png"></a></header>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<nav class="navigation" data-ice="nav"><div>
-  <ul>
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
     
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#public">public</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/insertion-result.js~InsertionResult.html">InsertionResult</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~BaseIterator.html">BaseIterator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~Iterator.html">Iterator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/iterators.js~ReverseIterator.html">ReverseIterator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsIterator.html">JsIterator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/js-iterators.js~JsReverseIterator.html">JsReverseIterator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-map.js~TreeMap.html">TreeMap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-multimap.js~TreeMultiMap.html">TreeMultiMap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-multiset.js~TreeMultiSet.html">TreeMultiSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/public/tree-set.js~TreeSet.html">TreeSet</a></span></span></li>
-</ul>
-</div>
-</nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="jstreemap">jstreemap</h1><p><a href="https://travis-ci.org/Kirusi/jstreemap"><img src="https://api.travis-ci.org/Kirusi/jstreemap.svg?branch=master" alt="Travis build status badge"></a>
-<a href="https://coveralls.io/github/Kirusi/jstreemap"><img src="https://coveralls.io/repos/github/Kirusi/jstreemap/badge.svg" alt="Code coverage status badge"></a>
-<a href="https://doc.esdoc.org/github.com/Kirusi/jstreemap/"><img src="https://doc.esdoc.org/github.com/Kirusi/jstreemap/badge.svg" alt="ESDoc coverage badge"></a>
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="InsertionResult.html">InsertionResult</a></li><li><a href="JsIterator.html">JsIterator</a></li><li><a href="JsReverseIterator.html">JsReverseIterator</a></li><li><a href="ReverseIterator.html">ReverseIterator</a></li><li><a href="TreeIterator.html">TreeIterator</a></li><li><a href="TreeMap.html">TreeMap</a></li><li><a href="TreeMultiMap.html">TreeMultiMap</a></li><li><a href="TreeMultiSet.html">TreeMultiSet</a></li><li><a href="TreeSet.html">TreeSet</a></li></ul><h3>Interfaces</h3><ul><li><a href="MapIterator.html">MapIterator</a></li><li><a href="SetIterator.html">SetIterator</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p></p>
+                    <h1>Home</h1>
+                </header>
+                
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>jstreemap</h1>
+<p><a href="https://github.com/Kirusi/jstreemap/actions/workflows/build.yml"><img src="https://github.com/Kirusi/jstreemap/actions/workflows/build.yml/badge.svg?branch=master" alt="CI build status badge"></a>
+<a href="https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_coverage"><img src="https://app.codacy.com/project/badge/Coverage/d1833bbc5ae34166ae41f4432697d7a4" alt="Test Coverage"></a>
 <a href="https://travis-ci.org/Kirusi/jstreemap"><img src="https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true" alt="Number of tests"></a>
-<a href="https://www.codacy.com/app/Kirusi/jstreemap?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Kirusi/jstreemap&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/9f1cd5c4a06b46379f3123be48c65abe" alt="Codacy code quality badge"></a></p>
+<a href="https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/d1833bbc5ae34166ae41f4432697d7a4" alt="Codacy Badge"></a></p>
 <p>A JavaScript (ES6) library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:</p>
 <ul>
 <li><a href="https://kirusi.github.io/jstreemap/class/src/public/tree-set.js~TreeSet.html"><strong>TreeSet</strong></a> - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.</li>
@@ -61,7 +118,7 @@ The types of key and mapped value may differ.</li>
 </ul>
 <p>All container implementations are using  red-black trees.</p>
 <p>The library supports ES6 iteration protocol and STL-like iteration. In ES6 one can use a simple for-of loop to iterate through all items.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">// forward iteration
+<pre class="prettyprint source lang-js"><code>// forward iteration
 for(let [k,v] of map) {
     console.log(`key: ${k}, value: ${v}`);
 }
@@ -69,10 +126,10 @@ for(let [k,v] of map) {
 // reverse iteration
 for(let [k,v] of map.backward) {
     console.log(`key: ${k}, value: ${v}`);
-}</code>
+}
 </code></pre>
 <p>With STL-like explicit iterators one can navigate through specific ranges in the container and update or erase some of the items during iteration.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">// find all elements with keys between 10 and 20 inclusive
+<pre class="prettyprint source lang-js"><code>// find all elements with keys between 10 and 20 inclusive
 let prevIter;
 for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
     if (prevIter !== undefined) {
@@ -84,20 +141,21 @@ for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
         }
     }
     prevIter = new Iterator(it); // make a copy of current iterator
-}</code>
+}
 </code></pre>
 <p>Detailed library documentation is <a href="https://kirusi.github.io/jstreemap">here.</a></p>
-<h2 id="installation">Installation</h2><p>Using npm:</p>
-<pre><code class="lang-shell"><code class="source-code prettyprint">$ npm i --save jstreemap</code>
+<h2>Installation</h2>
+<p>Using npm:</p>
+<pre class="prettyprint source lang-shell"><code>$ npm i --save jstreemap
 </code></pre>
 <p>In Node.js:</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">// Load library which is UMD packed.
-const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require(&apos;jstreemap&apos;);
+<pre class="prettyprint source lang-js"><code>// Load library which is UMD packed.
+const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require('jstreemap');
 
 // Create and initialize map.
-let map = new TreeMap([[2, &apos;B&apos;], [1, &apos;A&apos;], [3, &apos;C&apos;]]);
-map.set(5, &apos;E&apos;);
-map.set(4, &apos;D&apos;);
+let map = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
+map.set(5, 'E');
+map.set(4, 'D');
 // Iterate through all key-value pairs
 // Note that entries are stored in the ascending order of the keys,
 // not in the insertion order as in standard ES6 map
@@ -119,17 +177,17 @@ for(let [k,v] of map.backward()) {
 // find all elements with keys between 10 and 20 inclusive
 for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
     console.log(`key: ${it.key}, value: ${it.value}`);
-}</code>
+}
 </code></pre>
 <p>In a browser:</p>
-<pre><code class="lang-html"><code class="source-code prettyprint">&lt;!-- Load library which is UMD packed --&gt;
-&lt;script src=&quot;jstreemap.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint source lang-html"><code>&lt;!-- Load library which is UMD packed -->
+&lt;script src=&quot;jstreemap.js&quot;>&lt;/script>
 
-&lt;script&gt;
+&lt;script>
 // Classes TreeSet, TreeMap, TreeMultiSet, TreeMultiMap, Iterator, ReverseIterator,  JsIterator, JsReverseIterator are globally available
 
 // Create and initialize map.
-let map = new TreeMap([[2, &apos;B&apos;], [1, &apos;A&apos;], [3, &apos;C&apos;]]);
+let map = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
 // Iterate through all key-value pairs
 // Note that entries are stored in the ascending order of the keys,
 // not in the insertion order as in standard ES6 map
@@ -150,25 +208,40 @@ for(let [k,v] of map.backward()) {
 for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
     console.log(`key: ${it.key}, value: ${it.value}`);
 }
-&lt;/script&gt;</code>
+&lt;/script>
 </code></pre>
-<h2 id="why-jstreemap-">Why jstreemap?</h2><p>Ordered associative containers are not provided by default with JavaScript. This library provides an efficient implementation where performance of insert, delete and search operations is O(log(n)).</p>
+<h2>Why jstreemap?</h2>
+<p>Ordered associative containers are not provided by default with JavaScript. This library provides an efficient implementation where performance of insert, delete and search operations is O(log(n)).</p>
 <p>Unlike standard sets and maps in ES6, this library provides  ordered containers. Iteration through container contents will be done in sorted order without any additional performance overhead.</p>
-<p><a href="https://kirusi.github.io/jstreemap">Container API</a> implements features of default ES6 maps and sets as well as parts of STL (C++ library) interface.</p>
-<p>The library showcases 100% test coverage and 100% documentation coverage.</p>
-</div>
-</div>
+<p><a href="https://kirusi.github.io/jstreemap">Container API</a> implements features of default ES6 maps and sets as well as parts of STL (C++ library) interface</p>
+<p>The library showcases 100% test coverage and 100% documentation coverage.</p></article>
+    </section>
 
-<footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
-</footer>
 
-<script src="script/search_index.js"></script>
-<script src="script/search.js"></script>
-<script src="script/pretty-print.js"></script>
-<script src="script/inherited-summary.js"></script>
-<script src="script/test-summary.js"></script>
-<script src="script/inner-link.js"></script>
-<script src="script/patch-for-local.js"></script>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
 </body>
 </html>

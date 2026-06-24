@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> js-iterators.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="InsertionResult.html">InsertionResult</a></li><li><a href="JsIterator.html">JsIterator</a></li><li><a href="JsReverseIterator.html">JsReverseIterator</a></li><li><a href="ReverseIterator.html">ReverseIterator</a></li><li><a href="TreeIterator.html">TreeIterator</a></li><li><a href="TreeMap.html">TreeMap</a></li><li><a href="TreeMultiMap.html">TreeMultiMap</a></li><li><a href="TreeMultiSet.html">TreeMultiSet</a></li><li><a href="TreeSet.html">TreeSet</a></li></ul><h3>Interfaces</h3><ul><li><a href="MapIterator.html">MapIterator</a></li><li><a href="SetIterator.html">SetIterator</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>js-iterators.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { TreeNode } from './tree-node.js';
+
+/* Containers are expected to support the following methods:
+   jsBegin() - returns the very first node
+   jsEnd() - returns the node beyond the last one
+   next(node) - returns the next node
+   prev(node) - returns the previous node
+   valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */
+/**
+ * ES6-style forward iterator.
+ * @template T - iterator's value type
+ * @example
+ * let m = new TreeMap();
+ * ...
+ * for (let [key, value] of m) {
+ *   console.log(`key: ${key}, value: ${value}`);
+ * }
+ * // iterate values
+ * for (let value of m.values()) {
+ *   console.log(`value: ${value}`);
+ * }
+ */
+export class JsIterator&lt;T> implements IterableIterator&lt;T> {
+  /**
+   * Internal reference to a container
+   * @private
+   */
+  public container: any;
+  /**
+   * valuePolicy implements what members of the node will be returned: key, value, or key and value
+   * @private
+   */
+  public valuePolicy: any;
+  /**
+   * current node
+   * @private
+   */
+  public node: TreeNode&lt;any, any>;
+
+  /**
+   * Constructor for JSIterator
+   * @param {*} container - Container to be traversed
+   * @param {*} valuePolicy - policy object that specifies whether nodes have just keys or keys &amp; values
+   * @private
+   */
+  constructor(container: any, valuePolicy = container.valuePolicy) {
+    this.container = container;
+    this.valuePolicy = valuePolicy;
+    this.node = container.jsBegin();
+  }
+  /**
+   * As documented in ES6 iteration protocol. It can be used for manual iteration.
+   * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+   * @returns {IteratorResult} returns object that specifies an indicator whether the node was fetched and node itself
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * let jsIt = m.entries();
+   * while (true) {
+   *   let res = it.next();
+   *   if (res.done) {
+   *     break;
+   *   }
+   *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
+   * }
+   */
+  next(): IteratorResult&lt;T> {
+    const res = {
+      done: true,
+      value: undefined as T,
+    };
+    res.done = this.node === this.container.jsEnd();
+    if (!res.done) {
+      res.value = this.valuePolicy.fetch(this.node);
+      this.node = this.container.next(this.node);
+    }
+    return res;
+  }
+
+  /**
+   * Support for ES6 for-of loops.
+   * @returns {IterableIterator} iterator to traverse all elements in forward order
+   */
+  [Symbol.iterator](): IterableIterator&lt;T> {
+    return this;
+  }
+
+  /**
+   * A reverse iterator for the same container.
+   * @returns {JsReverseIterator} iterator to traverse all elements in reverse order
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * // iterate all key-value pairs in reverse order
+   * for (let [key, value] of m.backwards()) {
+   *   console.log(`key: ${key}, value: ${value}`);
+   * }
+   */
+  backwards(): JsReverseIterator&lt;T> {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    return new JsReverseIterator(this.container, this.valuePolicy);
+  }
+}
+
+/* Containers are expected to support the following methods:
+   jsRbegin() - returns the very first node in reverse order (e.g. the very last node)
+   jsrEnd() - returns the node beyond the last one in reverse order (e.g. the node before the first one)
+   next(node) - returns the next node
+   prev(node) - returns the previous node
+   valuePolicy - an instance of KeyOnlyPolicy, or KeyValuePolicy */
+/**
+ * ES6-style backward iterator
+ * @template T - iterator's value type
+ * @example
+ * let m = new TreeMap();
+ * ...
+ * // iterate all key-value pairs in reverse order
+ * for (let [key, value] of m.backwards()) {
+ *   console.log(`key: ${key}, value: ${value}`);
+ * }
+ * // iterate keys in reverse order
+ * for (let key of m.keys().backwards()) {
+ *   console.log(`key: ${key}`);
+ * }
+ */
+export class JsReverseIterator&lt;T> {
+  /**
+   * Internal reference to a container
+   * @private
+   */
+  public container: any;
+  /**
+   * valuePolicy implements what members of the node will be returned: key, value, or key and value
+   * @private
+   */
+  public valuePolicy: any;
+  /**
+   * current node
+   * @private
+   */
+  public node: TreeNode&lt;any, any>;
+  /**
+   * Constructor for reverse iterator
+   * @param {*} container - Container reference
+   * @param {*} valuePolicy - policy object that specifies whether nodes contain just keys or keys &amp; values
+   * @private
+   */
+  constructor(container: any, valuePolicy = container.valuePolicy) {
+    this.container = container;
+    this.valuePolicy = valuePolicy;
+    this.node = container.jsRbegin();
+  }
+
+  /**
+   * As documented in ES6 iteration protocol. It can be used for manual iteration.
+   * Iterators are documented here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+   * @returns {IteratorResult} returns object that specifies an indicator whether the node was fetched and node itself
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * let jsIt = m.entries().backwards();
+   * while (true) {
+   *   let res = it.next();
+   *   if (res.done) {
+   *     break;
+   *   }
+   *   console.log(`key: ${res.value[0]}, value: ${res.value[1]`});
+   * }
+   */
+  next(): IteratorResult&lt;T> {
+    const res = { done: false, value: undefined as T };
+    res.done = this.node === this.container.jsRend();
+    if (!res.done) {
+      res.value = this.valuePolicy.fetch(this.node);
+      this.node = this.container.prev(this.node);
+    }
+    return res;
+  }
+
+  /**
+   * Support for ES6 for-of loops.
+   * @returns {*} iterator to traverse all elements in reverse order
+   */
+  [Symbol.iterator](): any {
+    return this;
+  }
+
+  /**
+   * A forward iterator for the same container
+   * @returns {JsIterator} iterator to traverse all elements in forward order
+   * @example
+   * let m = new TreeMap();
+   * ...
+   * // iterate all key-value pairs in direct order
+   * for (let [key, value] of m.backwards().backwards()) {
+   *   console.log(`key: ${key}, value: ${value}`);
+   */
+  backwards(): JsIterator&lt;T> {
+    return new JsIterator(this.container, this.valuePolicy);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
