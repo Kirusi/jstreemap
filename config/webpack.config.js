@@ -16,7 +16,6 @@ export default [
     entry: ['./build/compiled/src/main.umd.js'],
     output: {
       filename: 'dist/umd/jstreemap.js',
-      sourceMapFilename: 'dist/umd/jstreemap.map',
       path: distPath,
       library: {
         type: 'umd',
@@ -32,7 +31,6 @@ export default [
     entry: ['./build/compiled/src/main.esm.js'],
     output: {
       filename: 'dist/esm/jstreemap.js',
-      sourceMapFilename: 'dist/esm/jstreemap.map',
       path: distPath,
       module: true,
       library: {
