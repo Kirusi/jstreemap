@@ -23,7 +23,7 @@
             ]
         },
         {
-            "name": "Launch Current TS",
+            "name": "TS Launch Current",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "npx",
@@ -37,7 +37,7 @@
             ]
         },
         {
-            "name": "Launch Current JS",
+            "name": "JS Launch Current",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "node",

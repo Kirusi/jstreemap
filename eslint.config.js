@@ -8,7 +8,7 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import tseslint from 'typescript-eslint';
 
 const allJsFiles = {
-  files: ['**/*.js'],
+  files: ['**/*.js', '**/*.cjs'],
 };
 
 const allTsFiles = {
@@ -16,11 +16,18 @@ const allTsFiles = {
 };
 
 const allSrcFiles = {
-  files: ['./src/**/*.js', './test/**/*.js', './src/**/*.ts', './test/**/*.ts'],
+  files: [
+    './src/**/*.js',
+    './test/**/*.js',
+    './src/**/*.cjs',
+    './test/**/*.cjs',
+    './src/**/*.ts',
+    './test/**/*.ts',
+  ],
 };
 
 const srcOnlyFiles = {
-  files: ['./src/**/*.js', './src/**/*.ts'],
+  files: ['./src/**/*.js', './src/**/*.cjs', './src/**/*.ts'],
 };
 
 const localJsRules = {

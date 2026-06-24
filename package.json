@@ -1,18 +1,18 @@
 {
   "name": "jstreemap",
   "type": "module",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
-  "main": "./dist/umd/jstreemap.js",
+  "main": "./dist/umd/jstreemap.cjs",
   "types": "./dist/esm/jstreemap.d.ts",
   "module": "./dist/esm/jstreemap.js",
-  "unpkg": "./dist/umd/jstreemap.js",
+  "unpkg": "./dist/umd/jstreemap.cjs",
   "exports": {
     ".": {
       "import": "./dist/esm/jstreemap.js",
       "types": "./dist/esm/jstreemap.d.ts",
-      "require": "./dist/umd/jstreemap.js",
-      "default": "./dist/umd/jstreemap.js"
+      "require": "./dist/umd/jstreemap.cjs",
+      "default": "./dist/umd/jstreemap.cjs"
     }
   },
   "files": [
@@ -25,6 +25,7 @@
     "eslint": "eslint --config=./eslint.config.js",
     "eslint-fix": "eslint --config=./eslint.config.js --fix",
     "generate-tests": "tsx ./tools/generate-tests.ts ../build/compiled/test/specs ../build/generated-tests",
+    "import-tests": "node test/import-tests/esm-test.js && node test/import-tests/umd-test.cjs",
     "jsdoc": "jsdoc -c ./config/jsdoc.json",
     "preprod-esm-tests": "vitest run -c vitest.config.preprod.ts run build/generated-tests/esm-tests/*.test.js",
     "preprod-umd-tests": "vitest run -c vitest.config.preprod.ts run build/generated-tests/umd-tests/*.test.js",

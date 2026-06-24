@@ -16,7 +16,7 @@ export default [
   merge(baseConfig, {
     entry: ['./build/compiled/src/main.umd.js'],
     output: {
-      filename: 'dist/umd/jstreemap.js',
+      filename: 'dist/umd/jstreemap.cjs',
       path: distPath,
       library: {
         type: 'umd',

@@ -22,7 +22,7 @@ gulp.task('clean', function cleanTask(done) {
 });
 
 gulp.task('build', function buildTask(done) {
-  runCmd('eslint', 'npm run eslint-fix');
+  runCmd('eslint', 'npm run eslint');
   runCmd('dev-test', 'npm run dev-test');
   runCmd('analyze-tests', 'npm run analyze-tests');
   runCmd('jsdoc', 'npm run jsdoc');
@@ -31,6 +31,7 @@ gulp.task('build', function buildTask(done) {
   runCmd('generate-tests', 'npm run generate-tests');
   runCmd('preprod-esm-tests', 'npm run preprod-esm-tests');
   runCmd('preprod-umd-tests', 'npm run preprod-umd-tests');
+  runCmd('import-tests', 'npm run import-tests');
   runCmd('web-test', 'npm run web-test');
   done();
 });
