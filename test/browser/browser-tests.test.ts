@@ -13,7 +13,7 @@ for (const browser of BrowserList.allBrowsers) {
   describe(`Test in ${browser.name} browser`, function () {
     beforeAll(async function () {
       driver = await browser.create();
-    }, 10000);
+    }, 20000);
 
     afterAll(async function () {
       // Quit webdriver
