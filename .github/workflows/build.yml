@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 24.x
         cache: 'npm'
-    - run: chrome --version
+    - run: google-chrome --version
     - run: firefox --version
     - run: npm ci
     - run: npx gulp
