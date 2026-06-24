@@ -62,7 +62,7 @@ In Node.js:
 const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require('jstreemap');
 
 // Create and initialize map.
-let map = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
+let map: TreeMap<number, string> = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
 map.set(5, 'E');
 map.set(4, 'D');
 // Iterate through all key-value pairs
@@ -84,7 +84,7 @@ for(let [k,v] of map.backward()) {
 }
 ...
 // find all elements with keys between 10 and 20 inclusive
-for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
     console.log(`key: ${it.key}, value: ${it.value}`);
 }
 ```

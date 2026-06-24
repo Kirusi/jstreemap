@@ -6,7 +6,7 @@ import {
 } from './iterators.js';
 import { JsIterator, JsReverseIterator } from './js-iterators.js';
 import { KeyOnlyPolicy, ValueOnlyPolicy } from './policies.js';
-import { BLACK, Head, RED, SomeNode, TreeNode } from './tree-node.js';
+import { Head, NodeColors, SomeNode, TreeNode } from './tree-node.js';
 
 /** insertion mode of a multimap, nodes with the same keys can be added */
 const INSERT_MULTI = 1;
@@ -34,7 +34,7 @@ export function compare(lhs: any, rhs: any): number {
 }
 
 /**
- * Red-black tree
+ * NodeColors.RED-black tree
  * @access private
  */
 export class Tree<
@@ -169,7 +169,7 @@ export class Tree<
    */
   fetchColor(node: TreeNode<K, V>): number {
     if (this.isLeaf(node)) {
-      return BLACK;
+      return NodeColors.BLACK;
     }
     return node.color;
   }
@@ -177,19 +177,19 @@ export class Tree<
   /**
    * Tests a node for 'blackness'.
    * @param {TreeNode} node - node to inspect
-   * @returns {boolean} - true when node color is BLACK
+   * @returns {boolean} - true when node color is NodeColors.BLACK
    */
   isBlack(node: TreeNode<K, V>): boolean {
-    return this.fetchColor(node) === BLACK;
+    return this.fetchColor(node) === NodeColors.BLACK;
   }
 
   /**
    * Tests node for 'redness'.
    * @param {TreeNode} node - node to inspect
-   * @returns {boolean} - true when node color is RED
+   * @returns {boolean} - true when node color is NodeColors.RED
    */
   isRed(node: TreeNode<K, V>): boolean {
-    return this.fetchColor(node) === RED;
+    return this.fetchColor(node) === NodeColors.RED;
   }
 
   /* ===========================
@@ -344,7 +344,7 @@ export class Tree<
    * @param {TreeNode} n - node
    */
   repairCase1(n: TreeNode<K, V>): void {
-    n.color = BLACK;
+    n.color = NodeColors.BLACK;
   }
 
   /**
@@ -353,9 +353,9 @@ export class Tree<
    * @param {TreeNode} n - node
    */
   repairCase3(n: TreeNode<K, V>): void {
-    (n.parent as TreeNode<K, V>).color = BLACK;
-    n.uncle()!.color = BLACK;
-    n.grandparent()!.color = RED;
+    (n.parent as TreeNode<K, V>).color = NodeColors.BLACK;
+    n.uncle()!.color = NodeColors.BLACK;
+    n.grandparent()!.color = NodeColors.RED;
     this.insertRepairTree(n.grandparent()!);
   }
 
@@ -385,8 +385,8 @@ export class Tree<
       this.rotateLeft(g);
     }
 
-    p.color = BLACK;
-    g.color = RED;
+    p.color = NodeColors.BLACK;
+    g.color = NodeColors.RED;
   }
 
   /**
@@ -458,8 +458,8 @@ export class Tree<
     this.replaceNode(node, child);
     if (this.head.size === 2) {
       if (!this.isLeaf(child)) {
-        // Root node must be BLACK
-        child.color = BLACK;
+        // Root node must be NodeColors.BLACK
+        child.color = NodeColors.BLACK;
       }
     }
 
@@ -518,8 +518,8 @@ export class Tree<
     const s = node.sibling()!;
 
     if (this.isRed(s)) {
-      (node.parent as TreeNode<K, V>).color = RED;
-      s.color = BLACK;
+      (node.parent as TreeNode<K, V>).color = NodeColors.RED;
+      s.color = NodeColors.BLACK;
 
       if (node === (node.parent as TreeNode<K, V>).left) {
         this.rotateLeft(node.parent as TreeNode<K, V>);
@@ -544,7 +544,7 @@ export class Tree<
       this.isBlack(s.left as TreeNode<K, V>) &&
       this.isBlack(s.right as TreeNode<K, V>)
     ) {
-      s.color = RED;
+      s.color = NodeColors.RED;
       this.eraseCase1(p);
     } else {
       this.eraseCase4(node);
@@ -565,8 +565,8 @@ export class Tree<
       this.isBlack(s.left as TreeNode<K, V>) &&
       this.isBlack(s.right as TreeNode<K, V>)
     ) {
-      s.color = RED;
-      p.color = BLACK;
+      s.color = NodeColors.RED;
+      p.color = NodeColors.BLACK;
     } else {
       this.eraseCase5(node);
     }
@@ -582,27 +582,27 @@ export class Tree<
     const p = node.parent as TreeNode<K, V>;
     /* The check below is unnecessary
            due to case 2 (even though case 2 changed the sibling to a sibling's child,
-           the sibling's child can't be red, since no red parent can have a red child). */
+           the sibling's child can't be NodeColors.RED, since no NodeColors.RED parent can have a NodeColors.RED child). */
     /* if ((!this.isLeaf(s))
                && this.isBlack(s)) { */
 
-    /* the following statements just force the red to be on the left of the left of the parent,
+    /* the following statements just force the NodeColors.RED to be on the left of the left of the parent,
            or right of the right, so case six will rotate correctly. */
     if (
       node === p.left &&
       this.isRed(s.left as TreeNode<K, V>) &&
       this.isBlack(s.right as TreeNode<K, V>)
     ) {
-      s.color = RED;
-      (s.left as TreeNode<K, V>).color = BLACK;
+      s.color = NodeColors.RED;
+      (s.left as TreeNode<K, V>).color = NodeColors.BLACK;
       this.rotateRight(s);
     } else if (
       node === p.right &&
       this.isBlack(s.left as TreeNode<K, V>) &&
       this.isRed(s.right as TreeNode<K, V>)
     ) {
-      s.color = RED;
-      (s.right as TreeNode<K, V>).color = BLACK;
+      s.color = NodeColors.RED;
+      (s.right as TreeNode<K, V>).color = NodeColors.BLACK;
       this.rotateLeft(s);
     }
     //}
@@ -618,13 +618,13 @@ export class Tree<
     const s = node.sibling()!;
     const p = node.parent as TreeNode<K, V>;
     s.color = this.fetchColor(p);
-    p.color = BLACK;
+    p.color = NodeColors.BLACK;
 
     if (node === p.left) {
-      (s.right as TreeNode<K, V>).color = BLACK;
+      (s.right as TreeNode<K, V>).color = NodeColors.BLACK;
       this.rotateLeft(p);
     } else {
-      (s.left as TreeNode<K, V>).color = BLACK;
+      (s.left as TreeNode<K, V>).color = NodeColors.BLACK;
       this.rotateRight(p);
     }
   }
