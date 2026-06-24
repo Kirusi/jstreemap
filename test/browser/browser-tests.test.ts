@@ -1,27 +1,26 @@
-const path = require('node:path');
+import path from 'node:path';
 
-const webdriver = require('selenium-webdriver');
-const should = require('should');
+// @ts-expect-error: TS2307
+import webdriver from 'selenium-webdriver';
+import should from 'should';
+import { afterAll, beforeAll, describe, it } from 'vitest';
 
-const BrowserList = require('./browser-list');
+import { BrowserList } from './browser-list.js';
 
 for (const browser of BrowserList.allBrowsers) {
-  let driver;
+  let driver: any;
 
   describe(`Test in ${browser.name} browser`, function () {
-    before(async function () {
-      this.timeout(10000);
+    beforeAll(async function () {
       driver = await browser.create();
-    });
+    }, 10000);
 
-    after(async function () {
-      this.timeout(10000);
+    afterAll(async function () {
       // Quit webdriver
       await driver.quit();
-    });
+    }, 10000);
 
     it('Validate number of passed and failed tests', async function () {
-      this.timeout(5000);
       // Go to URL
       const htmlPath = path.join(__dirname, 'html', 'index.html');
       await driver.get(`file:///${htmlPath}`);
@@ -29,12 +28,12 @@ for (const browser of BrowserList.allBrowsers) {
       const numPasses = await driver
         .findElement(webdriver.By.css('li.passes em'))
         .getText();
-      should.equal(numPasses, 141);
+      should.equal(numPasses, 259);
 
       const numFails = await driver
         .findElement(webdriver.By.css('li.failures em'))
         .getText();
       should.equal(numFails, 0);
-    });
+    }, 5000);
   });
 }

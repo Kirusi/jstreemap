@@ -1,8 +1,10 @@
-const webdriver = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
+// @ts-expect-error: TS2307
+import webdriver from 'selenium-webdriver';
+// @ts-expect-error: TS2307
+import chrome from 'selenium-webdriver/chrome';
 
-class BrowserList {
-  static async createChrome() {
+export class BrowserList {
+  static async createChrome(): Promise<any> {
     const options = new chrome.Options();
     options.addArguments([
       '--no-sandbox',
@@ -17,14 +19,14 @@ class BrowserList {
     return driver;
   }
 
-  static async createFirefox() {
+  static async createFirefox(): Promise<any> {
     const driver = await new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.firefox())
       .build();
     return driver;
   }
 
-  static get allBrowsers() {
+  static get allBrowsers(): any {
     return [
       {
         name: 'Chrome',
@@ -37,5 +39,3 @@ class BrowserList {
     ];
   }
 }
-
-module.exports = BrowserList;

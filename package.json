@@ -10,12 +10,15 @@
   ],
   "scripts": {
     "analyze-tests": "tsx ./tools/analyze-tests.ts dev-tests.json",
-    "jsdoc": "jsdoc -c ./config/jsdoc.json",
-    "eslint-fix": "eslint --config=./eslint.config.js --fix",
+    "compile": "tsc",
+    "dev-test": "vitest run -c vitest.config.ts run test/specs/*.test.ts",
     "eslint": "eslint --config=./eslint.config.js",
-    "dev-test": "cross-env DEV_TEST=true vitest -c vitest.config.ts run test/specs/*.test.ts",
-    "prod-test": "vitest -c vitest.config.ts run test/specs/*.test.ts",
-    "web-test": "mocha --reporter spec test/browser/*.spec.js",
+    "eslint-fix": "eslint --config=./eslint.config.js --fix",
+    "generate-tests": "tsx ./tools/generate-tests.ts ../build/compiled/test/specs ../build/generated-tests",
+    "jsdoc": "jsdoc -c ./config/jsdoc.json",
+    "preprod-esm-tests": "vitest run -c vitest.config.preprod.ts run build/generated-tests/esm-tests/*.test.js",
+    "preprod-umd-tests": "vitest run -c vitest.config.preprod.ts run build/generated-tests/umd-tests/*.test.js",
+    "web-test": "vitest -c vitest.config.preprod.ts run test/browser/*.test.ts",
     "webpack": "webpack --config ./config/webpack.config.js"
   },
   "directories": {
@@ -78,6 +81,7 @@
     "jsdoc": "^4.0.5",
     "jsdoc-plugin-typescript": "^3.2.1",
     "lighthouse-badges": "^1.5.4",
+    "mocha": "^11.7.6",
     "nyc": "^18.0.0",
     "plugin-error": "^1.0.1",
     "selenium-webdriver": "^4.44.0",

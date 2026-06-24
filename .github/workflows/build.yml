@@ -7,6 +7,17 @@ on:
     branches: [ "master" ]
 
 jobs:
+  full-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 24.x
+        cache: 'npm'
+    - run: npm ci
+    - run: npx gulp
+
   build:
     runs-on: ubuntu-latest
     strategy:

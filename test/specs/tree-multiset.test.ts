@@ -5,24 +5,6 @@ import { describe, it } from 'vitest';
 
 import { TreeMultiSet } from '../../src/tree-multiset.js';
 
-// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
-/*
-if (process) {
-  // Running inside NodeJS
-  let lib;
-  if (process.env.DEV_TEST) {
-    // Use source code
-    lib = require('../../src/public/tree-multiset');
-  } else {
-    // use web-packed library
-    lib = require('../../jstreemap');
-  }
-
-  TreeMultiSet = lib.TreeMultiSet;
-  require('should');
-}
-*/
-
 describe('TreeMultiSet tests', function () {
   it('constructor;', function () {
     const m = new TreeMultiSet();

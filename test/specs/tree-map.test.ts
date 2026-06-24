@@ -5,24 +5,6 @@ import { describe, it } from 'vitest';
 
 import { TreeMap } from '../../src/tree-map.js';
 
-// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
-/*
-if (process) {
-  // Running inside NodeJS
-  let lib;
-  if (process.env.DEV_TEST) {
-    // Use source code
-    lib = require('../../src/public/tree-map');
-  } else {
-    // use web-packed library
-    lib = require('../../jstreemap');
-  }
-
-  TreeMap = lib.TreeMap;
-  require('should');
-}
-*/
-
 describe('TreeMap tests', function () {
   it('constructor;', function () {
     const m: TreeMap<number, string> = new TreeMap();

@@ -4,26 +4,6 @@ import { describe, it } from 'vitest';
 import { JsIterator, JsReverseIterator } from '../../src/js-iterators.js';
 import { TreeNode } from '../../src/tree-node.js';
 
-// When runing in the browser, then JStreeMap, Mocha and Should are already preloaded.
-/*
-if (process) {
-  // Running inside NodeJS
-  let lib;
-  if (process.env.DEV_TEST) {
-    // Use source code
-    lib = require('../../src/public/js-iterators');
-  } else {
-    // use web-packed library
-    lib = require('../../jstreemap');
-  }
-
-  JsIterator = lib.JsIterator;
-
-  JsReverseIterator = lib.JsReverseIterator;
-  require('should');
-}
-*/
-
 class NodeIsValuePolicy<K, V> {
   fetch(n: TreeNode<K, V>): TreeNode<K, V> {
     return n;

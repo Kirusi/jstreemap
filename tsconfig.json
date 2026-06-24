@@ -28,7 +28,8 @@
     "src/**/*",
     "test/**/*",
     "tools/**/*",
-    "vitest.config.ts"
+    "vitest.config.ts",
+    "vitest.config.preprod.ts"
   ],
   "exclude": [
     "node_modules",

@@ -3,23 +3,6 @@ import { describe, it } from 'vitest';
 
 import { TreeIterator, ReverseIterator } from '../../src/iterators.js';
 
-/*
-if (process) {
-  // Running inside NodeJS
-  let lib;
-  if (process.env.DEV_TEST) {
-    // Use source code
-    lib = require('../../src/public/iterators');
-  } else {
-    // use web-packed library
-    lib = require('../../jstreemap');
-  }
-
-  Iterator = lib.Iterator;
-  ReverseIterator = lib.ReverseIterator;
-}
-*/
-
 // Nodes are replaced with integers
 class ContainerStubIterTest {
   prev(n: any): any {
