@@ -16,24 +16,6 @@ const INSERT_UNIQUE = 2;
 const INSERT_REPLACE = 3;
 
 /**
- * @param lhs
- * @param rhs
- * @private
- * 3-way comparison, similar to strcmp and memcp in C programming language
- * @returns +1 if the value of rhs is greater than lhs
- *          -1 if the value of rhs is less than lhs
- *           0 if values are the same
- */
-export function compare(lhs: any, rhs: any): number {
-  if (lhs < rhs) {
-    return -1;
-  } else if (lhs === rhs) {
-    return 0;
-  }
-  return 1;
-}
-
-/**
  * NodeColors.RED-black tree
  * @access private
  */
@@ -51,8 +33,26 @@ export class Tree<
   /** default constructor of an empty tree */
   constructor() {
     this.head = new Head();
-    this.compare = compare;
+    this.compare = Tree.compare;
     this.valuePolicy = new KeyOnlyPolicy();
+  }
+
+  /**
+   * @param lhs
+   * @param rhs
+   * @private
+   * 3-way comparison, similar to strcmp and memcp in C programming language
+   * @returns +1 if the value of rhs is greater than lhs
+   *          -1 if the value of rhs is less than lhs
+   *           0 if values are the same
+   */
+  static compare(lhs: any, rhs: any): number {
+    if (lhs < rhs) {
+      return -1;
+    } else if (lhs === rhs) {
+      return 0;
+    }
+    return 1;
   }
 
   /**

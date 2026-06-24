@@ -1,7 +1,7 @@
 {
   "name": "jstreemap",
   "type": "module",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Library of associative containers; it implements TreeMap, TreeSet, TreeMultiMap and TreeMultiSet classes",
   "main": "./dist/umd/jstreemap.js",
   "types": "./dist/esm/jstreemap.d.ts",
