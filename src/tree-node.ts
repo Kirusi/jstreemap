@@ -1,14 +1,11 @@
 /**
  * @private
  */
-export const RED = 1;
-/**
- * @private
- */
-export const BLACK = 2;
-/**
- * @private
- */
+export class NodeColors {
+  public static RED = 1;
+  public static BLACK = 2;
+}
+
 export type SomeNode<K, V> = Head<K, V> | TreeNode<K, V> | null;
 /**
  * A node for a red-black tree
@@ -37,7 +34,7 @@ export class TreeNode<K, V> {
     /** value associated with the key */
     this.value = undefined;
     /** by default new node is red */
-    this.color = RED;
+    this.color = NodeColors.RED;
   }
 
   /**

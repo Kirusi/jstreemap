@@ -6,7 +6,7 @@ import { describe, it } from 'vitest';
 
 import { ReverseIterator } from '../../src/iterators.js';
 import { KeyValuePolicy } from '../../src/policies.js';
-import { TreeNode, Head, RED, BLACK } from '../../src/tree-node.js';
+import { TreeNode, Head, NodeColors } from '../../src/tree-node.js';
 import { Tree, compare } from '../../src/tree.js';
 
 class TestNode extends TreeNode<number, any> {
@@ -442,7 +442,7 @@ describe('Tree tests', function () {
 
   it('isLeaf', function () {
     const X = createNode('X');
-    setPointers(X, null, null, null, BLACK);
+    setPointers(X, null, null, null, NodeColors.BLACK);
     const t = new Tree();
     t.head.root = X;
     t.head.leftmost = X;
@@ -456,20 +456,23 @@ describe('Tree tests', function () {
   it('fetchColor', function () {
     const X = createNode('X');
     const Y = createNode('Y');
-    setPointers(X, null, Y, null, BLACK);
-    setPointers(Y, X, null, null, RED);
+    setPointers(X, null, Y, null, NodeColors.BLACK);
+    setPointers(Y, X, null, null, NodeColors.RED);
     const t = new Tree();
     t.head.root = X;
     t.head.leftmost = Y;
     t.head.rightmost = X;
     t.head.size = 2;
-    should.equal(t.fetchColor(X), BLACK);
+    should.equal(t.fetchColor(X), NodeColors.BLACK);
     should.equal(
       t.fetchColor(t.head as unknown as TreeNode<number, any>),
-      BLACK
+      NodeColors.BLACK
     );
-    should.equal(t.fetchColor(null as unknown as TreeNode<number, any>), BLACK);
-    should.equal(t.fetchColor(Y), RED);
+    should.equal(
+      t.fetchColor(null as unknown as TreeNode<number, any>),
+      NodeColors.BLACK
+    );
+    should.equal(t.fetchColor(Y), NodeColors.RED);
     should.ok(t.isBlack(X));
     should.ok(t.isRed(Y));
   });
@@ -478,105 +481,105 @@ describe('Tree tests', function () {
     const [t, n] = buildTree(2);
 
     validateHead(t.head, n, n, n, 1);
-    validatePointers(n, null, t.head, t.head, 2, BLACK);
+    validatePointers(n, null, t.head, t.head, 2, NodeColors.BLACK);
   });
 
   it('insertNode; root & left child; case 2', function () {
     const [t, n2, n1] = buildTree(2, 1);
 
     validateHead(t.head, n2, n1, n2, 2);
-    validatePointers(n2, null, n1, t.head, 2, BLACK);
-    validatePointers(n1, n2, t.head, null, 1, RED);
+    validatePointers(n2, null, n1, t.head, 2, NodeColors.BLACK);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.RED);
   });
 
   it('insertNode; root & right child; case 2', function () {
     const [t, n2, n3] = buildTree(2, 3);
 
     validateHead(t.head, n2, n2, n3, 2);
-    validatePointers(n2, null, t.head, n3, 2, BLACK);
-    validatePointers(n3, n2, null, t.head, 3, RED);
+    validatePointers(n2, null, t.head, n3, 2, NodeColors.BLACK);
+    validatePointers(n3, n2, null, t.head, 3, NodeColors.RED);
   });
 
   it('insertNode; 2,3,1,4; case 3', function () {
     const [t, n2, n3, n1, n4] = buildTree(2, 3, 1, 4);
 
     validateHead(t.head, n2, n1, n4, 4);
-    validatePointers(n2, null, n1, n3, 2, BLACK);
-    validatePointers(n3, n2, null, n4, 3, BLACK);
-    validatePointers(n1, n2, t.head, null, 1, BLACK);
-    validatePointers(n4, n3, null, t.head, 4, RED);
+    validatePointers(n2, null, n1, n3, 2, NodeColors.BLACK);
+    validatePointers(n3, n2, null, n4, 3, NodeColors.BLACK);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.BLACK);
+    validatePointers(n4, n3, null, t.head, 4, NodeColors.RED);
   });
 
   it('insertNode; 1,2,3; case 4', function () {
     const [t, n1, n2, n3] = buildTree(1, 2, 3);
 
     validateHead(t.head, n2, n1, n3, 3);
-    validatePointers(n1, n2, t.head, null, 1, RED);
-    validatePointers(n2, null, n1, n3, 2, BLACK);
-    validatePointers(n3, n2, null, t.head, 3, RED);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.RED);
+    validatePointers(n2, null, n1, n3, 2, NodeColors.BLACK);
+    validatePointers(n3, n2, null, t.head, 3, NodeColors.RED);
   });
 
   it('insertNode; 1,3,2; case 4', function () {
     const [t, n1, n3, n2] = buildTree(1, 3, 2);
 
     validateHead(t.head, n2, n1, n3, 3);
-    validatePointers(n1, n2, t.head, null, 1, RED);
-    validatePointers(n2, null, n1, n3, 2, BLACK);
-    validatePointers(n3, n2, null, t.head, 3, RED);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.RED);
+    validatePointers(n2, null, n1, n3, 2, NodeColors.BLACK);
+    validatePointers(n3, n2, null, t.head, 3, NodeColors.RED);
   });
 
   it('insertNode; 6,4,5; case 4', function () {
     const [t, n6, n4, n5] = buildTree(6, 4, 5);
 
     validateHead(t.head, n5, n4, n6, 3);
-    validatePointers(n4, n5, t.head, null, 4, RED);
-    validatePointers(n5, null, n4, n6, 5, BLACK);
-    validatePointers(n6, n5, null, t.head, 6, RED);
+    validatePointers(n4, n5, t.head, null, 4, NodeColors.RED);
+    validatePointers(n5, null, n4, n6, 5, NodeColors.BLACK);
+    validatePointers(n6, n5, null, t.head, 6, NodeColors.RED);
   });
 
   it('insertNode; 1,2,3,4; case 4', function () {
     const [t, n1, n2, n3, n4] = buildTree(1, 2, 3, 4);
 
     validateHead(t.head, n2, n1, n4, 4);
-    validatePointers(n1, n2, t.head, null, 1, BLACK);
-    validatePointers(n2, null, n1, n3, 2, BLACK);
-    validatePointers(n3, n2, null, n4, 3, BLACK);
-    validatePointers(n4, n3, null, t.head, 4, RED);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.BLACK);
+    validatePointers(n2, null, n1, n3, 2, NodeColors.BLACK);
+    validatePointers(n3, n2, null, n4, 3, NodeColors.BLACK);
+    validatePointers(n4, n3, null, t.head, 4, NodeColors.RED);
   });
 
   it('insertNode; 1,2,3,4,5; case 4', function () {
     const [t, n1, n2, n3, n4, n5] = buildTree(1, 2, 3, 4, 5);
 
     validateHead(t.head, n2, n1, n5, 5);
-    validatePointers(n1, n2, t.head, null, 1, BLACK);
-    validatePointers(n2, null, n1, n4, 2, BLACK);
-    validatePointers(n3, n4, null, null, 3, RED);
-    validatePointers(n4, n2, n3, n5, 4, BLACK);
-    validatePointers(n5, n4, null, t.head, 5, RED);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.BLACK);
+    validatePointers(n2, null, n1, n4, 2, NodeColors.BLACK);
+    validatePointers(n3, n4, null, null, 3, NodeColors.RED);
+    validatePointers(n4, n2, n3, n5, 4, NodeColors.BLACK);
+    validatePointers(n5, n4, null, t.head, 5, NodeColors.RED);
   });
 
   it('insertNode; 1,2,3,4,5,6; case 4', function () {
     const [t, n1, n2, n3, n4, n5, n6] = buildTree(1, 2, 3, 4, 5, 6);
 
     validateHead(t.head, n2, n1, n6, 6);
-    validatePointers(n1, n2, t.head, null, 1, BLACK);
-    validatePointers(n2, null, n1, n4, 2, BLACK);
-    validatePointers(n3, n4, null, null, 3, BLACK);
-    validatePointers(n4, n2, n3, n5, 4, RED);
-    validatePointers(n5, n4, null, n6, 5, BLACK);
-    validatePointers(n6, n5, null, t.head, 6, RED);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.BLACK);
+    validatePointers(n2, null, n1, n4, 2, NodeColors.BLACK);
+    validatePointers(n3, n4, null, null, 3, NodeColors.BLACK);
+    validatePointers(n4, n2, n3, n5, 4, NodeColors.RED);
+    validatePointers(n5, n4, null, n6, 5, NodeColors.BLACK);
+    validatePointers(n6, n5, null, t.head, 6, NodeColors.RED);
   });
 
   it('insertNode; 6,5,4,3,2,1; case 4', function () {
     const [t, n6, n5, n4, n3, n2, n1] = buildTree(6, 5, 4, 3, 2, 1);
 
     validateHead(t.head, n5, n1, n6, 6);
-    validatePointers(n6, n5, null, t.head, 6, BLACK);
-    validatePointers(n5, null, n3, n6, 5, BLACK);
-    validatePointers(n4, n3, null, null, 4, BLACK);
-    validatePointers(n3, n5, n2, n4, 3, RED);
-    validatePointers(n2, n3, n1, null, 2, BLACK);
-    validatePointers(n1, n2, t.head, null, 1, RED);
+    validatePointers(n6, n5, null, t.head, 6, NodeColors.BLACK);
+    validatePointers(n5, null, n3, n6, 5, NodeColors.BLACK);
+    validatePointers(n4, n3, null, null, 4, NodeColors.BLACK);
+    validatePointers(n3, n5, n2, n4, 3, NodeColors.RED);
+    validatePointers(n2, n3, n1, null, 2, NodeColors.BLACK);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.RED);
   });
 
   it('fetchMaximum', function () {
@@ -649,26 +652,26 @@ describe('Tree tests', function () {
     const [t, n2, _n1, n3] = buildTree(2, 1, 3);
     t.erase(n2);
     validateHead(t.head, n2, n2, n3, 2);
-    validatePointers(n2, null, t.head, n3, 1, BLACK);
-    validatePointers(n3, n2, null, t.head, 3, RED);
+    validatePointers(n2, null, t.head, n3, 1, NodeColors.BLACK);
+    validatePointers(n3, n2, null, t.head, 3, NodeColors.RED);
   });
 
   it('erase; delete leftmost child', function () {
     const [t, n2, n1, n3] = buildTree(2, 1, 3);
     t.erase(n1);
     validateHead(t.head, n2, n2, n3, 2);
-    validatePointers(n2, null, t.head, n3, 2, BLACK);
-    validatePointers(n3, n2, null, t.head, 3, RED);
+    validatePointers(n2, null, t.head, n3, 2, NodeColors.BLACK);
+    validatePointers(n3, n2, null, t.head, 3, NodeColors.RED);
   });
 
   it('erase; delete leftmost child 2', function () {
     const [t, n10, n8, n12, n6, n14] = buildTree(10, 8, 12, 6, 14);
     t.erase(n6);
     validateHead(t.head, n10, n8, n14, 4);
-    validatePointers(n8, n10, t.head, null, 8, BLACK);
-    validatePointers(n10, null, n8, n12, 10, BLACK);
-    validatePointers(n12, n10, null, n14, 12, BLACK);
-    validatePointers(n14, n12, null, t.head, 14, RED);
+    validatePointers(n8, n10, t.head, null, 8, NodeColors.BLACK);
+    validatePointers(n10, null, n8, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, n14, 12, NodeColors.BLACK);
+    validatePointers(n14, n12, null, t.head, 14, NodeColors.RED);
   });
 
   it('erase; delete leftmost and root, then root again', function () {
@@ -676,7 +679,7 @@ describe('Tree tests', function () {
     t.erase(n1);
     t.erase(n2);
     validateHead(t.head, n3, n3, n3, 1);
-    validatePointers(n3, null, t.head, t.head, 3, BLACK);
+    validatePointers(n3, null, t.head, t.head, 3, NodeColors.BLACK);
     t.erase(n3);
     validateHead(t.head, t.head, t.head, t.head, 0);
   });
@@ -699,18 +702,18 @@ describe('Tree tests', function () {
     const [t, n2, n1, n3] = buildTree(2, 1, 3);
     t.erase(n3);
     validateHead(t.head, n2, n1, n2, 2);
-    validatePointers(n1, n2, t.head, null, 1, RED);
-    validatePointers(n2, null, n1, t.head, 2, BLACK);
+    validatePointers(n1, n2, t.head, null, 1, NodeColors.RED);
+    validatePointers(n2, null, n1, t.head, 2, NodeColors.BLACK);
   });
 
   it('erase; delete rightmost child 2', function () {
     const [t, n10, n8, n12, n6, n14] = buildTree(10, 8, 12, 6, 14);
     t.erase(n14);
     validateHead(t.head, n10, n6, n12, 4);
-    validatePointers(n6, n8, t.head, null, 6, RED);
-    validatePointers(n8, n10, n6, null, 8, BLACK);
-    validatePointers(n10, null, n8, n12, 10, BLACK);
-    validatePointers(n12, n10, null, t.head, 12, BLACK);
+    validatePointers(n6, n8, t.head, null, 6, NodeColors.RED);
+    validatePointers(n8, n10, n6, null, 8, NodeColors.BLACK);
+    validatePointers(n10, null, n8, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, t.head, 12, NodeColors.BLACK);
   });
 
   it('erase; delete rightmost and root', function () {
@@ -718,7 +721,7 @@ describe('Tree tests', function () {
     t.erase(n3);
     t.erase(n2);
     validateHead(t.head, n1, n1, n1, 1);
-    validatePointers(n1, null, t.head, t.head, 1, BLACK);
+    validatePointers(n1, null, t.head, t.head, 1, NodeColors.BLACK);
     t.erase(n1);
     validateHead(t.head, t.head, t.head, t.head, 0);
   });
@@ -727,22 +730,22 @@ describe('Tree tests', function () {
     const [t, n20, n10, n30, n25, n35, n22] = buildTree(20, 10, 30, 25, 35, 22);
     t.erase(n25);
     validateHead(t.head, n20, n10, n35, 5);
-    validatePointers(n10, n20, t.head, null, 10, BLACK);
-    validatePointers(n20, null, n10, n30, 20, BLACK);
-    validatePointers(n22, n30, null, null, 22, RED);
-    validatePointers(n30, n20, n22, n35, 30, BLACK);
-    validatePointers(n35, n30, null, t.head, 35, RED);
+    validatePointers(n10, n20, t.head, null, 10, NodeColors.BLACK);
+    validatePointers(n20, null, n10, n30, 20, NodeColors.BLACK);
+    validatePointers(n22, n30, null, null, 22, NodeColors.RED);
+    validatePointers(n30, n20, n22, n35, 30, NodeColors.BLACK);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.RED);
   });
 
   it('erase; delete node with a single right child', function () {
     const [t, n20, n10, n30, n25, n35, n27] = buildTree(20, 10, 30, 25, 35, 27);
     t.erase(n25);
     validateHead(t.head, n20, n10, n35, 5);
-    validatePointers(n10, n20, t.head, null, 10, BLACK);
-    validatePointers(n20, null, n10, n30, 20, BLACK);
-    validatePointers(n27, n30, null, null, 27, RED);
-    validatePointers(n30, n20, n27, n35, 30, BLACK);
-    validatePointers(n35, n30, null, t.head, 35, RED);
+    validatePointers(n10, n20, t.head, null, 10, NodeColors.BLACK);
+    validatePointers(n20, null, n10, n30, 20, NodeColors.BLACK);
+    validatePointers(n27, n30, null, null, 27, NodeColors.RED);
+    validatePointers(n30, n20, n27, n35, 30, NodeColors.BLACK);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.RED);
   });
 
   it('erase; cases 2, 4; left child', function () {
@@ -759,19 +762,19 @@ describe('Tree tests', function () {
     t.erase(n40);
     // validate initial state
     validateHead(t.head, n20, n10, n35, 5);
-    validatePointers(n10, n20, t.head, null, 10, BLACK);
-    validatePointers(n20, null, n10, n30, 20, BLACK);
-    validatePointers(n25, n30, null, null, 25, BLACK);
-    validatePointers(n30, n20, n25, n35, 30, RED);
-    validatePointers(n35, n30, null, t.head, 35, BLACK);
+    validatePointers(n10, n20, t.head, null, 10, NodeColors.BLACK);
+    validatePointers(n20, null, n10, n30, 20, NodeColors.BLACK);
+    validatePointers(n25, n30, null, null, 25, NodeColors.BLACK);
+    validatePointers(n30, n20, n25, n35, 30, NodeColors.RED);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.BLACK);
 
     // case 2, which then becomes case 4
     t.erase(n10);
     validateHead(t.head, n30, n20, n35, 4);
-    validatePointers(n20, n30, t.head, n25, 20, BLACK);
-    validatePointers(n25, n20, null, null, 25, RED);
-    validatePointers(n30, null, n20, n35, 30, BLACK);
-    validatePointers(n35, n30, null, t.head, 35, BLACK);
+    validatePointers(n20, n30, t.head, n25, 20, NodeColors.BLACK);
+    validatePointers(n25, n20, null, null, 25, NodeColors.RED);
+    validatePointers(n30, null, n20, n35, 30, NodeColors.BLACK);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.BLACK);
   });
 
   it('erase; cases 2, 4; right child', function () {
@@ -779,19 +782,19 @@ describe('Tree tests', function () {
     t.erase(n18);
     // validate initial state
     validateHead(t.head, n20, n5, n30, 5);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n20, n5, n15, 10, RED);
-    validatePointers(n15, n10, null, null, 15, BLACK);
-    validatePointers(n20, null, n10, n30, 20, BLACK);
-    validatePointers(n30, n20, null, t.head, 30, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n20, n5, n15, 10, NodeColors.RED);
+    validatePointers(n15, n10, null, null, 15, NodeColors.BLACK);
+    validatePointers(n20, null, n10, n30, 20, NodeColors.BLACK);
+    validatePointers(n30, n20, null, t.head, 30, NodeColors.BLACK);
 
     // case 2, which then becomes case 4
     t.erase(n30);
     validateHead(t.head, n10, n5, n20, 4);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, null, n5, n20, 10, BLACK);
-    validatePointers(n15, n20, null, null, 15, RED);
-    validatePointers(n20, n10, n15, t.head, 20, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, null, n5, n20, 10, NodeColors.BLACK);
+    validatePointers(n15, n20, null, null, 15, NodeColors.RED);
+    validatePointers(n20, n10, n15, t.head, 20, NodeColors.BLACK);
   });
 
   it('erase; cases 3, 5, 6; left child', function () {
@@ -810,29 +813,29 @@ describe('Tree tests', function () {
 
     // validate initial state
     validateHead(t.head, n20, n5, n35, 10);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n20, n5, n15, 10, BLACK);
-    validatePointers(n12, n15, null, null, 12, BLACK);
-    validatePointers(n15, n10, n12, n17, 15, RED);
-    validatePointers(n16, n17, null, null, 16, RED);
-    validatePointers(n17, n15, n16, null, 17, BLACK);
-    validatePointers(n20, null, n10, n30, 20, BLACK);
-    validatePointers(n25, n30, null, null, 25, BLACK);
-    validatePointers(n30, n20, n25, n35, 30, BLACK);
-    validatePointers(n35, n30, null, t.head, 35, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n20, n5, n15, 10, NodeColors.BLACK);
+    validatePointers(n12, n15, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, n10, n12, n17, 15, NodeColors.RED);
+    validatePointers(n16, n17, null, null, 16, NodeColors.RED);
+    validatePointers(n17, n15, n16, null, 17, NodeColors.BLACK);
+    validatePointers(n20, null, n10, n30, 20, NodeColors.BLACK);
+    validatePointers(n25, n30, null, null, 25, NodeColors.BLACK);
+    validatePointers(n30, n20, n25, n35, 30, NodeColors.BLACK);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.BLACK);
 
     // case 3
     t.erase(n25);
     validateHead(t.head, n15, n5, n35, 9);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n15, n5, n12, 10, BLACK);
-    validatePointers(n12, n10, null, null, 12, BLACK);
-    validatePointers(n15, null, n10, n20, 15, BLACK);
-    validatePointers(n16, n17, null, null, 16, RED);
-    validatePointers(n17, n20, n16, null, 17, BLACK);
-    validatePointers(n20, n15, n17, n30, 20, BLACK);
-    validatePointers(n30, n20, null, n35, 30, BLACK);
-    validatePointers(n35, n30, null, t.head, 35, RED);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n15, n5, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, null, n10, n20, 15, NodeColors.BLACK);
+    validatePointers(n16, n17, null, null, 16, NodeColors.RED);
+    validatePointers(n17, n20, n16, null, 17, NodeColors.BLACK);
+    validatePointers(n20, n15, n17, n30, 20, NodeColors.BLACK);
+    validatePointers(n30, n20, null, n35, 30, NodeColors.BLACK);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.RED);
   });
 
   it('erase; cases 3, 5, 6; right child', function () {
@@ -851,32 +854,32 @@ describe('Tree tests', function () {
 
     // validate initial state
     validateHead(t.head, n20, n5, n35, 10);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n20, n5, n15, 10, BLACK);
-    validatePointers(n12, n15, null, null, 12, BLACK);
-    validatePointers(n15, n10, n12, n17, 15, RED);
-    validatePointers(n16, n17, null, null, 16, RED);
-    validatePointers(n17, n15, n16, null, 17, BLACK);
-    validatePointers(n20, null, n10, n30, 20, BLACK);
-    validatePointers(n25, n30, null, null, 25, BLACK);
-    validatePointers(n30, n20, n25, n35, 30, BLACK);
-    validatePointers(n35, n30, null, t.head, 35, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n20, n5, n15, 10, NodeColors.BLACK);
+    validatePointers(n12, n15, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, n10, n12, n17, 15, NodeColors.RED);
+    validatePointers(n16, n17, null, null, 16, NodeColors.RED);
+    validatePointers(n17, n15, n16, null, 17, NodeColors.BLACK);
+    validatePointers(n20, null, n10, n30, 20, NodeColors.BLACK);
+    validatePointers(n25, n30, null, null, 25, NodeColors.BLACK);
+    validatePointers(n30, n20, n25, n35, 30, NodeColors.BLACK);
+    validatePointers(n35, n30, null, t.head, 35, NodeColors.BLACK);
 
     // case 3
     t.erase(n35);
     validateHead(t.head, n15, n5, n30, 9);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n15, n5, n12, 10, BLACK);
-    validatePointers(n12, n10, null, null, 12, BLACK);
-    validatePointers(n15, null, n10, n20, 15, BLACK);
-    validatePointers(n16, n17, null, null, 16, RED);
-    validatePointers(n17, n20, n16, null, 17, BLACK);
-    validatePointers(n20, n15, n17, n30, 20, BLACK);
-    validatePointers(n25, n30, null, null, 25, RED);
-    validatePointers(n30, n20, n25, t.head, 30, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n15, n5, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, null, n10, n20, 15, NodeColors.BLACK);
+    validatePointers(n16, n17, null, null, 16, NodeColors.RED);
+    validatePointers(n17, n20, n16, null, 17, NodeColors.BLACK);
+    validatePointers(n20, n15, n17, n30, 20, NodeColors.BLACK);
+    validatePointers(n25, n30, null, null, 25, NodeColors.RED);
+    validatePointers(n30, n20, n25, t.head, 30, NodeColors.BLACK);
   });
 
-  it('erase; cases 5, 6; left child is red', function () {
+  it('erase; cases 5, 6; left child is NodeColors.RED', function () {
     const [t, n20, n10, n30, n5, n15, n25, n35, n40] = buildTree(
       20,
       10,
@@ -894,28 +897,28 @@ describe('Tree tests', function () {
 
     // validate initial state
     validateHead(t.head, n15, n5, n30, 8);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n15, n5, n12, 10, BLACK);
-    validatePointers(n12, n10, null, null, 12, BLACK);
-    validatePointers(n15, null, n10, n20, 15, BLACK);
-    validatePointers(n17, n20, null, null, 17, BLACK);
-    validatePointers(n20, n15, n17, n30, 20, BLACK);
-    validatePointers(n25, n30, null, null, 25, RED);
-    validatePointers(n30, n20, n25, t.head, 30, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n15, n5, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, null, n10, n20, 15, NodeColors.BLACK);
+    validatePointers(n17, n20, null, null, 17, NodeColors.BLACK);
+    validatePointers(n20, n15, n17, n30, 20, NodeColors.BLACK);
+    validatePointers(n25, n30, null, null, 25, NodeColors.RED);
+    validatePointers(n30, n20, n25, t.head, 30, NodeColors.BLACK);
 
     // case 5
     t.erase(n17);
     validateHead(t.head, n15, n5, n30, 7);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n15, n5, n12, 10, BLACK);
-    validatePointers(n12, n10, null, null, 12, BLACK);
-    validatePointers(n15, null, n10, n25, 15, BLACK);
-    validatePointers(n20, n25, null, null, 20, BLACK);
-    validatePointers(n25, n15, n20, n30, 25, BLACK);
-    validatePointers(n30, n25, null, t.head, 30, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n15, n5, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, null, n10, n25, 15, NodeColors.BLACK);
+    validatePointers(n20, n25, null, null, 20, NodeColors.BLACK);
+    validatePointers(n25, n15, n20, n30, 25, NodeColors.BLACK);
+    validatePointers(n30, n25, null, t.head, 30, NodeColors.BLACK);
   });
 
-  it('erase; cases 5, 6; left child is red 2', function () {
+  it('erase; cases 5, 6; left child is NodeColors.RED 2', function () {
     const [t, n20, n10, n30, n5, n15, n25, n35, n40] = buildTree(
       20,
       10,
@@ -933,25 +936,25 @@ describe('Tree tests', function () {
 
     // validate initial state
     validateHead(t.head, n15, n5, n30, 8);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n15, n5, n12, 10, BLACK);
-    validatePointers(n12, n10, null, null, 12, BLACK);
-    validatePointers(n15, null, n10, n20, 15, BLACK);
-    validatePointers(n16, n17, null, null, 16, RED);
-    validatePointers(n17, n20, n16, null, 17, BLACK);
-    validatePointers(n20, n15, n17, n30, 20, BLACK);
-    validatePointers(n30, n20, null, t.head, 30, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n15, n5, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, null, n10, n20, 15, NodeColors.BLACK);
+    validatePointers(n16, n17, null, null, 16, NodeColors.RED);
+    validatePointers(n17, n20, n16, null, 17, NodeColors.BLACK);
+    validatePointers(n20, n15, n17, n30, 20, NodeColors.BLACK);
+    validatePointers(n30, n20, null, t.head, 30, NodeColors.BLACK);
 
     // case 5
     t.erase(n30);
     validateHead(t.head, n15, n5, n20, 7);
-    validatePointers(n5, n10, t.head, null, 5, BLACK);
-    validatePointers(n10, n15, n5, n12, 10, BLACK);
-    validatePointers(n12, n10, null, null, 12, BLACK);
-    validatePointers(n15, null, n10, n17, 15, BLACK);
-    validatePointers(n16, n17, null, null, 16, BLACK);
-    validatePointers(n17, n15, n16, n20, 17, BLACK);
-    validatePointers(n20, n17, null, t.head, 20, BLACK);
+    validatePointers(n5, n10, t.head, null, 5, NodeColors.BLACK);
+    validatePointers(n10, n15, n5, n12, 10, NodeColors.BLACK);
+    validatePointers(n12, n10, null, null, 12, NodeColors.BLACK);
+    validatePointers(n15, null, n10, n17, 15, NodeColors.BLACK);
+    validatePointers(n16, n17, null, null, 16, NodeColors.BLACK);
+    validatePointers(n17, n15, n16, n20, 17, NodeColors.BLACK);
+    validatePointers(n20, n17, null, t.head, 20, NodeColors.BLACK);
   });
 
   it('insert / erase; add and remove many random nodes', function () {
@@ -998,16 +1001,16 @@ describe('Tree tests', function () {
         res.errorMessage = `Invalid node ${n.key}. Both children are ${r.key}.`;
         return;
       }
-      // If this is red, neither child can be red
+      // If this is NodeColors.RED, neither child can be NodeColors.RED
       if (t.isRed(n)) {
         if (!t.isBlack(n.left)) {
           res.isValid = false;
-          res.errorMessage = `Node ${(n.left as TestNode).key} must be black, because it's parent ${n.key} is red.`;
+          res.errorMessage = `Node ${(n.left as TestNode).key} must be NodeColors.BLACK, because it's parent ${n.key} is NodeColors.RED.`;
           return;
         }
         if (!t.isBlack(n.right)) {
           res.isValid = false;
-          res.errorMessage = `Node ${(n.right as TestNode).key} must be black, because it's parent ${n.key} is red.`;
+          res.errorMessage = `Node ${(n.right as TestNode).key} must be NodeColors.BLACK, because it's parent ${n.key} is NodeColors.RED.`;
           return;
         }
       }
@@ -1031,10 +1034,10 @@ describe('Tree tests', function () {
         // invalid or different height right subtree
         res.isValid = false;
 
-        res.errorMessage = `Invalid node ${n.key}. The black height of the left subtree is ${resLeft.height} and different from the black height of the right subtree ${resRight.height}`;
+        res.errorMessage = `Invalid node ${n.key}. The NodeColors.BLACK height of the left subtree is ${resLeft.height} and different from the NodeColors.BLACK height of the right subtree ${resRight.height}`;
         return;
       }
-      // calculate black height of this node
+      // calculate NodeColors.BLACK height of this node
       res.isValid = true;
       res.height = resLeft.height + (t.isBlack(n) ? 1 : 0);
       res.size = resLeft.size + resRight.size + 1;
@@ -1053,10 +1056,10 @@ describe('Tree tests', function () {
         res.errorMessage = 'Root parent must be null';
         return res;
       }
-      // root must be black
+      // root must be NodeColors.BLACK
       if (!t.isBlack(h.root)) {
         res.isValid = false;
-        res.errorMessage = 'Root must be black';
+        res.errorMessage = 'Root must be NodeColors.BLACK';
         return res;
       }
       // leftmost node should point to the head as it's left child
@@ -1864,7 +1867,7 @@ describe('Tree tests', function () {
 
   it('tree with custom comparison function', function () {
     /* Test ability to compare alphanumeric structures like ['A',123]
-           First string portion is compared. If string portions of two objects are equal then numeric portions are compared */
+           First string portion is compaNodeColors.RED. If string portions of two objects are equal then numeric portions are compaNodeColors.RED */
     class Id {
       public alpha: string;
       public num: number;

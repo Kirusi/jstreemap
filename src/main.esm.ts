@@ -6,12 +6,11 @@ import { KeyOnlyPolicy, KeyValuePolicy, ValueOnlyPolicy } from './policies.js';
 import { TreeMap } from './tree-map.js';
 import { TreeMultiMap } from './tree-multimap.js';
 import { TreeMultiSet } from './tree-multiset.js';
-import { BLACK, RED, TreeNode } from './tree-node.js';
+import { NodeColors, TreeNode } from './tree-node.js';
 import { TreeSet } from './tree-set.js';
 import { compare, Tree } from './tree.js';
 
 export {
-  BLACK,
   compare,
   TreeIterator,
   ReverseIterator,
@@ -19,7 +18,7 @@ export {
   JsReverseIterator,
   KeyOnlyPolicy,
   KeyValuePolicy,
-  RED,
+  NodeColors,
   Tree,
   TreeMap,
   TreeMultiMap,
