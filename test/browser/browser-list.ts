@@ -27,15 +27,24 @@ export class BrowserList {
   }
 
   static get allBrowsers(): any {
-    return [
-      {
-        name: 'Chrome',
-        create: BrowserList.createChrome,
-      },
-      {
-        name: 'Firefox',
-        create: BrowserList.createFirefox,
-      },
-    ];
+    if (process.env.GITHUB_ACTIONS) {
+      return [
+        {
+          name: 'Chrome',
+          create: BrowserList.createChrome,
+        },
+      ];
+    } else {
+      return [
+        {
+          name: 'Chrome',
+          create: BrowserList.createChrome,
+        },
+        {
+          name: 'Firefox',
+          create: BrowserList.createFirefox,
+        },
+      ];
+    }
   }
 }

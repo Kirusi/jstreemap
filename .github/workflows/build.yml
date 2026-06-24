@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 24.x
         cache: 'npm'
-    - uses: browser-actions/setup-firefox@v1
+    - run: chrome --version
     - run: firefox --version
     - run: npm ci
     - run: npx gulp
