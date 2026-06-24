@@ -77,7 +77,7 @@ async function main(): Promise<void> {
   await generatePreprodTests(srcDir, path.resolve(fullDestDir, 'umd-tests'), [
     "import { describe, it } from 'vitest';",
     "import should from 'should';",
-    "import { compare, JsIterator, JsReverseIterator, KeyOnlyPolicy, KeyValuePolicy, NodeColors, ReverseIterator, Tree, TreeIterator, TreeMap, TreeMultiMap, TreeNode, TreeSet, TreeMultiSet, ValueOnlyPolicy } from '../../../dist/umd/jstreemap.js';",
+    "import { compare, JsIterator, JsReverseIterator, KeyOnlyPolicy, KeyValuePolicy, NodeColors, ReverseIterator, Tree, TreeIterator, TreeMap, TreeMultiMap, TreeNode, TreeSet, TreeMultiSet, ValueOnlyPolicy } from '../../../dist/umd/jstreemap.cjs';",
   ]);
   await generatePreprodTests(srcDir, path.resolve(fullDestDir, 'esm-tests'), [
     "import { describe, it } from 'vitest';",
