@@ -25,7 +25,7 @@ for(let [k,v] of map) {
 }
 
 // reverse iteration
-for(let [k,v] of map.backward) {
+for(let [k,v] of map.backwards()) {
     console.log(`key: ${k}, value: ${v}`);
 }
 ```
