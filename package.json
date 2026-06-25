@@ -25,7 +25,7 @@
     "eslint": "eslint --config=./eslint.config.js",
     "eslint-fix": "eslint --config=./eslint.config.js --fix",
     "generate-tests": "tsx ./tools/generate-tests.ts ../build/compiled/test/specs ../build/generated-tests",
-    "import-tests": "node test/import-tests/esm-test.js && node test/import-tests/umd-test.cjs",
+    "import-tests": "node test/import-tests/esm-test.js && tsx test/import-tests/esm-test.ts && node test/import-tests/umd-test.cjs",
     "jsdoc": "jsdoc -c ./config/jsdoc.json",
     "preprod-esm-tests": "vitest run -c vitest.config.preprod.ts run build/generated-tests/esm-tests/*.test.js",
     "preprod-umd-tests": "vitest run -c vitest.config.preprod.ts run build/generated-tests/umd-tests/*.test.js",
