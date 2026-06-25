@@ -1,7 +1,8 @@
 // Load library which is ESM packed.
+// @ts-expect-error: TS2306
 import { TreeMap } from '../../dist/esm/jstreemap.js';
 
-function compareArraysInOrder(actual, expected) {
+function compareArraysInOrder(actual: string[], expected: string[]): any[] {
   const maxLength = Math.max(actual.length, expected.length);
   const differences = [];
 
@@ -9,10 +10,8 @@ function compareArraysInOrder(actual, expected) {
     if (actual[i] !== expected[i]) {
       differences.push({
         index: i,
-        array1Value:
-          actual[i] === undefined ? '(missing in array 1)' : actual[i],
-        array2Value:
-          expected[i] === undefined ? '(missing in array 2)' : expected[i],
+        array1Value: actual[i] ?? '(missing in array 1)',
+        array2Value: expected[i] ?? '(missing in array 2)',
       });
     }
   }
@@ -20,7 +19,7 @@ function compareArraysInOrder(actual, expected) {
   return differences;
 }
 
-function main() {
+function main(): void {
   const map = new TreeMap([
     [2, 'B'],
     [1, 'A'],
@@ -74,7 +73,6 @@ function main() {
     '2, B',
   ]);
   if (diffs.length > 0) {
-    // eslint-disable-next-line no-console
     console.log(diffs);
     process.exit(1);
   }
