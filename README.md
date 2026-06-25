@@ -81,7 +81,7 @@ for(let [k,v] of map) {
 // key: 5, value: E
 ...
 // Iterate elements in reverse order
-for(let [k,v] of map.backward()) {
+for(let [k,v] of map.backwards()) {
     console.log(`key: ${k}, value: ${v}`);
 }
 ...
@@ -114,7 +114,7 @@ for(let [k,v] of map) {
 // key: 5, value: E
 ...
 // Iterate elements in reverse order
-for(let [k,v] of map.backward()) {
+for(let [k,v] of map.backwards()) {
     console.log(`key: ${k}, value: ${v}`);
 }
 ...
@@ -148,7 +148,7 @@ for(let [k,v] of map) {
 // key: 3, value: C
 
 // Iterate elements in reverse order
-for(let [k,v] of map.backward()) {
+for(let [k,v] of map.backwards()) {
     console.log(`key: ${k}, value: ${v}`);
 }
 

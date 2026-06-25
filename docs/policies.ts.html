@@ -86,11 +86,18 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { TreeNode } from './tree-node.js';
+
+export interface PolicyInterface&lt;K, V> {
+  fetch(n: TreeNode&lt;K, V>): K | V | [K, V];
+  copy(dst: TreeNode&lt;K, V>, src: TreeNode&lt;K, V>): void;
+  toString(node: TreeNode&lt;K, V>): string;
+}
+
 /**
  * Used by sets
  * @private
  */
-export class KeyOnlyPolicy&lt;K, V> {
+export class KeyOnlyPolicy&lt;K, V> implements PolicyInterface&lt;K, V> {
   /**
    * Returns key data from the specified node
    * @param {TreeNode} n - Node to inspect
@@ -110,7 +117,7 @@ export class KeyOnlyPolicy&lt;K, V> {
   }
 
   /**
-   * Returns tring representation of the provided node
+   * Returns string representation of the provided node
    * @param {TreeNode} node - Node to serialize
    * @returns {string} representation of the key
    */
@@ -123,7 +130,7 @@ export class KeyOnlyPolicy&lt;K, V> {
  * Used by maps
  * @private
  */
-export class KeyValuePolicy&lt;K, V> {
+export class KeyValuePolicy&lt;K, V> implements PolicyInterface&lt;K, V> {
   /**
    * Returns key-value data from the specified node
    * @param {TreeNode} n - Node to inspect
@@ -158,7 +165,7 @@ export class KeyValuePolicy&lt;K, V> {
  * Used for iteration through values of a map
  * @private
  */
-export class ValueOnlyPolicy&lt;K, V> {
+export class ValueOnlyPolicy&lt;K, V> implements PolicyInterface&lt;K, V> {
   /**
    * Returns data from the specified node
    * @param {TreeNode} n - Node to inspect

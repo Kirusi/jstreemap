@@ -2,7 +2,7 @@ import { InsertionResult } from './insertion-result.js';
 import { SetIterator } from './iterators.js';
 import { KeyOnlyPolicy } from './policies.js';
 import { TreeNode } from './tree-node.js';
-import { Tree } from './tree.js';
+import { compareFunctionType, Tree } from './tree.js';
 
 /**
  * TreeSet is a container that stores unique elements following a specific order.
@@ -170,7 +170,7 @@ export class TreeSet<K> {
    * }
    * // iterate all keys in reverse order
    * let set = new TreeSet([1, 2, 3]);
-   * for (let k of set.keys().backward()) {
+   * for (let k of set.keys().backwards()) {
    *   console.log(k); // 3, 2, 1
    * }
    */
@@ -210,7 +210,7 @@ export class TreeSet<K> {
    * }
    * // iterate all values in reverse order
    * let set = new TreeSet([1, 2, 3]);
-   * for (let v of set.values().backward()) {
+   * for (let v of set.values().backwards()) {
    *   console.log(v); // '3', '2', '1'
    * }
    */
@@ -243,8 +243,8 @@ export class TreeSet<K> {
    *   console.log(`key: ${key}`);
    * }
    */
-  backward(): IterableIterator<K> {
-    return this.__t.backward() as IterableIterator<K>;
+  backwards(): IterableIterator<K> {
+    return this.__t.backwards() as IterableIterator<K>;
   }
 
   /**
@@ -254,7 +254,7 @@ export class TreeSet<K> {
    *      -1 if the value of rhs is less than lhs
    *       0 if values are the same
    */
-  set compareFunc(func: any) {
+  set compareFunc(func: compareFunctionType) {
     this.clear();
     this.__t.compare = func;
   }
@@ -314,11 +314,11 @@ export class TreeSet<K> {
    * @example
    * let set = new TreeSet();
    * let res = set.insertUnique(1);
-   * if (res.wasInserted) {
+   * if (res.wasAdded) {
    *   console.log(`Inserted ${res.iterator.key}`); // prints 1
    * }
    * res = set.insertUnique(1); // this step has no effect on the set
-   * if (res.wasInserted) {
+   * if (res.wasAdded) {
    *   console.log(`Inserted ${res.iterator.key}`); // not executed
    * }
    */
@@ -335,12 +335,12 @@ export class TreeSet<K> {
    * @example
    * let set = new TreeSet();
    * let res = set.insertOrReplace(1);
-   * if (res.wasInserted) {
+   * if (res.wasAdded) {
    *   console.log(`Inserted ${res.iterator.key}`); // prints 1
    * }
    * res = set.insertOrReplace(1) // returns iterator to the previously added node
-   * if (res.wasInserted) {
-   *   console.log(`Inserted ${res.iterator.key}`); // prints 1
+   * if (res.wasReplaced) {
+   *   console.log(`Replaced ${res.iterator.key}`); // prints 1
    * }
    */
   insertOrReplace(key: K): InsertionResult<SetIterator<K>> {

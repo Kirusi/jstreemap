@@ -5,7 +5,7 @@ import {
   TreeIterator,
 } from './iterators.js';
 import { JsIterator, JsReverseIterator } from './js-iterators.js';
-import { KeyOnlyPolicy, ValueOnlyPolicy } from './policies.js';
+import { KeyOnlyPolicy, PolicyInterface, ValueOnlyPolicy } from './policies.js';
 import { Head, NodeColors, SomeNode, TreeNode } from './tree-node.js';
 
 /** insertion mode of a multimap, nodes with the same keys can be added */
@@ -14,6 +14,8 @@ const INSERT_MULTI = 1;
 const INSERT_UNIQUE = 2;
 /** if a node with the same key already exists then it's value is replaced on subsequent attempts */
 const INSERT_REPLACE = 3;
+
+export type compareFunctionType = (lhs: any, rhs: any) => number;
 
 /**
  * NodeColors.RED-black tree
@@ -27,9 +29,9 @@ export class Tree<
   /** Special head node */
   public head: Head<K, V>;
   /** 3-way comparison function */
-  public compare: any;
+  public compare: compareFunctionType;
   /** must be an instance of KeyOnlyPolicy for sets, or KeyValuePolicy for maps */
-  public valuePolicy: any;
+  public valuePolicy: PolicyInterface<K, V>;
   /** default constructor of an empty tree */
   constructor() {
     this.head = new Head();
@@ -322,7 +324,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {TreeNode} n - node
    */
   insertRepairTree(n: TreeNode<K, V>): void {
@@ -340,7 +342,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {TreeNode} n - node
    */
   repairCase1(n: TreeNode<K, V>): void {
@@ -349,7 +351,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {TreeNode} n - node
    */
   repairCase3(n: TreeNode<K, V>): void {
@@ -361,7 +363,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion
    * @param {TreeNode} n - node
    */
   repairCase4(node: TreeNode<K, V>): void {
@@ -436,7 +438,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {TreeNode} node - node
    */
   eraseInternal(nodeParam: TreeNode<K, V>): void {
@@ -500,7 +502,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
   eraseCase1(node: TreeNode<K, V>): void {
@@ -511,7 +513,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
   eraseCase2(node: TreeNode<K, V>): void {
@@ -532,7 +534,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
   eraseCase3(node: TreeNode<K, V>): void {
@@ -553,7 +555,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
   eraseCase4(node: TreeNode<K, V>): void {
@@ -574,7 +576,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
   eraseCase5(node: TreeNode<K, V>): void {
@@ -611,7 +613,7 @@ export class Tree<
 
   /**
    * @private
-   * The method is decribed at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
+   * The method is described at: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal
    * @param {*} node
    */
   eraseCase6(node: TreeNode<K, V>): void {
@@ -633,7 +635,7 @@ export class Tree<
        SEARCH BY KEY
        =========================== */
   /**
-   * Returns an itertor for a given key
+   * Returns an iterator for a given key
    * @param {K} k - key value
    * @returns {TreeIterator} an iterator pointing to a node with matching key value. If node is not found then end() iterator is returned.
    */
@@ -820,7 +822,7 @@ export class Tree<
    * ES6 reverse iteration
    * @returns {JsReverseIterator} returns reverse iterator for all elements in the tree
    */
-  backward(): JsReverseIterator<[K, V]> {
+  backwards(): JsReverseIterator<[K, V]> {
     return new JsReverseIterator(this);
   }
 
@@ -857,7 +859,7 @@ export class Tree<
       return undefined;
     }
     const it = this.begin();
-    return this.valuePolicy.fetch(it.node);
+    return this.valuePolicy.fetch(it.node) as [K, V];
   }
 
   /**
@@ -869,7 +871,7 @@ export class Tree<
       return undefined;
     }
     const it = this.rbegin();
-    return this.valuePolicy.fetch(it.node);
+    return this.valuePolicy.fetch(it.node) as [K, V];
   }
 
   /**
