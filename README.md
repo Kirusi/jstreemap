@@ -5,7 +5,7 @@
 [![Number of tests](https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true)](https://travis-ci.org/Kirusi/jstreemap)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d1833bbc5ae34166ae41f4432697d7a4)](https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-A TypeScript / ES6 library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:
+A TypeScript / ES6 library of tree-based associative containers. Library is packaged for both ESM and UMD usage. It can be used in a Node environment as well as in a browser. The following containers are provided:
 * [**TreeSet**](https://kirusi.github.io/jstreemap/TreeSet.html) - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.
 * [**TreeMap**](https://kirusi.github.io/jstreemap/TreeMap.html) - is an associative container that stores elements formed
 by a combination of a key value and a mapped value, following a specific order.
@@ -34,7 +34,7 @@ With STL-like explicit iterators one can navigate through specific ranges in the
 ```js
 // find all elements with keys between 10 and 20 inclusive
 let prevIter;
-for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
     if (prevIter !== undefined) {
         // Check whether the previous iterator points to key 15
         if (prevIter.key === 15) {
@@ -57,9 +57,44 @@ $ npm i --save jstreemap
 ```
 
 In Node.js:
+
+### Javascript
 ```js
 // Load library which is UMD packed.
 const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require('jstreemap');
+
+// Create and initialize map.
+let map: TreeMap = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
+map.set(5, 'E');
+map.set(4, 'D');
+// Iterate through all key-value pairs
+// Note that entries are stored in the ascending order of the keys,
+// not in the insertion order as in standard ES6 map
+for(let [k,v] of map) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+// Expected output:
+// key: 1, value: A
+// key: 2, value: B
+// key: 3, value: C
+// key: 4, value: D
+// key: 5, value: E
+...
+// Iterate elements in reverse order
+for(let [k,v] of map.backward()) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+...
+// find all elements with keys between 10 and 20 inclusive
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
+    console.log(`key: ${it.key}, value: ${it.value}`);
+}
+```
+
+### Typescript
+```js
+// Load library which is UMD packed.
+import {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} from 'jstreemap';
 
 // Create and initialize map.
 let map: TreeMap<number, string> = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
@@ -89,7 +124,9 @@ for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
 }
 ```
 
-In a browser:
+### Browser
+If you need to include this code in a browser page the old-fashioned way:
+
 ```html
 <!-- Load library which is UMD packed -->
 <script src="jstreemap.js"></script>
