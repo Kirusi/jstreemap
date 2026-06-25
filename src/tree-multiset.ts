@@ -2,7 +2,7 @@ import { InsertionResult } from './insertion-result.js';
 import { SetIterator } from './iterators.js';
 import { KeyOnlyPolicy } from './policies.js';
 import { TreeNode } from './tree-node.js';
-import { Tree } from './tree.js';
+import { compareFunctionType, Tree } from './tree.js';
 /**
  * TreeMultiSet is a container that stores elements following a specific order,
  * and where multiple elements can have equivalent values.
@@ -176,7 +176,7 @@ export class TreeMultiSet<K> {
    * }
    * // iterate all keys in reverse order
    * let set = new TreeMultiSet([1, 2, 3]);
-   * for (let k of set.keys().backward()) {
+   * for (let k of set.keys().backwards()) {
    *   console.log(k); // 3, 2, 1
    * }
    */
@@ -222,7 +222,7 @@ export class TreeMultiSet<K> {
    * }
    * // iterate all values in reverse order
    * let set = new TreeMultiSet([1, 2, 3]);
-   * for (let v of set.values().backward()) {
+   * for (let v of set.values().backwards()) {
    *   console.log(v); // '3', '2', '1'
    * }
    */
@@ -255,8 +255,8 @@ export class TreeMultiSet<K> {
    *   console.log(`key: ${key}`);
    * }
    */
-  backward(): IterableIterator<K> {
-    return this.__t.backward() as IterableIterator<K>;
+  backwards(): IterableIterator<K> {
+    return this.__t.backwards() as IterableIterator<K>;
   }
 
   /**
@@ -266,7 +266,7 @@ export class TreeMultiSet<K> {
    *      -1 if the value of rhs is less than lhs
    *       0 if values are the same
    */
-  set compareFunc(func: any) {
+  set compareFunc(func: compareFunctionType) {
     this.clear();
     this.__t.compare = func;
   }

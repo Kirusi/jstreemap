@@ -106,7 +106,7 @@
 <a href="https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_coverage"><img src="https://app.codacy.com/project/badge/Coverage/d1833bbc5ae34166ae41f4432697d7a4" alt="Test Coverage"></a>
 <a href="https://travis-ci.org/Kirusi/jstreemap"><img src="https://raw.githubusercontent.com/Kirusi/jstreemap/master/tools/test-badge.svg?sanitize=true" alt="Number of tests"></a>
 <a href="https://app.codacy.com/gh/Kirusi/jstreemap/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/d1833bbc5ae34166ae41f4432697d7a4" alt="Codacy Badge"></a></p>
-<p>A TypeScript / ES6 library of tree-based associative containers. Library is UMD packaged and can be used in a Node environment as well as in a browser. The following containers are provided:</p>
+<p>A TypeScript / ES6 library of tree-based associative containers. Library is packaged for both ESM and UMD usage. It can be used in a Node environment as well as in a browser. The following containers are provided:</p>
 <ul>
 <li><a href="https://kirusi.github.io/jstreemap/TreeSet.html"><strong>TreeSet</strong></a> - is a container that stores unique elements following a specific order. In a TreeSet, the value of an element also identifies it (the value is itself the key),and each value must be unique. The value of the elements in a TreeSet cannot be modified once in the container (the elements are immutable), but they can be inserted or removed from the container.</li>
 <li><a href="https://kirusi.github.io/jstreemap/TreeMap.html"><strong>TreeMap</strong></a> - is an associative container that stores elements formed
@@ -132,7 +132,7 @@ for(let [k,v] of map.backward) {
 <p>With STL-like explicit iterators one can navigate through specific ranges in the container and update or erase some of the items during iteration.</p>
 <pre class="prettyprint source lang-js"><code>// find all elements with keys between 10 and 20 inclusive
 let prevIter;
-for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
     if (prevIter !== undefined) {
         // Check whether the previous iterator points to key 15
         if (prevIter.key === 15) {
@@ -150,8 +150,40 @@ for (let it = map.lowerBound(10); !it.equals(map.upperBound(20); it.next()) {
 <pre class="prettyprint source lang-shell"><code>$ npm i --save jstreemap
 </code></pre>
 <p>In Node.js:</p>
+<h3>Javascript</h3>
 <pre class="prettyprint source lang-js"><code>// Load library which is UMD packed.
 const {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} = require('jstreemap');
+
+// Create and initialize map.
+let map: TreeMap = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
+map.set(5, 'E');
+map.set(4, 'D');
+// Iterate through all key-value pairs
+// Note that entries are stored in the ascending order of the keys,
+// not in the insertion order as in standard ES6 map
+for(let [k,v] of map) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+// Expected output:
+// key: 1, value: A
+// key: 2, value: B
+// key: 3, value: C
+// key: 4, value: D
+// key: 5, value: E
+...
+// Iterate elements in reverse order
+for(let [k,v] of map.backwards()) {
+    console.log(`key: ${k}, value: ${v}`);
+}
+...
+// find all elements with keys between 10 and 20 inclusive
+for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
+    console.log(`key: ${it.key}, value: ${it.value}`);
+}
+</code></pre>
+<h3>Typescript</h3>
+<pre class="prettyprint source lang-js"><code>// Load library which is UMD packed.
+import {TreeSet, TreeMap, TreeMultiSet, TreeMultiMap} from 'jstreemap';
 
 // Create and initialize map.
 let map: TreeMap&lt;number, string> = new TreeMap([[2, 'B'], [1, 'A'], [3, 'C']]);
@@ -171,7 +203,7 @@ for(let [k,v] of map) {
 // key: 5, value: E
 ...
 // Iterate elements in reverse order
-for(let [k,v] of map.backward()) {
+for(let [k,v] of map.backwards()) {
     console.log(`key: ${k}, value: ${v}`);
 }
 ...
@@ -180,7 +212,8 @@ for (let it = map.lowerBound(10); !it.equals(map.upperBound(20)); it.next()) {
     console.log(`key: ${it.key}, value: ${it.value}`);
 }
 </code></pre>
-<p>In a browser:</p>
+<h3>Browser</h3>
+<p>If you need to include this code in a browser page the old-fashioned way:</p>
 <pre class="prettyprint source lang-html"><code>&lt;!-- Load library which is UMD packed -->
 &lt;script src=&quot;jstreemap.js&quot;>&lt;/script>
 
@@ -201,7 +234,7 @@ for(let [k,v] of map) {
 // key: 3, value: C
 
 // Iterate elements in reverse order
-for(let [k,v] of map.backward()) {
+for(let [k,v] of map.backwards()) {
     console.log(`key: ${k}, value: ${v}`);
 }
 

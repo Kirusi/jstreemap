@@ -7,7 +7,7 @@ export interface IterableContainer {
 
 /**
  * Interface to traverse element's of set containers.
- * It is implmented by forward iterator - TreeIterator
+ * It is implemented by forward iterator - TreeIterator
  * and backward Iterator - ReverseIterator
  * @template K - Key type
  * @template C - Container
@@ -70,7 +70,7 @@ export interface SetIterator<
 
 /**
  * Interface to traverse element's of map containers.
- * It is implmented by forward iterator - TreeIterator
+ * It is implemented by forward iterator - TreeIterator
  * and backward Iterator - ReverseIterator
  * @template K - Key type
  * @template V - Value type
@@ -167,7 +167,7 @@ abstract class BaseIterator<K, V, C extends IterableContainer>
   equals(rhs: MapIterator<K, V, C> | SetIterator<K, C>): boolean {
     const lhsClass = this.constructor.name;
     const rhsClass = rhs.constructor.name;
-    if (lhsClass !== rhsClass) {
+    if (!(rhs instanceof this.constructor)) {
       throw new Error(
         `Can't compare an instance of ${lhsClass} with an instance of ${rhsClass}`
       );
@@ -255,10 +255,10 @@ export class TreeIterator<
     } else if (args.length === 1) {
       const [obj] = args;
       const className = obj.constructor.name;
-      if (className === TreeIterator.name) {
+      if (obj instanceof TreeIterator) {
         super(obj.__n, obj.__c);
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      } else if (className === ReverseIterator.name) {
+      } else if (obj instanceof ReverseIterator) {
         const c = obj.__c;
         super(c.next(obj.__n), c);
       } else {
@@ -354,9 +354,9 @@ export class ReverseIterator<
     } else if (args.length === 1) {
       const [obj] = args;
       const className = obj.constructor.name;
-      if (className === ReverseIterator.name) {
+      if (obj instanceof ReverseIterator) {
         super(obj.__n, obj.__c);
-      } else if (className === TreeIterator.name) {
+      } else if (obj instanceof TreeIterator) {
         const c = obj.__c;
         super(c.prev(obj.__n), c);
       } else {

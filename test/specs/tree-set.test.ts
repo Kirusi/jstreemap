@@ -119,7 +119,7 @@ describe('TreeSet tests', function () {
     should.equal(set.size, 0);
   });
 
-  it('constructor; null', function () {
+  it('constructor; undefined', function () {
     const set = new TreeSet(undefined);
     should.equal(set.size, 0);
   });
@@ -229,7 +229,7 @@ describe('TreeSet tests', function () {
   it('backward', function () {
     const set = new TreeSet([1, 2, 3]);
     const actual = [];
-    for (const key of set.backward()) {
+    for (const key of set.backwards()) {
       actual.push(key);
     }
     const expected = [3, 2, 1];

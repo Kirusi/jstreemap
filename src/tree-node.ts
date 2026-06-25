@@ -105,7 +105,7 @@ export class Head<K, V> {
     this.root = this;
     /** number of nodes in the tree */
     this.size = 0;
-    /** extra tag used in debuggin of unit tests */
+    /** extra tag used in debugging of unit tests */
     this.id = 'HEAD';
   }
 }

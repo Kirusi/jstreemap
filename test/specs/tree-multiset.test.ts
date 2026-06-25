@@ -123,7 +123,7 @@ describe('TreeMultiSet tests', function () {
     should.equal(m.size, 0);
   });
 
-  it('constructor; null', function () {
+  it('constructor; undefined', function () {
     const m = new TreeMultiSet(undefined);
     should.equal(m.size, 0);
   });
@@ -215,7 +215,7 @@ describe('TreeMultiSet tests', function () {
   it('backward', function () {
     const set = new TreeMultiSet([1, 2, 3]);
     const actual = [];
-    for (const key of set.backward()) {
+    for (const key of set.backwards()) {
       actual.push(key);
     }
     const expected = [3, 2, 1];

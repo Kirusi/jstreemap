@@ -2,7 +2,7 @@ import { InsertionResult } from './insertion-result.js';
 import { MapIterator } from './iterators.js';
 import { KeyValuePolicy } from './policies.js';
 import { TreeNode } from './tree-node.js';
-import { Tree } from './tree.js';
+import { compareFunctionType, Tree } from './tree.js';
 
 /**
  * TreeMap is an associative container that stores elements formed
@@ -186,7 +186,7 @@ export class TreeMap<K, V> {
    * }
    * // iterate all keys in reverse order
    * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-   * for (let k of map.keys().backward()) {
+   * for (let k of map.keys().backwards()) {
    *   console.log(k); // 3, 2, 1
    * }
    */
@@ -228,7 +228,7 @@ export class TreeMap<K, V> {
    * }
    * // iterate all values in reverse order
    * let map = new TreeMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-   * for (let v of map.values().backward()) {
+   * for (let v of map.values().backwards()) {
    *   console.log(v); // 'C', 'B', 'A'
    * }
    */
@@ -261,8 +261,8 @@ export class TreeMap<K, V> {
    *   console.log(`key: ${key}, value: ${value}`);
    * }
    */
-  backward(): IterableIterator<[K, V]> {
-    return this.__t.backward();
+  backwards(): IterableIterator<[K, V]> {
+    return this.__t.backwards();
   }
 
   /**
@@ -272,7 +272,7 @@ export class TreeMap<K, V> {
    *    -1 if the value of rhs is less than lhs
    *     0 if values are the same
    */
-  set compareFunc(func: any) {
+  set compareFunc(func: compareFunctionType) {
     this.clear();
     this.__t.compare = func;
   }
@@ -333,11 +333,11 @@ export class TreeMap<K, V> {
    * @example
    * let m = new TreeMap();
    * let res = m.insertUnique(1, 'A');
-   * if (res.wasInserted) {
+   * if (res.wasAdded) {
    *   console.log(`Inserted ${res.iterator.value}`); // prints A
    * }
    * res = m.insertUnique(1, 'B') // this step has no effect on the map
-   * if (res.wasInserted) {
+   * if (res.wasAdded) {
    *   console.log(`Inserted ${res.iterator.key}`); // not executed
    * }
    */
@@ -356,12 +356,12 @@ export class TreeMap<K, V> {
    * @example
    * let m = new TreeMap();
    * let res = m.insertOrReplace(1, 'A');
-   * if (res.wasInserted) {
+   * if (res.wasAdded) {
    *   console.log(`Inserted ${res.iterator.value}`); // prints A
    * }
    * res = m.insertOrReplace(1, 'B') // replaces value on the existing node
-   * if (res.wasInserted) {
-   *   console.log(`Inserted ${res.iterator.key}`); // prints B
+   * if (res.wasReplaced) {
+   *   console.log(`Replaced ${res.iterator.key}`); // prints B
    * }
    */
   insertOrReplace(key: K, value: V): InsertionResult<MapIterator<K, V>> {

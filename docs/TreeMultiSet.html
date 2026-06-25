@@ -657,12 +657,12 @@ for (let key of set) {
 
 
     
-    <h4 class="name" id="backward">
-        <a class="href-link" href="#backward">#</a>
+    <h4 class="name" id="backwards">
+        <a class="href-link" href="#backwards">#</a>
         
         <span class="code-name">
             
-                backward<span class="signature">()</span><span class="type-signature"> &rarr; {IterableIterator}</span>
+                backwards<span class="signature">()</span><span class="type-signature"> &rarr; {IterableIterator}</span>
             
         </span>
     </h4>
@@ -1090,7 +1090,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
   <td class="type">
   
       
-<code class="param-type">any</code>
+<code class="param-type">compareFunctionType</code>
 
 
   
@@ -3170,7 +3170,7 @@ for (let k of set.keys()) {
 }
 // iterate all keys in reverse order
 let set = new TreeMultiSet([1, 2, 3]);
-for (let k of set.keys().backward()) {
+for (let k of set.keys().backwards()) {
   console.log(k); // 3, 2, 1
 }</code></pre>
     
@@ -4351,7 +4351,7 @@ for (let v of set.values()) {
 }
 // iterate all values in reverse order
 let set = new TreeMultiSet([1, 2, 3]);
-for (let v of set.values().backward()) {
+for (let v of set.values().backwards()) {
   console.log(v); // '3', '2', '1'
 }</code></pre>
     

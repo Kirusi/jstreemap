@@ -142,7 +142,7 @@ describe('TreeMultiMap tests', function () {
     should.equal(m.size, 0);
   });
 
-  it('constructor; null', function () {
+  it('constructor; undefined', function () {
     const m = new TreeMultiMap(undefined);
     should.equal(m.size, 0);
   });
@@ -284,7 +284,7 @@ describe('TreeMultiMap tests', function () {
       [3, 'C'],
     ]);
     const actual = [];
-    for (const [key, value] of map.backward()) {
+    for (const [key, value] of map.backwards()) {
       actual.push([key, value]);
     }
     const expected = [

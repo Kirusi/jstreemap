@@ -1377,7 +1377,7 @@ describe('Tree tests', function () {
       32
     );
     const actual = [];
-    for (const v of t.backward()) {
+    for (const v of t.backwards()) {
       actual.push(v);
     }
     const expected = [

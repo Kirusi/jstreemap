@@ -48,7 +48,7 @@ function main() {
   // key: 5, value: E
 
   // Iterate elements in reverse order
-  for (const [k, v] of map.backward()) {
+  for (const [k, v] of map.backwards()) {
     res.push(`${k}, ${v}`);
   }
 

@@ -409,12 +409,12 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
 
 
     
-    <h4 class="name" id="backward">
-        <a class="href-link" href="#backward">#</a>
+    <h4 class="name" id="backwards">
+        <a class="href-link" href="#backwards">#</a>
         
         <span class="code-name">
             
-                backward<span class="signature">()</span><span class="type-signature"> &rarr; {IterableIterator}</span>
+                backwards<span class="signature">()</span><span class="type-signature"> &rarr; {IterableIterator}</span>
             
         </span>
     </h4>
@@ -842,7 +842,7 @@ Callback is a 3-way comparison function accepts two key values (lhs, rhs). It is
   <td class="type">
   
       
-<code class="param-type">any</code>
+<code class="param-type">compareFunctionType</code>
 
 
   
@@ -2626,11 +2626,11 @@ let b = map.get(3); // true</code></pre>
     
         <pre class="prettyprint"><code>let m = new TreeMultiMap();
 let res = m.insertMulti(1, 'A');
-if (res.wasInserted) {
+if (res.wasAdded) {
   console.log(`Inserted ${res.iterator.value}`); // prints A
 }
 res = m.insertMulti(1, 'B') // adds a new node
-if (res.wasInserted) {
+if (res.wasAdded) {
   console.log(`Inserted ${res.iterator.value}`); // prints B
   it.prev();
   console.log(`Previously inserted ${res.iterator.value}`); // prints A
@@ -2841,12 +2841,12 @@ if (res.wasInserted) {
     
         <pre class="prettyprint"><code>let m = new TreeMultiMap();
 let res = m.insertOrReplace(1, 'A');
-if (res.wasInserted) {
+if (res.wasAdded) {
   console.log(`Inserted ${res.iterator.value}`); // prints A
 }
 res = m.insertOrReplace(1, 'B') // replaces value on the existing node
-if (res.wasInserted) {
-  console.log(`Inserted ${res.iterator.key}`); // prints B
+if (res.wasReplaced) {
+  console.log(`Replaced ${res.iterator.key}`); // prints B
 }</code></pre>
     
 
@@ -3054,11 +3054,11 @@ if (res.wasInserted) {
     
         <pre class="prettyprint"><code>let m = new TreeMultiMap();
 let res = m.insertUnique(1, 'A');
-if (res.wasInserted) {
+if (res.wasAdded) {
   console.log(`Inserted ${res.iterator.value}`); // prints A
 }
 res = m.insertUnique(1, 'B') // this step has no effect on the map
-if (res.wasInserted) {
+if (res.wasAdded) {
   console.log(`Inserted ${res.iterator.key}`); // not executed
 }</code></pre>
     
@@ -3196,7 +3196,7 @@ for (let k of map.keys()) {
 }
 // iterate all keys in reverse order
 let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-for (let k of map.keys().backward()) {
+for (let k of map.keys().backwards()) {
   console.log(k); // 3, 2, 1
 }</code></pre>
     
@@ -4590,7 +4590,7 @@ for (let v of map.values()) {
 }
 // iterate all values in reverse order
 let map = new TreeMultiMap([[1, 'A'], [2, 'B'], [3, 'C']]);
-for (let v of map.values().backward()) {
+for (let v of map.values().backwards()) {
   console.log(v); // 'C', 'B', 'A'
 }</code></pre>
     

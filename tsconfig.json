@@ -3,14 +3,17 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "build/types",
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": [
       "DOM",
       "ES2015"
     ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
+    "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUncheckedSideEffectImports": true,
     "noUnusedLocals": true,

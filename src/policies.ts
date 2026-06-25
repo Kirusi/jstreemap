@@ -1,9 +1,16 @@
 import { TreeNode } from './tree-node.js';
+
+export interface PolicyInterface<K, V> {
+  fetch(n: TreeNode<K, V>): K | V | [K, V];
+  copy(dst: TreeNode<K, V>, src: TreeNode<K, V>): void;
+  toString(node: TreeNode<K, V>): string;
+}
+
 /**
  * Used by sets
  * @private
  */
-export class KeyOnlyPolicy<K, V> {
+export class KeyOnlyPolicy<K, V> implements PolicyInterface<K, V> {
   /**
    * Returns key data from the specified node
    * @param {TreeNode} n - Node to inspect
@@ -23,7 +30,7 @@ export class KeyOnlyPolicy<K, V> {
   }
 
   /**
-   * Returns tring representation of the provided node
+   * Returns string representation of the provided node
    * @param {TreeNode} node - Node to serialize
    * @returns {string} representation of the key
    */
@@ -36,7 +43,7 @@ export class KeyOnlyPolicy<K, V> {
  * Used by maps
  * @private
  */
-export class KeyValuePolicy<K, V> {
+export class KeyValuePolicy<K, V> implements PolicyInterface<K, V> {
   /**
    * Returns key-value data from the specified node
    * @param {TreeNode} n - Node to inspect
@@ -71,7 +78,7 @@ export class KeyValuePolicy<K, V> {
  * Used for iteration through values of a map
  * @private
  */
-export class ValueOnlyPolicy<K, V> {
+export class ValueOnlyPolicy<K, V> implements PolicyInterface<K, V> {
   /**
    * Returns data from the specified node
    * @param {TreeNode} n - Node to inspect
