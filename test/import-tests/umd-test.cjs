@@ -1,6 +1,6 @@
 'use strict';
 
-const { TreeMap } = require('../../dist/umd/jstreemap.cjs');
+const { TreeMap } = require('../../dist/umd/index.cjs');
 
 function compareArraysInOrder(actual, expected) {
   const maxLength = Math.max(actual.length, expected.length);

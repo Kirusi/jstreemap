@@ -1,6 +1,6 @@
 // Load library which is ESM packed.
 // @ts-expect-error: TS2306
-import { TreeMap } from '../../dist/esm/jstreemap.js';
+import { TreeMap } from '../../dist/esm/index.js';
 
 function compareArraysInOrder(actual: string[], expected: string[]): any[] {
   const maxLength = Math.max(actual.length, expected.length);
