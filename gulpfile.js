@@ -27,7 +27,7 @@ gulp.task('build', function buildTask(done) {
   runCmd('analyze-tests', 'npm run analyze-tests');
   runCmd('jsdoc', 'npm run jsdoc');
   runCmd('compile', 'npm run compile');
-  runCmd('webpack', 'npm run webpack');
+  runCmd('rollup', 'npm run rollup');
   runCmd('generate-tests', 'npm run generate-tests');
   runCmd('preprod-esm-tests', 'npm run preprod-esm-tests');
   runCmd('preprod-umd-tests', 'npm run preprod-umd-tests');

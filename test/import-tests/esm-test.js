@@ -1,5 +1,5 @@
 // Load library which is ESM packed.
-import { TreeMap } from '../../dist/esm/jstreemap.js';
+import { TreeMap } from '../../dist/esm/index.js';
 
 function compareArraysInOrder(actual, expected) {
   const maxLength = Math.max(actual.length, expected.length);
